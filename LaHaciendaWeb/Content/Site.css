@@ -68,6 +68,25 @@ html, body {
     -o-transition: all 1s ease;
     transition: all 1s ease;
 }
+.collapse-menu.admin-app > .admin-menu {
+    width: 5%;
+}
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
+        font-size: 2.5em;
+    }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .text {
+        display: none;
+    }
+    .collapse-menu.admin-app > .admin-menu > .logo-extend {
+        display: none;
+    }
+    .collapse-menu.admin-app > .admin-menu > .logo-collapse {
+        display: block;
+    }
+.collapse-menu.admin-app > .admin-content {
+    width: 95%;
+}
 .admin-content-body {
     padding: .5rem;
 }
@@ -88,7 +107,7 @@ html, body {
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100%;
+    min-height: 90%;
     width: 100%;
 
     -moz-transition: all 3s ease;
@@ -128,6 +147,14 @@ html, body {
         z-index: 10;
         width: 100%;
     }
+.admin-menu > .btn-collapse-menu,
+.admin-menu > .btn-extend-menu {
+    border: none;
+    border-radius: 6px 0 0 6px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
 .list-group-admin-menu {
     background: none;
 }
@@ -163,6 +190,13 @@ html, body {
     display: block;
     margin: .5rem auto;
     max-width: 173px;
+}
+
+.logo-collapse {
+    display: none;
+}
+.logo-extend {
+    display: block;
 }
 
 .logo-example-empresa {
@@ -512,43 +546,59 @@ html, body {
 **/
 @media screen and (min-width:1401px) and (max-width: 1600px) {
     .admin-menu {
+        width: 15%;
+    }
+    .admin-content {
+        width: 85%;
+    }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
+        font-size: 2em;
+    }
+}
+
+@media screen and (min-width:1200px) and (max-width:1400px) {
+    .admin-menu {
         width: 20%;
     }
     .admin-content {
         width: 80%;
     }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
+        font-size: 2em;
+    }
 }
 
-@media screen and (min-width:1200px) and (max-width:1400px) {
+@media screen and (min-width:1025px) and (max-width:1199px) {
+    .admin-menu {
+        width: 20%;
+    }
+    .admin-content {
+        width: 80%;
+    }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1024px) {
     .admin-menu {
         width: 25%;
     }
     .admin-content {
         width: 75%;
     }
-}
-
-@media screen and (min-width:1025px) and (max-width:1199px) {
-    .admin-menu {
-        width: 30%;
-    }
-    .admin-content {
-        width: 70%;
-    }
-}
-
-@media screen and (min-width:992px) and (max-width:1024px) {
-    .admin-menu {
-        width: 30%;
-    }
-    .admin-content {
-        width: 70%;
-    }
     .app-content {
         width: 95%;
     }
     .search-job {
         max-width: 300px;
+    }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
+        font-size: 1.5em;
     }
 }
 
@@ -557,7 +607,7 @@ html, body {
         width: 40%;
     }
     .admin-content {
-        width: 96%;
+        width: 100%;
         z-index: 10;
     }
     .admin-app.open .admin-content {
@@ -569,6 +619,10 @@ html, body {
     .search-job {
         max-width: none;
         position: relative;
+    }
+    .admin-menu > .btn-collapse-menu,
+    .admin-menu > .btn-extend-menu {
+        display: none;
     }
 }
 
@@ -596,6 +650,10 @@ html, body {
         max-width: none;
         position: relative;
     }
+    .admin-menu > .btn-collapse-menu,
+    .admin-menu > .btn-extend-menu {
+        display: none;
+    }
 }
 
 @media screen and (max-width:320px) {
@@ -618,5 +676,9 @@ html, body {
     .search-job {
         max-width: none;
         position: relative;
+    }
+    .admin-menu > .btn-collapse-menu,
+    .admin-menu > .btn-extend-menu {
+        display: none;
     }
 }

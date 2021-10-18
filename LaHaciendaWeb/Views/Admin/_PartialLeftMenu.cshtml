@@ -1,6 +1,9 @@
 ﻿
-<a href="@Url.Action("Index", "Admin")" title="La Hacienda" class="logo">
+<a href="@Url.Action("Index", "Admin")" title="La Hacienda" class="logo logo-extend">
     <img src="~/Content/images/logo.png" class="img-fluid" alt="La Hacienda" />
+</a>
+<a href="@Url.Action("Index", "Admin")" title="La Hacienda" class="logo logo-collapse">
+    <img src="~/Content/images/logo4.png" class="img-fluid" alt="La Hacienda" />
 </a>
 <!--
 <div class="p-2">
@@ -29,21 +32,29 @@
 -->
 <div class="mt-2 p-2">
     <div class="list-group list-group-admin-menu">
-        <a href="@Url.Action("Index", "Admin")" class="list-group-item list-group-item-action menu-app-01">
+        <a href="@Url.Action("Index", "Admin")" class="list-group-item list-group-item-action menu-app-01" title="Dashboard">
             <i class="fas fa-home"></i>
-            Dashboard
+            <span class="text">
+                Dashboard
+            </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-02">
+        <a href="#" class="list-group-item list-group-item-action menu-app-02" title="Opcion A">
             <i class="fas fa-building"></i>
-            Opcion A
+            <span class="text">
+                Opcion A
+            </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-03">
+        <a href="#" class="list-group-item list-group-item-action menu-app-03" title="Opcion B">
             <i class="fas fa-business-time"></i>
-            Opcion B
+            <span class="text">
+                Opcion B
+            </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-04">
+        <a href="#" class="list-group-item list-group-item-action menu-app-04" title="Opcion C">
             <i class="fas fa-user-tie"></i>
-            Opcion C
+            <span class="text">
+                Opcion C
+            </span>
         </a>
     </div>
 </div>

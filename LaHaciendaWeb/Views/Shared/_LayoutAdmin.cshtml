@@ -11,6 +11,12 @@
 <body class="admin">
     <div class="admin-app">
         <div class="admin-menu">
+            <button type="button" class="btn btn-primary btn-sm btn-collapse-menu" onclick="collapseMenu();">
+                <i class="fas fa-chevron-circle-left fa-15x"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm btn-extend-menu" onclick="extendMenu();" style="display: none;">
+                <i class="fas fa-chevron-circle-right fa-15x"></i>
+            </button>
             @Html.Action("_PartialLeftMenu", "Admin")
         </div>
         <div class="admin-content">
