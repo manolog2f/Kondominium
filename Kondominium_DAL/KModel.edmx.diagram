@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="431d031f65f44e62a7afbcfdb64d546f" Name="Diagram1" >
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.aranceles" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientes" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrar" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" Width="1.5" PointX="10.25" PointY="1.375" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.empresa" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.poligonos" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.productos" Width="1.5" PointX="8" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.propiedades" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesArancelesFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.CxcClientesFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.CxcDetalleProductosFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesPoligonosFK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

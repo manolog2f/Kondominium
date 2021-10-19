@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_a43bba_kondomiModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aranceles">
+          <Key>
+            <PropertyRef Name="ArancelId" />
+          </Key>
+          <Property Name="ArancelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Documento1" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Documento2" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Documento3" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelefonoMovil" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="TelefonoFijo" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrar">
+          <Key>
+            <PropertyRef Name="VaucherNumber" />
+          </Key>
+          <Property Name="VaucherNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="TipoCxC" Type="int" Nullable="false" />
+          <Property Name="FechaDeEmision" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="FechaDeVencimiento" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="PeriodoFacturado" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="NPE" Type="varchar" MaxLength="100" />
+          <Property Name="BRCode" Type="varchar" MaxLength="100" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrardetalle">
+          <Key>
+            <PropertyRef Name="DetalleId" />
+          </Key>
+          <Property Name="VaucherNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DetalleId" Type="int" Nullable="false" />
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="EmpresaId" />
+          </Key>
+          <Property Name="EmpresaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpresaNombre" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Documento1" Type="char" MaxLength="25" />
+          <Property Name="Documento2" Type="char" MaxLength="25" />
+          <Property Name="Documento3" Type="char" MaxLength="25" />
+          <Property Name="Direccion" Type="char" MaxLength="250" Nullable="false" />
+          <Property Name="Logo" Type="longblob" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="poligonos">
+          <Key>
+            <PropertyRef Name="PoligonoId" />
+          </Key>
+          <Property Name="PoligonoId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PoligonoDescripcion" Type="varchar" MaxLength="45" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="Productoid" />
+          </Key>
+          <Property Name="Productoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="propiedades">
+          <Key>
+            <PropertyRef Name="PropiedadId" />
+          </Key>
+          <Property Name="PropiedadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoDePropiedad" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Casa" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PoligonoId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ArancelId" Type="int" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="CxcClientesFK">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CxcDestalleCxcHeaderFK">
+          <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="1" />
+          <End Role="cuentasporcobrardetalle" Type="Self.cuentasporcobrardetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasporcobrar">
+              <PropertyRef Name="VaucherNumber" />
+            </Principal>
+            <Dependent Role="cuentasporcobrardetalle">
+              <PropertyRef Name="VaucherNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CxcDetalleProductosFK">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="cuentasporcobrardetalle" Type="Self.cuentasporcobrardetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="cuentasporcobrardetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiesdesArancelesFK">
+          <End Role="aranceles" Type="Self.aranceles" Multiplicity="0..1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aranceles">
+              <PropertyRef Name="ArancelId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="ArancelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiesdesPoligonosFK">
+          <End Role="poligonos" Type="Self.poligonos" Multiplicity="1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poligonos">
+              <PropertyRef Name="PoligonoId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="PoligonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a43bba_kondomiModelStoreContainer">
+          <EntitySet Name="aranceles" EntityType="Self.aranceles" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="clientes" EntityType="Self.clientes" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasporcobrar" EntityType="Self.cuentasporcobrar" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasporcobrardetalle" EntityType="Self.cuentasporcobrardetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="empresa" EntityType="Self.empresa" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="poligonos" EntityType="Self.poligonos" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="propiedades" EntityType="Self.propiedades" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <AssociationSet Name="CxcClientesFK" Association="Self.CxcClientesFK">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+          </AssociationSet>
+          <AssociationSet Name="CxcDestalleCxcHeaderFK" Association="Self.CxcDestalleCxcHeaderFK">
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+            <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="CxcDetalleProductosFK" Association="Self.CxcDetalleProductosFK">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="PropiesdesArancelesFK" Association="Self.PropiesdesArancelesFK">
+            <End Role="aranceles" EntitySet="aranceles" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="PropiesdesPoligonosFK" Association="Self.PropiesdesPoligonosFK">
+            <End Role="poligonos" EntitySet="poligonos" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_a43bba_kondomiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="aranceles" EntityType="db_a43bba_kondomiModel.aranceles" />
+          <EntitySet Name="clientes" EntityType="db_a43bba_kondomiModel.clientes" />
+          <EntitySet Name="cuentasporcobrar" EntityType="db_a43bba_kondomiModel.cuentasporcobrar" />
+          <EntitySet Name="cuentasporcobrardetalle" EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" />
+          <EntitySet Name="empresa" EntityType="db_a43bba_kondomiModel.empresa" />
+          <EntitySet Name="poligonos" EntityType="db_a43bba_kondomiModel.poligonos" />
+          <EntitySet Name="productos" EntityType="db_a43bba_kondomiModel.productos" />
+          <EntitySet Name="propiedades" EntityType="db_a43bba_kondomiModel.propiedades" />
+          <AssociationSet Name="PropiesdesArancelesFK" Association="db_a43bba_kondomiModel.PropiesdesArancelesFK">
+            <End Role="aranceles" EntitySet="aranceles" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="CxcClientesFK" Association="db_a43bba_kondomiModel.CxcClientesFK">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+          </AssociationSet>
+          <AssociationSet Name="CxcDestalleCxcHeaderFK" Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK">
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+            <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="CxcDetalleProductosFK" Association="db_a43bba_kondomiModel.CxcDetalleProductosFK">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="PropiesdesPoligonosFK" Association="db_a43bba_kondomiModel.PropiesdesPoligonosFK">
+            <End Role="poligonos" EntitySet="poligonos" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aranceles">
+          <Key>
+            <PropertyRef Name="ArancelId" />
+          </Key>
+          <Property Name="ArancelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiesdesArancelesFK" FromRole="aranceles" ToRole="propiedades" />
+        </EntityType>
+        <EntityType Name="clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Documento1" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Documento2" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Documento3" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoMovil" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoFijo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="clientes" ToRole="cuentasporcobrar" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrar">
+          <Key>
+            <PropertyRef Name="VaucherNumber" />
+          </Key>
+          <Property Name="VaucherNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCxC" Type="Int32" Nullable="false" />
+          <Property Name="FechaDeEmision" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeVencimiento" Type="DateTime" Nullable="false" />
+          <Property Name="PeriodoFacturado" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Decimal" Nullable="false" />
+          <Property Name="NPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BRCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="cuentasporcobrar" ToRole="clientes" />
+          <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrar" ToRole="cuentasporcobrardetalle" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrardetalle">
+          <Key>
+            <PropertyRef Name="DetalleId" />
+          </Key>
+          <Property Name="VaucherNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DetalleId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrardetalle" ToRole="cuentasporcobrar" />
+          <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="cuentasporcobrardetalle" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="EmpresaId" />
+          </Key>
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpresaNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Documento1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Documento2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Documento3" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="poligonos">
+          <Key>
+            <PropertyRef Name="PoligonoId" />
+          </Key>
+          <Property Name="PoligonoId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PoligonoDescripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="poligonos" ToRole="propiedades" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="Productoid" />
+          </Key>
+          <Property Name="Productoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="productos" ToRole="cuentasporcobrardetalle" />
+        </EntityType>
+        <EntityType Name="propiedades">
+          <Key>
+            <PropertyRef Name="PropiedadId" />
+          </Key>
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoDePropiedad" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Casa" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PoligonoId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ArancelId" Type="Int32" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="aranceles" Relationship="db_a43bba_kondomiModel.PropiesdesArancelesFK" FromRole="propiedades" ToRole="aranceles" />
+          <NavigationProperty Name="poligonos" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="propiedades" ToRole="poligonos" />
+        </EntityType>
+        <Association Name="PropiesdesArancelesFK">
+          <End Type="db_a43bba_kondomiModel.aranceles" Role="aranceles" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aranceles">
+              <PropertyRef Name="ArancelId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="ArancelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CxcClientesFK">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CxcDestalleCxcHeaderFK">
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrardetalle" Role="cuentasporcobrardetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasporcobrar">
+              <PropertyRef Name="VaucherNumber" />
+            </Principal>
+            <Dependent Role="cuentasporcobrardetalle">
+              <PropertyRef Name="VaucherNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CxcDetalleProductosFK">
+          <End Type="db_a43bba_kondomiModel.productos" Role="productos" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrardetalle" Role="cuentasporcobrardetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="cuentasporcobrardetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiesdesPoligonosFK">
+          <End Type="db_a43bba_kondomiModel.poligonos" Role="poligonos" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poligonos">
+              <PropertyRef Name="PoligonoId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="PoligonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_a43bba_kondomiModelStoreContainer" CdmEntityContainer="KEntities" >
+          <EntitySetMapping Name="aranceles">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.aranceles">
+              <MappingFragment StoreEntitySet="aranceles">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ArancelId" ColumnName="ArancelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientes">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+                <ScalarProperty Name="TelefonoMovil" ColumnName="TelefonoMovil" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Documento3" ColumnName="Documento3" />
+                <ScalarProperty Name="Documento2" ColumnName="Documento2" />
+                <ScalarProperty Name="Documento1" ColumnName="Documento1" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasporcobrar">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrar">
+              <MappingFragment StoreEntitySet="cuentasporcobrar">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="BRCode" ColumnName="BRCode" />
+                <ScalarProperty Name="NPE" ColumnName="NPE" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PeriodoFacturado" ColumnName="PeriodoFacturado" />
+                <ScalarProperty Name="FechaDeVencimiento" ColumnName="FechaDeVencimiento" />
+                <ScalarProperty Name="FechaDeEmision" ColumnName="FechaDeEmision" />
+                <ScalarProperty Name="TipoCxC" ColumnName="TipoCxC" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasporcobrardetalle">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrardetalle">
+              <MappingFragment StoreEntitySet="cuentasporcobrardetalle">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="DetalleId" ColumnName="DetalleId" />
+                <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.empresa">
+              <MappingFragment StoreEntitySet="empresa">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Documento3" ColumnName="Documento3" />
+                <ScalarProperty Name="Documento2" ColumnName="Documento2" />
+                <ScalarProperty Name="Documento1" ColumnName="Documento1" />
+                <ScalarProperty Name="EmpresaNombre" ColumnName="EmpresaNombre" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="poligonos">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.poligonos">
+              <MappingFragment StoreEntitySet="poligonos">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="PoligonoDescripcion" ColumnName="PoligonoDescripcion" />
+                <ScalarProperty Name="PoligonoId" ColumnName="PoligonoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Productoid" ColumnName="Productoid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="propiedades">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.propiedades">
+              <MappingFragment StoreEntitySet="propiedades">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="ArancelId" ColumnName="ArancelId" />
+                <ScalarProperty Name="PoligonoId" ColumnName="PoligonoId" />
+                <ScalarProperty Name="Casa" ColumnName="Casa" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoDePropiedad" ColumnName="TipoDePropiedad" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
