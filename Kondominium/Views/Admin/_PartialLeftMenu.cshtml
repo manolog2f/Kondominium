@@ -38,23 +38,31 @@
                 Dashboard
             </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-02" title="Opcion A">
+        <a href="@Url.Action("Index", "Admin")" class="list-group-item list-group-item-action menu-app-02" title="Opcion A">
             <i class="fas fa-building"></i>
             <span class="text">
                 Opcion A
             </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-03" title="Opcion B">
+        <a href="@Url.Action("Index", "Admin")" class="list-group-item list-group-item-action menu-app-03" title="Opcion B">
             <i class="fas fa-business-time"></i>
             <span class="text">
                 Opcion B
             </span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action menu-app-04" title="Opcion C">
+        <a href="@Url.Action("Index", "Admin")" class="list-group-item list-group-item-action menu-app-04" title="Opcion C">
             <i class="fas fa-user-tie"></i>
             <span class="text">
                 Opcion C
             </span>
         </a>
     </div>
+</div>
+<div class="mt-2 mb-2 text-center">
+    <button type="button" class="btn btn-sm btn-collapse-menu" onclick="collapseMenu();">
+        <i class="fas fa-chevron-left fa-15x"></i>
+    </button>
+    <button type="button" class="btn btn-sm btn-extend-menu" onclick="extendMenu();" style="display: none;">
+        <i class="fas fa-chevron-right fa-15x"></i>
+    </button>
 </div>

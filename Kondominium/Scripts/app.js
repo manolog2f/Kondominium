@@ -32,11 +32,11 @@ function setDropdown() {
 function collapseMenu() {
     $('.admin-app').addClass('collapse-menu');
     $('.btn-collapse-menu').css('display', 'none');
-    $('.btn-extend-menu').css('display', 'block');
+    $('.btn-extend-menu').css('display', 'inline-flex');
 }
 function extendMenu() {
     $('.admin-app').removeClass('collapse-menu');
-    $('.btn-collapse-menu').css('display', 'block');
+    $('.btn-collapse-menu').css('display', 'inline-flex');
     $('.btn-extend-menu').css('display', 'none');
 }
 

@@ -26,5 +26,14 @@ namespace Kondominium.Controllers
 
             return View();
         }
+
+        public ActionResult _PartialFooter()
+        {
+            return PartialView();
+        }
+        public ActionResult _PartialFooter2()
+        {
+            return PartialView();
+        }
     }
 }

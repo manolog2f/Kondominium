@@ -41,11 +41,10 @@ html, body {
     transition: all 1s ease;
 }
 .admin-menu {
-    background: #4e533c;
-    background: -moz-linear-gradient(top, #4e533c 0%, #747d55 100%);
-    background: -webkit-linear-gradient(top, #4e533c 0%,#747d55 100%);
-    background: linear-gradient(to bottom, #4e533c 0%,#747d55 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e533c', endColorstr='#747d55',GradientType=0 );
+    background: url(../Content/images/cover-back4.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
     box-shadow: -3px 0 8px #505832 inset;
     left: 0;
     height: 100%;
@@ -71,9 +70,12 @@ html, body {
 .collapse-menu.admin-app > .admin-menu {
     width: 5%;
 }
+    .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item {
+        text-align: center;
+    }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 2.5em;
+        font-size: 2em;
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .text {
         display: none;
@@ -102,22 +104,17 @@ html, body {
     width: 100%;
 }
 .back-login {
-    background-color: #fff;
-    background-image: url(images/cover-back2.jpg);
-    background-position: center top;
+    background-image: url(images/cover-back5.jpg);
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 90%;
     width: 100%;
-
     -moz-transition: all 3s ease;
     -webkit-transition: all 3s ease;
     -o-transition: all 3s ease;
     transition: all 3s ease;
 }
-    .back-login:hover {
-        background-position: center bottom;
-    }
 .fa-15x {
     font-size: 1.5em;
 }
@@ -136,6 +133,14 @@ html, body {
 .footer ul {
     padding-left: 1.5rem;
 }
+.footer-admin {
+    background: #fff;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+}
+.footer-admin p {
+    color: #333;
+}
 .header-a {
     position: relative;
     width: 100%;
@@ -147,19 +152,31 @@ html, body {
         z-index: 10;
         width: 100%;
     }
-.admin-menu > .btn-collapse-menu,
-.admin-menu > .btn-extend-menu {
+.admin-menu > div > .btn-collapse-menu,
+.admin-menu > div > .btn-extend-menu {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.3);
     border: none;
-    border-radius: 6px 0 0 6px;
-    position: absolute;
-    right: 0;
-    top: 50%;
+    border-radius: 50% 50%;
+    box-shadow: -3px 0 8px #505832;
+    color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    height: 36px;
+    padding: 0;
+    width: 36px;
+}
+.admin-menu > div > .btn-collapse-menu:hover,
+.admin-menu > div > .btn-extend-menu:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: #6e7c3e;
 }
 .list-group-admin-menu {
     background: none;
 }
 .list-group-admin-menu > .list-group-item.list-group-item-action {
     background: none;
+    border: none;
     color: #fff;
     padding: .5rem;
 }
@@ -176,13 +193,13 @@ html, body {
     width: 100%;
 }
     .login .card {
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(255, 255, 255, 1);
         border-bottom: 3px solid #6e7c3e;
         box-shadow: 0 5px 15px #6e7c3e;
     }
     .login:hover .card,
     .login:focus .card {
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 1);
         border-bottom: 3px solid #6e7c3e;
         box-shadow: 0 5px 15px #6e7c3e;
     }
@@ -190,6 +207,9 @@ html, body {
     display: block;
     margin: .5rem auto;
     max-width: 173px;
+}
+.footer .logo {
+    max-width: 125px;
 }
 
 .logo-collapse {
@@ -299,6 +319,21 @@ html, body {
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
     color: #fff;
+}
+.navbar-admin.navbar.navbar-expand-lg.navbar-light {
+    background: #fff;
+}
+.navbar-admin .navbar-nav .nav-item > .nav-link,
+.navbar-admin .navbar-nav .nav-item.active > .nav-link,
+.navbar-admin .navbar-nav .nav-item.active > .nav-link:hover,
+.navbar-admin .navbar-nav .nav-item.active > .nav-link:focus,
+.navbar-admin.navbar-light .navbar-nav .show > .nav-link,
+.navbar-admin.navbar-light .navbar-nav .active > .nav-link,
+.navbar-admin.navbar-light .navbar-nav .nav-link.show,
+.navbar-admin.navbar-light .navbar-nav .nav-link.active,
+.navbar-admin.navbar-light .navbar-nav .nav-link:hover,
+.navbar-admin.navbar-light .navbar-nav .nav-link:focus {
+    color: #42520b;
 }
 .dropdown-item.active,
 .dropdown-item:active,
@@ -553,7 +588,7 @@ html, body {
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 }
 
@@ -566,7 +601,7 @@ html, body {
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 }
 
@@ -579,7 +614,7 @@ html, body {
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 1.8em;
+        font-size: 1.3em;
     }
 }
 
@@ -598,7 +633,7 @@ html, body {
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 1.5em;
+        font-size: 1.1em;
     }
 }
 
@@ -620,8 +655,8 @@ html, body {
         max-width: none;
         position: relative;
     }
-    .admin-menu > .btn-collapse-menu,
-    .admin-menu > .btn-extend-menu {
+    .admin-menu > div > .btn-collapse-menu,
+    .admin-menu > div > .btn-extend-menu {
         display: none;
     }
 }
@@ -650,8 +685,8 @@ html, body {
         max-width: none;
         position: relative;
     }
-    .admin-menu > .btn-collapse-menu,
-    .admin-menu > .btn-extend-menu {
+    .admin-menu > div > .btn-collapse-menu,
+    .admin-menu > div > .btn-extend-menu {
         display: none;
     }
 }
@@ -677,8 +712,8 @@ html, body {
         max-width: none;
         position: relative;
     }
-    .admin-menu > .btn-collapse-menu,
-    .admin-menu > .btn-extend-menu {
+    .admin-menu > div > .btn-collapse-menu,
+    .admin-menu > div > .btn-extend-menu {
         display: none;
     }
 }

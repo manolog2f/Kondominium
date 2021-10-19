@@ -144,10 +144,14 @@
     <Content Include="Content\images\back.jpg" />
     <Content Include="Content\images\cover-back.jpg" />
     <Content Include="Content\images\cover-back2.jpg" />
+    <Content Include="Content\images\cover-back3.jpg" />
+    <Content Include="Content\images\cover-back4.jpg" />
+    <Content Include="Content\images\cover-back5.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo2.png" />
     <Content Include="Content\images\logo3.png" />
     <Content Include="Content\images\logo4.png" />
+    <Content Include="Content\images\logo5.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.multiselect.css" />
     <Content Include="Content\menu.css" />
@@ -341,6 +345,8 @@
     <Content Include="Scripts\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Home\_PartialFooter.cshtml" />
+    <Content Include="Views\Home\_PartialFooter2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
