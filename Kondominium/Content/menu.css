@@ -1,0 +1,69 @@
+﻿/**
+    Archivo: Site.css
+    Description: archivo que brinda el look and feel al menu del sitio
+    Fecha: 30/Ago/2021
+    Autor: Luis Enrique Garcia O.
+    email: legoearl@gmail.com
+**/
+
+/**
+----------------------------------------------------------------------------------
+-----------------------   CLASS ELEMENTS BY APP WEB   ----------------------------
+----------------------------------------------------------------------------------
+**/
+.menu-app .navbar-collapse .navbar-nav li.nav-item a.nav-link {
+    color: #0e72b8;
+    font-size: 1.2em;
+}
+.menu-app .navbar-collapse .navbar-nav li.nav-item:hover a.nav-link {
+    border-bottom: 1px solid #054471;
+}
+.menu-app .navbar-collapse .navbar-nav li.nav-item.active a.nav-link {
+    border-bottom: 1px solid #054471;
+    color: #054471;
+    font-size: 1.2em;
+}
+.social-media-link {
+    align-items: center;
+    display: inline-flex;
+    background: #054471;
+    color: #fff;
+    border-radius: 50% 50%;
+    font-size: 1.3em;
+    justify-content: center;
+    height: 28px;
+    margin-top: .5rem;
+    margin-right: .5rem;
+    width: 28px;
+}
+    .social-media-link:hover,
+    .social-media-link:focus {
+        background: #0e72b8;
+        color: #fff;
+        text-decoration: none;
+    }
+/**
+----------------------------------------------------------------------------------
+----------------------         MEDIA QUERYS WEBAPP        ------------------------
+----------------------------------------------------------------------------------
+**/
+@media screen and (min-width:1401px) and (max-width: 1600px) {
+}
+
+@media screen and (min-width:1200px) and (max-width:1400px) {
+}
+
+@media screen and (min-width:1025px) and (max-width:1199px) {
+}
+
+@media screen and (min-width:993px) and (max-width:1024px) {
+}
+
+@media screen and (min-width:768px) and (max-width:992px) {
+}
+
+@media screen and (min-width:321px) and (max-width:767px) {
+}
+
+@media screen and (max-width:320px) {
+}
