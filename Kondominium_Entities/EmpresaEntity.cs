@@ -3,30 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.ComponentModel;
+
 
 namespace Kondominium_Entities
 {
-    public  class ClientesEntity
+    public class EmpresaEntity
     {
         /// <summary>
-        /// Id clientes
+        /// Id de Empresa
         /// </summary>
-        [DisplayName("Clientes Id")]
-        public int ClienteId { get; set; }
+        [DisplayName("Id de Empresa")]
+        public int EmpresaId { get; set; }
         /// <summary>
-        /// Nombres
+        /// Nombre de Empresa
         /// </summary>
-        [DisplayName("Nombres")]
-        public string Nombres { get; set; }
+        [DisplayName("Nombre de Empresa")]
+        public string EmpresaNombre { get; set; }
         /// <summary>
-        /// Apellidos
-        /// </summary>
-        [DisplayName("Apellidos")]
-        public string Apellidos { get; set; }
-        /// <summary>
-        /// Dui
+        /// DUI
         /// </summary>
         [DisplayName("DUI")]
         public string Documento1 { get; set; }
@@ -41,32 +36,22 @@ namespace Kondominium_Entities
         [DisplayName("RNC")]
         public string Documento3 { get; set; }
         /// <summary>
-        /// Email
+        /// Direccion
         /// </summary>
-        [DisplayName("Email")]
-        public string Email { get; set; }
+        [DisplayName("Dirección")]
+        public string Direccion { get; set; }
         /// <summary>
-        /// Tipo de Cliente
+        /// Logo
         /// </summary>
-        [DisplayName("Tipo de Cliente")]
-        public string TipoCliente { get; set; }
+        [DisplayName("Logo")]
+        public byte[] Logo { get; set; }
         /// <summary>
-        /// Telefono Movil
-        /// </summary>
-        [DisplayName("Teléfono Móvil")]
-        public string TelefonoMovil { get; set; }
-        /// <summary>
-        /// Telefono Fijo
-        /// </summary>
-        [DisplayName("Teléfono Fijo")]
-        public string TelefonoFijo { get; set; }
-        /// <summary>
-        /// Fecha de Creacion
+        /// Fecha de Creación
         /// </summary>
         [DisplayName("Fecha de Creación")]
         public System.DateTime FechaDeCreacion { get; set; }
         /// <summary>
-        /// Fecha de Modificacion
+        /// Fecha de Modificación
         /// </summary>
         [DisplayName("Fecha de Modificación")]
         public System.DateTime FechaDeModificacion { get; set; }

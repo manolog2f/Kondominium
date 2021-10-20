@@ -3,63 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.ComponentModel;
+
 
 namespace Kondominium_Entities
 {
-    public  class ClientesEntity
+    public class CuentasPorCobrarEntity
+
     {
         /// <summary>
-        /// Id clientes
+        /// Numero de Vaucher
         /// </summary>
-        [DisplayName("Clientes Id")]
+        [DisplayName("Numero de Vaucher")]
+        public string VaucherNumber { get; set; }
+        /// <summary>
+        /// Id de Cliente
+        /// </summary>
+        [DisplayName("Id de Cliente")]
         public int ClienteId { get; set; }
         /// <summary>
-        /// Nombres
+        /// Cuentas por Cobrar
         /// </summary>
-        [DisplayName("Nombres")]
-        public string Nombres { get; set; }
+        [DisplayName("Cuentas por Cobrar")]
+        public int TipoCxC { get; set; }
         /// <summary>
-        /// Apellidos
+        /// Fecha de Emision
         /// </summary>
-        [DisplayName("Apellidos")]
-        public string Apellidos { get; set; }
+        [DisplayName("Fecha de Emision")]
+        public System.DateTime FechaDeEmision { get; set; }
         /// <summary>
-        /// Dui
+        /// Fecha de Vencimiento
         /// </summary>
-        [DisplayName("DUI")]
-        public string Documento1 { get; set; }
+        [DisplayName("Fecha de Vencimiento")]
+        public System.DateTime FechaDeVencimiento { get; set; }
         /// <summary>
-        /// NIT
+        /// Periodo de Facturado
         /// </summary>
-        [DisplayName("NIT")]
-        public string Documento2 { get; set; }
+        [DisplayName("Periodo de Facturado")]
+        public string PeriodoFacturado { get; set; }
         /// <summary>
-        /// RNC
+        ///  Total
         /// </summary>
-        [DisplayName("RNC")]
-        public string Documento3 { get; set; }
+        [DisplayName("Total")]
+        public decimal Total { get; set; }
         /// <summary>
-        /// Email
+        /// NPE
         /// </summary>
-        [DisplayName("Email")]
-        public string Email { get; set; }
+        [DisplayName("NPE")]
+        public string NPE { get; set; }
         /// <summary>
-        /// Tipo de Cliente
+        /// BRCode
         /// </summary>
-        [DisplayName("Tipo de Cliente")]
-        public string TipoCliente { get; set; }
-        /// <summary>
-        /// Telefono Movil
-        /// </summary>
-        [DisplayName("Teléfono Móvil")]
-        public string TelefonoMovil { get; set; }
-        /// <summary>
-        /// Telefono Fijo
-        /// </summary>
-        [DisplayName("Teléfono Fijo")]
-        public string TelefonoFijo { get; set; }
+        [DisplayName("BRCode")]
+        public string BRCode { get; set; }
         /// <summary>
         /// Fecha de Creacion
         /// </summary>
@@ -71,14 +67,15 @@ namespace Kondominium_Entities
         [DisplayName("Fecha de Modificación")]
         public System.DateTime FechaDeModificacion { get; set; }
         /// <summary>
-        /// Creado por
+        /// Registro creado por
         /// </summary>
         [DisplayName("Creado por")]
         public string CreadoPor { get; set; }
         /// <summary>
-        /// Modificado por
+        /// Registro modificado por
         /// </summary>
         [DisplayName("Modificado por")]
         public string ModificadoPor { get; set; }
+
     }
 }
