@@ -18,6 +18,23 @@
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcDetalleProductosFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesPoligonosFK" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alerta" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alertatipo" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.config" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.field" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.fieldsecurity" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.log_action" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.mainmenu" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.object" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.objecttype" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.permission" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profile" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profilepermission" Width="1.5" PointX="12.75" PointY="9.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.rol" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenu" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenupermission" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.user" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.userprofile" Width="1.5" PointX="14.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

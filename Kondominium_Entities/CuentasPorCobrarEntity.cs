@@ -77,5 +77,7 @@ namespace Kondominium_Entities
         [DisplayName("Modificado por")]
         public string ModificadoPor { get; set; }
 
+        public bool Eliminado { get; set; }
+
     }
 }

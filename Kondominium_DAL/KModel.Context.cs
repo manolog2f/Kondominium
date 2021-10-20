@@ -33,5 +33,22 @@ namespace Kondominium_DAL
         public virtual DbSet<poligonos> poligonos { get; set; }
         public virtual DbSet<productos> productos { get; set; }
         public virtual DbSet<propiedades> propiedades { get; set; }
+        public virtual DbSet<alerta> alerta { get; set; }
+        public virtual DbSet<alertatipo> alertatipo { get; set; }
+        public virtual DbSet<config> config { get; set; }
+        public virtual DbSet<field> field { get; set; }
+        public virtual DbSet<fieldsecurity> fieldsecurity { get; set; }
+        public virtual DbSet<log_action> log_action { get; set; }
+        public virtual DbSet<mainmenu> mainmenu { get; set; }
+        public virtual DbSet<@object> @object { get; set; }
+        public virtual DbSet<objecttype> objecttype { get; set; }
+        public virtual DbSet<permission> permission { get; set; }
+        public virtual DbSet<profile> profile { get; set; }
+        public virtual DbSet<profilepermission> profilepermission { get; set; }
+        public virtual DbSet<rol> rol { get; set; }
+        public virtual DbSet<submenu> submenu { get; set; }
+        public virtual DbSet<submenupermission> submenupermission { get; set; }
+        public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<userprofile> userprofile { get; set; }
     }
 }

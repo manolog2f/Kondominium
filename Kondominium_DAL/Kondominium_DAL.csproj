@@ -98,10 +98,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alerta.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alertatipo.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="aranceles.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="clientes.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="config.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cuentasporcobrar.cs">
@@ -111,6 +120,12 @@
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="empresa.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="field.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fieldsecurity.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KModel.Context.cs">
@@ -128,14 +143,50 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="log_action.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mainmenu.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="object.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="objecttype.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="permission.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="poligonos.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="productos.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="profile.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profilepermission.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="propiedades.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rol.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="submenu.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="submenupermission.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userprofile.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -23,6 +23,7 @@ namespace Kondominium_DAL
         public System.DateTime FechaDeModificacion { get; set; }
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
+        public bool Eliminado { get; set; }
     
         public virtual cuentasporcobrar cuentasporcobrar { get; set; }
         public virtual productos productos { get; set; }

@@ -60,6 +60,6 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Modificado por")]
         public string ModificadoPor { get; set; }
-
+        public bool Eliminado { get; set; }
     }
 }

@@ -33,6 +33,7 @@ namespace Kondominium_DAL
         public System.DateTime FechaDeModificacion { get; set; }
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
+        public bool Eliminado { get; set; }
     
         public virtual clientes clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
