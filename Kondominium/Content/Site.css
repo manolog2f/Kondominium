@@ -214,6 +214,7 @@ html, body {
 
 .logo-collapse {
     display: none;
+    max-width: 45px;
 }
 .logo-extend {
     display: block;
@@ -601,7 +602,7 @@ html, body {
     }
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .fas,
     .collapse-menu.admin-app > .admin-menu > .mt-2.p-2 > .list-group-admin-menu > .list-group-item > .far {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 }
 
