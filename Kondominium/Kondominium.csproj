@@ -217,6 +217,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PropiedadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +236,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chart.css" />
+    <Content Include="Content\images\AutorizedOnly.jpg" />
     <Content Include="Content\images\back.jpg" />
     <Content Include="Content\images\cover-back.jpg" />
     <Content Include="Content\images\cover-back2.jpg" />
@@ -246,12 +248,15 @@
     <Content Include="Content\images\logo3.png" />
     <Content Include="Content\images\logo4.png" />
     <Content Include="Content\images\logo5.png" />
+    <Content Include="Content\images\page-not-foundG.png" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.multiselect.css" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\tree.min.css" />
     <Content Include="Content\viewer.css" />
+    <Content Include="Content\ZMT\datatables\dataTables.bootstrap4.css" />
+    <Content Include="Content\ZMT\datatables\dataTables.bootstrap4.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -416,6 +421,10 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\viewer.js" />
+    <Content Include="Scripts\ZMT\datatables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\ZMT\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\ZMT\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\ZMT\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\ZMT\Menu.js" />
     <Content Include="Scripts\ZMT\Sb.js" />
     <Content Include="Web.config" />
@@ -459,6 +468,7 @@
     <Content Include="Views\Shared\_Topbar.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\Shared\_UserInformation.cshtml" />
+    <Content Include="Views\Propiedades\ListadoAranceles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

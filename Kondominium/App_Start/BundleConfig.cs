@@ -32,6 +32,11 @@ namespace Kondominium
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/popper.js",
+
+                "~/Scripts/ZMT/datatables/jquery.dataTables.js",
+                "~/Scripts/ZMT/datatables/jquery.dataTables.min.js",
+                "~/Scripts/ZMT/Menu.js",
+
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/shieldui-all.min.js",
@@ -40,8 +45,10 @@ namespace Kondominium
                 "~/Scripts/Chart.js",
                 "~/Scripts/chartjs-plugin-datalabels.js",
                 "~/Scripts/app.js",
-                "~/Scripts/ZMT/Menu.js",
                 "~/Scripts/ZMT/Sb.js"
+                
+
+
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -53,9 +60,10 @@ namespace Kondominium
                 "~/Content/viewer.css",
                 "~/Content/jquery.multiselect.css",
                 "~/Content/Chart.css",
-                "~/Content/Site.css"
-                //-- ,                "~/Content/sb-admin-2.css",
-                //"~/Content/sb-admin-2.min.css"
+                "~/Content/Site.css",
+                "~/Content/ZMT/datatables/dataTables.bootstrap4.css",
+                "~/Content/ZMT/datatables/dataTables.bootstrap4.min.css"
+
             ));
         }
     }

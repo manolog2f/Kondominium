@@ -1722,11 +1722,19 @@ footer.sticky-footer {
     color: rgba(255,255,255,.5)
 }
 
-P:first-letter {
+/*  P:first-letter .kdomi {
+        font-size: 200%;
+        color: darkgreen;
+        font-weight: bold;
+    }
+    */
+
+.navbar-brand P:first-letter {
     font-size: 200%;
     color: darkgreen;
     font-weight: bold;
 }
+
 
 
 /*MRamos END*/
