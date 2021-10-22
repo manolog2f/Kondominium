@@ -1,0 +1,24 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error Not Autorized";
+}
+
+<div class="container-fluid">
+
+    <!-- 404 Error Text -->
+    <div class="text-center">
+        <div class="error mx-auto" data-text="999">999</div>
+        <p class="lead text-gray-800 mb-5">No esta autorizado pra ver el recurso</p>
+        <p class="text-gray-500 mb-0">No esta autorizado para ingresar a la pagina o el recurso que ha intentado acceder.</p>
+
+        <span style="color: red">Access not granted on controller <span style="color: blue">@ViewData["ControllerName"]</span>, action <span style="color: blue">@ViewData["ActionName"]</span> to user <span style="color: blue">@ViewData["UserId"].ToString().Trim()</span>.</span>
+
+        <a href="@Url.Action("Index", "Home", new { area = string.Empty, controller = "Home" }, Request.Url.Scheme)">
+            <span>&larr; Regresar a Inicio</span>
+        </a>
+
+
+    </div>
+
+</div>

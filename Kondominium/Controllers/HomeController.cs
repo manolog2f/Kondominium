@@ -35,5 +35,26 @@ namespace Kondominium.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        public ActionResult ErrorNotAutorized()
+        {
+            return View();
+        }
+
+        public ActionResult Error500()
+        {
+            return View();
+        }
+
+        public ActionResult Error404()
+        {
+            return View();
+        }
+
     }
 }

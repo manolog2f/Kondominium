@@ -1,0 +1,95 @@
+﻿@model ZTAdminEntities.Security.UserEntity
+
+@{ ViewBag.Title = "Iniciar sesión";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml"; }
+
+@section scripts {
+
+    <script>
+        $('#verPassword').on('mousedown', function () {
+            $('#Password').attr("type", "text");
+        });
+
+        $('#verPassword').on('mouseup mouseleave', function () {
+            $('#Password').attr("type", "password");
+        });
+    </script>
+}
+
+<div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-5 col-md-4">
+            <!-- Transp -->
+            <div class="card o-hidden border-0 shadow-lg my-5" style="background-color: #ffffff8c !important;">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+
+                    <section id="loginForm">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+
+                            @Html.AntiForgeryToken()
+
+
+                            <div class="row">
+
+
+                                <div class="col-lg-12">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                                        </div>
+                                        <form class="user">
+                                            <div class="form-group">
+                                                <div>@Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Usuario..." })</div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user", @id = "Password", @placeholder = "Contraseña...." })
+                                                    <div class="input-group-append ">
+                                                        <button id="verPassword" type="button" class="btn btn-primary border-0">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                                    
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox small">
+                                                </div>
+                                            </div>
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            
+                                            <a>
+                                                <input type="submit" value="Ingresar" class="btn btn-primary btn-user btn-block" />
+                                            </a>
+
+                                        </form>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" href="forgot-password.html">@Html.ActionLink("¿Recuperar tu contraseña?", "ForgotPassword")</a>
+
+                                        </div>
+                                        @*<div class="text-center">
+                                                @Html.ActionLink("Register as a new user", "Register")
+                                            </div>*@
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        }
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,124 @@
+﻿@using Kondominium_Entities.Utilites
+<!-- zmt  -->
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home" )">
+        <div class="sidebar-brand-icon ">
+
+            <img src="~/Content/images/LogoP2.png" width="100%" />
+        </div>
+        <div class="sidebar-brand-text mx-3" style="text-transform:capitalize; color:white;"><sub>ZMT</sub></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("Dashboard", "Home" )">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
+
+
+
+
+    @{
+        List<Kondominium_Entities.Utilites.MenuEntity> MenuMaster = new List<Kondominium_Entities.Utilites.MenuEntity>();
+
+        if (System.Web.HttpContext.Current.Session["MenuMaster"] == null)
+        {
+            new Kondominium.Controllers.AccountController().LlenarMenu(HttpContext.Current.User.Identity.Name);
+        }
+
+
+        MenuMaster = (List<Kondominium_Entities.Utilites.MenuEntity>)System.Web.HttpContext.Current.Session["MenuMaster"];
+        var groupByMenu = MenuMaster.GroupBy(x => x.MainMenu).ToList();
+
+        foreach (var MenuList in groupByMenu)
+        {
+            var colapseMenu = "collapse" + @MenuList.Key;
+            var detail = @MenuMaster.Where(x => x.MainMenu == @MenuList.Key).FirstOrDefault();
+
+
+            <div></div>
+
+
+            if (detail.Detail == 1)
+            {
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#@colapseMenu" aria-expanded="true" aria-controls="@colapseMenu">
+                        <i class="fas fa-fw @detail.Icon"></i>
+                        <span>@MenuList.Key</span>
+                    </a>
+                    <div id="@colapseMenu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+
+
+                            @foreach (var SubMenuList in MenuList.GroupBy(x => x.Agrupacion).ToList())
+                            {
+                                <h6 class="collapse-header" style="    color: #224dcc">   <i class="fas fa-fw fa-th-list"></i> @SubMenuList.Key: </h6>
+                                <hr class="sidebar-divider" style="border-top: 1px solid #224abe;">
+                                var detailx = MenuList.Where(x => x.Agrupacion == SubMenuList.Key).Where(x => x.MainMenu == MenuList.Key).ToList();
+
+                                foreach (var detailnx in detailx)
+                                {
+                                    var hrefx = "../" + detailnx.Controller + "/" + detailnx.Action;
+
+                                    @*@Html.ActionLink(detailnx.Action,detailnx.Controller  )
+                                        <a class="collapse-item" href="@hrefx">*@
+
+                                    <a class="collapse-item" href="@Url.Action(detailnx.Action, detailnx.Controller )">
+                                        <i class="fas fa-fw fa-caret-right">
+                                        </i>    @detailnx.SubMenu
+                                    </a>
+                                }
+
+
+                                <br />
+                            }
+
+                        </div>
+                    </div>
+                </li>
+            }
+
+            <div></div>
+
+            if (detail.Detail == 0)
+            {
+                var hrefx1 = "../" + detail.Controller + "/" + detail.Action;
+                <li class="nav-item">
+                    <a class="nav-link" href="@hrefx1">
+                        <i class="fas fa-fw @detail.Icon"></i>
+                        <span>@detail.MainMenu</span>
+                    </a>
+                </li>
+            }
+
+
+        }
+
+
+    }
+
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+
+</ul>

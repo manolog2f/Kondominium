@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Kondominium_Entities.ArancelesEntity>
+
+@{
+    ViewBag.Title = "ListadoAranceles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Lista de Categorias</h1>
+    <p class="mb-4"></p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Html.ActionLink("Crear Nuevo", "EditCategoria")</h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ArancelId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Monto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Activo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeModificacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreadoPor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModificadoPor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Eliminado)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string eliminadox = "";
+                            if (item.Eliminado)
+                            {
+                                eliminadox = "style=text-decoration:line-through;color:red;";
+                            }
+
+                            <tr @eliminadox>
+                                <td>
+                                    @Html.ActionLink(item.ArancelId.ToString(), "EditArancel", new { id = item.ArancelId })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Monto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Activo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Eliminado)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
