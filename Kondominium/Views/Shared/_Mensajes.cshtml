@@ -1,0 +1,83 @@
+﻿
+@if (ViewBag.Error != null)
+{
+    <div class='modal fade' id='myModalError' role='dialog'>
+        <div class='modal-dialog'>
+
+            <!-- Modal content-->
+            <div class='modal-content'>
+                <div class='modal-header badge-danger'>
+                    <h3 class='modal-title'><i class="fas fa-times"></i> Error</h3>
+                    <button type='button' class='close' style="color:darkred" data-dismiss='modal'>&times;</button>
+                </div>
+
+                <div class='modal-body'>
+                    <h4>@ViewBag.Error</h4>
+                </div>
+                <div class='modal-footer'>
+                    <div class="btn-group-justified align-content-lg-center ">
+                        <button type='button' class="btn btn-default" data-dismiss='modal'>Cerrar</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+@if (ViewBag.Successful != null)
+{
+    <div class='modal fade' id='myModalSuccessful' role='dialog'>
+        <div class='modal-dialog'>
+
+            <!-- Modal content-->
+            <div class='modal-content'>
+                <div class='modal-header badge-successZT'>
+                    <h3 class='modal-title'><i class="fas fa-check"></i> Mensaje</h3>
+                    <button type='button' class='close' style="color:darkred" data-dismiss='modal'>&times;</button>
+                </div>
+
+                <div class='modal-body'>
+                    <h4>     @ViewBag.Successful</h4>
+                </div>
+                <div class='modal-footer'>
+                    <div class="btn-group-justified align-content-lg-center ">
+                        <button type='button' class="btn btn-default" data-dismiss='modal'>Cerrar</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+@if (ViewBag.Warning != null)
+{
+    <div class='modal fade' id='myModalWarning' role='dialog'>
+        <div class='modal-dialog'>
+
+            <!-- Modal content-->
+            <div class='modal-content'>
+                <div class='modal-header badge-warning'>
+                    <h3 class='modal-title'><i class="fas fa-exclamation-triangle"></i>  Advertencia</h3>
+                    <button type='button' class='close' style="color:darkred" data-dismiss='modal'>&times;</button>
+                </div>
+
+                <div class='modal-body'>
+                    <h4>@ViewBag.Warning</h4>
+                </div>
+                <div class='modal-footer'>
+                    <div class="btn-group-justified align-content-lg-center ">
+                        <button type='button' class="btn btn-default" data-dismiss='modal'>Cerrar</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

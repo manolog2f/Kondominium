@@ -20,7 +20,9 @@ namespace Kondominium
                 "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/jquery.form.js",
-                "~/Scripts/chosen.jquery.min.js"
+                "~/Scripts/chosen.jquery.min.js",
+                "~/Scripts/ZMT/Menu.js",
+                "~/Scripts/ZMT/Sb.js"
             ));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
