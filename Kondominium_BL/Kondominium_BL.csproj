@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -46,8 +46,8 @@
     <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="K4os.Compression.LZ4, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Compression.LZ4.1.2.6\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.13.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.13\lib\net46\K4os.Compression.LZ4.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.6\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
@@ -99,7 +99,14 @@
   <ItemGroup>
     <Compile Include="ArancelesDatos.cs" />
     <Compile Include="ClientesDatos.cs" />
+    <Compile Include="CuentasPorCobrarDatos.cs" />
+    <Compile Include="CuentasPorCobrarDetalleDatos.cs" />
+    <Compile Include="EmpresaDatos.cs" />
+    <Compile Include="PoligonosDatos.cs" />
+    <Compile Include="ProductosDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadesDatos.cs" />
+    <Compile Include="ResultadoDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kondominium_DAL\Kondominium_DAL.csproj">

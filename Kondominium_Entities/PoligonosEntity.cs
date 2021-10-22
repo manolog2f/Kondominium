@@ -1,47 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-
 
 namespace Kondominium_Entities
 {
-    public class PoligonosEntitys
+    /// <summary>
+    /// Entidad referente al Poligono
+    /// </summary>
+    public class PoligonosEntity
     {
         /// <summary>
-        /// Id de Polígono
+        /// Poligono Id - 
         /// </summary>
-        [DisplayName("Id de Polígono")]
+        [DisplayName("Id de Poligono")]
         public string PoligonoId { get; set; }
         /// <summary>
-        /// Descripcion de Poligono
+        /// Descripcion del Poligono
         /// </summary>
-        [DisplayName("Descripción de Polígono")]
-        public string PoligonoDescripcion { get; set; }
+        [DisplayName("Descripción")]
+        public string Descripcion { get; set; }
         /// <summary>
-        /// Fecha de Creacion
+        /// Monto del Poligono
+        /// </summary>
+        [DisplayName("Monto")]
+        public decimal Monto { get; set; }
+        /// <summary>
+        /// Estado, True Activo , False Inactivo
+        /// </summary>
+        [DisplayName("Estado")]
+        public Nullable<bool> Activo { get; set; }
+        /// <summary>
+        /// Fecha de creacion
         /// </summary>
         [DisplayName("Fecha de Creación")]
-        public Nullable<System.DateTime> FechaDeCreacion { get; set; }
+        public System.DateTime FechaDeCreacion { get; set; }
         /// <summary>
         /// Fecha de Modificacion
         /// </summary>
         [DisplayName("Fecha de Modificación")]
         public System.DateTime FechaDeModificacion { get; set; }
         /// <summary>
-        /// Creado por
+        /// Registro creado por
         /// </summary>
-        [DisplayName("Creado por")]
+        [DisplayName("Creado Por")]
         public string CreadoPor { get; set; }
         /// <summary>
-        /// Modificado por
+        /// Registro Modificado por
         /// </summary>
-        [DisplayName("Modificado por")]
+        [DisplayName("Modificado Por")]
         public string ModificadoPor { get; set; }
 
         public bool Eliminado { get; set; }
-
     }
 }

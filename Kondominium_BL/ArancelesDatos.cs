@@ -54,12 +54,11 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    /// Lambda
+                    
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.aranceles();
 
-                    // Si trae null sigunifica que no existe el registro
-                    // Si B
+                    
                     if (modlExist != null)
                         modlNew = modlExist;
 
@@ -99,17 +98,17 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    /// Lambda
+                     
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
 
-                    /// Valor existe se puede eliminar
+                    
                     if (modlExist != null)
                     {
                         ContextP.aranceles.Remove(modlExist);
                         ContextP.SaveChanges();
                         return new Resultado { Codigo = 0, Mensaje = "Exito Resgistro Eliminado Permanetemente" };
                     }
-                    else  /// Valor no existe no se puede eliminar
+                    else  
                         return  new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
                 }
 
@@ -118,6 +117,7 @@ namespace Kondominium_BL
             {
 
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro eliminar el Registro \n" + ex.Message };
+
             }
         }
     }
