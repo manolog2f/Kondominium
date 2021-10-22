@@ -20,9 +20,8 @@ namespace Kondominium
                 "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/jquery.form.js",
-                "~/Scripts/chosen.jquery.min.js",
-                "~/Scripts/ZMT/Menu.js",
-                "~/Scripts/ZMT/Sb.js"
+                "~/Scripts/chosen.jquery.min.js"
+               
             ));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
@@ -40,7 +39,9 @@ namespace Kondominium
                 "~/Scripts/jquery.multiselect.js",
                 "~/Scripts/Chart.js",
                 "~/Scripts/chartjs-plugin-datalabels.js",
-                "~/Scripts/app.js"
+                "~/Scripts/app.js",
+                "~/Scripts/ZMT/Menu.js",
+                "~/Scripts/ZMT/Sb.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -53,6 +54,8 @@ namespace Kondominium
                 "~/Content/jquery.multiselect.css",
                 "~/Content/Chart.css",
                 "~/Content/Site.css"
+                //-- ,                "~/Content/sb-admin-2.css",
+                //"~/Content/sb-admin-2.min.css"
             ));
         }
     }

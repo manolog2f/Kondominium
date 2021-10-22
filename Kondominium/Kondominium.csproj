@@ -246,6 +246,7 @@
     <Content Include="Content\images\logo3.png" />
     <Content Include="Content\images\logo4.png" />
     <Content Include="Content\images\logo5.png" />
+    <Content Include="Content\images\user.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.multiselect.css" />
     <Content Include="Content\menu.css" />
