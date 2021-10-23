@@ -179,28 +179,23 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="ZoomTechLog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZMT\ZMT_Test\bin\Debug\ZoomTechLog.dll</HintPath>
+    <Reference Include="ZoomTechLog">
+      <HintPath>..\ZMTDLL\ZoomTechLog.dll</HintPath>
     </Reference>
-    <Reference Include="ZoomTechUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZMT\ZMT_Test\bin\Debug\ZoomTechUtils.dll</HintPath>
+    <Reference Include="ZoomTechUtils">
+      <HintPath>..\ZMTDLL\ZoomTechUtils.dll</HintPath>
     </Reference>
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\ZstdNet.dll</HintPath>
     </Reference>
-    <Reference Include="ZTAdminBL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZMT\ZMT_Test\bin\Debug\ZTAdminBL.dll</HintPath>
+    <Reference Include="ZTAdminBL">
+      <HintPath>..\ZMTDLL\ZTAdminBL.dll</HintPath>
     </Reference>
-    <Reference Include="ZTAdminDAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZMT\ZMT_Test\bin\Debug\ZTAdminDAL.dll</HintPath>
+    <Reference Include="ZTAdminDAL">
+      <HintPath>..\ZMTDLL\ZTAdminDAL.dll</HintPath>
     </Reference>
-    <Reference Include="ZTAdminEntities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ZMT\ZMT_Test\bin\Debug\ZTAdminEntities.dll</HintPath>
+    <Reference Include="ZTAdminEntities">
+      <HintPath>..\ZMTDLL\ZTAdminEntities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
