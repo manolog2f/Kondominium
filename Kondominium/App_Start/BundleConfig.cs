@@ -46,8 +46,9 @@ namespace Kondominium
                 "~/Scripts/chartjs-plugin-datalabels.js",
                 "~/Scripts/app.js",
                 "~/Scripts/ZMT/Sb.js"
-                
 
+
+                ,"~/Scripts/demo/datatables-demo.js"
 
             ));
 
@@ -61,7 +62,9 @@ namespace Kondominium
                 "~/Content/jquery.multiselect.css",
                 "~/Content/Chart.css",
                 "~/Content/Site.css",
-                "~/Content/ZMT/datatables/dataTables.bootstrap4.css",
+                //"~/Content/sb-admin-2.css",
+                //"~/Content/sb-admin-2.min.css",
+                //"~/Content/ZMT/datatables/dataTables.bootstrap4.css",
                 "~/Content/ZMT/datatables/dataTables.bootstrap4.min.css"
 
             ));
