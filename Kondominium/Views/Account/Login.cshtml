@@ -62,7 +62,7 @@
                                                 <div class="custom-control custom-checkbox small">
                                                 </div>
                                             </div>
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger", @Style = "font-weight: bold; color: red " })
                                             
                                             <a>
                                                 <input type="submit" value="Ingresar" class="btn btn-primary btn-user btn-block" />
@@ -70,8 +70,8 @@
 
                                         </form>
                                         <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="forgot-password.html">@Html.ActionLink("¿Recuperar tu contraseña?", "ForgotPassword")</a>
+                                        <div class="text-center" style="font-weight: bold; color: #023368 !important">
+                                            <a class="small" href="forgot-password.html" >  @Html.ActionLink("¿Recuperar tu contraseña?", "ForgotPassword")</a>
 
                                         </div>
                                         @*<div class="text-center">

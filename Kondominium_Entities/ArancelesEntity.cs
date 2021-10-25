@@ -33,7 +33,7 @@ namespace Kondominium_Entities
         /// Activo
         /// </summary>
         [DisplayName("Activo")]
-        public Nullable<bool> Activo { get; set; }
+        public Boolean Activo { get; set; }
         /// <summary>
         /// Fecha de Creacion
         /// </summary>

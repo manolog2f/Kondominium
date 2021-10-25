@@ -335,8 +335,6 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.multiselect.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -425,6 +423,9 @@
     <Content Include="Scripts\ZMT\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\ZMT\Menu.js" />
     <Content Include="Scripts\ZMT\Sb.js" />
+    <Content Include="Scripts\ZMT\ZMTAutoComplete.js" />
+    <Content Include="Scripts\ZMT\ZMTDatetimePicker.js" />
+    <Content Include="Scripts\ZMT\ZMTUtils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -467,6 +468,7 @@
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\Shared\_UserInformation.cshtml" />
     <Content Include="Views\Propiedades\ListadoAranceles.cshtml" />
+    <Content Include="Views\Propiedades\EditArancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

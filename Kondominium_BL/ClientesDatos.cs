@@ -107,7 +107,7 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
 
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no se guardó con éxito" });
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no se guardó con éxito"  + ex.Message});
             }
         }
 

@@ -19,6 +19,7 @@ namespace Kondominium_Entities
         Warning = 5000,
         Log = 9000,
         Eliminado = 9898,
-        No_Se_Puede_Eliminar = 97
+        No_Se_Puede_Eliminar = 97,
+        No_Existe = 96
     }
 }

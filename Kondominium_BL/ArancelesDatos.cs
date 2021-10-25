@@ -16,7 +16,7 @@ namespace Kondominium_BL
             var query = from a in context.aranceles
                         select new ArancelesEntity
                         {
-                            Activo = a.Activo,
+                            Activo =  (Boolean)a.Activo,
                             ArancelId = a.ArancelId,
                             CreadoPor = a.CreadoPor,
                             Descripcion = a.Descripcion,
@@ -35,7 +35,7 @@ namespace Kondominium_BL
                         where a.ArancelId == Id
                         select new ArancelesEntity
                         {
-                            Activo = a.Activo,
+                            Activo =  (Boolean)a.Activo,
                             ArancelId = a.ArancelId,
                             CreadoPor = a.CreadoPor,
                             Descripcion = a.Descripcion,
@@ -58,13 +58,17 @@ namespace Kondominium_BL
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.aranceles();
 
-                    
-                    if (modlExist != null)
-                        modlNew = modlExist;
 
+                    if (modlExist != null)
+                    {
+                        //TODO: Esta parte del eliminado Agregarlo a los demas metodos de Datos
+                        if (modlExist.Eliminado == true)
+                            return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+
+                        modlNew = modlExist;
+                    }
                     
                     modlNew.Activo = model.Activo;
-                    // modlNew.ArancelId = model.ArancelId;                   
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Eliminado = model.Eliminado;
                     modlNew.Monto = model.Monto;
@@ -92,6 +96,7 @@ namespace Kondominium_BL
             }
 
         }
+
         public  Resultado Delete(ArancelesEntity model)
         {
             try
@@ -120,5 +125,38 @@ namespace Kondominium_BL
 
             }
         }
+
+        //TODO: Crear set delete en todos los Accesos a Datos que contengan Eliminado.
+        public Resultado SetDelete(int Id, string UserId)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+
+                    var modlExist = ContextP.aranceles.Where(x => x.ArancelId == Id).FirstOrDefault();
+                    // var modlNew = new Kondominium_DAL.aranceles();
+
+
+                    if (modlExist == null)
+                        return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
+
+                    modlExist.Eliminado = true;
+
+                    modlExist.FechaDeModificacion = DateTime.Now;
+                    modlExist.ModificadoPor = UserId;
+                    ContextP.SaveChanges();
+                }
+
+                return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
+            }
+
+        }
+
     }
 }

@@ -15,7 +15,7 @@ namespace Kondominium.Controllers
            ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            var cultureInfo = CultureInfo.GetCultureInfo("sv");
+            var cultureInfo = CultureInfo.GetCultureInfo("es-SV");
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
@@ -64,15 +64,28 @@ namespace Kondominium.Controllers
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.Exito)
             {
                 //ViewBag.Warning = "Mensaje de warning que se mostraria";
-                if (res.Mensaje == string.Empty)
+                if ( string.IsNullOrWhiteSpace(res.Mensaje))
                     res.Mensaje = "Registro Guardado de forma Exitosa!";
                 ViewBag.Successful = res.Mensaje;
             }
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.Warning)
             {
-                if (res.Mensaje == string.Empty)
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Mensaje de warning";
+                
             }
+            else if (res.Codigo == Kondominium_Entities.CodigosMensaje.No_Existe)
+            {
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
+                    ViewBag.Warning = "Registro no existe";
+
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
+                    ViewBag.Warning = "";
+            }
+
         }
         protected void Mensajes(ZTAdminEntities.Utilities.Resultado res)
         {
@@ -83,13 +96,13 @@ namespace Kondominium.Controllers
             else if (res.Codigo == ZTAdminEntities.Utilities.CodigosMensaje.Exito)
             {
                 //ViewBag.Warning = "Mensaje de warning que se mostraria";
-                if (res.Mensaje == string.Empty)
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
                     res.Mensaje = "Registro Guardado de forma Exitosa!";
                 ViewBag.Successful = res.Mensaje;
             }
             else if (res.Codigo == ZTAdminEntities.Utilities.CodigosMensaje.Warning)
             {
-                if (res.Mensaje == string.Empty)
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Mensaje de warning";
                 ViewBag.Warning = res.Mensaje;
             }
