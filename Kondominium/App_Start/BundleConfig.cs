@@ -46,8 +46,8 @@ namespace Kondominium
                 "~/Scripts/app.js",
                 "~/Scripts/ZMT/Sb.js",
                 "~/Scripts/demo/datatables-demo.js",
-                "~/Scripts/ZMT/Menu.js",
-                "~/Scripts/ZMT/ZMTDatetimePicker.js",
+                //"~/Scripts/ZMT/Menu.js",
+                //"~/Scripts/ZMT/ZMTDatetimePicker.js",
                 "~/Scripts/ZMT/ZMTUtils.js"
             ));
 
@@ -66,6 +66,8 @@ namespace Kondominium
                 "~/Content/ZMT/datatables/dataTables.bootstrap4.css"
                 //"~/Content/ZMT/datatables/dataTables.bootstrap4.min.css"
             ));
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

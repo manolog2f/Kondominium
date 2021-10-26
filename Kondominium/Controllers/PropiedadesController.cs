@@ -76,6 +76,15 @@ namespace Kondominium.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult ListadoPoligonos()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.PoligonosDatos().GetAll();
+            return View(model);
+        }
 
         #endregion
     }

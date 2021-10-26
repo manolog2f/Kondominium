@@ -1,0 +1,52 @@
+﻿@model ZTAdminEntities.Security.UserProfileEntity
+
+<div>
+    <h4>UserProfileEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileIdDesctiption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileIdDesctiption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserExecute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserExecute)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
