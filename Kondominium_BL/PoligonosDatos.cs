@@ -55,7 +55,10 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.poligonos();
 
                     if (modlExist != null)
-                        modlNew = modlExist;
+                        if (modlExist.Eliminado == true)
+                            return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+
+                    modlNew = modlExist;
 
 
                     //  modlNew.PoligonoId = model.PoligonoId;
@@ -113,6 +116,36 @@ namespace Kondominium_BL
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
 
             }
+        }
+        public Resultado SetDelete(string Id, string UserId)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+
+                    var modlExist = ContextP.poligonos.Where(x => x.PoligonoId == Id).FirstOrDefault();
+                    // var modlNew = new Kondominium_DAL.poligonos();
+
+
+                    if (modlExist == null)
+                        return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
+
+                    modlExist.Eliminado = true;
+
+                    modlExist.FechaDeModificacion = DateTime.Now;
+                    modlExist.ModificadoPor = UserId;
+                    ContextP.SaveChanges();
+                }
+
+                return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
+            }
+
         }
     }
 }
