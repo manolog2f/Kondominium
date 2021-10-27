@@ -60,9 +60,9 @@ namespace Kondominium_BL
 
                     modlNew.Productoid = model.Productoid;
                     modlNew.Descripcion = model.Descripcion;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
+                    
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                    
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

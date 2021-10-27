@@ -17,7 +17,7 @@ namespace Kondominium_BL
                         select new PoligonosEntity 
                         {
                           PoligonoId = p.PoligonoId,
-                          Descripcion = p.PoligonoDescripcion,
+                            PoligonoDescripcion = p.PoligonoDescripcion,
                           FechaDeCreacion = (DateTime)p.FechaDeCreacion,
                           FechaDeModificacion = p.FechaDeModificacion,
                           CreadoPor = p.CreadoPor,
@@ -34,7 +34,7 @@ namespace Kondominium_BL
                         select new PoligonosEntity
                         {
                             PoligonoId = p.PoligonoId,
-                            Descripcion = p.PoligonoDescripcion,
+                            PoligonoDescripcion = p.PoligonoDescripcion,
                             FechaDeCreacion = (DateTime)p.FechaDeCreacion,
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
@@ -55,23 +55,22 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.poligonos();
 
                     if (modlExist != null)
+                    {
                         if (modlExist.Eliminado == true)
                             return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
 
-                    modlNew = modlExist;
+                        modlNew = modlExist;
+                    }
 
-
-                    //  modlNew.PoligonoId = model.PoligonoId;
-                    modlNew.PoligonoDescripcion = model.Descripcion;
+                     modlNew.PoligonoId = model.PoligonoId;
+                    modlNew.PoligonoDescripcion = model.PoligonoDescripcion;
                     modlNew.Eliminado = model.Eliminado;
                     modlNew.FechaDeModificacion = DateTime.Now;
-                    modlNew.CreadoPor = model.CreadoPor;
-                    modlNew.FechaDeCreacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 
 
-                    if ( string.IsNullOrEmpty( modlNew.PoligonoId ))
+                    if (  modlExist == null)
                     {
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;

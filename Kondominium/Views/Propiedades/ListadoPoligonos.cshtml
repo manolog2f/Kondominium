@@ -31,13 +31,7 @@
                                 @Html.DisplayNameFor(model => model.PoligonoId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Monto)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Activo)
+                                @Html.DisplayNameFor(model => model.PoligonoDescripcion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.FechaDeCreacion)
@@ -51,9 +45,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ModificadoPor)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Eliminado)
-                            </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -70,13 +62,7 @@
                                     @Html.ActionLink(item.PoligonoId.ToString(), "EditPoligonos", new { id = item.PoligonoId })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Monto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Activo)
+                                    @Html.DisplayFor(modelItem => item.PoligonoDescripcion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FechaDeCreacion)

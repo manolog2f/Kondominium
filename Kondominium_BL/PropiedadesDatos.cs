@@ -73,9 +73,9 @@ namespace Kondominium_BL
                     modlNew.Casa = model.Casa;
                     modlNew.PoligonoId = model.PoligonoId;
                     modlNew.ArancelId = model.ArancelId;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
+                    
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                    
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

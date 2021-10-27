@@ -89,9 +89,8 @@ namespace Kondominium_BL
                     modlNew.TipoCliente = model.TipoCliente;
                     modlNew.TelefonoMovil = model.TelefonoMovil;
                     modlNew.TelefonoFijo = model.TelefonoFijo;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                   
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

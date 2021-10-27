@@ -52,7 +52,7 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        public (CuentasPorCobrarDetalleEntity, Resultado) New(CuentasPorCobrarDetalleEntity model)
+        public (CuentasPorCobrarDetalleEntity, Resultado) Save(CuentasPorCobrarDetalleEntity model)
         {
             try
             {
@@ -76,9 +76,8 @@ namespace Kondominium_BL
                     modlNew.ProductoId = model.ProductoId;
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Monto = model.Monto;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
+                   
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

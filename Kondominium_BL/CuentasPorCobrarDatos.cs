@@ -60,7 +60,7 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        public (CuentasPorCobrarEntity, Resultado) New(CuentasPorCobrarEntity model)
+        public (CuentasPorCobrarEntity, Resultado) Save(CuentasPorCobrarEntity model)
         {
             try
             {
@@ -88,9 +88,9 @@ namespace Kondominium_BL
                     modlNew.Total = model.Total;
                     modlNew.NPE = model.NPE;
                     modlNew.BRCode = model.BRCode;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
+                    
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                    
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

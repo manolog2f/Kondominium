@@ -53,7 +53,7 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        public (EmpresaEntity, Resultado) New(EmpresaEntity model)
+        public (EmpresaEntity, Resultado) Save(EmpresaEntity model)
         {
             try
             {
@@ -75,9 +75,9 @@ namespace Kondominium_BL
                     modlNew.Documento3 = model.Documento3;
                     modlNew.Direccion = model.Direccion;
                     modlNew.Logo = model.Logo;
-                    modlNew.FechaDeCreacion = model.FechaDeCreacion;
+                    
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                    
                     modlNew.ModificadoPor = model.ModificadoPor;
 
                     if (modlNew.EmpresaId == 0)

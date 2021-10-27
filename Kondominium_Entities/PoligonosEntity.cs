@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,22 +17,14 @@ namespace Kondominium_Entities
         /// Poligono Id - 
         /// </summary>
         [DisplayName("Id de Poligono")]
+        [MaxLength(6, ErrorMessage = "Maximo de {1} Caracteres permitidos")]
         public string PoligonoId { get; set; }
         /// <summary>
         /// Descripcion del Poligono
         /// </summary>
         [DisplayName("Descripción")]
-        public string Descripcion { get; set; }
-        /// <summary>
-        /// Monto del Poligono
-        /// </summary>
-        [DisplayName("Monto")]
-        public decimal Monto { get; set; }
-        /// <summary>
-        /// Estado, True Activo , False Inactivo
-        /// </summary>
-        [DisplayName("Estado")]
-        public Nullable<bool> Activo { get; set; }
+        public string PoligonoDescripcion { get; set; }
+
         /// <summary>
         /// Fecha de creacion
         /// </summary>
