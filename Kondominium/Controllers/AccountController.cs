@@ -2,14 +2,16 @@
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Kondominium.Utilities;
 
 namespace Kondominium.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
 
         //private ApplicationSignInManager _signInManager;
@@ -71,7 +73,7 @@ namespace Kondominium.Controllers
                 Response.Cookies.Add(authCookie);
 
 
-                new ZTAdmin.Class.Log().Set("Login", model.Email, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
+                new Kondominium.Utilities.Log().Set("Login", model.Email, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
 
 
 
@@ -152,19 +154,79 @@ namespace Kondominium.Controllers
 
 
         // GET: /Account/ForgotPassword
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+
+  
             return View();
         }
 
 
         //
         // GET: /Account/ForgotPasswordConfirmation
+        [HttpPost]
         [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
+        public ActionResult ForgotPassword(string UserId)
         {
-            return View();
+            // Obtener el Usuario deseado a recuperar
+            //string userid = Request.Form["UserId"];
+
+            // Verificar que el Usuario Exista.
+
+            var user = new ZTAdminBL.Security.UserData().GetById(UserId);
+            
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Usuario no Existe" });
+                return View();
+            }
+
+
+            
+            // Generar Nuevo Password 
+            string newPass = System.Web.Security.Membership.GeneratePassword(8, 5);
+
+            
+
+
+            // Ruta del template HTML
+            string Uri = (Request.Url.ToString()).Replace(Request.Url.AbsolutePath, "");
+            var dataFile = Server.MapPath("~/Content/EmailTemplate/ForgetPassword.html");
+
+
+            // Enviar Correo a usuario Indicado
+            var sendmail = new ZTAdminBL.Utilities.Email().sendMAil(new ZTAdminEntities.Utilities.MailEntity
+                            {
+                                Body = new Utilities.Email().GetBodyForgetPassword(newPass, dataFile),
+                                Attachment = new List<byte[]>(),
+                                From = Core.FromEmail,
+                                Pass = Core.PassEmail,
+                                Server = Core.SMTServer,
+                                Port = int.Parse(Core.PortSMTP),
+                                UserId = Core.UserEmail,
+                                IncludeAttachment = false,
+                                To = new string[] { user.Email.ToString() },
+                                Html = true,
+                                Subject = "Recupear Password Kondominium"
+                            });
+
+            if (sendmail.Cod == 0)
+            {
+                user.Password = newPass;
+                user.UserExecute = "ForgetPassword";
+                var insert = new ZTAdminBL.Security.UserData().InsertUpdateUsers(user);
+
+                Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Exito, Mensaje = "Se ha enviado su nuevo password a su correo." });
+                return View();
+            }
+            else
+            {
+                Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Surgio un error al tratar de recuperar su password." });
+                return View();
+            }
+            
         }
 
         //
@@ -212,7 +274,7 @@ namespace Kondominium.Controllers
             FormsAuthentication.RedirectToLoginPage();
 
             
-            new ZTAdmin.Class.Log().Set("LogOff", HttpContext.User.Identity.Name, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
+            new Kondominium.Utilities.Log().Set("LogOff", HttpContext.User.Identity.Name, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
             return RedirectToAction("Login", "Account");
             ///return RedirectToAction("Index", "Home");
         }
