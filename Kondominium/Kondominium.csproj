@@ -500,6 +500,8 @@
     <Content Include="Views\Sistema\_PartialPerfildeUsuarioUserData.cshtml" />
     <Content Include="Views\Propiedades\ListadoPoligonos.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Propiedades\ListadoProductos.cshtml" />
+    <Content Include="Views\Propiedades\ListadoPropiedades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

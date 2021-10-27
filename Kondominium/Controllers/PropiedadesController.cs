@@ -86,6 +86,27 @@ namespace Kondominium.Controllers
             return View(model);
         }
 
+
+        [HttpGet]
+        public ActionResult ListadoProductos()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.ProductosDatos().GetAll();
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public ActionResult ListadoPropiedades()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.PropiedadesDatos().GetAll();
+            return View(model);
+        }
         #endregion
     }
 }
