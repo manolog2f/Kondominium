@@ -32,7 +32,11 @@ namespace Kondominium_BL
                 PoligonoDescripcion = x.poligonos.PoligonoDescripcion,
                 AvenidaDescripcion = x.avenida1.AvenidaDescripcion,
                 CalleDescripcion = x.calles.CalleDescripcion,
-                SendaDescripcion = x.sendas.SendaDescripcion
+                SendaDescripcion = x.sendas.SendaDescripcion,
+                Calle = x.Calle,
+                Avenida = x.Avenida,
+                Senda = x.Senda
+                
 
             });
 
@@ -62,7 +66,10 @@ namespace Kondominium_BL
                             PoligonoDescripcion = x.poligonos.PoligonoDescripcion,
                             AvenidaDescripcion = x.avenida1.AvenidaDescripcion,
                             CalleDescripcion = x.calles.CalleDescripcion,
-                            SendaDescripcion = x.sendas.SendaDescripcion
+                            SendaDescripcion = x.sendas.SendaDescripcion,
+                            Calle = x.Calle,
+                            Avenida = x.Avenida,
+                            Senda = x.Senda
 
                         });
 
@@ -78,12 +85,13 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.propiedades();
 
                     if (modlExist != null)
+                    {
                         if (modlExist.Eliminado == true)
                             return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
 
-                    modlNew = modlExist;
-
-                    modlNew.PropiedadId = model.PropiedadId;
+                        modlNew = modlExist;
+                    }
+                   // modlNew.PropiedadId = model.PropiedadId;
                     modlNew.TipoDePropiedad = model.TipoDePropiedad;
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Casa = model.Casa;
@@ -99,7 +107,7 @@ namespace Kondominium_BL
                     modlNew.Eliminado = model.Eliminado;
 
 
-                    if (modlExist != null)
+                    if (modlExist == null)
                     {
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
