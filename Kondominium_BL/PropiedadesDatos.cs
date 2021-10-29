@@ -12,51 +12,59 @@ namespace Kondominium_BL
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<PropiedadesEntity> GetAll()
         {
-            var query = from pr in context.propiedades
-                        join ar in context.aranceles on pr.ArancelId equals ar.ArancelId
-                        join pl in context.poligonos on pr.PoligonoId equals pl.PoligonoId
-                        select new PropiedadesEntity
-                        {
-                            PropiedadId = pr.PropiedadId,
-                            TipoDePropiedad = pr.TipoDePropiedad,
-                            Descripcion = pr.Descripcion,
-                            Casa = pr.Casa,
-                            PoligonoId= pr.PoligonoId,
-                            ArancelId = pr.ArancelId,
-                            FechaDeCreacion = pr.FechaDeCreacion,
-                            FechaDeModificacion = pr.FechaDeModificacion,
-                            CreadoPor = pr.CreadoPor,
-                            ModificadoPor = pr.ModificadoPor,
-                            Eliminado = pr.Eliminado,
+            var query = context.propiedades.Select(x => new PropiedadesEntity
+            {
+                PropiedadId = x.PropiedadId,
+                TipoDePropiedad = x.TipoDePropiedad,
+                Descripcion = x.Descripcion,
+                Casa = x.Casa,
+                PoligonoId = x.PoligonoId,
+                ArancelId = x.ArancelId,
+                FechaDeCreacion = x.FechaDeCreacion,
+                FechaDeModificacion = x.FechaDeModificacion,
+                CreadoPor = x.CreadoPor,
+                ModificadoPor = x.ModificadoPor,
+                Eliminado = x.Eliminado,
 
-                            TipoDePropiedadDesc = ((TipodePropiedades) pr.TipoDePropiedad).ToString(),
+                TipoDePropiedadDesc = ((TipodePropiedades)x.TipoDePropiedad).ToString(),
 
-                            ArancelDescripcion = ar.Descripcion,
-                            PoligonoDescripcion = pl.PoligonoDescripcion
+                ArancelDescripcion = x.aranceles.Descripcion,
+                PoligonoDescripcion = x.poligonos.PoligonoDescripcion,
+                AvenidaDescripcion = x.avenida1.AvenidaDescripcion,
+                CalleDescripcion = x.calles.CalleDescripcion,
+                SendaDescripcion = x.sendas.SendaDescripcion
 
-                        };
+            });
 
             return query.ToList();
         }
 
         public PropiedadesEntity GetById(int Id)
         {
-            var query = from pr in context.propiedades
-                        where pr.PropiedadId == Id
-                        select new PropiedadesEntity
+            var query = context.propiedades.Where(x=> x.PropiedadId ==  Id).
+                        Select(x => new PropiedadesEntity
                         {
-                            PropiedadId = pr.PropiedadId,
-                            TipoDePropiedad = pr.TipoDePropiedad,
-                            Descripcion = pr.Descripcion,
-                            Casa = pr.Casa,
-                            PoligonoId = pr.PoligonoId,
-                            ArancelId = pr.ArancelId,
-                            FechaDeCreacion = pr.FechaDeCreacion,
-                            FechaDeModificacion = pr.FechaDeModificacion,
-                            CreadoPor = pr.CreadoPor,
-                            ModificadoPor = pr.ModificadoPor,
-                            Eliminado = pr.Eliminado,
-                        };
+                            PropiedadId = x.PropiedadId,
+                            TipoDePropiedad = x.TipoDePropiedad,
+                            Descripcion = x.Descripcion,
+                            Casa = x.Casa,
+                            PoligonoId = x.PoligonoId,
+                            ArancelId = x.ArancelId,
+                            FechaDeCreacion = x.FechaDeCreacion,
+                            FechaDeModificacion = x.FechaDeModificacion,
+                            CreadoPor = x.CreadoPor,
+                            ModificadoPor = x.ModificadoPor,
+                            Eliminado = x.Eliminado,
+
+                            TipoDePropiedadDesc = ((TipodePropiedades)x.TipoDePropiedad).ToString(),
+
+                            ArancelDescripcion = x.aranceles.Descripcion,
+                            PoligonoDescripcion = x.poligonos.PoligonoDescripcion,
+                            AvenidaDescripcion = x.avenida1.AvenidaDescripcion,
+                            CalleDescripcion = x.calles.CalleDescripcion,
+                            SendaDescripcion = x.sendas.SendaDescripcion
+
+                        });
 
             return query.FirstOrDefault();
         }
@@ -81,7 +89,10 @@ namespace Kondominium_BL
                     modlNew.Casa = model.Casa;
                     modlNew.PoligonoId = model.PoligonoId;
                     modlNew.ArancelId = model.ArancelId;
-                    
+                    modlNew.Calle = model.Calle;
+                    modlNew.Avenida = model.Avenida;
+                    modlNew.Senda = model.Senda;
+
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
                     
                     modlNew.ModificadoPor = model.ModificadoPor;

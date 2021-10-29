@@ -82,6 +82,44 @@ namespace Kondominium_Entities
         [DisplayName("Modificado por")]
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
+
+
+        /// <summary>
+        /// Senda id
+        /// </summary>
+        [DisplayName("Id de Senda")]
+        public string Senda { get; set; }
+
+        /// <summary>
+        /// Descripcion de la Senda
+        /// </summary>
+        [DisplayName("Descripion de Senda")]
+        public string SendaDescripcion { get; set; }
+
+        /// <summary>
+        /// Calle id
+        /// </summary>
+        [DisplayName("Id de calle")]
+        public string Calle { get; set; }
+
+        /// <summary>
+        /// Descripcion de la Calle
+        /// </summary>
+        [DisplayName("Descripion de Calle")]
+        public string CalleDescripcion { get; set; }
+
+        /// <summary>
+        /// Avenida id
+        /// </summary>
+        [DisplayName("Id de Avenida")]
+        public string Avenida { get; set; }
+
+        /// <summary>
+        /// Descripcion de la Avenida
+        /// </summary>
+        [DisplayName("Descripion de Avenida")]
+        public string AvenidaDescripcion { get; set; }
+
     }
 
     public enum TipodePropiedades
