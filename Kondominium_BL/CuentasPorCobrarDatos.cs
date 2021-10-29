@@ -89,7 +89,7 @@ namespace Kondominium_BL
                     modlNew.NPE = model.NPE;
                     modlNew.BRCode = model.BRCode;
                     
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;

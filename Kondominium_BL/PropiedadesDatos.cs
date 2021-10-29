@@ -101,7 +101,7 @@ namespace Kondominium_BL
                     modlNew.Avenida = model.Avenida;
                     modlNew.Senda = model.Senda;
 
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;

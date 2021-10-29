@@ -77,7 +77,7 @@ namespace Kondominium_BL
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Monto = model.Monto;
                    
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

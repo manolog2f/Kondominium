@@ -76,7 +76,7 @@ namespace Kondominium_BL
                     modlNew.Direccion = model.Direccion;
                     modlNew.Logo = model.Logo;
                     
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     
                     modlNew.ModificadoPor = model.ModificadoPor;
 
