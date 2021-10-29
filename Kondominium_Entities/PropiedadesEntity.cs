@@ -20,6 +20,12 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Tipo de Propiedad")]
         public Nullable<int> TipoDePropiedad { get; set; }
+
+        /// <summary>
+        /// Tipo de Propiedad
+        /// </summary>
+        [DisplayName("Tipo de Propiedad Descripcion")]
+        public string TipoDePropiedadDesc { get; set; }
         /// <summary>
         /// Descripcion
         /// </summary>
@@ -35,11 +41,25 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Id de Polígono")]
         public string PoligonoId { get; set; }
+
+        /// <summary>
+        /// Descripcion del  Polígono
+        /// </summary>
+        [DisplayName("Descripion de Polígono")]
+        public string PoligonoDescripcion { get; set; }
+
         /// <summary>
         /// Id de Arancel
         /// </summary>
         [DisplayName("Id de Arancel")]
         public Nullable<int> ArancelId { get; set; }
+
+        /// <summary>
+        /// Descripcion del arancel
+        /// </summary>
+        [DisplayName("Descripcion de Arancel")]
+        public string  ArancelDescripcion { get; set; }
+
         /// <summary>
         /// Fecha de Creación
         /// </summary>
@@ -61,5 +81,14 @@ namespace Kondominium_Entities
         [DisplayName("Modificado por")]
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
+    }
+
+    public enum TipodePropiedades
+    { 
+        Lote = 0,
+        Casa = 1,
+        Edificio = 2,
+        Otros = 3
+        //0 = Lote\n1 = Casa\n2 = Edificio\n3 = Otros
     }
 }

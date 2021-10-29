@@ -13,6 +13,8 @@ namespace Kondominium_BL
         public List<PropiedadesEntity> GetAll()
         {
             var query = from pr in context.propiedades
+                        join ar in context.aranceles on pr.ArancelId equals ar.ArancelId
+                        join pl in context.poligonos on pr.PoligonoId equals pl.PoligonoId
                         select new PropiedadesEntity
                         {
                             PropiedadId = pr.PropiedadId,
@@ -26,6 +28,12 @@ namespace Kondominium_BL
                             CreadoPor = pr.CreadoPor,
                             ModificadoPor = pr.ModificadoPor,
                             Eliminado = pr.Eliminado,
+
+                            TipoDePropiedadDesc = ((TipodePropiedades) pr.TipoDePropiedad).ToString(),
+
+                            ArancelDescripcion = ar.Descripcion,
+                            PoligonoDescripcion = pl.PoligonoDescripcion
+
                         };
 
             return query.ToList();
