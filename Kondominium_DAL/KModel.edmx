@@ -45,6 +45,30 @@
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="avenida">
+          <Key>
+            <PropertyRef Name="AvenidaId" />
+          </Key>
+          <Property Name="AvenidaId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="AvenidaDescripcion" Type="varchar" MaxLength="45" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calles">
+          <Key>
+            <PropertyRef Name="CalleId" />
+          </Key>
+          <Property Name="CalleId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="CalleDescripcion" Type="varchar" MaxLength="45" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="clientes">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -170,7 +194,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MainMenu1" Type="varchar" MaxLength="50" />
           <Property Name="Detail" Type="int" />
           <Property Name="Icon" Type="varchar" MaxLength="50" />
@@ -197,7 +221,7 @@
           <Key>
             <PropertyRef Name="PermissionId" />
           </Key>
-          <Property Name="PermissionId" Type="int" Nullable="false" />
+          <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ObjectName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PermissionDesrip" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ObjectType" Type="int" Nullable="false" />
@@ -271,6 +295,9 @@
           <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Senda" Type="varchar" MaxLength="5" />
+          <Property Name="Calle" Type="varchar" MaxLength="5" />
+          <Property Name="Avenida" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="rol">
           <Key>
@@ -283,11 +310,23 @@
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="sendas">
+          <Key>
+            <PropertyRef Name="SendaId" />
+          </Key>
+          <Property Name="SendaId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SendaDescripcion" Type="varchar" MaxLength="45" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="submenu">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubMenu1" Type="varchar" MaxLength="50" />
           <Property Name="Controller" Type="varchar" MaxLength="100" />
           <Property Name="Action" Type="varchar" MaxLength="100" />
@@ -296,7 +335,8 @@
         </EntityType>
         <EntityType Name="submenupermission">
           <Key>
-            <PropertyRef Name="SubMenuPermissionId" />
+            <PropertyRef Name="SubMenuId" />
+            <PropertyRef Name="ProfileId" />
           </Key>
           <Property Name="SubMenuPermissionId" Type="int" Nullable="false" />
           <Property Name="SubMenuId" Type="int" Nullable="false" />
@@ -336,6 +376,30 @@
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <Association Name="Alerta_UsuarioFK">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="alerta" Type="Self.alerta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="alerta">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AlertaTpo_AlertaFK">
+          <End Role="alertatipo" Type="Self.alertatipo" Multiplicity="1" />
+          <End Role="alerta" Type="Self.alerta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alertatipo">
+              <PropertyRef Name="AlertaTipoId" />
+            </Principal>
+            <Dependent Role="alerta">
+              <PropertyRef Name="AlertaTipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CxcClientesFK">
           <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
           <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
@@ -372,6 +436,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="MainMenuSubmenuFK">
+          <End Role="mainmenu" Type="Self.mainmenu" Multiplicity="0..1" />
+          <End Role="submenu" Type="Self.submenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainmenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="submenu">
+              <PropertyRef Name="MainMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ObjetTypeFK">
+          <End Role="objecttype" Type="Self.objecttype" Multiplicity="1" />
+          <End Role="permission" Type="Self.permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objecttype">
+              <PropertyRef Name="ObjectTypeId" />
+            </Principal>
+            <Dependent Role="permission">
+              <PropertyRef Name="ObjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProfileSubmenuPermissionFK">
+          <End Role="profile" Type="Self.profile" Multiplicity="1" />
+          <End Role="submenupermission" Type="Self.submenupermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="submenupermission">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesAvenidasFK">
+          <End Role="avenida" Type="Self.avenida" Multiplicity="0..1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avenida">
+              <PropertyRef Name="AvenidaId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Avenida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesCallesFK">
+          <End Role="calles" Type="Self.calles" Multiplicity="0..1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="calles">
+              <PropertyRef Name="CalleId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Calle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesSendaFK">
+          <End Role="sendas" Type="Self.sendas" Multiplicity="0..1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sendas">
+              <PropertyRef Name="SendaId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Senda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PropiesdesArancelesFK">
           <End Role="aranceles" Type="Self.aranceles" Multiplicity="0..1" />
           <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
@@ -396,10 +532,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RolUserFK">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubMenuPermissionFK">
+          <End Role="submenu" Type="Self.submenu" Multiplicity="1" />
+          <End Role="submenupermission" Type="Self.submenupermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="submenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="submenupermission">
+              <PropertyRef Name="SubMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_a43bba_kondomiModelStoreContainer">
           <EntitySet Name="alerta" EntityType="Self.alerta" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="alertatipo" EntityType="Self.alertatipo" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="aranceles" EntityType="Self.aranceles" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="avenida" EntityType="Self.avenida" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="calles" EntityType="Self.calles" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="clientes" EntityType="Self.clientes" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="config" EntityType="Self.config" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasporcobrar" EntityType="Self.cuentasporcobrar" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -418,10 +580,19 @@
           <EntitySet Name="profilepermission" EntityType="Self.profilepermission" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="propiedades" EntityType="Self.propiedades" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="rol" EntityType="Self.rol" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="sendas" EntityType="Self.sendas" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="submenu" EntityType="Self.submenu" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="submenupermission" EntityType="Self.submenupermission" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="userprofile" EntityType="Self.userprofile" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <AssociationSet Name="Alerta_UsuarioFK" Association="Self.Alerta_UsuarioFK">
+            <End Role="user" EntitySet="user" />
+            <End Role="alerta" EntitySet="alerta" />
+          </AssociationSet>
+          <AssociationSet Name="AlertaTpo_AlertaFK" Association="Self.AlertaTpo_AlertaFK">
+            <End Role="alertatipo" EntitySet="alertatipo" />
+            <End Role="alerta" EntitySet="alerta" />
+          </AssociationSet>
           <AssociationSet Name="CxcClientesFK" Association="Self.CxcClientesFK">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
@@ -434,6 +605,30 @@
             <End Role="productos" EntitySet="productos" />
             <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
           </AssociationSet>
+          <AssociationSet Name="MainMenuSubmenuFK" Association="Self.MainMenuSubmenuFK">
+            <End Role="mainmenu" EntitySet="mainmenu" />
+            <End Role="submenu" EntitySet="submenu" />
+          </AssociationSet>
+          <AssociationSet Name="ObjetTypeFK" Association="Self.ObjetTypeFK">
+            <End Role="objecttype" EntitySet="objecttype" />
+            <End Role="permission" EntitySet="permission" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileSubmenuPermissionFK" Association="Self.ProfileSubmenuPermissionFK">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="submenupermission" EntitySet="submenupermission" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesAvenidasFK" Association="Self.PropiedadesAvenidasFK">
+            <End Role="avenida" EntitySet="avenida" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesCallesFK" Association="Self.PropiedadesCallesFK">
+            <End Role="calles" EntitySet="calles" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesSendaFK" Association="Self.PropiedadesSendaFK">
+            <End Role="sendas" EntitySet="sendas" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
           <AssociationSet Name="PropiesdesArancelesFK" Association="Self.PropiesdesArancelesFK">
             <End Role="aranceles" EntitySet="aranceles" />
             <End Role="propiedades" EntitySet="propiedades" />
@@ -441,6 +636,14 @@
           <AssociationSet Name="PropiesdesPoligonosFK" Association="Self.PropiesdesPoligonosFK">
             <End Role="poligonos" EntitySet="poligonos" />
             <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="RolUserFK" Association="Self.RolUserFK">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="SubMenuPermissionFK" Association="Self.SubMenuPermissionFK">
+            <End Role="submenu" EntitySet="submenu" />
+            <End Role="submenupermission" EntitySet="submenupermission" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -493,6 +696,49 @@
           <EntitySet Name="submenupermission" EntityType="db_a43bba_kondomiModel.submenupermission" />
           <EntitySet Name="user" EntityType="db_a43bba_kondomiModel.user" />
           <EntitySet Name="userprofile" EntityType="db_a43bba_kondomiModel.userprofile" />
+          <EntitySet Name="avenida" EntityType="db_a43bba_kondomiModel.avenida" />
+          <EntitySet Name="calles" EntityType="db_a43bba_kondomiModel.calles" />
+          <EntitySet Name="sendas" EntityType="db_a43bba_kondomiModel.sendas" />
+          <AssociationSet Name="Alerta_UsuarioFK" Association="db_a43bba_kondomiModel.Alerta_UsuarioFK">
+            <End Role="user" EntitySet="user" />
+            <End Role="alerta" EntitySet="alerta" />
+          </AssociationSet>
+          <AssociationSet Name="AlertaTpo_AlertaFK" Association="db_a43bba_kondomiModel.AlertaTpo_AlertaFK">
+            <End Role="alertatipo" EntitySet="alertatipo" />
+            <End Role="alerta" EntitySet="alerta" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesAvenidasFK" Association="db_a43bba_kondomiModel.PropiedadesAvenidasFK">
+            <End Role="avenida" EntitySet="avenida" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesCallesFK" Association="db_a43bba_kondomiModel.PropiedadesCallesFK">
+            <End Role="calles" EntitySet="calles" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="MainMenuSubmenuFK" Association="db_a43bba_kondomiModel.MainMenuSubmenuFK">
+            <End Role="mainmenu" EntitySet="mainmenu" />
+            <End Role="submenu" EntitySet="submenu" />
+          </AssociationSet>
+          <AssociationSet Name="ObjetTypeFK" Association="db_a43bba_kondomiModel.ObjetTypeFK">
+            <End Role="objecttype" EntitySet="objecttype" />
+            <End Role="permission" EntitySet="permission" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileSubmenuPermissionFK" Association="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK">
+            <End Role="profile" EntitySet="profile" />
+            <End Role="submenupermission" EntitySet="submenupermission" />
+          </AssociationSet>
+          <AssociationSet Name="PropiedadesSendaFK" Association="db_a43bba_kondomiModel.PropiedadesSendaFK">
+            <End Role="sendas" EntitySet="sendas" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="RolUserFK" Association="db_a43bba_kondomiModel.RolUserFK">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="SubMenuPermissionFK" Association="db_a43bba_kondomiModel.SubMenuPermissionFK">
+            <End Role="submenu" EntitySet="submenu" />
+            <End Role="submenupermission" EntitySet="submenupermission" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="aranceles">
           <Key>
@@ -627,6 +873,12 @@
           <NavigationProperty Name="aranceles" Relationship="db_a43bba_kondomiModel.PropiesdesArancelesFK" FromRole="propiedades" ToRole="aranceles" />
           <NavigationProperty Name="poligonos" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="propiedades" ToRole="poligonos" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Senda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Avenida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="avenida1" Relationship="db_a43bba_kondomiModel.PropiedadesAvenidasFK" FromRole="propiedades" ToRole="avenida" />
+          <NavigationProperty Name="calles" Relationship="db_a43bba_kondomiModel.PropiedadesCallesFK" FromRole="propiedades" ToRole="calles" />
+          <NavigationProperty Name="sendas" Relationship="db_a43bba_kondomiModel.PropiedadesSendaFK" FromRole="propiedades" ToRole="sendas" />
         </EntityType>
         <Association Name="PropiesdesArancelesFK">
           <End Type="db_a43bba_kondomiModel.aranceles" Role="aranceles" Multiplicity="0..1" />
@@ -701,6 +953,8 @@
           <Property Name="Leido" Type="Boolean" Nullable="false" />
           <Property Name="FechaLectura" Type="DateTime" />
           <Property Name="ActionUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="db_a43bba_kondomiModel.Alerta_UsuarioFK" FromRole="alerta" ToRole="user" />
+          <NavigationProperty Name="alertatipo" Relationship="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" FromRole="alerta" ToRole="alertatipo" />
         </EntityType>
         <EntityType Name="alertatipo">
           <Key>
@@ -713,6 +967,7 @@
           <Property Name="FechaModificacion" Type="DateTime" Nullable="false" />
           <Property Name="UsuarioCreacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioModificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alerta" Relationship="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" FromRole="alertatipo" ToRole="alerta" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -773,6 +1028,7 @@
           <Property Name="MainMenu1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Detail" Type="Int32" />
           <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="submenu" Relationship="db_a43bba_kondomiModel.MainMenuSubmenuFK" FromRole="mainmenu" ToRole="submenu" />
         </EntityType>
         <EntityType Name="object">
           <Key>
@@ -791,6 +1047,7 @@
           </Key>
           <Property Name="ObjectTypeId" Type="Int32" Nullable="false" />
           <Property Name="ObjectTypeDesc" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permission" Relationship="db_a43bba_kondomiModel.ObjetTypeFK" FromRole="objecttype" ToRole="permission" />
         </EntityType>
         <EntityType Name="permission">
           <Key>
@@ -801,6 +1058,7 @@
           <Property Name="PermissionDesrip" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ObjectType" Type="Int32" Nullable="false" />
           <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="objecttype1" Relationship="db_a43bba_kondomiModel.ObjetTypeFK" FromRole="permission" ToRole="objecttype" />
         </EntityType>
         <EntityType Name="profile">
           <Key>
@@ -812,6 +1070,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="submenupermission" Relationship="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK" FromRole="profile" ToRole="submenupermission" />
         </EntityType>
         <EntityType Name="profilepermission">
           <Key>
@@ -841,6 +1100,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="db_a43bba_kondomiModel.RolUserFK" FromRole="rol" ToRole="user" />
         </EntityType>
         <EntityType Name="submenu">
           <Key>
@@ -852,6 +1112,8 @@
           <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MainMenuId" Type="Int32" />
           <Property Name="Agrupacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mainmenu" Relationship="db_a43bba_kondomiModel.MainMenuSubmenuFK" FromRole="submenu" ToRole="mainmenu" />
+          <NavigationProperty Name="submenupermission" Relationship="db_a43bba_kondomiModel.SubMenuPermissionFK" FromRole="submenu" ToRole="submenupermission" />
         </EntityType>
         <EntityType Name="submenupermission">
           <Key>
@@ -865,6 +1127,8 @@
           <Property Name="ModifieDate" Type="DateTime" Nullable="false" />
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="profile" Relationship="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK" FromRole="submenupermission" ToRole="profile" />
+          <NavigationProperty Name="submenu" Relationship="db_a43bba_kondomiModel.SubMenuPermissionFK" FromRole="submenupermission" ToRole="submenu" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -881,6 +1145,8 @@
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alerta" Relationship="db_a43bba_kondomiModel.Alerta_UsuarioFK" FromRole="user" ToRole="alerta" />
+          <NavigationProperty Name="rol" Relationship="db_a43bba_kondomiModel.RolUserFK" FromRole="user" ToRole="rol" />
         </EntityType>
         <EntityType Name="userprofile">
           <Key>
@@ -895,6 +1161,165 @@
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="avenida">
+          <Key>
+            <PropertyRef Name="AvenidaId" />
+          </Key>
+          <Property Name="AvenidaId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AvenidaDescripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedadesAvenidasFK" FromRole="avenida" ToRole="propiedades" />
+        </EntityType>
+        <EntityType Name="calles">
+          <Key>
+            <PropertyRef Name="CalleId" />
+          </Key>
+          <Property Name="CalleId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CalleDescripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedadesCallesFK" FromRole="calles" ToRole="propiedades" />
+        </EntityType>
+        <EntityType Name="sendas">
+          <Key>
+            <PropertyRef Name="SendaId" />
+          </Key>
+          <Property Name="SendaId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SendaDescripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedadesSendaFK" FromRole="sendas" ToRole="propiedades" />
+        </EntityType>
+        <Association Name="Alerta_UsuarioFK">
+          <End Type="db_a43bba_kondomiModel.user" Role="user" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.alerta" Role="alerta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="alerta">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AlertaTpo_AlertaFK">
+          <End Type="db_a43bba_kondomiModel.alertatipo" Role="alertatipo" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.alerta" Role="alerta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alertatipo">
+              <PropertyRef Name="AlertaTipoId" />
+            </Principal>
+            <Dependent Role="alerta">
+              <PropertyRef Name="AlertaTipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesAvenidasFK">
+          <End Type="db_a43bba_kondomiModel.avenida" Role="avenida" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avenida">
+              <PropertyRef Name="AvenidaId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Avenida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesCallesFK">
+          <End Type="db_a43bba_kondomiModel.calles" Role="calles" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="calles">
+              <PropertyRef Name="CalleId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Calle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainMenuSubmenuFK">
+          <End Type="db_a43bba_kondomiModel.mainmenu" Role="mainmenu" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.submenu" Role="submenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainmenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="submenu">
+              <PropertyRef Name="MainMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ObjetTypeFK">
+          <End Type="db_a43bba_kondomiModel.objecttype" Role="objecttype" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.permission" Role="permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objecttype">
+              <PropertyRef Name="ObjectTypeId" />
+            </Principal>
+            <Dependent Role="permission">
+              <PropertyRef Name="ObjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProfileSubmenuPermissionFK">
+          <End Type="db_a43bba_kondomiModel.profile" Role="profile" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.submenupermission" Role="submenupermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="profile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="submenupermission">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropiedadesSendaFK">
+          <End Type="db_a43bba_kondomiModel.sendas" Role="sendas" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sendas">
+              <PropertyRef Name="SendaId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="Senda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolUserFK">
+          <End Type="db_a43bba_kondomiModel.rol" Role="rol" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubMenuPermissionFK">
+          <End Type="db_a43bba_kondomiModel.submenu" Role="submenu" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.submenupermission" Role="submenupermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="submenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="submenupermission">
+              <PropertyRef Name="SubMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1019,6 +1444,9 @@
           <EntitySetMapping Name="propiedades">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.propiedades">
               <MappingFragment StoreEntitySet="propiedades">
+                <ScalarProperty Name="Avenida" ColumnName="Avenida" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Senda" ColumnName="Senda" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
                 <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
@@ -1249,6 +1677,45 @@
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="avenida">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.avenida">
+              <MappingFragment StoreEntitySet="avenida">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="AvenidaDescripcion" ColumnName="AvenidaDescripcion" />
+                <ScalarProperty Name="AvenidaId" ColumnName="AvenidaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="calles">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.calles">
+              <MappingFragment StoreEntitySet="calles">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="CalleDescripcion" ColumnName="CalleDescripcion" />
+                <ScalarProperty Name="CalleId" ColumnName="CalleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sendas">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.sendas">
+              <MappingFragment StoreEntitySet="sendas">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="SendaDescripcion" ColumnName="SendaDescripcion" />
+                <ScalarProperty Name="SendaId" ColumnName="SendaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

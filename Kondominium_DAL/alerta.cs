@@ -23,5 +23,8 @@ namespace Kondominium_DAL
         public bool Leido { get; set; }
         public Nullable<System.DateTime> FechaLectura { get; set; }
         public string ActionUrl { get; set; }
+    
+        public virtual user user { get; set; }
+        public virtual alertatipo alertatipo { get; set; }
     }
 }

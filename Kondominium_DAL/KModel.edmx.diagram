@@ -35,6 +35,19 @@
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenupermission" Width="1.5" PointX="4.75" PointY="13.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.user" Width="1.5" PointX="6.75" PointY="13.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.userprofile" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.avenida" Width="1.5" PointX="0.75" PointY="21" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.calles" Width="1.5" PointX="0.75" PointY="17.625" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.sendas" Width="1.5" PointX="9.375" PointY="15" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.Alerta_UsuarioFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesAvenidasFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesCallesFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.MainMenuSubmenuFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.ObjetTypeFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesSendaFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.RolUserFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.SubMenuPermissionFK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

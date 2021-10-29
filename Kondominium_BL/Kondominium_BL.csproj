@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArancelesDatos.cs" />
+    <Compile Include="AvenidasDatos.cs" />
+    <Compile Include="CallesDatos.cs" />
     <Compile Include="ClientesDatos.cs" />
     <Compile Include="CuentasPorCobrarDatos.cs" />
     <Compile Include="CuentasPorCobrarDetalleDatos.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="ProductosDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadesDatos.cs" />
+    <Compile Include="SendasDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kondominium_DAL\Kondominium_DAL.csproj">

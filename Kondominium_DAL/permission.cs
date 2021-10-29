@@ -19,5 +19,7 @@ namespace Kondominium_DAL
         public string PermissionDesrip { get; set; }
         public int ObjectType { get; set; }
         public Nullable<int> ParentId { get; set; }
+    
+        public virtual objecttype objecttype1 { get; set; }
     }
 }

@@ -50,5 +50,8 @@ namespace Kondominium_DAL
         public virtual DbSet<submenupermission> submenupermission { get; set; }
         public virtual DbSet<user> user { get; set; }
         public virtual DbSet<userprofile> userprofile { get; set; }
+        public virtual DbSet<avenida> avenida { get; set; }
+        public virtual DbSet<calles> calles { get; set; }
+        public virtual DbSet<sendas> sendas { get; set; }
     }
 }

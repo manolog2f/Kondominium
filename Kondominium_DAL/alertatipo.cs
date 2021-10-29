@@ -14,6 +14,12 @@ namespace Kondominium_DAL
     
     public partial class alertatipo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public alertatipo()
+        {
+            this.alerta = new HashSet<alerta>();
+        }
+    
         public int AlertaTipoId { get; set; }
         public string AlertaNombre { get; set; }
         public string Icono { get; set; }
@@ -21,5 +27,8 @@ namespace Kondominium_DAL
         public System.DateTime FechaModificacion { get; set; }
         public string UsuarioCreacion { get; set; }
         public string UsuarioModificacion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alerta> alerta { get; set; }
     }
 }

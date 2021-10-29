@@ -22,5 +22,8 @@ namespace Kondominium_DAL
         public System.DateTime ModifieDate { get; set; }
         public string CreateByUserId { get; set; }
         public string ModifiedByUserId { get; set; }
+    
+        public virtual profile profile { get; set; }
+        public virtual submenu submenu { get; set; }
     }
 }

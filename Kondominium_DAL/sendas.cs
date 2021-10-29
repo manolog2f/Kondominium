@@ -12,18 +12,23 @@ namespace Kondominium_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class objecttype
+    public partial class sendas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public objecttype()
+        public sendas()
         {
-            this.permission = new HashSet<permission>();
+            this.propiedades = new HashSet<propiedades>();
         }
     
-        public int ObjectTypeId { get; set; }
-        public string ObjectTypeDesc { get; set; }
+        public string SendaId { get; set; }
+        public string SendaDescripcion { get; set; }
+        public Nullable<System.DateTime> FechaDeCreacion { get; set; }
+        public System.DateTime FechaDeModificacion { get; set; }
+        public string CreadoPor { get; set; }
+        public string ModificadoPor { get; set; }
+        public bool Eliminado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<permission> permission { get; set; }
+        public virtual ICollection<propiedades> propiedades { get; set; }
     }
 }

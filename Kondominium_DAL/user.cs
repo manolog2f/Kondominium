@@ -14,6 +14,12 @@ namespace Kondominium_DAL
     
     public partial class user
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user()
+        {
+            this.alerta = new HashSet<alerta>();
+        }
+    
         public string UserId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -25,5 +31,9 @@ namespace Kondominium_DAL
         public System.DateTime ModifiedDate { get; set; }
         public string CreateByUserId { get; set; }
         public string ModifiedByUserId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<alerta> alerta { get; set; }
+        public virtual rol rol { get; set; }
     }
 }

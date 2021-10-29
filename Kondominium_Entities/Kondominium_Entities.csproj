@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArancelesEntity.cs" />
+    <Compile Include="AvenidasEntity.cs" />
+    <Compile Include="CallesEntity.cs" />
     <Compile Include="PoligonosEntity.cs" />
     <Compile Include="ClientesEntity.cs" />
     <Compile Include="CuentasPorCobrarDetalleEntity.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="ProductosEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadesEntity.cs" />
+    <Compile Include="SendasEntity.cs" />
     <Compile Include="Utilites\MenuEntity.cs" />
     <Compile Include="Utilites\Resultado.cs" />
   </ItemGroup>

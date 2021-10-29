@@ -107,6 +107,12 @@
     <Compile Include="aranceles.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="avenida.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="calles.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="clientes.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
@@ -175,6 +181,9 @@
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="rol.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sendas.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="submenu.cs">

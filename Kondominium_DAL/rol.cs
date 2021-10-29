@@ -14,11 +14,20 @@ namespace Kondominium_DAL
     
     public partial class rol
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public rol()
+        {
+            this.user = new HashSet<user>();
+        }
+    
         public string RolId { get; set; }
         public string RolDescription { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
         public string CreateByUserId { get; set; }
         public string ModifiedByUserId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> user { get; set; }
     }
 }

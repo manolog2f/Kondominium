@@ -14,9 +14,18 @@ namespace Kondominium_DAL
     
     public partial class mainmenu
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mainmenu()
+        {
+            this.submenu = new HashSet<submenu>();
+        }
+    
         public int Id { get; set; }
         public string MainMenu1 { get; set; }
         public Nullable<int> Detail { get; set; }
         public string Icon { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<submenu> submenu { get; set; }
     }
 }

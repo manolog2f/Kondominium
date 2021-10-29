@@ -25,8 +25,14 @@ namespace Kondominium_DAL
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
+        public string Senda { get; set; }
+        public string Calle { get; set; }
+        public string Avenida { get; set; }
     
         public virtual aranceles aranceles { get; set; }
         public virtual poligonos poligonos { get; set; }
+        public virtual avenida avenida1 { get; set; }
+        public virtual calles calles { get; set; }
+        public virtual sendas sendas { get; set; }
     }
 }
