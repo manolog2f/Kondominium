@@ -26,11 +26,7 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Tipo de Propiedad Descripcion")]
         public string TipoDePropiedadDesc { get; set; }
-        /// <summary>
-        /// Tipo de Propiedad Descripcion
-        /// </summary>
-        [DisplayName("Tipo de Propiedad Descripcion")]
-        public string TipoDePropiedadDesc { get; set; }
+
         /// <summary>
         /// Descripcion
         /// </summary>
