@@ -5,45 +5,46 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="431d031f65f44e62a7afbcfdb64d546f" Name="Diagram1" >
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.aranceles" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientes" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrar" Width="1.5" PointX="8" PointY="1" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" Width="1.5" PointX="10.25" PointY="1.375" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.empresa" Width="1.5" PointX="2.75" PointY="5.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.poligonos" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.productos" Width="1.5" PointX="8" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alerta" Width="1.5" PointX="10.25" PointY="1.25" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alertatipo" Width="1.5" PointX="8" PointY="5.5" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.aranceles" Width="1.5" PointX="0.75" PointY="13.375" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.avenida" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.calles" Width="1.5" PointX="0.75" PointY="17" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientes" Width="1.5" PointX="9.75" PointY="10" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.config" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrar" Width="1.5" PointX="12" PointY="10" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" Width="1.5" PointX="14.25" PointY="10.375" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.empresa" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.errorlog" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.field" Width="1.5" PointX="7.75" PointY="15.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.fieldsecurity" Width="1.5" PointX="9.75" PointY="15.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.log_action" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.mainmenu" Width="1.5" PointX="2.75" PointY="10.5" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.object" Width="1.5" PointX="11.75" PointY="15.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.objecttype" Width="1.5" PointX="12.75" PointY="1.25" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.permission" Width="1.5" PointX="15" PointY="0.875" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.poligonos" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.productos" Width="1.5" PointX="12" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profile" Width="1.5" PointX="5" PointY="14.25" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profilepermission" Width="1.5" PointX="16.75" PointY="4.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.propiedades" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.rol" Width="1.5" PointX="5.75" PointY="1.625" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.sendas" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenu" Width="1.5" PointX="5" PointY="10.125" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenupermission" Width="1.5" PointX="7.25" PointY="10" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.user" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.userprofile" Width="1.5" PointX="16.75" PointY="9.75" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.Alerta_UsuarioFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesArancelesFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesAvenidasFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesCallesFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcClientesFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcDetalleProductosFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesPoligonosFK" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alerta" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.alertatipo" Width="1.5" PointX="2.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.config" Width="1.5" PointX="4.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.field" Width="1.5" PointX="6.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.fieldsecurity" Width="1.5" PointX="8.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.log_action" Width="1.5" PointX="10.75" PointY="5.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.mainmenu" Width="1.5" PointX="10.75" PointY="8.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.object" Width="1.5" PointX="10.75" PointY="11.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.objecttype" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.permission" Width="1.5" PointX="12.75" PointY="3.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profile" Width="1.5" PointX="12.75" PointY="6.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.profilepermission" Width="1.5" PointX="12.75" PointY="9.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.rol" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenu" Width="1.5" PointX="2.75" PointY="13.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.submenupermission" Width="1.5" PointX="4.75" PointY="13.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.user" Width="1.5" PointX="6.75" PointY="13.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.userprofile" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.avenida" Width="1.5" PointX="0.75" PointY="21" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.calles" Width="1.5" PointX="0.75" PointY="17.625" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.sendas" Width="1.5" PointX="9.375" PointY="15" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.Alerta_UsuarioFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesAvenidasFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesCallesFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.MainMenuSubmenuFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.ObjetTypeFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesPoligonosFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesSendaFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.RolUserFK" />

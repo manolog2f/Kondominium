@@ -30,9 +30,9 @@ namespace Kondominium_DAL
         public string Avenida { get; set; }
     
         public virtual aranceles aranceles { get; set; }
-        public virtual poligonos poligonos { get; set; }
         public virtual avenida avenida1 { get; set; }
         public virtual calles calles { get; set; }
+        public virtual poligonos poligonos { get; set; }
         public virtual sendas sendas { get; set; }
     }
 }

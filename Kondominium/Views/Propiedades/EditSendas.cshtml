@@ -1,0 +1,191 @@
+﻿@model Kondominium_Entities.SendasEntity
+
+@{
+    ViewBag.Title = "EditSendas";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Mantenimiento de Sendas</h1>
+
+    <div class="row">
+
+        <div class="col-lg">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @*@using (Ajax.BeginForm("EditXXXXXXXX", "Propiedades", new AjaxOptions { HttpMethod = "POST" }))
+                        {*@
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <!-- Acordion -->
+                        <div id="accordion">
+
+
+                            <!-- General -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                        General
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                    <div class="row">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.SendaId, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.SendaId, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.SendaId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.SendaDescripcion, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.SendaDescripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.SendaDescripcion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sistema -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                        Sistema
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.FechaDeCreacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.FechaDeCreacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.FechaDeModificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.FechaDeModificacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.CreadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.CreadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.ModificadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.ModificadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+
+
+
+                            @{
+                                if ((Model != null ? Model.Eliminado : false) != true)
+                                {
+                                    <div class="container" style="margin-left:unset !important">
+
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+
+
+                                        <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
+                                            <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
+                                        </a>
+
+                                    </div>
+
+                                }
+                            }
+
+                            <br>
+
+                        </div>
+                    </div>
+
+
+
+                }
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal confirmacion -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header badge-warning">
+                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                @Html.ActionLink("Eliminar", "DeleteSendas", new { Id = (Model.SendaId == null ? "" : Model.SendaId.ToString()) }, new { @class = "btn btn-danger" })
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@*//End Delete Modal confirmacion*@
+
+
+
+<div>
+    @Html.ActionLink("Retornar  a la Lista", "ListadoSendas", "Propiedades")
+</div>

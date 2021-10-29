@@ -531,6 +531,12 @@
     <Content Include="Views\Propiedades\ListadoPropiedades.cshtml" />
     <Content Include="Views\Propiedades\EditPoligonos.cshtml" />
     <Content Include="Views\Propiedades\EditProductos.cshtml" />
+    <Content Include="Views\Propiedades\ListadoAvenidas.cshtml" />
+    <Content Include="Views\Propiedades\EditAvenidas.cshtml" />
+    <Content Include="Views\Propiedades\ListadoCalles.cshtml" />
+    <Content Include="Views\Propiedades\EditCalles.cshtml" />
+    <Content Include="Views\Propiedades\ListadoSendas.cshtml" />
+    <Content Include="Views\Propiedades\EditSendas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

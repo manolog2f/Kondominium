@@ -128,6 +128,9 @@
     <Compile Include="empresa.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="errorlog.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="field.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>

@@ -232,6 +232,199 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.PropiedadesDatos().GetAll();
             return View(model);
         }
+
+        // ---------------------- * -----------------------------------------------
+        /*Avenidas*/
+
+        [HttpGet]
+        public ActionResult ListadoAvenidas()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.AvenidasDatos().GetAll();
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult EditAvenidas(string Id, int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (Id != null)
+            {
+                var model = new Kondominium_BL.AvenidasDatos().GetById(Id);
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+
+                return View(model);
+            }
+
+
+            return View(new AvenidasEntity());
+        }
+        [HttpPost]
+        public ActionResult EditAvenidas(AvenidasEntity model)
+        {
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = model.ModificadoPor;
+
+            var modelr = new Kondominium_BL.AvenidasDatos().Save(model);
+
+            Mensajes(modelr.Item2);
+            ModelState.Clear();
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                return RedirectToAction("EditAvenidas", new { Id = modelr.Item1.AvenidaId, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+
+        }
+        public ActionResult DeleteAvenidas(string Id)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+
+            var modelr = new Kondominium_BL.AvenidasDatos().SetDelete(Id, userid);
+
+            Mensajes(modelr);
+            ModelState.Clear();
+            return RedirectToAction("EditAvenidas", new { Id = Id, codigo = 9898 });
+
+        }
+
+        /*Calles*/
+        [HttpGet]
+        public ActionResult ListadoCalles()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.CallesDatos().GetAll();
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult EditCalles(string Id, int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (Id != null)
+            {
+                var model = new Kondominium_BL.CallesDatos().GetById(Id);
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+
+                return View(model);
+            }
+
+
+            return View(new CallesEntity());
+        }
+        [HttpPost]
+        public ActionResult EditCalles(CallesEntity model)
+        {
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = model.ModificadoPor;
+
+            var modelr = new Kondominium_BL.CallesDatos().Save(model);
+
+            Mensajes(modelr.Item2);
+            ModelState.Clear();
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                return RedirectToAction("EditCalles", new { Id = modelr.Item1.CalleId, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+
+        }
+        public ActionResult DeleteCalles(string Id)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+
+            var modelr = new Kondominium_BL.CallesDatos().SetDelete(Id, userid);
+
+            Mensajes(modelr);
+            ModelState.Clear();
+            return RedirectToAction("EditCalles", new { Id = Id, codigo = 9898 });
+
+        }
+
+        /*Sendas*/
+
+        [HttpGet]
+        public ActionResult ListadoSendas()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.SendasDatos().GetAll();
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult EditSendas(string Id, int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (Id != null)
+            {
+                var model = new Kondominium_BL.SendasDatos().GetById(Id);
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+
+                return View(model);
+            }
+
+
+            return View(new SendasEntity());
+        }
+        [HttpPost]
+        public ActionResult EditSendas(SendasEntity model)
+        {
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = model.ModificadoPor;
+
+            var modelr = new Kondominium_BL.SendasDatos().Save(model);
+
+            Mensajes(modelr.Item2);
+            ModelState.Clear();
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                return RedirectToAction("EditSendas", new { Id = modelr.Item1.SendaId, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+
+        }
+        public ActionResult DeleteSendas(string Id)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+
+            var modelr = new Kondominium_BL.SendasDatos().SetDelete(Id, userid);
+
+            Mensajes(modelr);
+            ModelState.Clear();
+            return RedirectToAction("EditSendas", new { Id = Id, codigo = 9898 });
+
+        }
+
         #endregion
     }
 }
