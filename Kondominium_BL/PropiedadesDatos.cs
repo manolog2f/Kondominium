@@ -29,10 +29,11 @@ namespace Kondominium_BL
                             ModificadoPor = pr.ModificadoPor,
                             Eliminado = pr.Eliminado,
 
-                            ArancelDescripcion = ar.Descripcion,
-                            PoligonoDescripcion = pl.PoligonoDescripcion,
+                            TipoDePropiedadDesc = ((TipodePropiedades) pr.TipoDePropiedad).ToString(),
 
-                            TipoDePropiedadDesc = ((TipoPropideadEnum)pr.TipoDePropiedad).ToString()
+                            ArancelDescripcion = ar.Descripcion,
+                            PoligonoDescripcion = pl.PoligonoDescripcion
+
                         };
 
             return query.ToList();
