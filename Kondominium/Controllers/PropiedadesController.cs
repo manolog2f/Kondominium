@@ -20,6 +20,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ArancelesDatos().GetAll();
             return View(model);
         }
+        /*Arancel Edit*/
         [HttpGet]
         public ActionResult EditArancel(string Id, int? codigo = null )
         {
@@ -75,6 +76,10 @@ namespace Kondominium.Controllers
             return RedirectToAction("EditArancel", new { Id = Id, codigo =  9898});
 
         }
+        
+        /*End Edit Arancel*/
+
+
 
         [HttpGet]
         public ActionResult ListadoPoligonos()
@@ -85,8 +90,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.PoligonosDatos().GetAll();
             return View(model);
         }
-
-        /*Poligono Edi*/
+        /*Poligono Edit*/
         [HttpGet]
         public ActionResult EditPoligonos(string Id, int? codigo = null)
         {
@@ -144,6 +148,8 @@ namespace Kondominium.Controllers
 
         /*End Poligono Edit*/
 
+        
+
         [HttpGet]
         public ActionResult ListadoProductos()
         {
@@ -153,6 +159,68 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ProductosDatos().GetAll();
             return View(model);
         }
+
+        /*Producto Edit*/
+        [HttpGet]
+        public ActionResult EditProductos(string Id, int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (Id != null)
+            {
+                var model = new Kondominium_BL.ProductosDatos().GetById(int.Parse(Id));
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+
+                return View(model);
+            }
+
+
+            return View(new ProductosEntity());
+        }
+        [HttpPost]
+        public ActionResult EditProductos(ProductosEntity model)
+        {
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = model.ModificadoPor;
+
+            var modelr = new Kondominium_BL.ProductosDatos().Save(model);
+
+            Mensajes(modelr.Item2);
+            ModelState.Clear();
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                return RedirectToAction("EditProductos", new { Id = modelr.Item1.Productoid, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+
+        }
+        //DeleteArancel/6
+        //[HttpPost]
+        public ActionResult DeleteProductos(int Id)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+            //DeleteArancel / 5
+
+            var modelr = new Kondominium_BL.ProductosDatos().SetDelete(Id, userid);
+
+            Mensajes(modelr);
+            ModelState.Clear();
+            return RedirectToAction("EditProductos", new { Id = Id, codigo = 9898 });
+
+        }
+
+        /*End Productos Edit*/
+
+
+
 
 
         [HttpGet]

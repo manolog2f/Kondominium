@@ -503,6 +503,7 @@
     <Content Include="Views\Propiedades\ListadoProductos.cshtml" />
     <Content Include="Views\Propiedades\ListadoPropiedades.cshtml" />
     <Content Include="Views\Propiedades\EditPoligonos.cshtml" />
+    <Content Include="Views\Propiedades\EditProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

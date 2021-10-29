@@ -53,20 +53,22 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.productos();
 
                     if (modlExist != null)
+                    {
                         if (modlExist.Eliminado == true)
                             return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
 
                     modlNew = modlExist;
+                    }
 
-                    modlNew.Productoid = model.Productoid;
+                    //modlNew.Productoid = model.Productoid;
                     modlNew.Descripcion = model.Descripcion;
                     
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 
-                    if (modlExist != null)
+                    if (modlExist == null)
                     {
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
