@@ -30,7 +30,7 @@
                                 @Html.DisplayNameFor(model => model.PropiedadId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.TipoDePropiedad)
+                                @Html.DisplayNameFor(model => model.TipoDePropiedadDesc)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Descripcion)
@@ -42,7 +42,7 @@
                                 @Html.DisplayNameFor(model => model.PoligonoId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ArancelId)
+                                @Html.DisplayNameFor(model => model.ArancelDescripcion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.FechaDeCreacion)
@@ -72,7 +72,7 @@
                                 @Html.ActionLink(item.PropiedadId.ToString(), "EditPropiedades", new { id = item.PropiedadId })
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TipoDePropiedad)
+                                @Html.DisplayFor(modelItem => item.TipoDePropiedadDesc)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Descripcion)
@@ -84,7 +84,7 @@
                                 @Html.DisplayFor(modelItem => item.PoligonoId)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ArancelId)
+                                @Html.DisplayFor(modelItem => item.ArancelDescripcion)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.FechaDeCreacion)
