@@ -56,5 +56,13 @@ namespace Kondominium.Controllers
             return View();
         }
 
+        public ActionResult _PartialCalendar()
+        {
+            return PartialView();
+        }
+        public ActionResult _PartialToDoList()
+        {
+            return PartialView();
+        }
     }
 }

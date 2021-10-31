@@ -232,6 +232,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Calendar.css" />
     <Content Include="Content\Chart.css" />
     <Content Include="Content\EmailTemplate\ForgetPassword.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -297,6 +298,7 @@
     <Content Include="Content\menu.css" />
     <Content Include="Content\sb-admin-2.css" />
     <Content Include="Content\sb-admin-2.min.css" />
+    <Content Include="Content\ToDo.css" />
     <Content Include="Content\tree.min.css" />
     <Content Include="Content\viewer.css" />
     <Content Include="Content\ZMT\datatables\dataTables.bootstrap4.css" />
@@ -539,6 +541,8 @@
     <Content Include="Views\Propiedades\ListadoSendas.cshtml" />
     <Content Include="Views\Propiedades\EditSendas.cshtml" />
     <Content Include="Views\Propiedades\EditPropiedades.cshtml" />
+    <Content Include="Views\Home\_PartialCalendar.cshtml" />
+    <Content Include="Views\Home\_PartialToDoList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
