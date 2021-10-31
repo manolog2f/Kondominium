@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kondominium_Entities
 {
@@ -18,6 +19,8 @@ namespace Kondominium_Entities
         /// Nombres
         /// </summary>
         [DisplayName("Nombres")]
+        [StringLength(45)]
+        [Required]
         public string Nombres { get; set; }
         /// <summary>
         /// Apellidos
