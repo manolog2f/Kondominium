@@ -539,6 +539,8 @@
     <Content Include="Views\Propiedades\ListadoSendas.cshtml" />
     <Content Include="Views\Propiedades\EditSendas.cshtml" />
     <Content Include="Views\Propiedades\EditPropiedades.cshtml" />
+    <Content Include="Views\Propiedades\ListadoClientes.cshtml" />
+    <Content Include="Views\Propiedades\EditClientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
