@@ -21,9 +21,9 @@
                 </div>
 
                 @using (Html.BeginForm())
-        {
-                @*@using (Ajax.BeginForm("EditArancel", "Propiedades", new AjaxOptions { HttpMethod = "POST" }))
-                {*@
+                 {
+                     @*@using (Ajax.BeginForm("EditArancel", "Propiedades", new AjaxOptions { HttpMethod = "POST" }))
+                     {*@
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
@@ -50,7 +50,6 @@
                                             <div class="col">
                                                 <div class="form-group">
 
-
                                                     @Html.LabelFor(model => model.ArancelId, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
                                                         @Html.EditorFor(model => model.ArancelId, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
@@ -68,30 +67,29 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md" })
-                                                    <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
-                                                        @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md" })
-                                                    <div class="col-md-10">
-                                                        <div class="checkbox">
-                                                            @Html.EditorFor(model => model.Activo)
-                                                            @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md" })
+                                                        <div class="col-md-10">
+                                                            @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md" })
+                                                            <div class="col-md-10">
+                                                                <div class="checkbox">
+                                                                    @Html.EditorFor(model => model.Activo)
+                                                                    @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-                                    </div>
                                 </div>
                             </div>
 
