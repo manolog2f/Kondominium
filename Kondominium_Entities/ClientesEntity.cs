@@ -119,4 +119,14 @@ namespace Kondominium_Entities
         Inquilino = 1, 
             Otro = 2
     }
+
+    public enum TipoDocumento
+    {
+        DUI = 0,
+        NIT = 1,
+        Pasaporte = 2,
+        Contrato = 3,
+        Recibo = 4,
+        Otro = 5
+    }
 }
