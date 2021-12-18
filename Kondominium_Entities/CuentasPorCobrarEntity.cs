@@ -14,18 +14,18 @@ namespace Kondominium_Entities
         /// <summary>
         /// Numero de Vaucher
         /// </summary>
-        [DisplayName("Numero de Vaucher")]
+        [DisplayName("Numero de transaccion")]
         public string VaucherNumber { get; set; }
         /// <summary>
         /// Id de Cliente
         /// </summary>
-        [DisplayName("Id de Cliente")]
+        [DisplayName("Id de Condómino")]
         public int ClienteId { get; set; }
         /// <summary>
         /// Cuentas por Cobrar
         /// </summary>
         [DisplayName("Cuentas por Cobrar")]
-        public int TipoCxC { get; set; }
+        public string TipoCxC { get; set; }
         /// <summary>
         /// Fecha de Emision
         /// </summary>
@@ -39,7 +39,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Periodo de Facturado
         /// </summary>
-        [DisplayName("Periodo de Facturado")]
+        [DisplayName("Periodo Facturado")]
         public string PeriodoFacturado { get; set; }
         /// <summary>
         ///  Total

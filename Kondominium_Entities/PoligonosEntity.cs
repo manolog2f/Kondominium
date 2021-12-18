@@ -23,6 +23,7 @@ namespace Kondominium_Entities
         /// Descripcion del Poligono
         /// </summary>
         [DisplayName("Descripción")]
+        [StringLength(45, ErrorMessage = "La descripción no debe exceder de 45 caracteres")]
         public string PoligonoDescripcion { get; set; }
 
         /// <summary>

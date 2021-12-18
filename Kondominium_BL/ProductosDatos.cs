@@ -10,9 +10,10 @@ namespace Kondominium_BL
     public class ProductosDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<ProductosEntity> GetAll()
+        public List<ProductosEntity> GetAll(bool VerEliminado = false)
         {
             var query = from prop in context.productos
+                        where VerEliminado ? prop.Eliminado == prop.Eliminado : prop.Eliminado == false
                         select new ProductosEntity
                         {
                             Productoid = prop.Productoid,
@@ -23,6 +24,7 @@ namespace Kondominium_BL
                             ModificadoPor = prop.ModificadoPor,
                             Eliminado = prop.Eliminado,
                         };
+          
             return query.ToList();
         }
 

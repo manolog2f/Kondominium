@@ -17,6 +17,7 @@ namespace Kondominium_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public productos()
         {
+            this.contratosdetalle = new HashSet<contratosdetalle>();
             this.cuentasporcobrardetalle = new HashSet<cuentasporcobrardetalle>();
         }
     
@@ -28,6 +29,8 @@ namespace Kondominium_DAL
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contratosdetalle> contratosdetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrardetalle> cuentasporcobrardetalle { get; set; }
     }

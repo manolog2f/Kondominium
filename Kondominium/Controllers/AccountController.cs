@@ -75,7 +75,7 @@ namespace Kondominium.Controllers
 
                 new Kondominium.Utilities.Log().Set("Login", model.Email, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
 
-
+                UserConfig(model.Email);
 
                 return RedirectToLocal(returnUrl);
             }
@@ -98,6 +98,24 @@ namespace Kondominium.Controllers
 
 
         }
+
+        public void UserConfig(string UserId)
+        {
+            try
+            {
+                var vdel = new Kondominium_BL.UserConfigDatos().GetByName(UserId, "VerEliminados").PropertyValue; 
+                Session["ViewDeleted"] = string.IsNullOrEmpty(vdel) ? false: (vdel=="1"?true:false);
+
+                Core.ViewDeleted = string.IsNullOrEmpty(vdel) ? false : (vdel == "1" ? true : false);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<Kondominium_Entities.Utilites.MenuEntity> LlenarMenu(string Userid)
         {
             List<Kondominium_Entities.Utilites.MenuEntity> _menus = new ZTAdminBL.Security.ProfileMenuPermissionData().GetByUserId(Userid).Select(x => new Kondominium_Entities.Utilites.MenuEntity
@@ -314,13 +332,16 @@ namespace Kondominium.Controllers
         public new ActionResult Profile()
         {
             var userBl = new ZTAdminBL.Security.UserData().GetById(HttpContext.User.Identity.Name);
-            var user = new ZTAdminEntities.Security.UserEntity();
+            var user = new Kondominium.Models.UserModel();
 
             user.Name = userBl.Name.Trim();
             user.LastName = userBl.LastName.Trim();
             user.Active = userBl.Active;
             user.Email = userBl.Email.Trim();
-            user.Password = userBl.Password;
+
+            user.Password1 = string.IsNullOrEmpty(userBl.Password)? "000000000000000" : userBl.Password;
+            user.ValidatePassword = string.IsNullOrEmpty(userBl.Password) ? "000000000000000" : userBl.Password;
+
             user.RolId = userBl.RolId.Trim();
             user.UserExecute = userBl.UserExecute;
             user.UserId = userBl.UserId;
@@ -335,7 +356,7 @@ namespace Kondominium.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        public new ActionResult Profile(ZTAdminEntities.Security.UserEntity user)
+        public new ActionResult Profile(Kondominium.Models.UserModel user)
         {
             try
             {
@@ -347,7 +368,7 @@ namespace Kondominium.Controllers
                     Email = user.Email,
                     LastName = user.LastName,
                     Name = user.Name,
-                    Password = "000000000000000",
+                    Password = string.IsNullOrEmpty(user.Password1)?"000000000000000": user.Password1,
                     RolId = user.RolId,
                     UserId = user.UserId,
                     UserExecute = user.UserId

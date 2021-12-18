@@ -11,11 +11,11 @@ namespace Kondominium_BL
    public class ClientesDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<ClientesEntity> GetAll()
+        public List<ClientesEntity> GetAll(bool VerEliminado = false)
         {
             var query = from c in context.clientes
+                        where  VerEliminado ? c.Eliminado == c.Eliminado: c.Eliminado == false 
                         select new ClientesEntity
-
                         {
                             ClienteId = c.ClienteId,
                             Nombres = c.Nombres,
@@ -23,8 +23,8 @@ namespace Kondominium_BL
                             Documento1 = c.Documento1,
                             Documento2 = c.Documento2,
                             Documento3 = c.Documento3,
+                            Documento4 = c.Documento4,
                             Email = c.Email,
-                            TipoCliente = c.TipoCliente,
                             TelefonoMovil = c.TelefonoMovil,
                             TelefonoFijo = c.TelefonoFijo,
                             FechaDeCreacion = c.FechaDeCreacion,
@@ -33,6 +33,9 @@ namespace Kondominium_BL
                             ModificadoPor = c.ModificadoPor,
                             Eliminado = c.Eliminado,
                         };
+
+           
+
             return query.ToList();
 
         }
@@ -50,8 +53,8 @@ namespace Kondominium_BL
                             Documento1 = c.Documento1,
                             Documento2 = c.Documento2,
                             Documento3 = c.Documento3,
+                            Documento4 = c.Documento4,
                             Email = c.Email,
-                            TipoCliente = c.TipoCliente,
                             TelefonoMovil = c.TelefonoMovil,
                             TelefonoFijo = c.TelefonoFijo,
                             FechaDeCreacion = c.FechaDeCreacion,
@@ -82,14 +85,16 @@ namespace Kondominium_BL
                     //modlNew.ClienteId = model.ClienteId;
                     modlNew.Nombres = model.Nombres;
                     modlNew.Apellidos = model.Apellidos;
-                    modlNew.Documento1 = model.Documento1;
-                    modlNew.Documento2 = model.Documento2;
-                    modlNew.Documento3 = model.Documento3;
-                    modlNew.Email = model.Email;
-                    modlNew.TipoCliente = model.TipoCliente;
-                    modlNew.TelefonoMovil = model.TelefonoMovil;
-                    modlNew.TelefonoFijo = model.TelefonoFijo;
-                    modlNew.FechaDeModificacion = DateTime.Now;;
+                    modlNew.Documento1 =string.IsNullOrEmpty(model.Documento1)?"":model.Documento1;
+                    modlNew.Documento2 = string.IsNullOrEmpty(model.Documento2) ? "" : model.Documento2;
+                    modlNew.Documento3 = string.IsNullOrEmpty(model.Documento3) ? "" : model.Documento3;
+                    modlNew.Documento4 = string.IsNullOrEmpty(model.Documento4) ? "" : model.Documento4;
+
+                    modlNew.Email = string.IsNullOrEmpty(model.Email)?"": model.Email;
+
+                    modlNew.TelefonoMovil = string.IsNullOrEmpty(model.TelefonoMovil)?"":model.TelefonoMovil;
+                    modlNew.TelefonoFijo = string.IsNullOrEmpty(model.TelefonoFijo) ? "" : model.TelefonoFijo;
+                    modlNew.FechaDeModificacion = DateTime.Now;
                    
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
@@ -111,7 +116,7 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
 
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no se guardó con éxito"  + ex.Message});
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado."  + ex.Message});
             }
         }
 

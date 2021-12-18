@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Kondominium_Entities
 {
@@ -19,6 +19,7 @@ namespace Kondominium_Entities
         /// Descripcion
         /// </summary>
         [DisplayName("Descripción")]
+        [StringLength(45, ErrorMessage = "La descripción no debe exceder de 45 caracteres")]
         public string Descripcion { get; set; }
         /// <summary>
         /// Fecha de creación

@@ -481,6 +481,38 @@ namespace Kondominium.Controllers
         }
 
 
+
+
         #endregion
+
+        public List<PropiedadesEntity> ListPropiedades()
+        {
+            try
+            {
+                var lista = new Kondominium_BL.PropiedadesDatos().GetAll();
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                // TODO: Poner en el manejador de errores la excepcion
+                throw;
+            }
+        }
+
+        public List<string> ListABC()
+        {
+            try
+            {
+                var lista = new Kondominium_BL.PropiedadesDatos().Letras();
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                // TODO: Poner en el manejador de errores la excepcion
+                throw;
+            }
+        }
     }
 }

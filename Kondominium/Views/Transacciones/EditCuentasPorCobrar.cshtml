@@ -1,0 +1,306 @@
+﻿@model Kondominium_Entities.CuentasPorCobrarEntity
+
+@{
+    ViewBag.Title = "EditCuentasPorCobrar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Ingreso de Cuentas por Cobrar</h1>
+
+    <div class="row">
+
+        <div class="col-lg">
+
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <!-- Acordion -->
+                        <div id="accordion">
+
+
+                            <!-- General -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                        General
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.VaucherNumber, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.VaucherNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.VaucherNumber, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+
+                                                    @Html.DropDownListFor(model => model.ClienteId,
+                                                                   new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
+                                                                   "Seleccione el Condómino",
+                                                                   new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TipoCxC, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+
+
+                                                    @Html.DropDownListFor(model => model.TipoCxC,
+                                                                  new SelectList(new Kondominium.Controllers.TransaccionesController().ListTiposTransaccion(), "TypeName", "TypeName"),
+                                                                  "Seleccione el tipo de Transaccion",
+                                                                  new { @class = "form-control" })
+
+                                                    @Html.ValidationMessageFor(model => model.TipoCxC, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.FechaDeEmision, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.FechaDeEmision, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2" } })
+                                                    @Html.ValidationMessageFor(model => model.FechaDeEmision, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.FechaDeVencimiento, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.FechaDeVencimiento, new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                                                    @Html.ValidationMessageFor(model => model.FechaDeVencimiento, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.PeriodoFacturado, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @*@Html.EditorFor(model => model.PeriodoFacturado, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                                                    @Html.DropDownListFor(model => model.PeriodoFacturado,
+                                                                  new SelectList(new Kondominium.Controllers.TransaccionesController().ListPeriodos()),
+                                                                  "Seleccione el periodo",
+                                                                  new { @class = "form-control" })
+
+                                                    @Html.ValidationMessageFor(model => model.PeriodoFacturado, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.NPE, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.NPE, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                                    @Html.Editor("123", new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "font-family: LibreBarcode39-Regular; font-size:25px;     background: white;  border: none; ", @Value = "*12 345 6589 7455 77*" } })
+
+
+                                                    @Html.ValidationMessageFor(model => model.NPE, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.BRCode, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.BRCode, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                                    @Html.Editor("123", new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "font-family: LibreBarcode39-Regular; font-size:25px;     background: white;  border: none; ", @Value = "1234565897455" } })
+                                                    @Html.ValidationMessageFor(model => model.BRCode, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detalle -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                        Detalle
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        @Html.Partial("_EditCuentasPorCobrarDetalle", null, new ViewDataDictionary { { "VaucherNumber", Model.VaucherNumber } })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin Detalle -->
+                            <!-- Sistema -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                        Sistema
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+                                        <div class="row">
+
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.FechaDeCreacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.FechaDeCreacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.FechaDeModificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.FechaDeModificacion, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.CreadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.CreadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.ModificadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.ModificadoPor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIn Sistema -->
+                            <br>
+
+
+
+
+                            @{
+                                if ((Model != null ? Model.Eliminado : false) != true)
+                                {
+                                    <div class="container" style="margin-left:unset !important">
+
+                                        @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
+
+                                        <button type="submit" value="Guardar" class="btn btn-primary">
+                                            <i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>Guardar
+                                        </button>
+
+                                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
+                                            <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
+                                        </a>
+
+                                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#AnularModal">
+                                            <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
+                                        </a>
+
+                                        <a class="btn btn-info" href="#" data-toggle="modal" data-target="#AnularModal">
+                                            <i class="fas fa-print fa-sm fa-fw mr-2 text-gray-400"></i>Imprimir
+                                        </a>
+
+                                    </div>
+
+                                }
+                            }
+
+                            <br>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Delete Modal confirmacion -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header badge-warning">
+                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@*//End Delete Modal confirmacion*@
+
+
+
+<div>
+    @Html.ActionLink("Retornar  a la Lista", "ListadoCuentasPorCobrar", "Transacciones")
+</div>

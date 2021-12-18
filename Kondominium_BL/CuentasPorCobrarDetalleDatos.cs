@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-    class CuentasPorCobrarDetalleDatos
+   public class CuentasPorCobrarDetalleDatos
     {
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
 
-        public List<CuentasPorCobrarDetalleEntity> GetAll()
+        public List<CuentasPorCobrarDetalleEntity> GetAll(bool VerEliminado = false)
         {
             var query = from cd in contex.cuentasporcobrardetalle
+                        where VerEliminado ? cd.Eliminado == cd.Eliminado : cd.Eliminado == false
                         select new CuentasPorCobrarDetalleEntity
                         {
                             VaucherNumber = cd.VaucherNumber,

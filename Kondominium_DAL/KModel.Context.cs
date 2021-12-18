@@ -29,16 +29,25 @@ namespace Kondominium_DAL
         public virtual DbSet<alertatipo> alertatipo { get; set; }
         public virtual DbSet<aranceles> aranceles { get; set; }
         public virtual DbSet<avenida> avenida { get; set; }
+        public virtual DbSet<calendario> calendario { get; set; }
         public virtual DbSet<calles> calles { get; set; }
+        public virtual DbSet<clientepropiedad> clientepropiedad { get; set; }
+        public virtual DbSet<clientepropiedaddetalle> clientepropiedaddetalle { get; set; }
+        public virtual DbSet<clientepropiedaddocs> clientepropiedaddocs { get; set; }
         public virtual DbSet<clientes> clientes { get; set; }
+        public virtual DbSet<clientesdocs> clientesdocs { get; set; }
         public virtual DbSet<config> config { get; set; }
+        public virtual DbSet<contratos> contratos { get; set; }
+        public virtual DbSet<contratosdetalle> contratosdetalle { get; set; }
         public virtual DbSet<cuentasporcobrar> cuentasporcobrar { get; set; }
         public virtual DbSet<cuentasporcobrardetalle> cuentasporcobrardetalle { get; set; }
+        public virtual DbSet<cxctype> cxctype { get; set; }
         public virtual DbSet<empresa> empresa { get; set; }
         public virtual DbSet<errorlog> errorlog { get; set; }
         public virtual DbSet<field> field { get; set; }
         public virtual DbSet<fieldsecurity> fieldsecurity { get; set; }
         public virtual DbSet<log_action> log_action { get; set; }
+        public virtual DbSet<lugares> lugares { get; set; }
         public virtual DbSet<mainmenu> mainmenu { get; set; }
         public virtual DbSet<@object> @object { get; set; }
         public virtual DbSet<objecttype> objecttype { get; set; }
@@ -52,7 +61,9 @@ namespace Kondominium_DAL
         public virtual DbSet<sendas> sendas { get; set; }
         public virtual DbSet<submenu> submenu { get; set; }
         public virtual DbSet<submenupermission> submenupermission { get; set; }
+        public virtual DbSet<tareas> tareas { get; set; }
         public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<userconfig> userconfig { get; set; }
         public virtual DbSet<userprofile> userprofile { get; set; }
     }
 }

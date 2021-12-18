@@ -57,6 +57,24 @@
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="calendario">
+          <Key>
+            <PropertyRef Name="CalendarioId" />
+          </Key>
+          <Property Name="CalendarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="HoraInicio" Type="time" Precision="0" />
+          <Property Name="HoraFin" Type="time" Precision="0" />
+          <Property Name="LugarId" Type="int" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="PropiedadId" Type="int" />
+          <Property Name="TituloEvento" Type="varchar" MaxLength="25" />
+          <Property Name="DescripcionEvento" Type="varchar" MaxLength="25" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="calles">
           <Key>
             <PropertyRef Name="CalleId" />
@@ -69,6 +87,61 @@
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="clientepropiedad">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+          </Key>
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Justificacion" Type="varchar" MaxLength="150" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="clientepropiedaddetalle">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+          </Key>
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Precision="0" />
+          <Property Name="FechaFin" Type="datetime" Precision="0" />
+          <Property Name="Autorrenovable" Type="bit" />
+          <Property Name="InquilinoResponsable" Type="bit" />
+          <Property Name="Observacion" Type="varchar" MaxLength="500" />
+          <Property Name="Parentesco" Type="varchar" MaxLength="15" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="clientepropiedaddocs">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+            <PropertyRef Name="DocumentType" />
+          </Key>
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
+          <Property Name="Document" Type="blob" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="Eliminado" Type="bit" />
+        </EntityType>
         <EntityType Name="clientes">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -79,15 +152,29 @@
           <Property Name="Documento1" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="Documento2" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="Documento3" Type="char" MaxLength="25" Nullable="false" />
+          <Property Name="Documento4" Type="char" MaxLength="25" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="TelefonoMovil" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="TelefonoFijo" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="TelefonoMovil" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TelefonoFijo" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
           <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientesdocs">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="DocumentType" />
+          </Key>
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
+          <Property Name="Document" Type="blob" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -100,13 +187,42 @@
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="contratos">
+          <Key>
+            <PropertyRef Name="ContratoId" />
+          </Key>
+          <Property Name="ContratoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Precision="0" />
+          <Property Name="FechaFin" Type="datetime" Precision="0" />
+          <Property Name="DiaMesaFacturar" Type="int" />
+          <Property Name="Categoria" Type="varchar" MaxLength="15" />
+          <Property Name="Frecuencia" Type="varchar" MaxLength="10" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="contratosdetalle">
+          <Key>
+            <PropertyRef Name="ContratoId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ContratoId" Type="int" Nullable="false" />
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" />
+        </EntityType>
         <EntityType Name="cuentasporcobrar">
           <Key>
             <PropertyRef Name="VaucherNumber" />
           </Key>
           <Property Name="VaucherNumber" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="ClienteId" Type="int" Nullable="false" />
-          <Property Name="TipoCxC" Type="int" Nullable="false" />
+          <Property Name="TipoCxC" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="FechaDeEmision" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="FechaDeVencimiento" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="PeriodoFacturado" Type="varchar" MaxLength="6" Nullable="false" />
@@ -118,6 +234,7 @@
           <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Estado" Type="int" />
         </EntityType>
         <EntityType Name="cuentasporcobrardetalle">
           <Key>
@@ -133,6 +250,14 @@
           <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cxctype">
+          <Key>
+            <PropertyRef Name="TypeName" />
+          </Key>
+          <Property Name="TypeName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Abrev" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Corr" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="empresa">
           <Key>
@@ -203,6 +328,18 @@
           <Property Name="Host" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RowId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lugares">
+          <Key>
+            <PropertyRef Name="LugarId" />
+          </Key>
+          <Property Name="LugarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="mainmenu">
           <Key>
@@ -301,7 +438,7 @@
           <Property Name="PropiedadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TipoDePropiedad" Type="int" />
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
-          <Property Name="Casa" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Casa" Type="int" Nullable="false" />
           <Property Name="PoligonoId" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="ArancelId" Type="int" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="6" Nullable="false" />
@@ -312,6 +449,7 @@
           <Property Name="Senda" Type="varchar" MaxLength="5" />
           <Property Name="Calle" Type="varchar" MaxLength="5" />
           <Property Name="Avenida" Type="varchar" MaxLength="5" />
+          <Property Name="CasaLetra" Type="varchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="rol">
           <Key>
@@ -361,6 +499,22 @@
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="tareas">
+          <Key>
+            <PropertyRef Name="TareaId" />
+          </Key>
+          <Property Name="TareaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prioridad" Type="int" />
+          <Property Name="Titulo" Type="varchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="FechaDeEjecucion" Type="datetime" Precision="0" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="UsuarioAsignado" Type="varchar" MaxLength="15" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="UserId" />
@@ -376,6 +530,19 @@
           <Property Name="ModifiedDate" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userconfig">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PropertyName" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PropertyName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PropertyValue" Type="varchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" Precision="0" />
+          <Property Name="ModifiedDate" Type="datetime" Precision="0" />
+          <Property Name="CreateByUserId" Type="varchar" MaxLength="15" />
+          <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="userprofile">
           <Key>
@@ -414,6 +581,69 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ClientePropiedadPK1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="clientepropiedad" Type="Self.clientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientePropiedadPk2">
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="1" />
+          <End Role="clientepropiedad" Type="Self.clientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="clientepropiedad">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="contratos_FK" />-->
+        <Association Name="contratosDetalle_FK">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="contratosdetalle" Type="Self.contratosdetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="contratosdetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="contratosDetalle_FK_1">
+          <End Role="contratos" Type="Self.contratos" Multiplicity="1" />
+          <End Role="contratosdetalle" Type="Self.contratosdetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contratos">
+              <PropertyRef Name="ContratoId" />
+            </Principal>
+            <Dependent Role="contratosdetalle">
+              <PropertyRef Name="ContratoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cuentasporcobrar_FK">
+          <End Role="cxctype" Type="Self.cxctype" Multiplicity="1" />
+          <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cxctype">
+              <PropertyRef Name="TypeName" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
+              <PropertyRef Name="TipoCxC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CxcClientesFK">
           <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
           <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
@@ -447,6 +677,86 @@
             </Principal>
             <Dependent Role="cuentasporcobrardetalle">
               <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_ClientePropiedad">
+          <End Role="clientepropiedad" Type="Self.clientepropiedad" Multiplicity="1" />
+          <End Role="clientepropiedaddetalle" Type="Self.clientepropiedaddetalle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Principal>
+            <Dependent Role="clientepropiedaddetalle">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientePropiedadDD">
+          <End Role="clientepropiedad" Type="Self.clientepropiedad" Multiplicity="1" />
+          <End Role="clientepropiedaddocs" Type="Self.clientepropiedaddocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Principal>
+            <Dependent Role="clientepropiedaddocs">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientesDoc">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
+          <End Role="clientesdocs" Type="Self.clientesdocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="clientesdocs">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientesCalendariox">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="calendario" Type="Self.calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKLugaresCalendariox">
+          <End Role="lugares" Type="Self.lugares" Multiplicity="0..1" />
+          <End Role="calendario" Type="Self.calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugares">
+              <PropertyRef Name="LugarId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="LugarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkPropiedadesCalendarioZ">
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="0..1" />
+          <End Role="calendario" Type="Self.calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="PropiedadId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -570,21 +880,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="userconfig_FK">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="userconfig" Type="Self.userconfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="userconfig">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_a43bba_kondomiModelStoreContainer">
           <EntitySet Name="alerta" EntityType="Self.alerta" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="alertatipo" EntityType="Self.alertatipo" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="aranceles" EntityType="Self.aranceles" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="avenida" EntityType="Self.avenida" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="calendario" EntityType="Self.calendario" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="calles" EntityType="Self.calles" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="clientepropiedad" EntityType="Self.clientepropiedad" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="clientepropiedaddetalle" EntityType="Self.clientepropiedaddetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="clientepropiedaddocs" EntityType="Self.clientepropiedaddocs" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="clientes" EntityType="Self.clientes" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="clientesdocs" EntityType="Self.clientesdocs" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="config" EntityType="Self.config" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="contratos" EntityType="Self.contratos" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="contratosdetalle" EntityType="Self.contratosdetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasporcobrar" EntityType="Self.cuentasporcobrar" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasporcobrardetalle" EntityType="Self.cuentasporcobrardetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cxctype" EntityType="Self.cxctype" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="empresa" EntityType="Self.empresa" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="errorlog" EntityType="Self.errorlog" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="field" EntityType="Self.field" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="fieldsecurity" EntityType="Self.fieldsecurity" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="log_action" EntityType="Self.log_action" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="lugares" EntityType="Self.lugares" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="mainmenu" EntityType="Self.mainmenu" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="object" EntityType="Self.object" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="objecttype" EntityType="Self.objecttype" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -598,7 +929,9 @@
           <EntitySet Name="sendas" EntityType="Self.sendas" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="submenu" EntityType="Self.submenu" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="submenupermission" EntityType="Self.submenupermission" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="tareas" EntityType="Self.tareas" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="userconfig" EntityType="Self.userconfig" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="userprofile" EntityType="Self.userprofile" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <AssociationSet Name="Alerta_UsuarioFK" Association="Self.Alerta_UsuarioFK">
             <End Role="user" EntitySet="user" />
@@ -607,6 +940,26 @@
           <AssociationSet Name="AlertaTpo_AlertaFK" Association="Self.AlertaTpo_AlertaFK">
             <End Role="alertatipo" EntitySet="alertatipo" />
             <End Role="alerta" EntitySet="alerta" />
+          </AssociationSet>
+          <AssociationSet Name="ClientePropiedadPK1" Association="Self.ClientePropiedadPK1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="ClientePropiedadPk2" Association="Self.ClientePropiedadPk2">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="contratosDetalle_FK" Association="Self.contratosDetalle_FK">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="contratosdetalle" EntitySet="contratosdetalle" />
+          </AssociationSet>
+          <AssociationSet Name="contratosDetalle_FK_1" Association="Self.contratosDetalle_FK_1">
+            <End Role="contratos" EntitySet="contratos" />
+            <End Role="contratosdetalle" EntitySet="contratosdetalle" />
+          </AssociationSet>
+          <AssociationSet Name="cuentasporcobrar_FK" Association="Self.cuentasporcobrar_FK">
+            <End Role="cxctype" EntitySet="cxctype" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
           </AssociationSet>
           <AssociationSet Name="CxcClientesFK" Association="Self.CxcClientesFK">
             <End Role="clientes" EntitySet="clientes" />
@@ -619,6 +972,30 @@
           <AssociationSet Name="CxcDetalleProductosFK" Association="Self.CxcDetalleProductosFK">
             <End Role="productos" EntitySet="productos" />
             <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_ClientePropiedad" Association="Self.Fk_ClientePropiedad">
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+            <End Role="clientepropiedaddetalle" EntitySet="clientepropiedaddetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientePropiedadDD" Association="Self.FK_ClientePropiedadDD">
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+            <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientesDoc" Association="Self.FK_ClientesDoc">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="clientesdocs" EntitySet="clientesdocs" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientesCalendariox" Association="Self.FKClientesCalendariox">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FKLugaresCalendariox" Association="Self.FKLugaresCalendariox">
+            <End Role="lugares" EntitySet="lugares" />
+            <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FkPropiedadesCalendarioZ" Association="Self.FkPropiedadesCalendarioZ">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="calendario" EntitySet="calendario" />
           </AssociationSet>
           <AssociationSet Name="MainMenuSubmenuFK" Association="Self.MainMenuSubmenuFK">
             <End Role="mainmenu" EntitySet="mainmenu" />
@@ -660,6 +1037,10 @@
             <End Role="submenu" EntitySet="submenu" />
             <End Role="submenupermission" EntitySet="submenupermission" />
           </AssociationSet>
+          <AssociationSet Name="userconfig_FK" Association="Self.userconfig_FK">
+            <End Role="user" EntitySet="user" />
+            <End Role="userconfig" EntitySet="userconfig" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -670,16 +1051,25 @@
           <EntitySet Name="alertatipo" EntityType="db_a43bba_kondomiModel.alertatipo" />
           <EntitySet Name="aranceles" EntityType="db_a43bba_kondomiModel.aranceles" />
           <EntitySet Name="avenida" EntityType="db_a43bba_kondomiModel.avenida" />
+          <EntitySet Name="calendario" EntityType="db_a43bba_kondomiModel.calendario" />
           <EntitySet Name="calles" EntityType="db_a43bba_kondomiModel.calles" />
+          <EntitySet Name="clientepropiedad" EntityType="db_a43bba_kondomiModel.clientepropiedad" />
+          <EntitySet Name="clientepropiedaddetalle" EntityType="db_a43bba_kondomiModel.clientepropiedaddetalle" />
+          <EntitySet Name="clientepropiedaddocs" EntityType="db_a43bba_kondomiModel.clientepropiedaddocs" />
           <EntitySet Name="clientes" EntityType="db_a43bba_kondomiModel.clientes" />
+          <EntitySet Name="clientesdocs" EntityType="db_a43bba_kondomiModel.clientesdocs" />
           <EntitySet Name="config" EntityType="db_a43bba_kondomiModel.config" />
+          <EntitySet Name="contratos" EntityType="db_a43bba_kondomiModel.contratos" />
+          <EntitySet Name="contratosdetalle" EntityType="db_a43bba_kondomiModel.contratosdetalle" />
           <EntitySet Name="cuentasporcobrar" EntityType="db_a43bba_kondomiModel.cuentasporcobrar" />
           <EntitySet Name="cuentasporcobrardetalle" EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" />
+          <EntitySet Name="cxctype" EntityType="db_a43bba_kondomiModel.cxctype" />
           <EntitySet Name="empresa" EntityType="db_a43bba_kondomiModel.empresa" />
           <EntitySet Name="errorlog" EntityType="db_a43bba_kondomiModel.errorlog" />
           <EntitySet Name="field" EntityType="db_a43bba_kondomiModel.field" />
           <EntitySet Name="fieldsecurity" EntityType="db_a43bba_kondomiModel.fieldsecurity" />
           <EntitySet Name="log_action" EntityType="db_a43bba_kondomiModel.log_action" />
+          <EntitySet Name="lugares" EntityType="db_a43bba_kondomiModel.lugares" />
           <EntitySet Name="mainmenu" EntityType="db_a43bba_kondomiModel.mainmenu" />
           <EntitySet Name="object" EntityType="db_a43bba_kondomiModel.object" />
           <EntitySet Name="objecttype" EntityType="db_a43bba_kondomiModel.objecttype" />
@@ -693,7 +1083,9 @@
           <EntitySet Name="sendas" EntityType="db_a43bba_kondomiModel.sendas" />
           <EntitySet Name="submenu" EntityType="db_a43bba_kondomiModel.submenu" />
           <EntitySet Name="submenupermission" EntityType="db_a43bba_kondomiModel.submenupermission" />
+          <EntitySet Name="tareas" EntityType="db_a43bba_kondomiModel.tareas" />
           <EntitySet Name="user" EntityType="db_a43bba_kondomiModel.user" />
+          <EntitySet Name="userconfig" EntityType="db_a43bba_kondomiModel.userconfig" />
           <EntitySet Name="userprofile" EntityType="db_a43bba_kondomiModel.userprofile" />
           <AssociationSet Name="Alerta_UsuarioFK" Association="db_a43bba_kondomiModel.Alerta_UsuarioFK">
             <End Role="user" EntitySet="user" />
@@ -711,12 +1103,56 @@
             <End Role="avenida" EntitySet="avenida" />
             <End Role="propiedades" EntitySet="propiedades" />
           </AssociationSet>
+          <AssociationSet Name="FKClientesCalendariox" Association="db_a43bba_kondomiModel.FKClientesCalendariox">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FKLugaresCalendariox" Association="db_a43bba_kondomiModel.FKLugaresCalendariox">
+            <End Role="lugares" EntitySet="lugares" />
+            <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FkPropiedadesCalendarioZ" Association="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
           <AssociationSet Name="PropiedadesCallesFK" Association="db_a43bba_kondomiModel.PropiedadesCallesFK">
             <End Role="calles" EntitySet="calles" />
             <End Role="propiedades" EntitySet="propiedades" />
           </AssociationSet>
+          <AssociationSet Name="ClientePropiedadPK1" Association="db_a43bba_kondomiModel.ClientePropiedadPK1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="ClientePropiedadPk2" Association="db_a43bba_kondomiModel.ClientePropiedadPk2">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_ClientePropiedad" Association="db_a43bba_kondomiModel.Fk_ClientePropiedad">
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+            <End Role="clientepropiedaddetalle" EntitySet="clientepropiedaddetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientePropiedadDD" Association="db_a43bba_kondomiModel.FK_ClientePropiedadDD">
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+            <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
+          </AssociationSet>
           <AssociationSet Name="CxcClientesFK" Association="db_a43bba_kondomiModel.CxcClientesFK">
             <End Role="clientes" EntitySet="clientes" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientesDoc" Association="db_a43bba_kondomiModel.FK_ClientesDoc">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="clientesdocs" EntitySet="clientesdocs" />
+          </AssociationSet>
+          <AssociationSet Name="contratosDetalle_FK_1" Association="db_a43bba_kondomiModel.contratosDetalle_FK_1">
+            <End Role="contratos" EntitySet="contratos" />
+            <End Role="contratosdetalle" EntitySet="contratosdetalle" />
+          </AssociationSet>
+          <AssociationSet Name="contratosDetalle_FK" Association="db_a43bba_kondomiModel.contratosDetalle_FK">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="contratosdetalle" EntitySet="contratosdetalle" />
+          </AssociationSet>
+          <AssociationSet Name="cuentasporcobrar_FK" Association="db_a43bba_kondomiModel.cuentasporcobrar_FK">
+            <End Role="cxctype" EntitySet="cxctype" />
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
           </AssociationSet>
           <AssociationSet Name="CxcDestalleCxcHeaderFK" Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK">
@@ -754,6 +1190,10 @@
           <AssociationSet Name="SubMenuPermissionFK" Association="db_a43bba_kondomiModel.SubMenuPermissionFK">
             <End Role="submenu" EntitySet="submenu" />
             <End Role="submenupermission" EntitySet="submenupermission" />
+          </AssociationSet>
+          <AssociationSet Name="userconfig_FK" Association="db_a43bba_kondomiModel.userconfig_FK">
+            <End Role="user" EntitySet="user" />
+            <End Role="userconfig" EntitySet="userconfig" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="alerta">
@@ -813,6 +1253,27 @@
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedadesAvenidasFK" FromRole="avenida" ToRole="propiedades" />
         </EntityType>
+        <EntityType Name="calendario">
+          <Key>
+            <PropertyRef Name="CalendarioId" />
+          </Key>
+          <Property Name="CalendarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" />
+          <Property Name="HoraInicio" Type="Time" />
+          <Property Name="HoraFin" Type="Time" />
+          <Property Name="LugarId" Type="Int32" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="PropiedadId" Type="Int32" />
+          <Property Name="TituloEvento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionEvento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FKClientesCalendariox" FromRole="calendario" ToRole="clientes" />
+          <NavigationProperty Name="lugares" Relationship="db_a43bba_kondomiModel.FKLugaresCalendariox" FromRole="calendario" ToRole="lugares" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ" FromRole="calendario" ToRole="propiedades" />
+        </EntityType>
         <EntityType Name="calles">
           <Key>
             <PropertyRef Name="CalleId" />
@@ -826,6 +1287,67 @@
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedadesCallesFK" FromRole="calles" ToRole="propiedades" />
         </EntityType>
+        <EntityType Name="clientepropiedad">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientepropiedad" ToRole="clientes" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.ClientePropiedadPk2" FromRole="clientepropiedad" ToRole="propiedades" />
+          <NavigationProperty Name="clientepropiedaddetalle" Relationship="db_a43bba_kondomiModel.Fk_ClientePropiedad" FromRole="clientepropiedad" ToRole="clientepropiedaddetalle" />
+          <NavigationProperty Name="clientepropiedaddocs" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDD" FromRole="clientepropiedad" ToRole="clientepropiedaddocs" />
+        </EntityType>
+        <EntityType Name="clientepropiedaddetalle">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="DateTime" />
+          <Property Name="FechaFin" Type="DateTime" />
+          <Property Name="Autorrenovable" Type="Boolean" />
+          <Property Name="InquilinoResponsable" Type="Boolean" />
+          <Property Name="Observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Parentesco" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.Fk_ClientePropiedad" FromRole="clientepropiedaddetalle" ToRole="clientepropiedad" />
+        </EntityType>
+        <EntityType Name="clientepropiedaddocs">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="TipoCliente" />
+            <PropertyRef Name="DocumentType" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDD" FromRole="clientepropiedaddocs" ToRole="clientepropiedad" />
+        </EntityType>
         <EntityType Name="clientes">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -836,16 +1358,34 @@
           <Property Name="Documento1" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Documento2" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Documento3" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Documento4" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="TelefonoMovil" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="TelefonoFijo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoMovil" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoFijo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
           <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
           <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FKClientesCalendariox" FromRole="clientes" ToRole="calendario" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientes" ToRole="clientepropiedad" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="clientes" ToRole="cuentasporcobrar" />
+          <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FK_ClientesDoc" FromRole="clientes" ToRole="clientesdocs" />
+        </EntityType>
+        <EntityType Name="clientesdocs">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="DocumentType" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FK_ClientesDoc" FromRole="clientesdocs" ToRole="clientes" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -858,13 +1398,45 @@
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="contratos">
+          <Key>
+            <PropertyRef Name="ContratoId" />
+          </Key>
+          <Property Name="ContratoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="DateTime" />
+          <Property Name="FechaFin" Type="DateTime" />
+          <Property Name="DiaMesaFacturar" Type="Int32" />
+          <Property Name="Categoria" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Frecuencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Decimal" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contratosdetalle" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK_1" FromRole="contratos" ToRole="contratosdetalle" />
+        </EntityType>
+        <EntityType Name="contratosdetalle">
+          <Key>
+            <PropertyRef Name="ContratoId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ContratoId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" />
+          <NavigationProperty Name="contratos" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK_1" FromRole="contratosdetalle" ToRole="contratos" />
+          <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK" FromRole="contratosdetalle" ToRole="productos" />
+        </EntityType>
         <EntityType Name="cuentasporcobrar">
           <Key>
             <PropertyRef Name="VaucherNumber" />
           </Key>
           <Property Name="VaucherNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="ClienteId" Type="Int32" Nullable="false" />
-          <Property Name="TipoCxC" Type="Int32" Nullable="false" />
+          <Property Name="TipoCxC" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeEmision" Type="DateTime" Nullable="false" />
           <Property Name="FechaDeVencimiento" Type="DateTime" Nullable="false" />
           <Property Name="PeriodoFacturado" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
@@ -876,7 +1448,9 @@
           <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="Int32" />
           <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="cuentasporcobrar" ToRole="clientes" />
+          <NavigationProperty Name="cxctype" Relationship="db_a43bba_kondomiModel.cuentasporcobrar_FK" FromRole="cuentasporcobrar" ToRole="cxctype" />
           <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrar" ToRole="cuentasporcobrardetalle" />
         </EntityType>
         <EntityType Name="cuentasporcobrardetalle">
@@ -895,6 +1469,15 @@
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrardetalle" ToRole="cuentasporcobrar" />
           <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="cuentasporcobrardetalle" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="cxctype">
+          <Key>
+            <PropertyRef Name="TypeName" />
+          </Key>
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Abrev" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Corr" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.cuentasporcobrar_FK" FromRole="cxctype" ToRole="cuentasporcobrar" />
         </EntityType>
         <EntityType Name="empresa">
           <Key>
@@ -966,6 +1549,19 @@
           <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RowId" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="lugares">
+          <Key>
+            <PropertyRef Name="LugarId" />
+          </Key>
+          <Property Name="LugarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FKLugaresCalendariox" FromRole="lugares" ToRole="calendario" />
+        </EntityType>
         <EntityType Name="mainmenu">
           <Key>
             <PropertyRef Name="Id" />
@@ -1030,6 +1626,7 @@
           <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="contratosdetalle" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK" FromRole="productos" ToRole="contratosdetalle" />
           <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="productos" ToRole="cuentasporcobrardetalle" />
         </EntityType>
         <EntityType Name="profile">
@@ -1069,7 +1666,7 @@
           <Property Name="PropiedadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoDePropiedad" Type="Int32" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Casa" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Casa" Type="Int32" Nullable="false" />
           <Property Name="PoligonoId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="ArancelId" Type="Int32" />
           <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" />
@@ -1080,9 +1677,12 @@
           <Property Name="Senda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Calle" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Avenida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CasaLetra" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="aranceles" Relationship="db_a43bba_kondomiModel.PropiesdesArancelesFK" FromRole="propiedades" ToRole="aranceles" />
           <NavigationProperty Name="avenida1" Relationship="db_a43bba_kondomiModel.PropiedadesAvenidasFK" FromRole="propiedades" ToRole="avenida" />
+          <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ" FromRole="propiedades" ToRole="calendario" />
           <NavigationProperty Name="calles" Relationship="db_a43bba_kondomiModel.PropiedadesCallesFK" FromRole="propiedades" ToRole="calles" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPk2" FromRole="propiedades" ToRole="clientepropiedad" />
           <NavigationProperty Name="poligonos" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="propiedades" ToRole="poligonos" />
           <NavigationProperty Name="sendas" Relationship="db_a43bba_kondomiModel.PropiedadesSendaFK" FromRole="propiedades" ToRole="sendas" />
         </EntityType>
@@ -1140,6 +1740,22 @@
           <NavigationProperty Name="profile" Relationship="db_a43bba_kondomiModel.ProfileSubmenuPermissionFK" FromRole="submenupermission" ToRole="profile" />
           <NavigationProperty Name="submenu" Relationship="db_a43bba_kondomiModel.SubMenuPermissionFK" FromRole="submenupermission" ToRole="submenu" />
         </EntityType>
+        <EntityType Name="tareas">
+          <Key>
+            <PropertyRef Name="TareaId" />
+          </Key>
+          <Property Name="TareaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prioridad" Type="Int32" />
+          <Property Name="Titulo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeEjecucion" Type="DateTime" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="UsuarioAsignado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="UserId" />
@@ -1157,6 +1773,21 @@
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="alerta" Relationship="db_a43bba_kondomiModel.Alerta_UsuarioFK" FromRole="user" ToRole="alerta" />
           <NavigationProperty Name="rol" Relationship="db_a43bba_kondomiModel.RolUserFK" FromRole="user" ToRole="rol" />
+          <NavigationProperty Name="userconfig" Relationship="db_a43bba_kondomiModel.userconfig_FK" FromRole="user" ToRole="userconfig" />
+        </EntityType>
+        <EntityType Name="userconfig">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PropertyName" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="CreateByUserId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedByUserId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="db_a43bba_kondomiModel.userconfig_FK" FromRole="userconfig" ToRole="user" />
         </EntityType>
         <EntityType Name="userprofile">
           <Key>
@@ -1219,6 +1850,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKClientesCalendariox">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.calendario" Role="calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKLugaresCalendariox">
+          <End Type="db_a43bba_kondomiModel.lugares" Role="lugares" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.calendario" Role="calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugares">
+              <PropertyRef Name="LugarId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="LugarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkPropiedadesCalendarioZ">
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.calendario" Role="calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="calendario">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PropiedadesCallesFK">
           <End Type="db_a43bba_kondomiModel.calles" Role="calles" Multiplicity="0..1" />
           <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
@@ -1231,6 +1898,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ClientePropiedadPK1">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientePropiedadPk2">
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="clientepropiedad">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_ClientePropiedad">
+          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientepropiedaddetalle" Role="clientepropiedaddetalle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Principal>
+            <Dependent Role="clientepropiedaddetalle">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientePropiedadDD">
+          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientepropiedaddocs" Role="clientepropiedaddocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Principal>
+            <Dependent Role="clientepropiedaddocs">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CxcClientesFK">
           <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="*" />
@@ -1240,6 +1963,54 @@
             </Principal>
             <Dependent Role="cuentasporcobrar">
               <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientesDoc">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientesdocs" Role="clientesdocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="clientesdocs">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="contratosDetalle_FK_1">
+          <End Type="db_a43bba_kondomiModel.contratos" Role="contratos" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.contratosdetalle" Role="contratosdetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contratos">
+              <PropertyRef Name="ContratoId" />
+            </Principal>
+            <Dependent Role="contratosdetalle">
+              <PropertyRef Name="ContratoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="contratosDetalle_FK">
+          <End Type="db_a43bba_kondomiModel.productos" Role="productos" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.contratosdetalle" Role="contratosdetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="contratosdetalle">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cuentasporcobrar_FK">
+          <End Type="db_a43bba_kondomiModel.cxctype" Role="cxctype" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cxctype">
+              <PropertyRef Name="TypeName" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
+              <PropertyRef Name="TipoCxC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1351,6 +2122,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="userconfig_FK">
+          <End Type="db_a43bba_kondomiModel.user" Role="user" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.userconfig" Role="userconfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="userconfig">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1413,6 +2196,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="calendario">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.calendario">
+              <MappingFragment StoreEntitySet="calendario">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="DescripcionEvento" ColumnName="DescripcionEvento" />
+                <ScalarProperty Name="TituloEvento" ColumnName="TituloEvento" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="LugarId" ColumnName="LugarId" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CalendarioId" ColumnName="CalendarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="calles">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.calles">
               <MappingFragment StoreEntitySet="calles">
@@ -1426,6 +2228,57 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="clientepropiedad">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientepropiedad">
+              <MappingFragment StoreEntitySet="clientepropiedad">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientepropiedaddetalle">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientepropiedaddetalle">
+              <MappingFragment StoreEntitySet="clientepropiedaddetalle">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Parentesco" ColumnName="Parentesco" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="InquilinoResponsable" ColumnName="InquilinoResponsable" />
+                <ScalarProperty Name="Autorrenovable" ColumnName="Autorrenovable" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientepropiedaddocs">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientepropiedaddocs">
+              <MappingFragment StoreEntitySet="clientepropiedaddocs">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientes">
               <MappingFragment StoreEntitySet="clientes">
@@ -1436,13 +2289,27 @@
                 <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
                 <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
                 <ScalarProperty Name="TelefonoMovil" ColumnName="TelefonoMovil" />
-                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Documento4" ColumnName="Documento4" />
                 <ScalarProperty Name="Documento3" ColumnName="Documento3" />
                 <ScalarProperty Name="Documento2" ColumnName="Documento2" />
                 <ScalarProperty Name="Documento1" ColumnName="Documento1" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientesdocs">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientesdocs">
+              <MappingFragment StoreEntitySet="clientesdocs">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1459,9 +2326,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="contratos">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.contratos">
+              <MappingFragment StoreEntitySet="contratos">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="DiaMesaFacturar" ColumnName="DiaMesaFacturar" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ContratoId" ColumnName="ContratoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contratosdetalle">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.contratosdetalle">
+              <MappingFragment StoreEntitySet="contratosdetalle">
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ContratoId" ColumnName="ContratoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cuentasporcobrar">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrar">
               <MappingFragment StoreEntitySet="cuentasporcobrar">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
                 <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
@@ -1492,6 +2390,15 @@
                 <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
                 <ScalarProperty Name="DetalleId" ColumnName="DetalleId" />
                 <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cxctype">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cxctype">
+              <MappingFragment StoreEntitySet="cxctype">
+                <ScalarProperty Name="Corr" ColumnName="Corr" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1564,6 +2471,19 @@
                 <ScalarProperty Name="Host" ColumnName="Host" />
                 <ScalarProperty Name="DateTimeOfAction" ColumnName="DateTimeOfAction" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lugares">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.lugares">
+              <MappingFragment StoreEntitySet="lugares">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="LugarId" ColumnName="LugarId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1667,6 +2587,7 @@
           <EntitySetMapping Name="propiedades">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.propiedades">
               <MappingFragment StoreEntitySet="propiedades">
+                <ScalarProperty Name="CasaLetra" ColumnName="CasaLetra" />
                 <ScalarProperty Name="Avenida" ColumnName="Avenida" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
                 <ScalarProperty Name="Senda" ColumnName="Senda" />
@@ -1735,6 +2656,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tareas">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.tareas">
+              <MappingFragment StoreEntitySet="tareas">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="UsuarioAsignado" ColumnName="UsuarioAsignado" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="FechaDeEjecucion" ColumnName="FechaDeEjecucion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="TareaId" ColumnName="TareaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="user">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.user">
               <MappingFragment StoreEntitySet="user">
@@ -1748,6 +2686,19 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userconfig">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.userconfig">
+              <MappingFragment StoreEntitySet="userconfig">
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="CreateByUserId" ColumnName="CreateByUserId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="PropertyValue" ColumnName="PropertyValue" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>

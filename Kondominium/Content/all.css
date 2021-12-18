@@ -12,6 +12,11 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'LibreBarcode39-Regular';
+    src: url('../fonts/LibreBarcode39-Regular.ttf') format('truetype');
+}
+
 
 .fa,
 .fas,

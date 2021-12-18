@@ -17,7 +17,10 @@ namespace Kondominium_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public clientes()
         {
+            this.calendario = new HashSet<calendario>();
+            this.clientepropiedad = new HashSet<clientepropiedad>();
             this.cuentasporcobrar = new HashSet<cuentasporcobrar>();
+            this.clientesdocs = new HashSet<clientesdocs>();
         }
     
         public int ClienteId { get; set; }
@@ -26,8 +29,8 @@ namespace Kondominium_DAL
         public string Documento1 { get; set; }
         public string Documento2 { get; set; }
         public string Documento3 { get; set; }
+        public string Documento4 { get; set; }
         public string Email { get; set; }
-        public string TipoCliente { get; set; }
         public string TelefonoMovil { get; set; }
         public string TelefonoFijo { get; set; }
         public System.DateTime FechaDeCreacion { get; set; }
@@ -37,6 +40,12 @@ namespace Kondominium_DAL
         public bool Eliminado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<calendario> calendario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<clientepropiedad> clientepropiedad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrar> cuentasporcobrar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<clientesdocs> clientesdocs { get; set; }
     }
 }

@@ -15,13 +15,17 @@ namespace Kondominium
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.validate*",
-                "~/Scripts/jquery.validate.unobtrusive.js",
+                //"~/Scripts/jquery.validate*",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
                 "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/jquery.form.js",
-                "~/Scripts/chosen.jquery.min.js"
-               
+                "~/Scripts/chosen.jquery.min.js",
+                "~/Scripts/jquery-1.12.4.js",
+                "~/Scripts/jquery-ui-1.12.1.min.js"
+
+
             ));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
@@ -47,7 +51,7 @@ namespace Kondominium
                 "~/Scripts/ZMT/Sb.js",
                 "~/Scripts/demo/datatables-demo.js",
                 //"~/Scripts/ZMT/Menu.js",
-                //"~/Scripts/ZMT/ZMTDatetimePicker.js",
+                "~/Scripts/ZMT/ZMTDatetimePicker.js",
                 "~/Scripts/ZMT/ZMTUtils.js"
             ));
 
@@ -71,4 +75,5 @@ namespace Kondominium
         }
     }
 }
+
 

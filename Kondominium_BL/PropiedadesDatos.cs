@@ -10,9 +10,9 @@ namespace Kondominium_BL
     public class PropiedadesDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<PropiedadesEntity> GetAll()
+        public List<PropiedadesEntity> GetAll(bool VerEliminado = false)
         {
-            var query = context.propiedades.Select(x => new PropiedadesEntity
+            var query = context.propiedades.Where( x => ( VerEliminado?x.Eliminado ==x.Eliminado: x.Eliminado == false) ).Select(x => new PropiedadesEntity
             {
                 PropiedadId = x.PropiedadId,
                 TipoDePropiedad = x.TipoDePropiedad,
@@ -35,10 +35,13 @@ namespace Kondominium_BL
                 SendaDescripcion = x.sendas.SendaDescripcion,
                 Calle = x.Calle,
                 Avenida = x.Avenida,
-                Senda = x.Senda
+                Senda = x.Senda,
+                CasaLetra = x.CasaLetra
+                
                 
 
             });
+           
 
             return query.ToList();
         }
@@ -69,7 +72,8 @@ namespace Kondominium_BL
                             SendaDescripcion = x.sendas.SendaDescripcion,
                             Calle = x.Calle,
                             Avenida = x.Avenida,
-                            Senda = x.Senda
+                            Senda = x.Senda,
+                            CasaLetra = x.CasaLetra
 
                         });
 
@@ -91,10 +95,12 @@ namespace Kondominium_BL
 
                         modlNew = modlExist;
                     }
-                   // modlNew.PropiedadId = model.PropiedadId;
+                    // modlNew.PropiedadId = model.PropiedadId;
                     modlNew.TipoDePropiedad = model.TipoDePropiedad;
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Casa = model.Casa;
+                    modlNew.CasaLetra = model.CasaLetra ;
+
                     modlNew.PoligonoId = model.PoligonoId;
                     modlNew.ArancelId = model.ArancelId;
                     modlNew.Calle = model.Calle;
@@ -182,6 +188,42 @@ namespace Kondominium_BL
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
 
+        }
+
+        public List<string> Letras()
+        {
+
+            var rlist = new List<string>();
+
+            rlist.Add(" ");
+            rlist.Add("A");
+            rlist.Add("B");
+            rlist.Add("C");
+            rlist.Add("D");
+            rlist.Add("E");
+            rlist.Add("F");
+            rlist.Add("G");
+            rlist.Add("H");
+            rlist.Add("I");
+            rlist.Add("J");
+            rlist.Add("K");
+            rlist.Add("L");
+            rlist.Add("M");
+            rlist.Add("N");
+            rlist.Add("O");
+            rlist.Add("P");
+            rlist.Add("Q");
+            rlist.Add("R");
+            rlist.Add("S");
+            rlist.Add("T");
+            rlist.Add("U");
+            rlist.Add("V");
+            rlist.Add("W");
+            rlist.Add("X");
+            rlist.Add("Y");
+            rlist.Add("Z");
+
+            return rlist;
         }
     }
 }

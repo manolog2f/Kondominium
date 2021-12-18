@@ -14,10 +14,17 @@ namespace Kondominium_DAL
     
     public partial class propiedades
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public propiedades()
+        {
+            this.calendario = new HashSet<calendario>();
+            this.clientepropiedad = new HashSet<clientepropiedad>();
+        }
+    
         public int PropiedadId { get; set; }
         public Nullable<int> TipoDePropiedad { get; set; }
         public string Descripcion { get; set; }
-        public string Casa { get; set; }
+        public int Casa { get; set; }
         public string PoligonoId { get; set; }
         public Nullable<int> ArancelId { get; set; }
         public System.DateTime FechaDeCreacion { get; set; }
@@ -28,10 +35,15 @@ namespace Kondominium_DAL
         public string Senda { get; set; }
         public string Calle { get; set; }
         public string Avenida { get; set; }
+        public string CasaLetra { get; set; }
     
         public virtual aranceles aranceles { get; set; }
         public virtual avenida avenida1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<calendario> calendario { get; set; }
         public virtual calles calles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<clientepropiedad> clientepropiedad { get; set; }
         public virtual poligonos poligonos { get; set; }
         public virtual sendas sendas { get; set; }
     }

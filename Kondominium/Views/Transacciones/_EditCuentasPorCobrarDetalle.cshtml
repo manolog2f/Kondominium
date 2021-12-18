@@ -1,0 +1,87 @@
+﻿@model Kondominium_Entities.CuentasPorCobrarDetalleEntity
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gvEditingUI";
+        settings.KeyFieldName = "VaucherNumber;DetalleId";
+
+
+        settings.CallbackRouteValues = new { Controller = "Transacciones", Action = "_EditCuentasPorCobrarDetalle", UserId = ViewBag.UserId };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Transacciones", Action = "_EditCuentasPorCobrarDetalleUpdate" };
+
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsPopup.EditForm.Width = 600;
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+
+
+        settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+        settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 700;
+        settings.EditFormLayoutProperties.SettingsItems.VerticalAlign = FormLayoutVerticalAlign.Middle;
+
+
+
+
+        settings.CommandColumn.Visible = true;
+
+        settings.CommandColumn.ShowEditButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+
+        settings.CommandColumn.ShowNewButton = true;
+
+
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = false;
+
+
+        settings.SettingsCommandButton.EditButton.Styles.Native = true;
+        settings.SettingsCommandButton.EditButton.Text = "Editar";
+        settings.SettingsCommandButton.EditButton.Styles.Style.CssClass = "btn btn-info btn-sm";
+
+        settings.SettingsCommandButton.UpdateButton.Styles.Native = true;
+        settings.SettingsCommandButton.UpdateButton.Text = "Guardar";
+        settings.SettingsCommandButton.UpdateButton.Styles.Style.CssClass = "btn btn-info btn-sm";
+
+        settings.SettingsCommandButton.CancelButton.Styles.Native = true;
+        settings.SettingsCommandButton.CancelButton.Text = "Cancelar";
+        settings.SettingsCommandButton.CancelButton.Styles.Style.CssClass = "btn btn-light btn-sm";
+
+
+
+        settings.SettingsCommandButton.NewButton.Styles.Native = true;
+        settings.SettingsCommandButton.NewButton.Text = "Agregar";
+        settings.SettingsCommandButton.NewButton.Styles.Style.CssClass = "btn btn-light btn-sm";
+
+
+
+        settings.Columns.Add("VaucherNumber");
+
+        settings.Columns.Add("DetalleId");
+
+        settings.Columns.Add("ProductoId");
+
+        settings.Columns.Add("Descripcion");
+
+        settings.Columns.Add("Monto");
+
+        //settings.Columns.Add("Active", MVCxGridViewColumnType.CheckBox);
+
+    });
+
+    //if (ViewData["EditError"] != null)
+    //{
+    grid.SetEditErrorText((string)ViewData["EditError"]);
+@*}*@
+}
+
+@grid.Bind(Model).GetHtml()
+
+@functions {
+    GridViewEditingMode EditMode { get { return ViewBag.EditMode; } }
+}

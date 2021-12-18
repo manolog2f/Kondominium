@@ -110,19 +110,43 @@
     <Compile Include="avenida.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="calendario.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="calles.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clientepropiedad.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clientepropiedaddetalle.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clientepropiedaddocs.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="clientes.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="clientesdocs.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="config.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contratos.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contratosdetalle.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cuentasporcobrar.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cuentasporcobrardetalle.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cxctype.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="empresa.cs">
@@ -153,6 +177,9 @@
       <DependentUpon>KModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="log_action.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lugares.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="mainmenu.cs">
@@ -195,7 +222,13 @@
     <Compile Include="submenupermission.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tareas.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="user.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userconfig.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="userprofile.cs">

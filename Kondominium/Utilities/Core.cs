@@ -21,6 +21,7 @@ namespace Kondominium.Utilities
         public static string PassEmail;
         public static string PortSMTP;
         public static string FromEmail;
+        public static bool ViewDeleted;
 
         static Core()
         {
@@ -33,6 +34,8 @@ namespace Kondominium.Utilities
             PassEmail = new ZoomTechUtils.Utils().ReadSetting("PassEmail");
             PortSMTP = new ZoomTechUtils.Utils().ReadSetting("PortSMTP");
             FromEmail = new ZoomTechUtils.Utils().ReadSetting("FromEmail");
+
+            ViewDeleted = false;
 
             /*
             SMTPServer

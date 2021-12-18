@@ -99,16 +99,26 @@
   <ItemGroup>
     <Compile Include="ArancelesDatos.cs" />
     <Compile Include="AvenidasDatos.cs" />
+    <Compile Include="CalendarioDatos.cs" />
     <Compile Include="CallesDatos.cs" />
+    <Compile Include="ClientePropiedadDatos.cs" />
     <Compile Include="ClientesDatos.cs" />
+    <Compile Include="ContratoDatos.cs" />
+    <Compile Include="ContratoDetalleDatos.cs" />
     <Compile Include="CuentasPorCobrarDatos.cs" />
     <Compile Include="CuentasPorCobrarDetalleDatos.cs" />
+    <Compile Include="CxcDatos.cs" />
     <Compile Include="EmpresaDatos.cs" />
+    <Compile Include="GeneradorCodigoData.cs" />
+    <Compile Include="LugaresDatos.cs" />
+    <Compile Include="PeriodoFacturadoDatos.cs" />
     <Compile Include="PoligonosDatos.cs" />
     <Compile Include="ProductosDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadesDatos.cs" />
     <Compile Include="SendasDatos.cs" />
+    <Compile Include="TareasDatos.cs" />
+    <Compile Include="UserConfigDatos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kondominium_DAL\Kondominium_DAL.csproj">
@@ -122,6 +132,10 @@
     <ProjectReference Include="..\Kondominium_Process\Kondominium_Process.csproj">
       <Project>{a0d24f82-1e19-4c05-b3cc-bcc8ceb0cc3e}</Project>
       <Name>Kondominium_Process</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kondominium_vbFunciones\Kondominium_vbFunciones.vbproj">
+      <Project>{7d6ee432-2fb1-4ebe-8305-0b11ef28ff8d}</Project>
+      <Name>Kondominium_vbFunciones</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

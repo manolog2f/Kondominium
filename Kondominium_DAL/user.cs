@@ -18,6 +18,7 @@ namespace Kondominium_DAL
         public user()
         {
             this.alerta = new HashSet<alerta>();
+            this.userconfig = new HashSet<userconfig>();
         }
     
         public string UserId { get; set; }
@@ -35,5 +36,7 @@ namespace Kondominium_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alerta> alerta { get; set; }
         public virtual rol rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userconfig> userconfig { get; set; }
     }
 }

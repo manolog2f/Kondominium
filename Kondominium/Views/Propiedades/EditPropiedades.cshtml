@@ -42,7 +42,7 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
 
                                     <div class="row">
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PropiedadId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -51,7 +51,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TipoDePropiedad, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -64,7 +64,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -76,16 +76,8 @@
                                     </div>
                                     <div class="row">
 
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Casa, htmlAttributes: new { @class = "control-label col-md" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Casa, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.Casa, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
+
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PoligonoId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -100,7 +92,41 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Casa, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.Casa, new { htmlAttributes = new { type = "number", min = "1" , max = "99",  @class = "form-control" ,} })
+
+                                                    @Html.ValidationMessageFor(model => model.Casa, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CasaLetra, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                         
+                                                    @Html.DropDownListFor(model => model.CasaLetra,
+                                                                    new Kondominium.Controllers.PropiedadesController().ListABC().Select(x => new SelectListItem
+                                                                    { Text = x.ToString()                                                
+                                                                    , Value = x.ToString() }),
+                                                                    "Seleccione la letra de la casa",
+                                                                  new { @class = "form-control" })
+
+
+                                                    @Html.ValidationMessageFor(model => model.CasaLetra, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row">
+
+
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Senda, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -114,9 +140,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -129,7 +153,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Avenida, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -143,25 +167,27 @@
                                             </div>
                                         </div>
 
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.ArancelId, htmlAttributes: new { @class = "control-label col-md" })
-                                                <div class="col-md-10">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.ArancelId, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
 
-                                                    @Html.DropDownListFor(model => model.ArancelId,
-                                                                  new Kondominium_BL.ArancelesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                                  { Text = x.Descripcion, Value = x.ArancelId.ToString() }),
-                                                                  "Seleccione la categoria",
-                                                                  new { @class = "form-control" })
+                                                        @Html.DropDownListFor(model => model.ArancelId,
+                                                                      new Kondominium_BL.ArancelesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+                                                                      { Text = x.Descripcion, Value = x.ArancelId.ToString() }),
+                                                                      "Seleccione la categoria",
+                                                                      new { @class = "form-control" })
 
-                                                    @Html.ValidationMessageFor(model => model.ArancelId, "", new { @class = "text-danger" })
+                                                        @Html.ValidationMessageFor(model => model.ArancelId, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                     </div>
-
-                                </div>
                             </div>
                             <!-- Sistema -->
                             <div class="card">

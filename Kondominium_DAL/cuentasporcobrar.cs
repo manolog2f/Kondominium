@@ -22,7 +22,7 @@ namespace Kondominium_DAL
     
         public string VaucherNumber { get; set; }
         public int ClienteId { get; set; }
-        public int TipoCxC { get; set; }
+        public string TipoCxC { get; set; }
         public System.DateTime FechaDeEmision { get; set; }
         public System.DateTime FechaDeVencimiento { get; set; }
         public string PeriodoFacturado { get; set; }
@@ -34,8 +34,10 @@ namespace Kondominium_DAL
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
+        public Nullable<int> Estado { get; set; }
     
         public virtual clientes clientes { get; set; }
+        public virtual cxctype cxctype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrardetalle> cuentasporcobrardetalle { get; set; }
     }

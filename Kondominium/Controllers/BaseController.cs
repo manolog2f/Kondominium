@@ -18,8 +18,8 @@ namespace Kondominium.Controllers
             var cultureInfo = CultureInfo.GetCultureInfo("es-SV");
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-        }
 
+        }
 
         protected Boolean Verifypermission(string UserId = "", string ObjectName = "", string Controller = "")
         {

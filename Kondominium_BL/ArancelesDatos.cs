@@ -11,9 +11,10 @@ namespace Kondominium_BL
    public class ArancelesDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<ArancelesEntity> GetAll()
+        public List<ArancelesEntity> GetAll(bool VerEliminado = false)
         {
             var query = from a in context.aranceles
+                        where VerEliminado ? a.Eliminado == a.Eliminado : a.Eliminado == false
                         select new ArancelesEntity
                         {
                             Activo =  (Boolean)a.Activo,
@@ -26,6 +27,8 @@ namespace Kondominium_BL
                             ModificadoPor = a.ModificadoPor,
                             Monto = a.Monto,
                         };
+
+
 
             return query.ToList();
         }

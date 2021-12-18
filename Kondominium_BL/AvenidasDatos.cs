@@ -10,9 +10,10 @@ namespace Kondominium_BL
    public class AvenidasDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<AvenidasEntity> GetAll()
+        public List<AvenidasEntity> GetAll(bool VerEliminado = false)
         {
             var query = from p in context.avenida
+                        where VerEliminado ? p.Eliminado == p.Eliminado : p.Eliminado == false
                         select new AvenidasEntity
                         {
                             AvenidaId = p.AvenidaId,
@@ -23,6 +24,7 @@ namespace Kondominium_BL
                             ModificadoPor = p.ModificadoPor,
                             Eliminado = p.Eliminado,
                         };
+
 
             return query.ToList();
         }
@@ -86,7 +88,7 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no se guardó con éxito \n" + ex.Message });
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado. \n" + ex.Message });
 
             }
         }

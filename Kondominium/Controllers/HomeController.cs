@@ -64,5 +64,10 @@ namespace Kondominium.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Dashboard()
+        {
+            return PartialView();
+        }
     }
 }

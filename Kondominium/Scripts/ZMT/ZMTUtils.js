@@ -7,7 +7,6 @@ $('#myModalSuccessful').modal('show');
 
 /// Date TimePikers
 
-
 //$('#datepickerDesde').datepicker({
 //        weekStart: 1,
 //    daysOfWeekHighlighted: "6,0",
@@ -15,6 +14,7 @@ $('#myModalSuccessful').modal('show');
 //    todayHighlight: true,
 //});
 //$('#datepickerDesde').datepicker("setDate", new Date());
+
 
 //$('#datepickerHasta').datepicker({
 //    weekStart: 1,

@@ -11,9 +11,10 @@ namespace Kondominium_BL
     public class PoligonosDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<PoligonosEntity> GetAll()
+        public List<PoligonosEntity> GetAll(bool VerEliminado = false)
         {
             var query = from p in context.poligonos
+                        where VerEliminado ? p.Eliminado == p.Eliminado : p.Eliminado == false
                         select new PoligonosEntity 
                         {
                           PoligonoId = p.PoligonoId,
@@ -24,6 +25,8 @@ namespace Kondominium_BL
                           ModificadoPor = p.ModificadoPor,
                           Eliminado = p.Eliminado,
                         };
+
+     
 
             return query.ToList();
         }
@@ -87,7 +90,7 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no se guardó con éxito \n" + ex.Message });
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado. \n" + ex.Message });
 
             }
         }

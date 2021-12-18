@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Kondominium_Entities
 {
@@ -31,12 +31,13 @@ namespace Kondominium_Entities
         /// Descripcion
         /// </summary>
         [DisplayName("Descripción")]
+        [StringLength(200, ErrorMessage = "La descripción no debe exceder de 200 caracteres")]
         public string Descripcion { get; set; }
         /// <summary>
         /// Casa
         /// </summary>
         [DisplayName("Casa")]
-        public string Casa { get; set; }
+        public int Casa { get; set; }
         /// <summary>
         /// Id de Polígono
         /// </summary>
@@ -120,6 +121,19 @@ namespace Kondominium_Entities
         [DisplayName("Descripion de Avenida")]
         public string AvenidaDescripcion { get; set; }
 
+
+        /// <summary>
+        /// Letra de la casa ** Opcional
+        /// </summary>
+        [DisplayName("Letra de la casa")]
+        public string CasaLetra { get; set; }
+
+        private string vpropiedadCasa;
+        public string VPropiedad   // property
+        {
+            get { return PoligonoId  + '-' + Casa.ToString() + CasaLetra; }
+            set { vpropiedadCasa = PoligonoId + '-' + Casa.ToString() + CasaLetra; }
+        }
     }
 
     public enum TipodePropiedades
@@ -129,5 +143,39 @@ namespace Kondominium_Entities
         Edificio = 2,
         Otros = 3
         //0 = Lote\n1 = Casa\n2 = Edificio\n3 = Otros
+    }
+
+
+
+
+    public enum LetrasCasa
+    {   
+        A,
+        B,
+        C,
+        D,
+        E,
+        F,
+        G,
+        H,
+        I,
+        J,
+        K,
+        L,
+        M,
+        N,
+        O,
+        P,
+        Q,
+        R,
+        S,
+        T,
+        U,
+        V,
+        W,
+        X,
+        Y,
+        Z
+    
     }
 }
