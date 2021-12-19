@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kondominium_Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,142 +9,153 @@ namespace Kondominium_BL
 {
   public  class TareasDatos
     {
-        //Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        //public List<CallesEntity> GetAll(bool VerEliminado = false)
-        //{
-        //    var query = from p in context.calles
-        //                where VerEliminado ? p.Eliminado == p.Eliminado : p.Eliminado == false
-        //                select new CallesEntity
-        //                {
-        //                    CalleId = p.CalleId,
-        //                    CalleDescripcion = p.CalleDescripcion,
-        //                    FechaDeCreacion = (DateTime)p.FechaDeCreacion,
-        //                    FechaDeModificacion = p.FechaDeModificacion,
-        //                    CreadoPor = p.CreadoPor,
-        //                    ModificadoPor = p.ModificadoPor,
-        //                    Eliminado = p.Eliminado,
-        //                };
+        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        public List<TareasEntity> GetAll(int Id)
+        {
+            var query = from t in context.tareas
+                        where t.TareaId == Id
+                        select new TareasEntity
+                        {
+                            TareaId = t.TareaId,
+                            Prioridad = t.Prioridad,
+                            Titulo = t.Titulo,
+                            Descripcion = t.Descripcion,
+                            FechaDeEjecucion = t.FechaDeEjecucion,
+                            Estatus = t.Estatus,
+                            UsuarioAsignado = t.UsuarioAsignado,
+                            FechaDeCreacion = (DateTime)t.FechaDeCreacion,
+                            FechaDeModificacion = t.FechaDeModificacion,
+                            CreadoPor = t.CreadoPor,
+                            ModificadoPor = t.ModificadoPor
+                        };
 
-        //    return query.ToList();
-        //}
-        //public CallesEntity GetById(string Id)
-        //{
-        //    var query = from p in context.calles
-        //                where p.CalleId == Id
-        //                select new CallesEntity
-        //                {
-        //                    CalleId = p.CalleId,
-        //                    CalleDescripcion = p.CalleDescripcion,
-        //                    FechaDeCreacion = (DateTime)p.FechaDeCreacion,
-        //                    FechaDeModificacion = p.FechaDeModificacion,
-        //                    CreadoPor = p.CreadoPor,
-        //                    ModificadoPor = p.ModificadoPor,
-        //                    Eliminado = p.Eliminado,
-        //                };
+            return query.ToList();
+        }
+        public TareasEntity GetById(int Id)
+        {
+            var query = from t in context.tareas
+                        where t.TareaId == Id
+                        select new TareasEntity
+                        {
+                            TareaId = t.TareaId,
+                            Prioridad = t.Prioridad,
+                            Titulo = t.Titulo,
+                            Descripcion = t.Descripcion,
+                            FechaDeEjecucion = t.FechaDeEjecucion,
+                            Estatus = t.Estatus,
+                            UsuarioAsignado = t.UsuarioAsignado,
+                            FechaDeCreacion = (DateTime)t.FechaDeCreacion,
+                            FechaDeModificacion = t.FechaDeModificacion,
+                            CreadoPor = t.CreadoPor,
+                            ModificadoPor = t.ModificadoPor
+                        };
 
-        //    return query.FirstOrDefault();
-        //}
+            return query.FirstOrDefault();
+        }
 
-        //public (CallesEntity, Resultado) Save(CallesEntity model)
-        //{
-        //    try
-        //    {
-        //        using (var cn = new Kondominium_DAL.KEntities())
-        //        {
-        //            var modlExist = cn.calles.Where(x => x.CalleId == model.CalleId).FirstOrDefault();
-        //            var modlNew = new Kondominium_DAL.calles();
+        public (TareasEntity, Resultado) Save(TareasEntity model)
+        {
+            try 
+            {
+                using (var cn = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = cn.tareas.Where(x => x.TareaId == model.TareaId).FirstOrDefault();
+                    var modlNew = new Kondominium_DAL.tareas();
 
-        //            if (modlExist != null)
-        //            {
-        //                if (modlExist.Eliminado == true)
-        //                    return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+                    if (modlExist != null)
+                    modlNew = modlExist;
 
-        //                modlNew = modlExist;
-        //            }
-
-        //            modlNew.CalleId = model.CalleId;
-        //            modlNew.CalleDescripcion = model.CalleDescripcion;
-        //            modlNew.Eliminado = model.Eliminado;
-        //            modlNew.FechaDeModificacion = DateTime.Now;
-        //            modlNew.ModificadoPor = model.ModificadoPor;
-
-
-
-        //            if (modlExist == null)
-        //            {
-        //                modlNew.FechaDeCreacion = DateTime.Now;
-        //                modlNew.CreadoPor = model.CreadoPor;
-
-        //                cn.calles.Add(modlNew);
-        //            }
-        //            cn.SaveChanges();
-
-        //            model.CalleId = modlNew.CalleId;
-
-        //        }
-
-        //        return (GetById(model.CalleId), new Resultado { Codigo = 0, Mensaje = "Exito" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado. \n" + ex.Message });
-
-        //    }
-        //}
-
-        //public Resultado Delete(CallesEntity model)
-        //{
-        //    try
-        //    {
-        //        using (var ContextP = new Kondominium_DAL.KEntities())
-        //        {
-        //            var modlExist = ContextP.calles.Where(x => x.CalleId == model.CalleId).FirstOrDefault();
-
-        //            if (modlExist != null)
-        //            {
-        //                ContextP.calles.Remove(modlExist);
-        //                ContextP.SaveChanges();
-        //                return new Resultado { Codigo = 0, Mensaje = "Exito, Registro eliminado permanentemente" };
-        //            }
-        //            else
-        //                return new Resultado { Codigo = 0, Mensaje = "Registro no encontrado" };
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
-
-        //    }
-        //}
-        //public Resultado SetDelete(string Id, string UserId)
-        //{
-        //    try
-        //    {
-        //        using (var ContextP = new Kondominium_DAL.KEntities())
-        //        {
-
-        //            var modlExist = ContextP.calles.Where(x => x.CalleId == Id).FirstOrDefault();
-        //            // var modlNew = new Kondominium_DAL.Calles();
+                    modlNew.TareaId = model.TareaId;
+                    modlNew.Prioridad = model.Prioridad;
+                    modlNew.Titulo = model.Titulo;
+                    modlNew.FechaDeModificacion = DateTime.Now;
+                    modlNew.ModificadoPor = model.ModificadoPor;
+                    modlNew.Descripcion = model.Descripcion;
+                    modlNew.FechaDeEjecucion = model.FechaDeEjecucion;
+                    modlNew.Estatus = model.Estatus;
+                    modlNew.UsuarioAsignado = model.UsuarioAsignado;
+                    modlNew.FechaDeCreacion = (DateTime)model.FechaDeCreacion;
+                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
+                    modlNew.CreadoPor = model.CreadoPor;
+                    modlNew.ModificadoPor = model.ModificadoPor;
 
 
-        //            if (modlExist == null)
-        //                return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
 
-        //            modlExist.Eliminado = true;
+                    if (modlExist == null)
+                    {
+                        modlNew.FechaDeCreacion = DateTime.Now;
+                        modlNew.CreadoPor = model.CreadoPor;
 
-        //            modlExist.FechaDeModificacion = DateTime.Now;
-        //            modlExist.ModificadoPor = UserId;
-        //            ContextP.SaveChanges();
-        //        }
+                        cn.tareas.Add(modlNew);
+                    }
+                    cn.SaveChanges();
 
-        //        return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
-        //    }
-        //    catch (Exception ex)
-        //    {
+                    model.TareaId = modlNew.TareaId;
 
-        //        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
-        //    }
+                }
 
-        //}
+                return (GetById(model.TareaId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+            }
+            catch (Exception ex)
+            {
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado. \n" + ex.Message });
+
+            }
+        }
+
+        public Resultado Delete(TareasEntity model)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = ContextP.tareas.Where(x => x.TareaId == model.TareaId).FirstOrDefault();
+
+                    if (modlExist != null)
+                    {
+                        ContextP.tareas.Remove(modlExist);
+                        ContextP.SaveChanges();
+                        return new Resultado { Codigo = 0, Mensaje = "Exito, Registro eliminado permanentemente" };
+                    }
+                    else
+                        return new Resultado { Codigo = 0, Mensaje = "Registro no encontrado" };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
+
+            }
+        }
+        public Resultado SetDelete(int Id, string UserId)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+
+                    var modlExist = ContextP.tareas.Where(x => x.TareaId == Id).FirstOrDefault();
+                    // var modlNew = new Kondominium_DAL.Calles();
+
+
+                    if (modlExist == null)
+                        return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
+
+                    //modlExist.Eliminado = true;
+
+                    modlExist.FechaDeModificacion = DateTime.Now;
+                    modlExist.ModificadoPor = UserId;
+                    ContextP.SaveChanges();
+                }
+                 
+                return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
+            }
+
+        }
     }
 }
