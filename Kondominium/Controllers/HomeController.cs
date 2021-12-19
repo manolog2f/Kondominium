@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kondominium_Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Kondominium.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -72,8 +73,9 @@ namespace Kondominium.Controllers
         [HttpGet]
         public ActionResult ListadoTareas()
         {
-            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
-                return View("../Home/ErrorNotAutorized");
+            //TODO: Descomentarear  dpara despues aplicar seguridad
+            //if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+            //    return View("../Home/ErrorNotAutorized");
 
             var model = new Kondominium_BL.TareasDatos().GetAll();
             return View(model);

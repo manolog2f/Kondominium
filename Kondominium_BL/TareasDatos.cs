@@ -10,10 +10,10 @@ namespace Kondominium_BL
   public  class TareasDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<TareasEntity> GetAll(int Id)
+        public List<TareasEntity> GetAll()
         {
             var query = from t in context.tareas
-                        where t.TareaId == Id
+                        
                         select new TareasEntity
                         {
                             TareaId = t.TareaId,
@@ -35,6 +35,27 @@ namespace Kondominium_BL
         {
             var query = from t in context.tareas
                         where t.TareaId == Id
+                        select new TareasEntity
+                        {
+                            TareaId = t.TareaId,
+                            Prioridad = t.Prioridad,
+                            Titulo = t.Titulo,
+                            Descripcion = t.Descripcion,
+                            FechaDeEjecucion = t.FechaDeEjecucion,
+                            Estatus = t.Estatus,
+                            UsuarioAsignado = t.UsuarioAsignado,
+                            FechaDeCreacion = (DateTime)t.FechaDeCreacion,
+                            FechaDeModificacion = t.FechaDeModificacion,
+                            CreadoPor = t.CreadoPor,
+                            ModificadoPor = t.ModificadoPor
+                        };
+
+            return query.FirstOrDefault();
+        }
+        public TareasEntity GetByUserId(string UserId)
+        {
+            var query = from t in context.tareas
+                        where t.UsuarioAsignado == UserId
                         select new TareasEntity
                         {
                             TareaId = t.TareaId,
