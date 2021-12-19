@@ -101,8 +101,11 @@
     <Compile Include="AvenidasDatos.cs" />
     <Compile Include="CalendarioDatos.cs" />
     <Compile Include="CallesDatos.cs" />
+    <Compile Include="ClienteDocsDatos.cs" />
     <Compile Include="ClientePropiedadDatos.cs" />
+    <Compile Include="ClientePropiedadDocsDatos.cs" />
     <Compile Include="ClientesDatos.cs" />
+    <Compile Include="ClientesPropiedadDetalleDatos.cs" />
     <Compile Include="ContratoDatos.cs" />
     <Compile Include="ContratoDetalleDatos.cs" />
     <Compile Include="CuentasPorCobrarDatos.cs" />

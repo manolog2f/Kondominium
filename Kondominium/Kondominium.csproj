@@ -625,6 +625,7 @@
     <Content Include="Views\Transacciones\EditCuentasPorCobrar.cshtml" />
     <Content Include="Views\Transacciones\_EditCuentasPorCobrarDetalle.cshtml" />
     <Content Include="Views\Transacciones\ListadoContratos.cshtml" />
+    <Content Include="Views\Clientes\_ListClienteDocs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

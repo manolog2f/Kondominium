@@ -75,6 +75,30 @@ namespace Kondominium.Controllers
 
         }
 
+        public ActionResult _ListClienteDocs(int ClienteId,  int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (ClienteId != 0)
+            {
+                var model = new Kondominium_BL.ClienteDocsDatos().GetById(ClienteId);
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+                return View(model);
+            }
+            return PartialView(new ClienteDocsEntity());
+        }
+
+        public ActionResult _AddClienteDocs()
+        {
+            return PartialView(new ClienteDocsEntity());
+        }
+
+        /*/_UpdateClienteDocs  /// _AddClienteDocs
+
         /*End Edit Clientes*/
 
         /* Listado Propiedades Clientes */

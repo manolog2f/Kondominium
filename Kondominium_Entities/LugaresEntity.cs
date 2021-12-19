@@ -14,6 +14,6 @@ namespace Kondominium_Entities
         public Nullable<System.DateTime> FechaDeCreacion { get; set; }
         public Nullable<System.DateTime> FechaDeModificacion { get; set; }
         public string CreadoPor { get; set; }
-        public string ModificadoPor { get; set; }s
+        public string ModificadoPor { get; set; }
     }
 }

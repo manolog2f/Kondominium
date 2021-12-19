@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Kondominium_Entities
 {
-    public  class ClientesEntity
+    public class ClientesEntity
     {
         /// <summary>
         /// Id clientes
@@ -41,7 +41,7 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("NIT")]
         [StringLength(25, ErrorMessage = "El documento no puede exceder los 25 caracteres")]
-        [RegularExpression(@"^\d{4}-?\d{6}-?\d{3}-?\d$",  ErrorMessage = "Por favor ingrese un NIT  correcto")]
+        [RegularExpression(@"^\d{4}-?\d{6}-?\d{3}-?\d$", ErrorMessage = "Por favor ingrese un NIT  correcto")]
         public string Documento2 { get; set; }
         /// <summary>
         /// RNC
@@ -116,8 +116,8 @@ namespace Kondominium_Entities
     public enum TipoClientes
     {
         Propietario = 0,
-        Inquilino = 1, 
-            Otro = 2
+        Inquilino = 1,
+        Otro = 2
     }
 
     public enum TipoDocumento
@@ -129,4 +129,35 @@ namespace Kondominium_Entities
         Recibo = 4,
         Otro = 5
     }
+
+    public enum Parentescos
+    {
+        Padre = 1,
+        Madre = 2,
+        Hijo = 3,
+        Hija = 4,
+        Suegra = 5,
+        Suegro = 6,
+        Yerno = 7,
+        Nuera = 8,
+        Abuelo = 9,
+        Abuela = 10,
+        Nieto = 11,
+        Nieta = 12,
+        Hermano = 13,
+        Hermana = 14,
+        Cuñado = 15,
+        Cuñada = 16,
+        Tio = 17,
+        Tia = 18,
+        Sobrino = 19,
+        Sobrina = 20,
+        Esposo = 21,
+        Esposa = 22,
+        Amigo = 23,
+        Otro = 24
+
+
+    }
+
 }

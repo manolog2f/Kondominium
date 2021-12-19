@@ -46,6 +46,9 @@
     <Compile Include="AvenidasEntity.cs" />
     <Compile Include="CalendarioEntity.cs" />
     <Compile Include="CallesEntity.cs" />
+    <Compile Include="ClienteDocsEntity.cs" />
+    <Compile Include="ClientePropiedadDetalleEntity.cs" />
+    <Compile Include="ClientePropiedadDocsEntity.cs" />
     <Compile Include="ClientePropiedadEntity.cs" />
     <Compile Include="ContratosDetalleEntity.cs" />
     <Compile Include="ContratosEntity.cs" />
