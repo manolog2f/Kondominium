@@ -10,10 +10,10 @@ namespace Kondominium_BL
     public class LugaresDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<LugaresEntity> GetAll(int Id)
+        public List<LugaresEntity> GetAll()
         {
             var query = from l in context.lugares
-                        where l.LugarId == Id
+                        
                         select new LugaresEntity
                         {
                             
@@ -45,6 +45,7 @@ namespace Kondominium_BL
 
             return query.FirstOrDefault();
         }
+
 
         public (LugaresEntity, Resultado) Save(LugaresEntity model)
         {

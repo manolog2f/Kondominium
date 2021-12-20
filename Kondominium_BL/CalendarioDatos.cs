@@ -10,10 +10,10 @@ namespace Kondominium_BL
    public class CalendarioDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<CalendarioEntity> GetAll(int Id)
+        public List<CalendarioEntity> GetAll()
         {
             var query = from cal in context.calendario
-                        where cal.CalendarioId == Id
+                        
                         select new CalendarioEntity
                         {
                             CalendarioId = cal.CalendarioId,

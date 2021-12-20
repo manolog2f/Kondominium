@@ -1,17 +1,16 @@
-﻿@model IEnumerable<Kondominium_Entities.TareasEntity>
+﻿@model IEnumerable<Kondominium_Entities.LugaresEntity>
 
 @{
-    ViewBag.Title = "ListadoTareas";
+    ViewBag.Title = "ListadoLugares";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Lista de Tareas</h1>
+    <h1 class="h3 mb-2 text-gray-800">Lista de Lugares</h1>
     <p class="mb-4"></p>
 
     <!-- DataTales Example -->
@@ -19,40 +18,29 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
                 <i class="fas fa-plus-circle"></i>
-                @Html.ActionLink("Crear Nuevo", "EditTareas")
+                @Html.ActionLink("Crear Nuevo", "EditLugares")
             </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
+                        
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.TareaId)
+                                @Html.DisplayNameFor(model => model.LugarId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Prioridad)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Titulo)
+                                @Html.DisplayNameFor(model => model.Nombre)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Descripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.FechaDeEjecucion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Estatus)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.UsuarioAsignado)
+                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.FechaDeModificacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.CreadoPor)
@@ -74,34 +62,25 @@
 
                             <tr @eliminadox>
                                 <td>
-                                    @Html.ActionLink(item.TareaId.ToString(), "EditTareas", new { id = item.TareaId })
+                                    @Html.ActionLink(item.LugarId.ToString(), "EditLugares", new { id = item.LugarId })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Prioridad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Titulo)
+                                    @Html.DisplayFor(modelItem => item.Nombre)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeEjecucion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Estatus)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UsuarioAsignado)
+                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FechaDeModificacion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                                    @Html.DisplayFor(modelItem => item.CreadoPor)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
                                 </td>
                             </tr>
                             }

@@ -880,8 +880,12 @@
     <Content Include="Views\Transacciones\_EditCuentasPorCobrarDetalle.cshtml" />
     <Content Include="Views\Transacciones\ListadoContratos.cshtml" />
     <Content Include="Views\Clientes\_ListClienteDocs.cshtml" />
-    <Content Include="Views\Home\EditTareas.cshtml" />
+    <Content Include="Views\Home\EditLugares.cshtml" />
+    <Content Include="Views\Home\ListadoLugares.cshtml" />
     <Content Include="Views\Home\ListadoTareas.cshtml" />
+    <Content Include="Views\Home\EditTareas.cshtml" />
+    <Content Include="Views\Home\ListadoCalendario.cshtml" />
+    <Content Include="Views\Home\EditCalendario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
