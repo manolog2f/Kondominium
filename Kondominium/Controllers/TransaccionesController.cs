@@ -88,13 +88,13 @@ namespace Kondominium.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditContratos(int Id, int? codigo = null)
+        public ActionResult EditContratos(int? Id, int? codigo = null)
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
             if (Id != null)
             {
-                var model = new Kondominium_BL.ContratoDatos().GetById(Id);
+                var model = new Kondominium_BL.ContratoDatos().GetById(int.Parse(Id.ToString()));
                 if (codigo != null)
                 {
                     Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });

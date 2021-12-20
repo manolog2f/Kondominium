@@ -63,6 +63,7 @@ Public Class NPEFuntions
     Public Function divNPE(Body As String, Veri As String) As String
         Dim xBody, xVeri, Union, Union1 As String
 
+        Union = ""
         xBody = LTrim(Body)
         xVeri = LTrim(Veri)
 

@@ -1,82 +1,107 @@
 ﻿@model IEnumerable<Kondominium_Entities.ClienteDocsEntity>
 
-@{
-    Html.EnableClientValidation();
-    Html.EnableUnobtrusiveJavaScript();
-
-    var grid = Html.DevExpress().GridView(settings =>
-    {
-        settings.Name = "gvEditingUI";
-        settings.KeyFieldName = "ClienteId;DocumentType";
-
-
-        settings.CallbackRouteValues = new { Controller = "Clientes", Action = "_ListClienteDocs", UserId = ViewBag.UserId };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Clientes", Action = "_UpdateClienteDocs" };
-
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Clientes", Action = "_AddClienteDocs" };
-
-
-        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
-        settings.SettingsBehavior.ConfirmDelete = true;
-        settings.SettingsPopup.EditForm.Width = 600;
-        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-
-
-
-        settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
-        settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 700;
-        settings.EditFormLayoutProperties.SettingsItems.VerticalAlign = FormLayoutVerticalAlign.Middle;
+<script>
+    function OpenModalPopUp(ClienteId, DocumentType) {
+        $('.xClienteId').text(ClienteId);
+        $('.xDocumentType').text(DocumentType);
+        $('#UploadFileModal').modal();
+    };
+</script>
 
 
 
 
-        settings.CommandColumn.Visible = true;
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-        settings.CommandColumn.ShowEditButton = true;
-        settings.CommandColumn.ShowDeleteButton = true;
-
-        settings.CommandColumn.ShowNewButton = true;
-
-
-        settings.Settings.ShowFilterRow = true;
-        settings.Settings.ShowFilterRowMenu = false;
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-plus-circle"></i>
 
 
-        settings.SettingsCommandButton.EditButton.Styles.Native = true;
-        settings.SettingsCommandButton.EditButton.Text = "Editar";
-        settings.SettingsCommandButton.EditButton.Styles.Style.CssClass = "btn btn-info btn-sm";
-
-        settings.SettingsCommandButton.UpdateButton.Styles.Native = true;
-        settings.SettingsCommandButton.UpdateButton.Text = "Guardar";
-        settings.SettingsCommandButton.UpdateButton.Styles.Style.CssClass = "btn btn-info btn-sm";
-
-        settings.SettingsCommandButton.CancelButton.Styles.Native = true;
-        settings.SettingsCommandButton.CancelButton.Text = "Cancelar";
-        settings.SettingsCommandButton.CancelButton.Styles.Style.CssClass = "btn btn-light btn-sm";
+                <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#UploadFileModal">
+                    <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    UploadFile
+                </a>
 
 
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClienteId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DocumentType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UrlDocument)
+                            </th>
 
-        settings.SettingsCommandButton.NewButton.Styles.Native = true;
-        settings.SettingsCommandButton.NewButton.Text = "Agregar";
-        settings.SettingsCommandButton.NewButton.Styles.Style.CssClass = "btn btn-light btn-sm";
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.ClienteId.ToString(), "EditClientesFileUpload", new { ClienteId = item.ClienteId, DocumentType = item.DocumentType })
+
+                                    <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#UploadFileModal" + @item.ClienteId>
+                                        <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>UploadFile
+                                    </a>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UrlDocument)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-        settings.KeyFieldName = "ClienteId";
-        settings.KeyFieldName = "DocumentType";
+<div class="modal fade" id="UploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header badge-warning">
+                
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @{ 
+                    int xClienteId = ViewBag.ClienteId;
+                    string xDocumentType = "";
 
-        settings.Columns.Add("ClienteId");
+                }
 
-        settings.Columns.Add("DocumentType");
+               
+                    @Html.Action("_EditClientesFileUpload", "Clientes", new { ClienteId = xClienteId, DocumentType = xDocumentType })
+               
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        settings.Columns.Add("UrlDocument");
-    });
 
-    grid.SetEditErrorText((string)ViewData["EditError"]);
 
-}
-
-@grid.Bind(Model).GetHtml()
-
-@functions {
-    GridViewEditingMode EditMode { get { return ViewBag.EditMode; } }
-}
