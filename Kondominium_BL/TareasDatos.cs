@@ -86,7 +86,7 @@ namespace Kondominium_BL
                     if (modlExist != null)
                     modlNew = modlExist;
 
-                    modlNew.TareaId = model.TareaId;
+
                     modlNew.Prioridad = model.Prioridad;
                     modlNew.Titulo = model.Titulo;
                     modlNew.FechaDeModificacion = DateTime.Now;
@@ -95,9 +95,8 @@ namespace Kondominium_BL
                     modlNew.FechaDeEjecucion = model.FechaDeEjecucion;
                     modlNew.Estatus = model.Estatus;
                     modlNew.UsuarioAsignado = model.UsuarioAsignado;
-                    modlNew.FechaDeCreacion = (DateTime)model.FechaDeCreacion;
+           
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 

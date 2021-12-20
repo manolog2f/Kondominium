@@ -66,17 +66,23 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Prioridad, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Prioridad, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.Prioridad, "", new { @class = "text-danger" })
                                                     
+                                                    @Html.DropDownListFor(model => model.Prioridad,
+                                                                EnumHelper.GetSelectList(typeof(Kondominium_Entities.PrioridadTarea)),
+                                                                "Seleccione la prioridad",
+                                                                new { @class = "form-control" })
+
+
+                                                    @Html.ValidationMessageFor(model => model.Prioridad, "", new { @class = "text-danger" })
+
 
                                                     @* TODO: Completar la configuración del listado de prioridades *@
 
                                                     @*@Html.DropDownListFor(model => model.Prioridad,
-                                                                EnumHelper.GetSelectList(typeof(Kondominium_Entities.EstatusTarea)),
-                                                                "Seleccione la prioridad",
-                                                                new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Prioridad, "", new { @class = "text-danger" })*@
+                    EnumHelper.GetSelectList(typeof(Kondominium_Entities.EstatusTarea)),
+                    "Seleccione la prioridad",
+                    new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Prioridad, "", new { @class = "text-danger" })*@
                                                 </div>
                                             </div>
                                         </div>
@@ -86,7 +92,8 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.FechaDeEjecucion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.FechaDeEjecucion, new { htmlAttributes = new { @class = "form-control" } })
+                                                 @Html.EditorFor(model => model.FechaDeEjecucion,  "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control"} })
+
                                                     @Html.ValidationMessageFor(model => model.FechaDeEjecucion, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -95,7 +102,13 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Estatus, new { htmlAttributes = new { @class = "form-control" } })
+                                                    
+
+                                                    @Html.DropDownListFor(model => model.Estatus,
+                                                            EnumHelper.GetSelectList(typeof(Kondominium_Entities.EstatusTarea)),
+                                                            "Seleccione la prioridad",
+                                                            new { @class = "form-control" })
+
                                                     @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
