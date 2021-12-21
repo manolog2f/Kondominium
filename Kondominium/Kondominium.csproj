@@ -219,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\UserConfigModel.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Utilities\Core.cs" />
@@ -328,6 +329,25 @@
     <Content Include="Content\viewer.css" />
     <Content Include="Content\ZMT\datatables\dataTables.bootstrap4.css" />
     <Content Include="Content\ZMT\datatables\dataTables.bootstrap4.min.css" />
+    <Content Include="demo\401.html" />
+    <Content Include="demo\404.html" />
+    <Content Include="demo\500.html" />
+    <Content Include="demo\assets\demo\chart-area-demo.js" />
+    <Content Include="demo\assets\demo\chart-bar-demo.js" />
+    <Content Include="demo\assets\demo\chart-pie-demo.js" />
+    <Content Include="demo\assets\demo\datatables-demo.js" />
+    <Content Include="demo\assets\img\error-404-monochrome.svg" />
+    <Content Include="demo\charts.html" />
+    <Content Include="demo\css\styles.css" />
+    <Content Include="demo\index.html" />
+    <Content Include="demo\js\datatables-simple-demo.js" />
+    <Content Include="demo\js\scripts.js" />
+    <Content Include="demo\layout-sidenav-light.html" />
+    <Content Include="demo\layout-static.html" />
+    <Content Include="demo\login.html" />
+    <Content Include="demo\password.html" />
+    <Content Include="demo\register.html" />
+    <Content Include="demo\tables.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
@@ -397,6 +417,11 @@
     <Content Include="fonts\free3of9.eot" />
     <Content Include="fonts\free3of9.ttf" />
     <Content Include="fonts\LibreBarcode39-Regular.ttf" />
+    <Content Include="obj\Release\Kondominium.csproj.AssemblyReference.cache" />
+    <Content Include="logs\18.12.2021Kondominium.log" />
+    <Content Include="logs\19.12.2021Kondominium.log" />
+    <Content Include="logs\20.12.2021Kondominium.log" />
+    <Content Include="Kondominium.csproj.bak" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -587,6 +612,11 @@
     <Content Include="Views\Home\EditTareas.cshtml" />
     <Content Include="Views\Home\ListadoTareas.cshtml" />
     <Content Include="Views\Clientes\_EditClientesFileUpload.cshtml" />
+    <Content Include="Views\Home\ListadoCalendario.cshtml" />
+    <Content Include="Views\Home\EditCalendario.cshtml" />
+    <Content Include="Views\Home\EditLugares.cshtml" />
+    <Content Include="Views\Home\ListadoLugares.cshtml" />
+    <Content Include="Web.config.bak" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

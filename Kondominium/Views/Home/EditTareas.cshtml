@@ -106,7 +106,7 @@
 
                                                     @Html.DropDownListFor(model => model.Estatus,
                                                             EnumHelper.GetSelectList(typeof(Kondominium_Entities.EstatusTarea)),
-                                                            "Seleccione la prioridad",
+                                                            "Seleccione el estatus",
                                                             new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })

@@ -57,7 +57,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.TipoDePropiedad,
                                                                     EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipodePropiedades)),
-                                                                    "Seleccione la categoria",
+                                                                    "Seleccione el tipo de prioridad",
                                                                     new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.TipoDePropiedad, "", new { @class = "text-danger" })
@@ -75,8 +75,6 @@
                                         </div>
                                     </div>
                                     <div class="row">
-
-
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PoligonoId, htmlAttributes: new { @class = "control-label col-md" })
@@ -85,7 +83,7 @@
                                                     @Html.DropDownListFor(model => model.PoligonoId,
                                                                     new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
                                                                     { Text = x.PoligonoDescripcion, Value = x.PoligonoId }),
-                                                                    "Seleccione la categoria",
+                                                                    "Seleccione el polígono",
                                                                     new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.PoligonoId, "", new { @class = "text-danger" })
@@ -177,7 +175,7 @@
                                                         @Html.DropDownListFor(model => model.ArancelId,
                                                                       new Kondominium_BL.ArancelesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
                                                                       { Text = x.Descripcion, Value = x.ArancelId.ToString() }),
-                                                                      "Seleccione la categoria",
+                                                                      "Seleccione el arancel",
                                                                       new { @class = "form-control" })
 
                                                         @Html.ValidationMessageFor(model => model.ArancelId, "", new { @class = "text-danger" })

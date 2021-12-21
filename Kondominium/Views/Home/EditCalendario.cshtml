@@ -57,7 +57,8 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Fecha, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*@Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })*@
                                                     @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -66,7 +67,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.HoraInicio, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.HoraInicio, "{HH:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -77,8 +78,8 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.HoraFin, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.HoraFin, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.HoraFin, "", new { @class = "text-danger" })
+                                                     @Html.EditorFor(model => model.HoraFin, "{HH:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.HoraFin, "", new { @class = "text-danger",   })
                                                 </div>
                                             </div>
                                         </div>
@@ -87,6 +88,13 @@
                                                 @Html.LabelFor(model => model.LugarId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.EditorFor(model => model.LugarId, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*//Descomentarear si resulta útil para el programa*@
+
+                                                    @*@Html.DropDownListFor(model => model.PoligonoId,
+                                                                    new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+                                                                    { Text = x.PoligonoDescripcion, Value = x.PoligonoId }),
+                                                                    "Seleccione la categoria",
+                                                                    new { @class = "form-control" })*@
                                                     @Html.ValidationMessageFor(model => model.LugarId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -96,6 +104,13 @@
                                                 @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @*//Descomentarear si resulta útil para el programa*@
+
+                                                    @*@Html.DropDownListFor(model => model.PoligonoId,
+                                                                    new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+                                                                    { Text = x.PoligonoDescripcion, Value = x.PoligonoId }),
+                                                                    "Seleccione la categoria",
+                                                                    new { @class = "form-control" })*@
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -107,6 +122,13 @@
                                                 @Html.LabelFor(model => model.PropiedadId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.EditorFor(model => model.PropiedadId, new { htmlAttributes = new { @class = "form-control" } })
+                                                     @*//Descomentarear si resulta útil para el programa*@
+
+                                                    @*@Html.DropDownListFor(model => model.PoligonoId,
+                                                                    new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+                                                                    { Text = x.PoligonoDescripcion, Value = x.PoligonoId }),
+                                                                    "Seleccione la categoria",
+                                                                    new { @class = "form-control" })*@
                                                     @Html.ValidationMessageFor(model => model.PropiedadId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -116,6 +138,7 @@
                                                 @Html.LabelFor(model => model.TituloEvento, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.EditorFor(model => model.TituloEvento, new { htmlAttributes = new { @class = "form-control" } })
+
                                                     @Html.ValidationMessageFor(model => model.TituloEvento, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -131,10 +154,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
 
                             <!-- Sistema -->
                             <div class="card">

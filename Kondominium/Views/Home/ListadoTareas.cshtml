@@ -72,38 +72,41 @@
                                 eliminadox = "style=text-decoration:line-through;color:red;";
                             }
 
-                            <tr @eliminadox>
-                                <td>
-                                    @Html.ActionLink(item.TareaId.ToString(), "EditTareas", new { id = item.TareaId })
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Prioridad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Titulo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeEjecucion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Estatus)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UsuarioAsignado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreadoPor)
-                                </td>
-                            </tr>
+                        <tr @eliminadox>
+                            <td>
+                                @Html.ActionLink(item.TareaId.ToString(), "EditTareas", new { id = item.TareaId })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Prioridad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeEjecucion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UsuarioAsignado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreadoPor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModificadoPor)
+                            </td>
+                        </tr>
                             }
                         </tbody>
                 </table>
