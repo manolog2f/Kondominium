@@ -15,16 +15,14 @@ namespace Kondominium_Entities
         [DisplayName("Fecha"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> Fecha { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayName("HoraInicio"), Required(ErrorMessage = "Debe ingresar la hora de inicio del evento.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{hh:mm:ss}")]
         public Nullable<System.TimeSpan> HoraInicio { get; set; }
-        //Descomentarear si es útil para el programa
-        //[DataType(DataType.Time)]
-        //[DisplayName("HoraInicio"), Required(ErrorMessage = "Debe ingresar la hora de inicio del evento.")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:mm:ss}")]
+        [DataType(DataType.Time)]
+        [DisplayName("HoraFin"), Required(ErrorMessage = "Debe ingresar la hora de fin del evento.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{hh:mm:ss}")]
         public Nullable<System.TimeSpan> HoraFin { get; set; }
-        //Descomentarear si es útil para el programa
-        //[DataType(DataType.Time)]
-        //[DisplayName("HoraFin"), Required(ErrorMessage = "Debe ingresar la hora de fin del evento.")]
-        //[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{HH:mm:ss}")]
         public Nullable<int> LugarId { get; set; }
         public Nullable<int> ClienteId { get; set; }
         public Nullable<int> PropiedadId { get; set; }
