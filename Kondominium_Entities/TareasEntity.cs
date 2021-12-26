@@ -27,21 +27,4 @@ namespace Kondominium_Entities
         public bool Eliminado { get; set; }
     }
 
-    public enum EstatusTarea
-    {
-        Programada = 1,
-        Finalizada = 2,
-        Cancelada = 3
-        //0 = Activa\n1 = Trabajando\n2 = Finalizada\n
-        // 1 Programada, 2 Finalizada, 3 Cancelada
-    }
-
-    public enum PrioridadTarea
-    {
-        Alta = 1,
-        Media = 2,
-        Normal = 3
-        //0 = Activa\n1 = Trabajando\n2 = Finalizada\n
-        // 1 Programada, 2 Finalizada, 3 Cancelada
-    }
 }

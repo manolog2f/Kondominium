@@ -125,11 +125,9 @@
         </EntityType>
         <EntityType Name="clientepropiedaddocs">
           <Key>
-            <PropertyRef Name="ClienteId" />
-            <PropertyRef Name="PropiedadId" />
-            <PropertyRef Name="TipoCliente" />
-            <PropertyRef Name="DocumentType" />
+            <PropertyRef Name="ClientePropiedadDocsId" />
           </Key>
+          <Property Name="ClientePropiedadDocsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClienteId" Type="int" Nullable="false" />
           <Property Name="PropiedadId" Type="int" Nullable="false" />
           <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
@@ -164,9 +162,9 @@
         </EntityType>
         <EntityType Name="clientesdocs">
           <Key>
-            <PropertyRef Name="ClienteId" />
-            <PropertyRef Name="DocumentType" />
+            <PropertyRef Name="ClienteDocId" />
           </Key>
+          <Property Name="ClienteDocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClienteId" Type="int" Nullable="false" />
           <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
@@ -696,7 +694,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientePropiedadDD">
+        <Association Name="FK_ClientePropiedadDocs">
           <End Role="clientepropiedad" Type="Self.clientepropiedad" Multiplicity="1" />
           <End Role="clientepropiedaddocs" Type="Self.clientepropiedaddocs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -712,7 +710,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientesDoc">
+        <Association Name="FKClienteId-ClienteidDOC">
           <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
           <End Role="clientesdocs" Type="Self.clientesdocs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -977,11 +975,11 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             <End Role="clientepropiedad" EntitySet="clientepropiedad" />
             <End Role="clientepropiedaddetalle" EntitySet="clientepropiedaddetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientePropiedadDD" Association="Self.FK_ClientePropiedadDD">
+          <AssociationSet Name="FK_ClientePropiedadDocs" Association="Self.FK_ClientePropiedadDocs">
             <End Role="clientepropiedad" EntitySet="clientepropiedad" />
             <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientesDoc" Association="Self.FK_ClientesDoc">
+          <AssociationSet Name="FKClienteId-ClienteidDOC" Association="Self.FKClienteId-ClienteidDOC">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="clientesdocs" EntitySet="clientesdocs" />
           </AssociationSet>
@@ -1131,7 +1129,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             <End Role="clientepropiedad" EntitySet="clientepropiedad" />
             <End Role="clientepropiedaddetalle" EntitySet="clientepropiedaddetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientePropiedadDD" Association="db_a43bba_kondomiModel.FK_ClientePropiedadDD">
+          <AssociationSet Name="FK_ClientePropiedadDocs" Association="db_a43bba_kondomiModel.FK_ClientePropiedadDocs">
             <End Role="clientepropiedad" EntitySet="clientepropiedad" />
             <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
           </AssociationSet>
@@ -1139,7 +1137,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             <End Role="clientes" EntitySet="clientes" />
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientesDoc" Association="db_a43bba_kondomiModel.FK_ClientesDoc">
+          <AssociationSet Name="FKClienteId_ClienteidDOC" Association="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="clientesdocs" EntitySet="clientesdocs" />
           </AssociationSet>
@@ -1305,7 +1303,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientepropiedad" ToRole="clientes" />
           <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.ClientePropiedadPk2" FromRole="clientepropiedad" ToRole="propiedades" />
           <NavigationProperty Name="clientepropiedaddetalle" Relationship="db_a43bba_kondomiModel.Fk_ClientePropiedad" FromRole="clientepropiedad" ToRole="clientepropiedaddetalle" />
-          <NavigationProperty Name="clientepropiedaddocs" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDD" FromRole="clientepropiedad" ToRole="clientepropiedaddocs" />
+          <NavigationProperty Name="clientepropiedaddocs" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDocs" FromRole="clientepropiedad" ToRole="clientepropiedaddocs" />
         </EntityType>
         <EntityType Name="clientepropiedaddetalle">
           <Key>
@@ -1330,11 +1328,9 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
         </EntityType>
         <EntityType Name="clientepropiedaddocs">
           <Key>
-            <PropertyRef Name="ClienteId" />
-            <PropertyRef Name="PropiedadId" />
-            <PropertyRef Name="TipoCliente" />
-            <PropertyRef Name="DocumentType" />
+            <PropertyRef Name="ClientePropiedadDocsId" />
           </Key>
+          <Property Name="ClientePropiedadDocsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClienteId" Type="Int32" Nullable="false" />
           <Property Name="PropiedadId" Type="Int32" Nullable="false" />
           <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -1346,7 +1342,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" />
-          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDD" FromRole="clientepropiedaddocs" ToRole="clientepropiedad" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDocs" FromRole="clientepropiedaddocs" ToRole="clientepropiedad" />
         </EntityType>
         <EntityType Name="clientes">
           <Key>
@@ -1370,13 +1366,13 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FKClientesCalendariox" FromRole="clientes" ToRole="calendario" />
           <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientes" ToRole="clientepropiedad" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="clientes" ToRole="cuentasporcobrar" />
-          <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FK_ClientesDoc" FromRole="clientes" ToRole="clientesdocs" />
+          <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientes" ToRole="clientesdocs" />
         </EntityType>
         <EntityType Name="clientesdocs">
           <Key>
-            <PropertyRef Name="ClienteId" />
-            <PropertyRef Name="DocumentType" />
+            <PropertyRef Name="ClienteDocId" />
           </Key>
+          <Property Name="ClienteDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClienteId" Type="Int32" Nullable="false" />
           <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -1385,7 +1381,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="FechaDeModificacion" Type="DateTime" />
           <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FK_ClientesDoc" FromRole="clientesdocs" ToRole="clientes" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientesdocs" ToRole="clientes" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -1938,7 +1934,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientePropiedadDD">
+        <Association Name="FK_ClientePropiedadDocs">
           <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.clientepropiedaddocs" Role="clientepropiedaddocs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1966,7 +1962,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientesDoc">
+        <Association Name="FKClienteId_ClienteidDOC">
           <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.clientesdocs" Role="clientesdocs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2276,6 +2272,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
                 <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
                 <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ClientePropiedadDocsId" ColumnName="ClientePropiedadDocsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2311,6 +2308,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
                 <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
                 <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ClienteDocId" ColumnName="ClienteDocId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

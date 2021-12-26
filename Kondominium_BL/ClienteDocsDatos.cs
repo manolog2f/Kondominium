@@ -23,6 +23,7 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
+                            ,ClienteDocId = p.ClienteDocId
                         };
 
             return query.ToList();
@@ -41,10 +42,33 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
+                            ,ClienteDocId = p.ClienteDocId
                         };
 
             return query.FirstOrDefault();
         }
+
+        public ClienteDocsEntity GetByClienteDocId(int ClienteDocId)
+        {
+            var query = from p in context.clientesdocs
+                        where p.ClienteDocId == ClienteDocId
+                        select new ClienteDocsEntity
+                        {
+                            ClienteId = p.ClienteId,
+                            DocumentType = p.DocumentType,
+                            UrlDocument = p.UrlDocument,
+                            Document = p.Document,
+                            FechaDeCreacion = (DateTime)p.FechaDeCreacion,
+                            FechaDeModificacion = p.FechaDeModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor
+                            ,
+                            ClienteDocId = p.ClienteDocId
+                        };
+
+            return query.FirstOrDefault();
+        }
+
 
         public List<ClienteDocsEntity> GetById(int ClienteId)
         {
@@ -59,7 +83,8 @@ namespace Kondominium_BL
                             FechaDeCreacion = (DateTime)p.FechaDeCreacion,
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
-                            ModificadoPor = p.ModificadoPor
+                            ModificadoPor = p.ModificadoPor,
+                            ClienteDocId = p.ClienteDocId
                         };
 
             return query.ToList();
@@ -71,7 +96,7 @@ namespace Kondominium_BL
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.clientesdocs.Where(x => x.ClienteId == model.ClienteId && x.DocumentType == model.DocumentType).FirstOrDefault();
+                    var modlExist = cn.clientesdocs.Where(x => x.ClienteDocId == model.ClienteDocId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.clientesdocs();
 
                     if (modlExist != null)
@@ -115,7 +140,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.clientesdocs.Where(x => x.ClienteId == model.ClienteId && x.DocumentType == model.DocumentType).FirstOrDefault();
+                    var modlExist = ContextP.clientesdocs.Where(x => x.ClienteDocId == model.ClienteDocId ).FirstOrDefault();
 
                     if (modlExist != null)
                     {

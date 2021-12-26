@@ -25,15 +25,67 @@ namespace Kondominium_BL
                             FechaModificacion = p.FechaModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor,
-                            Eliminado = p.Eliminado
+                            Eliminado = p.Eliminado,
+                            ClientePropiedadDocsId = p.ClientePropiedadDocsId,
+                            DocumentType = p.DocumentType
                         };
 
             return query.ToList();
         }
-        public ClientePropiedadDocsEntity GetById(int ClienteId, int PropiedadId, string TipoCliente)
+        public ClientePropiedadDocsEntity GetById(int ClienteId, int PropiedadId, string TipoCliente, string TipoDocumento)
+        {
+            var query = from p in context.clientepropiedaddocs
+                        where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId && p.TipoCliente == TipoCliente && p.DocumentType == TipoDocumento
+                        select new ClientePropiedadDocsEntity
+                        {
+
+                            ClienteId = p.ClienteId,
+                            PropiedadId = p.PropiedadId,
+                            TipoCliente = p.TipoCliente,
+                            UrlDocument = p.UrlDocument,
+                            Document = p.Document,
+                            FechaDeCreacion = p.FechaDeCreacion,
+                            FechaModificacion = p.FechaModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor,
+                            Eliminado = p.Eliminado,
+                            ClientePropiedadDocsId = p.ClientePropiedadDocsId,
+                            DocumentType = p.DocumentType
+                        };
+
+            return query.FirstOrDefault();
+        }
+
+        public List<ClientePropiedadDocsEntity> GetById(int ClienteId, int PropiedadId, string TipoCliente)
         {
             var query = from p in context.clientepropiedaddocs
                         where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId && p.TipoCliente == TipoCliente 
+                        select new ClientePropiedadDocsEntity
+                        {
+
+                            ClienteId = p.ClienteId,
+                            PropiedadId = p.PropiedadId,
+                            TipoCliente = p.TipoCliente,
+                            UrlDocument = p.UrlDocument,
+                            Document = p.Document,
+                            FechaDeCreacion = p.FechaDeCreacion,
+                            FechaModificacion = p.FechaModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor,
+                            Eliminado = p.Eliminado,
+                            ClientePropiedadDocsId = p.ClientePropiedadDocsId,
+                            DocumentType = p.DocumentType
+                        };
+
+            return query.ToList();
+        }
+
+
+
+        public ClientePropiedadDocsEntity GetByClienteDocId(int DocId)
+        {
+            var query = from p in context.clientepropiedaddocs
+                        where p.ClientePropiedadDocsId == DocId
                         select new ClientePropiedadDocsEntity
                         {
                             ClienteId = p.ClienteId,
@@ -45,11 +97,14 @@ namespace Kondominium_BL
                             FechaModificacion = p.FechaModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor,
-                            Eliminado = p.Eliminado
+                            Eliminado = p.Eliminado,
+                            ClientePropiedadDocsId = p.ClientePropiedadDocsId,
+                            DocumentType = p.DocumentType
                         };
 
             return query.FirstOrDefault();
         }
+
 
         public (ClientePropiedadDocsEntity, Resultado) Save(ClientePropiedadDocsEntity model)
         {
@@ -57,7 +112,7 @@ namespace Kondominium_BL
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.clientepropiedaddocs.Where(x => x.PropiedadId == model.PropiedadId && x.ClienteId == model.ClienteId && x.TipoCliente == model.TipoCliente).FirstOrDefault();
+                    var modlExist = cn.clientepropiedaddocs.Where(x => x.ClientePropiedadDocsId == model.ClientePropiedadDocsId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.clientepropiedaddocs();
 
                     if (modlExist != null)
@@ -74,6 +129,7 @@ namespace Kondominium_BL
                     modlNew.TipoCliente = model.TipoCliente;
                     modlNew.UrlDocument = model.UrlDocument;
                     modlNew.Document = model.Document;
+                    modlNew.DocumentType = model.DocumentType;
 
                     modlNew.Eliminado = model.Eliminado;
 
@@ -90,9 +146,11 @@ namespace Kondominium_BL
                         cn.clientepropiedaddocs.Add(modlNew);
                     }
                     cn.SaveChanges();
+
+                    model.ClientePropiedadDocsId = modlNew.ClientePropiedadDocsId;
                 }
 
-                return (GetById(model.ClienteId, model.PropiedadId, model.TipoCliente), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetByClienteDocId(model.ClientePropiedadDocsId), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {
@@ -107,7 +165,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.clientepropiedaddocs.Where(x => x.ClienteId == model.ClienteId && x.PropiedadId == model.PropiedadId && x.TipoCliente == model.TipoCliente).FirstOrDefault();
+                    var modlExist = ContextP.clientepropiedaddocs.Where( p => p.ClientePropiedadDocsId == model.ClientePropiedadDocsId).FirstOrDefault();
 
                     if (modlExist != null)
                     {

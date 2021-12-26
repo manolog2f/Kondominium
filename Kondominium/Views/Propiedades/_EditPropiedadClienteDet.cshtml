@@ -1,0 +1,168 @@
+﻿@model Kondominium_Entities.ClientePropiedadDetalleEntity
+
+@{
+    Layout = "";
+}
+
+<script>
+
+    function SubmitUploadInvoice2() {
+        debugger
+        var form = document.getElementById("frmPartialUDoc2");
+        if (form.getAttribute("enctype") === "multipart/form-data") {
+            loading();
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+
+                    debugger;
+                    var x = xhr.response;
+
+                    console.log(x);
+
+                    var t = JSON.parse(xhr.response);
+                    //var t1 = JSON.parse(t['Mensaje']);
+                    //debugger;
+                    var ClienteId = t['ClienteId']; // xhr.response.idTrans;
+                    var mensaje = t.mensaje.Mensaje; // xhr.response.mensaje.Mensaje;
+                    var idMensaje = t.mensaje.Codigo; //xhr.response.mensaje.CodigoMensaje;
+
+
+                    //debugger;
+                    setTimeout(function () {
+                        //Tu logica para redireccionar a la pagina con el ID
+
+                        if (ClienteId != 0) {
+
+                            hide_loading();
+                            var getUrl = window.location;
+                            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                            var url = "";
+                            //url = baseUrl + "/EditPropiedadCliente/" + ClienteId + "?codigo=" + idMensaje;
+                            location.href = url;
+                        }
+                    }, 3000);
+
+                }
+
+            }
+            xhr.send(new FormData(form));
+
+
+        }
+    }
+
+</script>
+
+
+@using (Ajax.BeginForm("_EditPropiedadClienteDetUpdate", "Propiedades", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }, new { @id = "frmPartialUDoc2", enctype = "multipart/form-data" }))
+{
+
+
+    <div>
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+
+        @Html.HiddenFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.PropiedadId, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.TipoCliente, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaFin, htmlAttributes: new { @class = "control-label col-md" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Parentesco, htmlAttributes: new { @class = "control-label col-md" })
+                    <div class="col-md-10">
+                        @*@Html.EditorFor(model => model.Parentesco, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                        @Html.DropDownListFor(model => model.Parentesco,
+                                                   new Kondominium.Controllers.PropiedadesController().ListParentesco().Select(x => new SelectListItem
+                                                   {
+                                                       Text = x.ToString()
+                                                   ,
+                                                       Value = x.ToString()
+                                                   }),
+                                                   "Seleccione el Parentesco",
+                                                 new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.Parentesco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Autorrenovable, htmlAttributes: new { @class = "control-label col-md"    })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Autorrenovable, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Autorrenovable, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InquilinoResponsable, htmlAttributes: new { @class = "control-label col-md" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.InquilinoResponsable, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.InquilinoResponsable, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label col-md" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="SubmitUploadInvoice2()">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        Almacenar Detalle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

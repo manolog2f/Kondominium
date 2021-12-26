@@ -42,11 +42,6 @@ namespace Kondominium.Controllers
             return View();
         }
 
-        public ActionResult ErrorNotAutorized()
-        {
-            return View();
-        }
-
         public ActionResult Error500()
         {
             return View();

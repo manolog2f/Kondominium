@@ -225,5 +225,38 @@ namespace Kondominium_BL
 
             return rlist;
         }
+
+        public List<string> Parentesco()
+        {
+
+            var rlist = new List<string>();
+
+            rlist.Add("Padre");
+            rlist.Add("Madre");
+            rlist.Add("Hijo");
+            rlist.Add("Hija");
+            rlist.Add("Suegra");
+            rlist.Add("Suegro");
+            rlist.Add("Yerno");
+            rlist.Add("Nuera");
+            rlist.Add("Abuelo");
+            rlist.Add("Abuela");
+            rlist.Add("Nieto");
+            rlist.Add("Nieta");
+            rlist.Add("Hermano");
+            rlist.Add("Hermana");
+            rlist.Add("Cuñado");
+            rlist.Add("Cuñada");
+            rlist.Add("Tio");
+            rlist.Add("Tia");
+            rlist.Add("Sobrino");
+            rlist.Add("Sobrina");
+            rlist.Add("Esposo");
+            rlist.Add("Esposa");
+            rlist.Add("Amigo");
+            rlist.Add("Otro");
+
+            return rlist;
+        }
     }
 }

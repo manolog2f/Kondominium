@@ -14,6 +14,7 @@ namespace Kondominium_DAL
     
     public partial class clientepropiedaddocs
     {
+        public int ClientePropiedadDocsId { get; set; }
         public int ClienteId { get; set; }
         public int PropiedadId { get; set; }
         public string TipoCliente { get; set; }

@@ -1,4 +1,5 @@
-﻿using Kondominium_Entities;
+﻿using Kondominium.Models;
+using Kondominium_Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,13 +46,13 @@ namespace Kondominium.Controllers
             return View(new ClientesEntity());
         }
         [HttpPost]
-        public ActionResult EditClientesPost(ClientesEntity model)
+        public ActionResult EditClientes(ClientesEntity model)
         {
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = model.ModificadoPor;
 
             var modelr = new Kondominium_BL.ClientesDatos().Save(model);
-            
+
             Mensajes(modelr.Item2);
             ModelState.Clear();
 
@@ -81,10 +82,41 @@ namespace Kondominium.Controllers
 
         }
 
-        public ActionResult _ListClienteDocs(int? ClienteId,  int? codigo = null)
+
+        public ActionResult DeleteLineClientesDocs(int Id)
         {
-            //    if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
-            //        return View("../Home/ErrorNotAutorized");
+            string userid = HttpContext.User.Identity.Name.ToString();
+            //DeleteArancel / 5
+            var datos = new Kondominium_BL.ClienteDocsDatos().GetByClienteDocId(Id);
+            try
+            {
+                if (datos != null)
+                {
+                    var modelr = new Kondominium_BL.ClienteDocsDatos().Delete(datos);
+                    if (modelr.Codigo == CodigosMensaje.Exito)
+                    {
+                        if (System.IO.File.Exists(datos.UrlDocument))
+                        {
+                            System.IO.File.Delete(datos.UrlDocument);
+                        }
+                        return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = 0 });
+                    }
+
+                    return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = modelr.Codigo });
+                }
+                else
+                {
+                    return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = CodigosMensaje.No_Existe });
+                }
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = CodigosMensaje.Error });
+            }
+        }
+
+        public ActionResult _ListClienteDocs(int? ClienteId, int? codigo = null)
+        {
             ViewBag.ClienteId = ClienteId;
 
             if (ClienteId != null)
@@ -97,7 +129,7 @@ namespace Kondominium.Controllers
                 ModelState.Clear();
                 return PartialView("_ListClienteDocs", model);
             }
-            return PartialView("_ListClienteDocs",  new List<ClienteDocsEntity>());
+            return PartialView("_ListClienteDocs", new List<ClienteDocsEntity>());
         }
 
 
@@ -106,7 +138,7 @@ namespace Kondominium.Controllers
         {
             if (ClienteId != null && DocumentType != null)
             {
-                var model = new Kondominium_BL.ClienteDocsDatos().GetById( int.Parse(ClienteId), DocumentType);
+                var model = new Kondominium_BL.ClienteDocsDatos().GetById(int.Parse(ClienteId), DocumentType);
                 if (codigo != null)
                 {
                     Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
@@ -120,7 +152,7 @@ namespace Kondominium.Controllers
                 }
 
                 //model.ClienteId =  ;
-                
+
 
                 return View(model);
             }
@@ -129,7 +161,7 @@ namespace Kondominium.Controllers
 
 
         [HttpPost]
-        public ActionResult _EditClientesFileUploadPost(ClienteDocsEntity model)
+        public ActionResult _EditClientesFileUploadPost(ClienteDocsEntity model, FormCollection form)
         {
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = model.ModificadoPor;
@@ -144,7 +176,7 @@ namespace Kondominium.Controllers
             }
             else
             {
-                return View("_EditClientesFileUpload",  modelr.Item1);
+                return View("_EditClientesFileUpload", modelr.Item1);
             }
 
         }
@@ -196,7 +228,7 @@ namespace Kondominium.Controllers
 
             if (modelr.Item2.Codigo == CodigosMensaje.Exito)
             {
-                return RedirectToAction("EditClientesPropiedades", new { ClienteId = modelr.Item1.ClienteId, PropiedadId = modelr.Item1.PropiedadId,  codigo = 0 });
+                return RedirectToAction("EditClientesPropiedades", new { ClienteId = modelr.Item1.ClienteId, PropiedadId = modelr.Item1.PropiedadId, codigo = 0 });
             }
             else
             {
@@ -215,7 +247,7 @@ namespace Kondominium.Controllers
             try
             {
                 var lista = new Kondominium_BL.ClientesDatos().GetAll();
-             
+
                 return lista;
             }
             catch (Exception)
@@ -254,6 +286,60 @@ namespace Kondominium.Controllers
                 throw;
             }
         }
+
+
+
+        #region  "Subir Archivo"
+        [HttpPost]
+        public ActionResult _UploadFileH(HttpPostedFileBase file, FormCollection form)
+        {
+            var mdl = new jsModel();
+            var respM = new Resultado();
+
+
+
+            mdl.ClienteId = int.Parse(form["ClienteId"].ToString());
+            mdl.DocumentType = form["DocumentType"];
+            mdl.ClienteDocId = int.Parse(form["ClienteDocId"]);
+            try
+            {
+
+                //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string targetFolder = HttpContext.Server.MapPath("~/Documents/Clientes/" + mdl.ClienteId);
+                    if (!Directory.Exists(targetFolder))
+                    {
+                        Directory.CreateDirectory(targetFolder);
+                    }
+
+                    string targetPath = Path.Combine(targetFolder, _FileName);
+                    var docSave = new Kondominium_BL.ClienteDocsDatos().Save(new ClienteDocsEntity { ClienteDocId = mdl.ClienteDocId, ClienteId = mdl.ClienteId, DocumentType = mdl.DocumentType, UrlDocument = targetPath, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString() });
+
+                    mdl.JsFuntion = "T";
+                    mdl.ClienteDocId = docSave.Item1.ClienteDocId;
+                    file.SaveAs(targetPath);
+                    mdl.mensaje = docSave.Item2;
+                }
+                return Json(mdl);
+            }
+            catch (Exception ex)
+            {
+                respM.Codigo = CodigosMensaje.Error;
+                respM.Mensaje = ex.Message;
+                mdl.JsFuntion = "Err";
+                mdl.mensaje = respM;
+
+                this.Mensajes(respM);
+                ViewBag.Message = "Error al cargar el Archivo!!" + ex;
+
+                return Json(mdl);
+            }
+        }
+
+        #endregion
+
 
     }
 

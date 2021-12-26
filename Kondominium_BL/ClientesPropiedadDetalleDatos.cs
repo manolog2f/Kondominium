@@ -20,8 +20,8 @@ namespace Kondominium_BL
                             TipoCliente = p.TipoCliente,
                             FechaInicio = p.FechaInicio,
                             FechaFin = p.FechaFin,
-                            Autorrenovable = p.Autorrenovable,
-                            InquilinoResponsable = p.InquilinoResponsable,
+                            Autorrenovable = (bool)p.Autorrenovable,
+                            InquilinoResponsable = (bool)p.InquilinoResponsable,
                             Observacion = p.Observacion,
                             Parentesco = p.Parentesco,
                             FechaDeCreacion = (DateTime)p.FechaDeCreacion,
@@ -33,10 +33,10 @@ namespace Kondominium_BL
 
             return query.ToList();
         }
-        public ClientePropiedadDetalleEntity GetById(int ClienteId, int PropiedadId)
+        public ClientePropiedadDetalleEntity GetById(int ClienteId, int PropiedadId, string TipoCliente)
         {
             var query = from p in context.clientepropiedaddetalle
-                        where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId
+                        where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId && p.TipoCliente == TipoCliente
                         select new ClientePropiedadDetalleEntity
                         {
                             ClienteId = p.ClienteId,
@@ -44,8 +44,8 @@ namespace Kondominium_BL
                             TipoCliente = p.TipoCliente,
                             FechaInicio = p.FechaInicio,
                             FechaFin = p.FechaFin,
-                            Autorrenovable = p.Autorrenovable,
-                            InquilinoResponsable = p.InquilinoResponsable,
+                            Autorrenovable = (bool)p.Autorrenovable,
+                            InquilinoResponsable = (bool)p.InquilinoResponsable,
                             Observacion = p.Observacion,
                             Parentesco = p.Parentesco,
                             FechaDeCreacion = (DateTime)p.FechaDeCreacion,
@@ -95,7 +95,7 @@ namespace Kondominium_BL
                     cn.SaveChanges();
                 }
 
-                return (GetById(model.ClienteId, model.PropiedadId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetById(model.ClienteId, model.PropiedadId, model.TipoCliente), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {

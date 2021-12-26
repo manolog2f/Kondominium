@@ -122,13 +122,129 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
+
+        public ClientePropiedadEntity GetById(int ClienteId, int propiedadId, string TipoCliente)
+        {
+            var query = context.clientepropiedad
+                        .Where(p => p.ClienteId == ClienteId && p.PropiedadId == propiedadId && p.TipoCliente == TipoCliente)
+                        .Select(p => new ClientePropiedadEntity
+                        {
+                            Cliente = (new ClientesEntity
+                            {
+                                Apellidos = p.clientes.Apellidos,
+                                ClienteId = p.ClienteId,
+                                Nombres = p.clientes.Nombres,
+                                Documento1 = p.clientes.Documento1,
+                                Documento2 = p.clientes.Documento2,
+                                Documento3 = p.clientes.Documento3,
+                                Email = p.clientes.Email,
+                                TelefonoFijo = p.clientes.TelefonoFijo,
+                                TelefonoMovil = p.clientes.TelefonoMovil,
+                                Eliminado = p.clientes.Eliminado,
+                            }
+                           ),
+                            Propiedad = (new PropiedadesEntity
+                            {
+
+                                PropiedadId = p.propiedades.PropiedadId,
+                                TipoDePropiedad = p.propiedades.TipoDePropiedad,
+                                Descripcion = p.propiedades.Descripcion,
+                                Casa = p.propiedades.Casa,
+                                PoligonoId = p.propiedades.PoligonoId,
+                                ArancelId = p.propiedades.ArancelId,
+                                Eliminado = p.propiedades.Eliminado,
+
+                                TipoDePropiedadDesc = ((TipodePropiedades)p.propiedades.TipoDePropiedad).ToString(),
+
+                                ArancelDescripcion = p.propiedades.aranceles.Descripcion,
+                                PoligonoDescripcion = p.propiedades.poligonos.PoligonoDescripcion,
+                                AvenidaDescripcion = p.propiedades.avenida1.AvenidaDescripcion,
+                                CalleDescripcion = p.propiedades.calles.CalleDescripcion,
+                                SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
+                                Calle = p.propiedades.Calle,
+                                Avenida = p.propiedades.Avenida,
+                                Senda = p.propiedades.Senda
+
+                            }),
+                            ClienteId = p.ClienteId,
+                            PropiedadId = p.PropiedadId,
+                            Justificacion = p.Justificacion,
+                            TipoCliente = p.TipoCliente,
+                            FechaDeCreacion = (DateTime)p.FechaDeCreacion,
+                            FechaDeModificacion = p.FechaDeModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor
+
+                        });
+
+            return query.FirstOrDefault();
+        }
+
+        public List<ClientePropiedadEntity> GetById(int propiedadId,  string TipoCliente)
+        {
+            var query = context.clientepropiedad
+                        .Where(p =>  p.PropiedadId == propiedadId &&  p.TipoCliente == TipoCliente)
+                        .Select(p => new ClientePropiedadEntity
+                        {
+                            Cliente = (new ClientesEntity
+                            {
+                                Apellidos = p.clientes.Apellidos,
+                                ClienteId = p.ClienteId,
+                                Nombres = p.clientes.Nombres,
+                                Documento1 = p.clientes.Documento1,
+                                Documento2 = p.clientes.Documento2,
+                                Documento3 = p.clientes.Documento3,
+                                Email = p.clientes.Email,
+                                TelefonoFijo = p.clientes.TelefonoFijo,
+                                TelefonoMovil = p.clientes.TelefonoMovil,
+                                Eliminado = p.clientes.Eliminado,
+                            }
+                           ),
+                            Propiedad = (new PropiedadesEntity
+                            {
+
+                                PropiedadId = p.propiedades.PropiedadId,
+                                TipoDePropiedad = p.propiedades.TipoDePropiedad,
+                                Descripcion = p.propiedades.Descripcion,
+                                Casa = p.propiedades.Casa,
+                                PoligonoId = p.propiedades.PoligonoId,
+                                ArancelId = p.propiedades.ArancelId,
+                                Eliminado = p.propiedades.Eliminado,
+
+                                TipoDePropiedadDesc = ((TipodePropiedades)p.propiedades.TipoDePropiedad).ToString(),
+
+                                ArancelDescripcion = p.propiedades.aranceles.Descripcion,
+                                PoligonoDescripcion = p.propiedades.poligonos.PoligonoDescripcion,
+                                AvenidaDescripcion = p.propiedades.avenida1.AvenidaDescripcion,
+                                CalleDescripcion = p.propiedades.calles.CalleDescripcion,
+                                SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
+                                Calle = p.propiedades.Calle,
+                                Avenida = p.propiedades.Avenida,
+                                Senda = p.propiedades.Senda
+
+                            }),
+                            ClienteId = p.ClienteId,
+                            PropiedadId = p.PropiedadId,
+                            Justificacion = p.Justificacion,
+                            TipoCliente = p.TipoCliente,
+                            FechaDeCreacion = (DateTime)p.FechaDeCreacion,
+                            FechaDeModificacion = p.FechaDeModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor
+
+                        });
+
+            return query.ToList();
+        }
+
+
         public (ClientePropiedadEntity, Resultado) Save(ClientePropiedadEntity model)
         {
             try
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.clientepropiedad.Where(x => x.ClienteId == model.ClienteId && x.PropiedadId == model.PropiedadId).FirstOrDefault();
+                    var modlExist = cn.clientepropiedad.Where(x => x.ClienteId == model.ClienteId && x.PropiedadId == model.PropiedadId && x.TipoCliente == model.TipoCliente).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.clientepropiedad();
 
                     if (modlExist != null)
@@ -163,7 +279,7 @@ namespace Kondominium_BL
 
                 }
 
-                return (GetById(model.ClienteId, model.PropiedadId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetById(model.ClienteId, model.PropiedadId, model.TipoCliente), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {

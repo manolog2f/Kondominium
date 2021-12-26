@@ -218,6 +218,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\jsModel.cs" />
     <Compile Include="Models\UserConfigModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -587,9 +588,21 @@
     <Content Include="Views\Home\EditTareas.cshtml" />
     <Content Include="Views\Home\ListadoTareas.cshtml" />
     <Content Include="Views\Clientes\_EditClientesFileUpload.cshtml" />
+    <Content Include="Views\Home\ListadoLugares.cshtml" />
+    <Content Include="Views\Home\EditCalendario.cshtml" />
+    <Content Include="Views\Home\EditLugares.cshtml" />
+    <Content Include="Views\Home\ListadoCalendario.cshtml" />
+    <Content Include="Views\Propiedades\_ListadoPropietariosPropiedad.cshtml" />
+    <Content Include="Views\Propiedades\_ListadoInquilinosPropiedad.cshtml" />
+    <Content Include="Views\Propiedades\_ListadoOtrosPropiedad.cshtml" />
+    <Content Include="Views\Propiedades\EditPropiedadCliente.cshtml" />
+    <Content Include="Views\Propiedades\_ListPropiedadClienteDocs.cshtml" />
+    <Content Include="Views\Propiedades\_EditPropiedadesClientesFileUpload.cshtml" />
+    <Content Include="Views\Propiedades\_EditPropiedadClienteDet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Documents\Clientes\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

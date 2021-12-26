@@ -53,7 +53,9 @@
     <Compile Include="ContratosDetalleEntity.cs" />
     <Compile Include="ContratosEntity.cs" />
     <Compile Include="CxcEntity.cs" />
+    <Compile Include="DocumentEntity.cs" />
     <Compile Include="LugaresEntity.cs" />
+    <Compile Include="MREnums.cs" />
     <Compile Include="PoligonosEntity.cs" />
     <Compile Include="ClientesEntity.cs" />
     <Compile Include="CuentasPorCobrarDetalleEntity.cs" />

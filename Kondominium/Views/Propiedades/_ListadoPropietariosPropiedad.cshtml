@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Kondominium_Entities.ClientePropiedadEntity>
+
+@{
+    Layout = "";
+}
+
+
+
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>...</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Justificacion)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Editar", "EditPropiedadCliente", new { PropiedadId = item.PropiedadId, TipoCliente = item.TipoCliente, ClienteId = item.ClienteId  }, new {  @class = "btn btn-info " })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.VFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TclienteEnum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Justificacion)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

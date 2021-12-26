@@ -136,46 +136,4 @@ namespace Kondominium_Entities
         }
     }
 
-    public enum TipodePropiedades
-    { 
-        Lote = 0,
-        Casa = 1,
-        Edificio = 2,
-        Otros = 3
-        //0 = Lote\n1 = Casa\n2 = Edificio\n3 = Otros
-    }
-
-
-
-
-    public enum LetrasCasa
-    {   
-        A,
-        B,
-        C,
-        D,
-        E,
-        F,
-        G,
-        H,
-        I,
-        J,
-        K,
-        L,
-        M,
-        N,
-        O,
-        P,
-        Q,
-        R,
-        S,
-        T,
-        U,
-        V,
-        W,
-        X,
-        Y,
-        Z
-    
-    }
 }

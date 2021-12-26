@@ -8,6 +8,7 @@ namespace Kondominium_Entities
 {
     public class ClientePropiedadDocsEntity
     {
+        public int ClientePropiedadDocsId { get; set; }
         public int ClienteId { get; set; }
         public int PropiedadId { get; set; }
         public string TipoCliente { get; set; }

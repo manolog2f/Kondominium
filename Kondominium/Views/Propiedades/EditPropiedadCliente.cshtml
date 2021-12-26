@@ -1,0 +1,320 @@
+﻿@model Kondominium_Entities.ClientePropiedadEntity
+
+@{
+    ViewBag.Title = "EditPropiedadCliente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Mantenimiento de Condómino Propiedades</h1>
+
+    <div class="row">
+
+        <div class="col-lg">
+
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
+                </div>
+
+
+                <div class="form-horizontal">
+
+
+                    <!-- Acordion -->
+                    <div id="accordion">
+
+
+                        <!-- General -->
+                        <div class="card">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="card-header">
+                                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                        General
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+
+                                    <div class="row">
+
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TipoCliente, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.TipoCliente,
+                                        EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipoClientes)),
+                                        "Seleccione el tipo de Condómino",
+                                        new { @class = "form-control", @readonly = true, disabled = "disabled" })
+                                                    @Html.ValidationMessageFor(model => model.TipoCliente, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+
+                                                    @Html.DropDownListFor(model => model.ClienteId,
+                                        new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
+                                        "Seleccione el Condómino",
+                                        new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.PropiedadId, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.PropiedadId,
+                                      new SelectList(new Kondominium.Controllers.PropiedadesController().ListPropiedades(), "PropiedadId", "VPropiedad"),
+                                      "Selecciona la propiedad",
+                                      new { @class = "form-control", @readonly = true, disabled = "disabled" })
+                                                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+
+
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Justificacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.Justificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Justificacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <br>
+
+                                        <div class="container" style="margin-left:unset !important">
+
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+
+
+                                            <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
+                                                <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
+                                            </a>
+
+                                        </div>
+
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                </div>
+
+                            }
+                        </div>
+                        <!-- Sistema -->
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                    Sistema
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.FechaDeCreacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.FechaDeCreacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.FechaDeModificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.FechaDeModificacion, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CreadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.CreadoPor, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.ModificadoPor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.ModificadoPor, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @if (((Model.ClienteId != null && Model.ClienteId != 0) && (Model.PropiedadId != null && Model.PropiedadId != 0)) && Model.TipoCliente != "0")
+                        {
+                            <!-- Detalle -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                        Detalle
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        @Html.Action("_EditPropiedadClienteDet", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString(), TipoCliente = Model.TipoCliente.ToString(), ClienteId = Model.ClienteId.ToString() })
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                        @if ((Model.ClienteId != null && Model.ClienteId != 0) && (Model.PropiedadId != null && Model.PropiedadId != 0))
+                        {
+                            <!-- DetalleDocs -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                        Documentos
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        @Html.Action("_ListPropiedadClienteDocs", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString(), TipoCliente = Model.TipoCliente.ToString(), ClienteId = Model.ClienteId.ToString() })
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Delete Modal confirmacion -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header badge-warning">
+                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Retornar a la Propiedad", "EditPropiedades", new { Id = Model.PropiedadId.ToString() })
+</div>
+
+
+
+
+
+@if (Model.ClienteId != null)
+{
+    <div class="modal fade" id="UploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
+
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @{
+                        string xClienteId = Model.ClienteId.ToString();
+                        string xDocumentType = "";
+                        string xPropiedadId = Model.PropiedadId.ToString();
+                        string xTipoClienteId = Model.TipoCliente.ToString();
+                    }
+                    
+                    @Html.Action("_EditPropiedadesClientesFileUpload", "Propiedades", new { PropiedadId = xPropiedadId, ClienteId = xClienteId, TipoClienteId = xTipoClienteId, DocumentType = xDocumentType })
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+
+
+
+<div id="UploadFileMensajes">
+
+</div>

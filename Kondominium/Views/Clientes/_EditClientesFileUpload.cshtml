@@ -6,60 +6,121 @@
 
 
 
-@using (Ajax.BeginForm("_EditClientesFileUploadPost", "Clientes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }, new { @id = "frmPartialInvo", enctype = "multipart/form-data" }))
+<style>
+    .Data-table td {
+        /*-- word-wrap: normal;*/
+        white-space: nowrap !important;
+    }
+</style>
+
+<script>
+
+    function SubmitUploadInvoice() {
+        
+        var form = document.getElementById("frmPartialUDoc");
+        if (form.getAttribute("enctype") === "multipart/form-data")
+        {
+            loading();
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    
+                    //debugger;
+                    var x = xhr.response;
+
+                    console.log(x);
+
+                    var t = JSON.parse(xhr.response);
+                    //var t1 = JSON.parse(t['Mensaje']);
+                    //debugger;
+                    var ClienteId = t['ClienteId']; // xhr.response.idTrans;
+                    var mensaje = t.mensaje.Mensaje; // xhr.response.mensaje.Mensaje;
+                    var idMensaje = t.mensaje.Codigo; //xhr.response.mensaje.CodigoMensaje;
+
+
+
+
+                    //debugger;
+                    setTimeout(function () {
+                        //Tu logica para redireccionar a la pagina con el ID
+                    
+                        if (ClienteId != 0) {
+                    
+                            hide_loading();
+                            var getUrl = window.location;
+                            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                            var url = "";                          
+                            url = baseUrl + "/EditClientes/" + ClienteId + "?codigo=" + idMensaje;
+                            location.href = url;
+                        }
+                    }, 3000);
+
+                }
+
+            }
+            xhr.send(new FormData(form));
+
+
+        }
+    }
+
+</script>
+
+
+@using (Ajax.BeginForm("_UploadFileH", "Clientes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd1", LoadingElementId = "loading" }, new { @id = "frmPartialUDoc", enctype = "multipart/form-data" }))
 {
 
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>ClienteDocsEntity</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label " })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
-                </div>
-            </div>
+<div class="form-horizontal">
+    <h4>ClienteDocsEntity</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+  
+            @Html.HiddenFor(model => model.ClienteDocId, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+            @Html.HiddenFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.DocumentType, htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @{
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DocumentType, htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @{ 
+                @Html.DropDownListFor(model => model.DocumentType,
+                                                 new Kondominium.Controllers.ClientesController().ListTipoDocumentoEnum().Select(x => new SelectListItem
+                                                 {
+                                                     Text = x.ToString()
+                                                                ,
+                                                     Value = x.ToString()
+                                                 }),
+                                                                "Seleccione el tipo de Documento",
+                                                                               new { @class = "form-control" })
+            }
 
-
-                    @Html.DropDownListFor(model => model.DocumentType,
-                                                     new Kondominium.Controllers.ClientesController().ListTipoDocumentoEnum().Select(x => new SelectListItem
-                                                     {
-                                                         Text = x.ToString()
-                                                                    ,
-                                                         Value = x.ToString()
-                                                     }),
-                                                                    "Seleccione el tipo de Documento",
-                                                                                   new { @class = "form-control" })
-                        }
-
-                    @Html.ValidationMessageFor(model => model.DocumentType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.UrlDocument, htmlAttributes: new { @class = "control-label " })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UrlDocument, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UrlDocument, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
+            @Html.ValidationMessageFor(model => model.DocumentType, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UrlDocument, htmlAttributes: new { @class = "control-label " })
+        <div class="col-md-10">
+
+            @Html.TextBox("file", "", new { type = "file" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn btn-primary" onclick="SubmitUploadInvoice()">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                Almacenar Archivo Adjunto
+            </button>
+        </div>
+    </div>
+</div>
+
 }
 
 

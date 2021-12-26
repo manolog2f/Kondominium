@@ -10,7 +10,6 @@ namespace Kondominium.Controllers
     public class TransaccionesController : BaseController
     {
         /* Listado de CXC*/
-
         [HttpGet]
         public ActionResult ListadoCuentasPorCobrar()
         {
