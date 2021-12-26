@@ -78,7 +78,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Fecha, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -87,7 +87,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.HoraInicio, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.HoraInicio, "{hh:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.HoraInicio, "{HH:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.ClienteId,
                                                                     new Kondominium_BL.ClientesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                                    { Text = x.ClienteId.ToString(), Value = x.ClienteId.ToString() }),
+                                                                    { Text = x.VFullName.ToString(), Value = x.ClienteId.ToString() }),
                                                                     "Seleccione el cliente",
                                                                     new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
@@ -135,7 +135,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.PropiedadId,
                                                                     new Kondominium_BL.PropiedadesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                                    { Text = x.PropiedadId.ToString(), Value = x.PropiedadId.ToString() }),
+                                                                    { Text = x.VPropiedad.ToString(), Value = x.PropiedadId.ToString() }),
                                                                     "Seleccione la propiedad",
                                                                     new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.PropiedadId, "", new { @class = "text-danger" })

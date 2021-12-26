@@ -16,7 +16,7 @@ namespace Kondominium_Entities
         public string Descripcion { get; set; }
         [DataType(DataType.Date)]
         [DisplayName("Fecha de Ejecucion"), Required(ErrorMessage = "Debe ingresar la fecha de la tarea.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> FechaDeEjecucion { get; set; }
         public Nullable<int> Estatus { get; set; }
         public string UsuarioAsignado { get; set; }

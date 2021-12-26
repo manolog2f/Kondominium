@@ -67,10 +67,12 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.calendario();
 
                     if (modlExist != null)
+                    {
+                        //TODO: Esta parte del eliminado Agregarlo a los demas metodos de Datos
                         modlNew = modlExist;
+                    }
 
 
-                    modlNew.CalendarioId = model.CalendarioId;
                     modlNew.Fecha = model.Fecha;
                     modlNew.HoraInicio = model.HoraInicio;
                     modlNew.HoraFin = model.HoraFin;
@@ -79,9 +81,7 @@ namespace Kondominium_BL
                     modlNew.PropiedadId = model.PropiedadId;
                     modlNew.TituloEvento = model.TituloEvento;
                     modlNew.DescripcionEvento = model.DescripcionEvento;
-                    modlNew.FechaDeCreacion = (DateTime)model.FechaDeCreacion;
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;
-                    modlNew.CreadoPor = model.CreadoPor;
+                    modlNew.FechaDeModificacion = model.FechaDeModificacion;                   
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 

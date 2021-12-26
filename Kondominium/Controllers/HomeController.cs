@@ -52,12 +52,16 @@ namespace Kondominium.Controllers
             return View();
         }
 
-        public ActionResult _PartialCalendar()
+        public ActionResult _PartialCalendar(string mes )
         {
+            /// Lista del calendario segun el mes
             return PartialView();
         }
         public ActionResult _PartialToDoList()
         {
+            /// lista de tipo Tareas con todas las tareas pendientes filtrado por el usuario actual
+            
+            
             return PartialView();
         }
 
@@ -284,5 +288,11 @@ namespace Kondominium.Controllers
         }
 
         /*End Edit Calendario*/
+
+
+        //public ActionResult _PartialToDoList()
+        //{ 
+            
+        //}
     }
 }

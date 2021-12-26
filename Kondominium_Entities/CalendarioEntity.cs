@@ -13,15 +13,15 @@ namespace Kondominium_Entities
         public int CalendarioId { get; set; }
         [DataType(DataType.Date)]
         [DisplayName("Fecha"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> Fecha { get; set; }
         [DataType(DataType.Time)]
         [DisplayName("HoraInicio"), Required(ErrorMessage = "Debe ingresar la hora de inicio del evento.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{hh:mm:ss}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:mm:ss}")]
         public Nullable<System.TimeSpan> HoraInicio { get; set; }
         [DataType(DataType.Time)]
         [DisplayName("HoraFin"), Required(ErrorMessage = "Debe ingresar la hora de fin del evento.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{hh:mm:ss}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:mm:ss}")]
         public Nullable<System.TimeSpan> HoraFin { get; set; }
         public Nullable<int> LugarId { get; set; }
         public Nullable<int> ClienteId { get; set; }
