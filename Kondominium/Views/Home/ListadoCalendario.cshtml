@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                       
+
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.CalendarioId)
@@ -67,62 +67,61 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ModificadoPor)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Eliminado)
-                            </th>
+
                         </tr>
 
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            string eliminadox = "";
-                            if (item.Eliminado)
-                            {
-                                eliminadox = "style=text-decoration:line-through;color:red;";
-                            }
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.CalendarioId.ToString(), "EditCalendario", new { id = item.CalendarioId })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @{
+                                        var TInicio = item.HoraInicio.ToString();
+                                    }
 
-                        <tr @eliminadox>
-                            <td>
-                                @Html.ActionLink(item.CalendarioId.ToString(), "EditCalendario", new { id = item.CalendarioId })
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Fecha)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.HoraInicio)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.HoraFin)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LugarId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ClienteId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PropiedadId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TituloEvento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DescripcionEvento)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreadoPor)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ModificadoPor)
-                            </td>
-                        </tr>
+                                    @Html.DisplayFor(modelItem => TInicio)
+                                </td>
+                                <td>
+                                    @{
+                                        var TFin = item.HoraInicio.ToString();
+                                    }
+                                    @Html.DisplayFor(modelItem => TFin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LugarId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClienteId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropiedadId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TituloEvento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DescripcionEvento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>

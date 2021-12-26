@@ -252,8 +252,12 @@ namespace Kondominium.Controllers
             return View(new CalendarioEntity());
         }
         [HttpPost]
-        public ActionResult EditCalendario(CalendarioEntity model)
+        public ActionResult EditCalendario(CalendarioEntity model, string TInicio, string TFIn)
         {
+
+            model.HoraFin = TimeSpan.Parse( TFIn);
+            model.HoraInicio = TimeSpan.Parse(TInicio);
+
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = model.ModificadoPor;
 

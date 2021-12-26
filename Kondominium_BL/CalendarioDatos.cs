@@ -81,7 +81,7 @@ namespace Kondominium_BL
                     modlNew.PropiedadId = model.PropiedadId;
                     modlNew.TituloEvento = model.TituloEvento;
                     modlNew.DescripcionEvento = model.DescripcionEvento;
-                    modlNew.FechaDeModificacion = model.FechaDeModificacion;                   
+                    modlNew.FechaDeModificacion = DateTime.Now;                   
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 

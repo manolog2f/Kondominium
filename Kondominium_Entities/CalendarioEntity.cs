@@ -17,12 +17,12 @@ namespace Kondominium_Entities
         public Nullable<System.DateTime> Fecha { get; set; }
         [DataType(DataType.Time)]
         [DisplayName("HoraInicio"), Required(ErrorMessage = "Debe ingresar la hora de inicio del evento.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:mm:ss}")]
-        public Nullable<System.TimeSpan> HoraInicio { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public TimeSpan? HoraInicio { get; set; }
         [DataType(DataType.Time)]
         [DisplayName("HoraFin"), Required(ErrorMessage = "Debe ingresar la hora de fin del evento.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{HH:mm:ss}")]
-        public Nullable<System.TimeSpan> HoraFin { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public TimeSpan? HoraFin { get; set; }
         public Nullable<int> LugarId { get; set; }
         public Nullable<int> ClienteId { get; set; }
         public Nullable<int> PropiedadId { get; set; }

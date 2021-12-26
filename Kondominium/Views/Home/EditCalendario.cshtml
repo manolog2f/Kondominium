@@ -87,16 +87,28 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.HoraInicio, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.HoraInicio, "{HH:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    
+                                                    @{
+                                                        var TInicio = Model.HoraInicio.ToString();
+                                                     }
+
+
+                                                    @Html.EditorFor(model => TInicio, "{0:HH:mm}", new { htmlAttributes = new { @class = "form-control", type = "time" } })
                                                     @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
+
+                                                @{
+                                                    var TFin = Model.HoraFin.ToString();
+                                                }
+
+
                                                 @Html.LabelFor(model => model.HoraFin, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.HoraFin, "{hh:mm:ss}", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => TFin, "{0:HH:mm}", new { htmlAttributes = new { @class = "form-control", type = "time" } })
                                                     @Html.ValidationMessageFor(model => model.HoraFin, "", new { @class = "text-danger", })
                                                 </div>
                                             </div>
