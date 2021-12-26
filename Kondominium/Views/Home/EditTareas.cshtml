@@ -43,7 +43,7 @@
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                     <div class="row">
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TareaId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -52,7 +52,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Prioridad, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.FechaDeEjecucion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -98,7 +98,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -106,14 +106,14 @@
 
                                                     @Html.DropDownListFor(model => model.Estatus,
                                                             EnumHelper.GetSelectList(typeof(Kondominium_Entities.EstatusTarea)),
-                                                            "Seleccione la prioridad",
+                                                            "Seleccione el estatus",
                                                             new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.UsuarioAsignado, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="card-body">
+                                        <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">

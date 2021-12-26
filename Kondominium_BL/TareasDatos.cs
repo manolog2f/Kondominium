@@ -138,7 +138,7 @@ namespace Kondominium_BL
                         return new Resultado { Codigo = 0, Mensaje = "Exito, Registro eliminado permanentemente" };
                     }
                     else
-                        return new Resultado { Codigo = 0, Mensaje = "Registro no encontrado" };
+                        return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
                 }
             }
             catch (Exception ex)
