@@ -37,10 +37,16 @@ namespace Kondominium_DAL
         public virtual DbSet<clientes> clientes { get; set; }
         public virtual DbSet<clientesdocs> clientesdocs { get; set; }
         public virtual DbSet<config> config { get; set; }
+        public virtual DbSet<configcobrosmensauldet> configcobrosmensauldet { get; set; }
+        public virtual DbSet<configcobrosmensual> configcobrosmensual { get; set; }
         public virtual DbSet<contratos> contratos { get; set; }
         public virtual DbSet<contratosdetalle> contratosdetalle { get; set; }
+        public virtual DbSet<cuentasgeneradas> cuentasgeneradas { get; set; }
+        public virtual DbSet<cuentasgeneradasdetalle> cuentasgeneradasdetalle { get; set; }
+        public virtual DbSet<cuentasgeneradasdetalleb> cuentasgeneradasdetalleb { get; set; }
         public virtual DbSet<cuentasporcobrar> cuentasporcobrar { get; set; }
         public virtual DbSet<cuentasporcobrardetalle> cuentasporcobrardetalle { get; set; }
+        public virtual DbSet<cuentasporcobrarpago> cuentasporcobrarpago { get; set; }
         public virtual DbSet<cxctype> cxctype { get; set; }
         public virtual DbSet<empresa> empresa { get; set; }
         public virtual DbSet<errorlog> errorlog { get; set; }

@@ -185,6 +185,31 @@
           <Property Name="CreateByUserId" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="ModifiedByUserId" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="configcobrosmensauldet">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="IdConfig" Type="int" Nullable="false" />
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="configcobrosmensual">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+          </Key>
+          <Property Name="IdConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiaDeGeneracion" Type="int" />
+          <Property Name="DiaVencimiento" Type="int" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="contratos">
           <Key>
             <PropertyRef Name="ContratoId" />
@@ -214,6 +239,49 @@
           <Property Name="ProductoId" Type="int" Nullable="false" />
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" />
         </EntityType>
+        <EntityType Name="cuentasgeneradas">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Justificacion" Type="varchar" MaxLength="150" />
+          <Property Name="FechaDeGeneracion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeVencimiento" Type="datetime" Precision="0" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="cuentasgeneradasdetalle">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Precision="0" />
+          <Property Name="FechaDeVencimiento" Type="datetime" Precision="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="cuentasgeneradasdetalleb">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" />
+        </EntityType>
         <EntityType Name="cuentasporcobrar">
           <Key>
             <PropertyRef Name="VaucherNumber" />
@@ -223,7 +291,7 @@
           <Property Name="TipoCxC" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="FechaDeEmision" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="FechaDeVencimiento" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="PeriodoFacturado" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="PeriodoFacturado" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="NPE" Type="varchar" MaxLength="100" />
           <Property Name="BRCode" Type="varchar" MaxLength="100" />
@@ -233,13 +301,15 @@
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="Estado" Type="int" />
+          <Property Name="Pagado" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="PropiedadId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="cuentasporcobrardetalle">
           <Key>
             <PropertyRef Name="DetalleId" />
           </Key>
           <Property Name="VaucherNumber" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="DetalleId" Type="int" Nullable="false" />
+          <Property Name="DetalleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductoId" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
@@ -248,6 +318,22 @@
           <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrarpago">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarPagoId" />
+          </Key>
+          <Property Name="CuentasPorCobrarPagoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaucherNumber" Type="varchar" MaxLength="25" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="MetodoPago" Type="varchar" MaxLength="25" />
+          <Property Name="ReferenciaPago" Type="varchar" MaxLength="45" />
+          <Property Name="Observacion" Type="varchar" MaxLength="100" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -734,6 +820,18 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKIdConfigCobrosConfigMensual">
+          <End Role="configcobrosmensual" Type="Self.configcobrosmensual" Multiplicity="1" />
+          <End Role="configcobrosmensauldet" Type="Self.configcobrosmensauldet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="configcobrosmensual">
+              <PropertyRef Name="IdConfig" />
+            </Principal>
+            <Dependent Role="configcobrosmensauldet">
+              <PropertyRef Name="IdConfig" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKLugaresCalendariox">
           <End Role="lugares" Type="Self.lugares" Multiplicity="0..1" />
           <End Role="calendario" Type="Self.calendario" Multiplicity="*" />
@@ -746,6 +844,18 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FkProductoId_ConfigCobMensualDet">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="configcobrosmensauldet" Type="Self.configcobrosmensauldet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="configcobrosmensauldet">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FkPropiedadesCalendarioZ">
           <End Role="propiedades" Type="Self.propiedades" Multiplicity="0..1" />
           <End Role="calendario" Type="Self.calendario" Multiplicity="*" />
@@ -754,6 +864,18 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
               <PropertyRef Name="PropiedadId" />
             </Principal>
             <Dependent Role="calendario">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPRopiedadIdCXC">
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="1" />
+          <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
               <PropertyRef Name="PropiedadId" />
             </Dependent>
           </ReferentialConstraint>
@@ -903,10 +1025,16 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <EntitySet Name="clientes" EntityType="Self.clientes" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="clientesdocs" EntityType="Self.clientesdocs" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="config" EntityType="Self.config" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="configcobrosmensauldet" EntityType="Self.configcobrosmensauldet" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="configcobrosmensual" EntityType="Self.configcobrosmensual" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="contratos" EntityType="Self.contratos" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="contratosdetalle" EntityType="Self.contratosdetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasgeneradas" EntityType="Self.cuentasgeneradas" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasgeneradasdetalle" EntityType="Self.cuentasgeneradasdetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasgeneradasdetalleb" EntityType="Self.cuentasgeneradasdetalleb" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasporcobrar" EntityType="Self.cuentasporcobrar" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasporcobrardetalle" EntityType="Self.cuentasporcobrardetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="cuentasporcobrarpago" EntityType="Self.cuentasporcobrarpago" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cxctype" EntityType="Self.cxctype" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="empresa" EntityType="Self.empresa" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="errorlog" EntityType="Self.errorlog" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -987,13 +1115,25 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             <End Role="clientes" EntitySet="clientes" />
             <End Role="calendario" EntitySet="calendario" />
           </AssociationSet>
+          <AssociationSet Name="FKIdConfigCobrosConfigMensual" Association="Self.FKIdConfigCobrosConfigMensual">
+            <End Role="configcobrosmensual" EntitySet="configcobrosmensual" />
+            <End Role="configcobrosmensauldet" EntitySet="configcobrosmensauldet" />
+          </AssociationSet>
           <AssociationSet Name="FKLugaresCalendariox" Association="Self.FKLugaresCalendariox">
             <End Role="lugares" EntitySet="lugares" />
             <End Role="calendario" EntitySet="calendario" />
           </AssociationSet>
+          <AssociationSet Name="FkProductoId_ConfigCobMensualDet" Association="Self.FkProductoId_ConfigCobMensualDet">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="configcobrosmensauldet" EntitySet="configcobrosmensauldet" />
+          </AssociationSet>
           <AssociationSet Name="FkPropiedadesCalendarioZ" Association="Self.FkPropiedadesCalendarioZ">
             <End Role="propiedades" EntitySet="propiedades" />
             <End Role="calendario" EntitySet="calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FKPRopiedadIdCXC" Association="Self.FKPRopiedadIdCXC">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
           </AssociationSet>
           <AssociationSet Name="MainMenuSubmenuFK" Association="Self.MainMenuSubmenuFK">
             <End Role="mainmenu" EntitySet="mainmenu" />
@@ -1057,10 +1197,16 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <EntitySet Name="clientes" EntityType="db_a43bba_kondomiModel.clientes" />
           <EntitySet Name="clientesdocs" EntityType="db_a43bba_kondomiModel.clientesdocs" />
           <EntitySet Name="config" EntityType="db_a43bba_kondomiModel.config" />
+          <EntitySet Name="configcobrosmensauldet" EntityType="db_a43bba_kondomiModel.configcobrosmensauldet" />
+          <EntitySet Name="configcobrosmensual" EntityType="db_a43bba_kondomiModel.configcobrosmensual" />
           <EntitySet Name="contratos" EntityType="db_a43bba_kondomiModel.contratos" />
           <EntitySet Name="contratosdetalle" EntityType="db_a43bba_kondomiModel.contratosdetalle" />
+          <EntitySet Name="cuentasgeneradas" EntityType="db_a43bba_kondomiModel.cuentasgeneradas" />
+          <EntitySet Name="cuentasgeneradasdetalle" EntityType="db_a43bba_kondomiModel.cuentasgeneradasdetalle" />
+          <EntitySet Name="cuentasgeneradasdetalleb" EntityType="db_a43bba_kondomiModel.cuentasgeneradasdetalleb" />
           <EntitySet Name="cuentasporcobrar" EntityType="db_a43bba_kondomiModel.cuentasporcobrar" />
           <EntitySet Name="cuentasporcobrardetalle" EntityType="db_a43bba_kondomiModel.cuentasporcobrardetalle" />
+          <EntitySet Name="cuentasporcobrarpago" EntityType="db_a43bba_kondomiModel.cuentasporcobrarpago" />
           <EntitySet Name="cxctype" EntityType="db_a43bba_kondomiModel.cxctype" />
           <EntitySet Name="empresa" EntityType="db_a43bba_kondomiModel.empresa" />
           <EntitySet Name="errorlog" EntityType="db_a43bba_kondomiModel.errorlog" />
@@ -1141,6 +1287,14 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             <End Role="clientes" EntitySet="clientes" />
             <End Role="clientesdocs" EntitySet="clientesdocs" />
           </AssociationSet>
+          <AssociationSet Name="FKIdConfigCobrosConfigMensual" Association="db_a43bba_kondomiModel.FKIdConfigCobrosConfigMensual">
+            <End Role="configcobrosmensual" EntitySet="configcobrosmensual" />
+            <End Role="configcobrosmensauldet" EntitySet="configcobrosmensauldet" />
+          </AssociationSet>
+          <AssociationSet Name="FkProductoId_ConfigCobMensualDet" Association="db_a43bba_kondomiModel.FkProductoId_ConfigCobMensualDet">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="configcobrosmensauldet" EntitySet="configcobrosmensauldet" />
+          </AssociationSet>
           <AssociationSet Name="contratosDetalle_FK_1" Association="db_a43bba_kondomiModel.contratosDetalle_FK_1">
             <End Role="contratos" EntitySet="contratos" />
             <End Role="contratosdetalle" EntitySet="contratosdetalle" />
@@ -1156,6 +1310,10 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <AssociationSet Name="CxcDestalleCxcHeaderFK" Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK">
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
             <End Role="cuentasporcobrardetalle" EntitySet="cuentasporcobrardetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FKPRopiedadIdCXC" Association="db_a43bba_kondomiModel.FKPRopiedadIdCXC">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
           </AssociationSet>
           <AssociationSet Name="CxcDetalleProductosFK" Association="db_a43bba_kondomiModel.CxcDetalleProductosFK">
             <End Role="productos" EntitySet="productos" />
@@ -1394,6 +1552,34 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="CreateByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModifiedByUserId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="configcobrosmensauldet">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="IdConfig" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="configcobrosmensual" Relationship="db_a43bba_kondomiModel.FKIdConfigCobrosConfigMensual" FromRole="configcobrosmensauldet" ToRole="configcobrosmensual" />
+          <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.FkProductoId_ConfigCobMensualDet" FromRole="configcobrosmensauldet" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="configcobrosmensual">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+          </Key>
+          <Property Name="IdConfig" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiaDeGeneracion" Type="Int32" />
+          <Property Name="DiaVencimiento" Type="Int32" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="configcobrosmensauldet" Relationship="db_a43bba_kondomiModel.FKIdConfigCobrosConfigMensual" FromRole="configcobrosmensual" ToRole="configcobrosmensauldet" />
+        </EntityType>
         <EntityType Name="contratos">
           <Key>
             <PropertyRef Name="ContratoId" />
@@ -1426,6 +1612,49 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <NavigationProperty Name="contratos" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK_1" FromRole="contratosdetalle" ToRole="contratos" />
           <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK" FromRole="contratosdetalle" ToRole="productos" />
         </EntityType>
+        <EntityType Name="cuentasgeneradas">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeGeneracion" Type="DateTime" />
+          <Property Name="FechaDeVencimiento" Type="DateTime" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cuentasgeneradasdetalle">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" />
+          <Property Name="FechaDeVencimiento" Type="DateTime" />
+          <Property Name="Total" Type="Decimal" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cuentasgeneradasdetalleb">
+          <Key>
+            <PropertyRef Name="PeriodoGenerado" />
+            <PropertyRef Name="PropiedadId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="PeriodoGenerado" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" />
+        </EntityType>
         <EntityType Name="cuentasporcobrar">
           <Key>
             <PropertyRef Name="VaucherNumber" />
@@ -1435,7 +1664,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="TipoCxC" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeEmision" Type="DateTime" Nullable="false" />
           <Property Name="FechaDeVencimiento" Type="DateTime" Nullable="false" />
-          <Property Name="PeriodoFacturado" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PeriodoFacturado" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Total" Type="Decimal" Nullable="false" />
           <Property Name="NPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="BRCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1445,16 +1674,19 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="Int32" />
+          <Property Name="Pagado" Type="Decimal" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="cuentasporcobrar" ToRole="clientes" />
           <NavigationProperty Name="cxctype" Relationship="db_a43bba_kondomiModel.cuentasporcobrar_FK" FromRole="cuentasporcobrar" ToRole="cxctype" />
           <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrar" ToRole="cuentasporcobrardetalle" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.FKPRopiedadIdCXC" FromRole="cuentasporcobrar" ToRole="propiedades" />
         </EntityType>
         <EntityType Name="cuentasporcobrardetalle">
           <Key>
             <PropertyRef Name="DetalleId" />
           </Key>
           <Property Name="VaucherNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="DetalleId" Type="Int32" Nullable="false" />
+          <Property Name="DetalleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductoId" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Monto" Type="Decimal" Nullable="false" />
@@ -1465,6 +1697,22 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" FromRole="cuentasporcobrardetalle" ToRole="cuentasporcobrar" />
           <NavigationProperty Name="productos" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="cuentasporcobrardetalle" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="cuentasporcobrarpago">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarPagoId" />
+          </Key>
+          <Property Name="CuentasPorCobrarPagoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaucherNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="MetodoPago" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenciaPago" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -1622,6 +1870,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="configcobrosmensauldet" Relationship="db_a43bba_kondomiModel.FkProductoId_ConfigCobMensualDet" FromRole="productos" ToRole="configcobrosmensauldet" />
           <NavigationProperty Name="contratosdetalle" Relationship="db_a43bba_kondomiModel.contratosDetalle_FK" FromRole="productos" ToRole="contratosdetalle" />
           <NavigationProperty Name="cuentasporcobrardetalle" Relationship="db_a43bba_kondomiModel.CxcDetalleProductosFK" FromRole="productos" ToRole="cuentasporcobrardetalle" />
         </EntityType>
@@ -1679,6 +1928,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ" FromRole="propiedades" ToRole="calendario" />
           <NavigationProperty Name="calles" Relationship="db_a43bba_kondomiModel.PropiedadesCallesFK" FromRole="propiedades" ToRole="calles" />
           <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPk2" FromRole="propiedades" ToRole="clientepropiedad" />
+          <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.FKPRopiedadIdCXC" FromRole="propiedades" ToRole="cuentasporcobrar" />
           <NavigationProperty Name="poligonos" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="propiedades" ToRole="poligonos" />
           <NavigationProperty Name="sendas" Relationship="db_a43bba_kondomiModel.PropiedadesSendaFK" FromRole="propiedades" ToRole="sendas" />
         </EntityType>
@@ -1974,6 +2224,30 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKIdConfigCobrosConfigMensual">
+          <End Type="db_a43bba_kondomiModel.configcobrosmensual" Role="configcobrosmensual" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.configcobrosmensauldet" Role="configcobrosmensauldet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="configcobrosmensual">
+              <PropertyRef Name="IdConfig" />
+            </Principal>
+            <Dependent Role="configcobrosmensauldet">
+              <PropertyRef Name="IdConfig" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkProductoId_ConfigCobMensualDet">
+          <End Type="db_a43bba_kondomiModel.productos" Role="productos" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.configcobrosmensauldet" Role="configcobrosmensauldet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="Productoid" />
+            </Principal>
+            <Dependent Role="configcobrosmensauldet">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="contratosDetalle_FK_1">
           <End Type="db_a43bba_kondomiModel.contratos" Role="contratos" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.contratosdetalle" Role="contratosdetalle" Multiplicity="*" />
@@ -2019,6 +2293,18 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
             </Principal>
             <Dependent Role="cuentasporcobrardetalle">
               <PropertyRef Name="VaucherNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPRopiedadIdCXC">
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrar">
+              <PropertyRef Name="PropiedadId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2324,6 +2610,32 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="configcobrosmensauldet">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.configcobrosmensauldet">
+              <MappingFragment StoreEntitySet="configcobrosmensauldet">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="IdConfig" ColumnName="IdConfig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configcobrosmensual">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.configcobrosmensual">
+              <MappingFragment StoreEntitySet="configcobrosmensual">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="DiaVencimiento" ColumnName="DiaVencimiento" />
+                <ScalarProperty Name="DiaDeGeneracion" ColumnName="DiaDeGeneracion" />
+                <ScalarProperty Name="IdConfig" ColumnName="IdConfig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="contratos">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.contratos">
               <MappingFragment StoreEntitySet="contratos">
@@ -2354,9 +2666,52 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="cuentasgeneradas">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasgeneradas">
+              <MappingFragment StoreEntitySet="cuentasgeneradas">
+                <ScalarProperty Name="ModificadoPo" ColumnName="ModificadoPo" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaDeVencimiento" ColumnName="FechaDeVencimiento" />
+                <ScalarProperty Name="FechaDeGeneracion" ColumnName="FechaDeGeneracion" />
+                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+                <ScalarProperty Name="PeriodoGenerado" ColumnName="PeriodoGenerado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasgeneradasdetalle">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasgeneradasdetalle">
+              <MappingFragment StoreEntitySet="cuentasgeneradasdetalle">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="FechaDeVencimiento" ColumnName="FechaDeVencimiento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="PeriodoGenerado" ColumnName="PeriodoGenerado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasgeneradasdetalleb">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasgeneradasdetalleb">
+              <MappingFragment StoreEntitySet="cuentasgeneradasdetalleb">
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="PeriodoGenerado" ColumnName="PeriodoGenerado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cuentasporcobrar">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrar">
               <MappingFragment StoreEntitySet="cuentasporcobrar">
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="Pagado" ColumnName="Pagado" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
@@ -2388,6 +2743,23 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
                 <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
                 <ScalarProperty Name="DetalleId" ColumnName="DetalleId" />
                 <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentasporcobrarpago">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrarpago">
+              <MappingFragment StoreEntitySet="cuentasporcobrarpago">
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+                <ScalarProperty Name="CuentasPorCobrarPagoId" ColumnName="CuentasPorCobrarPagoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

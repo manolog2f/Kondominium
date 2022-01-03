@@ -114,4 +114,13 @@ namespace Kondominium_Entities
         Z
 
     }
+
+    public enum MetodoPago
+    {
+        TarjetaCredito = 1,
+        TarjetaDebito = 2,
+        Transferencia = 3,
+        Cheque = 4,
+        Efectivo = 5
+    }
 }

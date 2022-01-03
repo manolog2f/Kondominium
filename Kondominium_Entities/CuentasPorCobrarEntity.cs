@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Kondominium_Entities
 {
@@ -29,12 +29,16 @@ namespace Kondominium_Entities
         /// <summary>
         /// Fecha de Emision
         /// </summary>
-        [DisplayName("Fecha de Emision")]
+        [DataType(DataType.Date)]
+        [DisplayName("Fecha de Emision"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime FechaDeEmision { get; set; }
         /// <summary>
         /// Fecha de Vencimiento
         /// </summary>
-        [DisplayName("Fecha de Vencimiento")]
+        [DataType(DataType.Date)]
+        [DisplayName("Fecha de Vencimiento"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime FechaDeVencimiento { get; set; }
         /// <summary>
         /// Periodo de Facturado
@@ -78,6 +82,10 @@ namespace Kondominium_Entities
         public string ModificadoPor { get; set; }
 
         public bool Eliminado { get; set; }
-
+        /// <summary>
+        /// Id de PRopiedad
+        /// </summary>
+        [DisplayName("Id de Propiedad")]
+        public int PropiedadId { get; set; }
     }
 }

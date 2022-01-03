@@ -32,10 +32,31 @@ namespace Kondominium_BL
             return query.ToList();
         }
 
-        public CuentasPorCobrarDetalleEntity GetById(string Id)
+        public List<CuentasPorCobrarDetalleEntity> GetByVaucher(string Id)
         {
             var query = from cd in contex.cuentasporcobrardetalle
-                        where cd.VaucherNumber == Id
+                        where cd.VaucherNumber == Id && cd.Eliminado != true
+                        select new CuentasPorCobrarDetalleEntity
+                        {
+                            VaucherNumber = cd.VaucherNumber,
+                            DetalleId = cd.DetalleId,
+                            ProductoId = cd.ProductoId,
+                            Descripcion = cd.Descripcion,
+                            Monto = cd.Monto,
+                            FechaDeCreacion = cd.FechaDeCreacion,
+                            FechaDeModificacion = cd.FechaDeModificacion,
+                            CreadoPor = cd.CreadoPor,
+                            ModificadoPor = cd.ModificadoPor,
+                            Eliminado = cd.Eliminado,
+                        };
+
+            return query.ToList();
+        }
+
+        public CuentasPorCobrarDetalleEntity GetByDetalleId(int DetalleId)
+        {
+            var query = from cd in contex.cuentasporcobrardetalle
+                        where cd.DetalleId == DetalleId 
                         select new CuentasPorCobrarDetalleEntity
                         {
                             VaucherNumber = cd.VaucherNumber,
@@ -59,7 +80,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.VaucherNumber == model.VaucherNumber).FirstOrDefault();
+                    var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.VaucherNumber == model.VaucherNumber && x.DetalleId == model.DetalleId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.cuentasporcobrardetalle();
 
 
@@ -73,16 +94,16 @@ namespace Kondominium_BL
 
 
                     modlNew.VaucherNumber = model.VaucherNumber;
-                    modlNew.DetalleId = model.DetalleId;
+                    //modlNew.DetalleId = model.DetalleId;
                     modlNew.ProductoId = model.ProductoId;
-                    modlNew.Descripcion = model.Descripcion;
+                    modlNew.Descripcion =  new ProductosDatos().GetById(model.ProductoId).Descripcion;
                     modlNew.Monto = model.Monto;
                    
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 
-                    if (string.IsNullOrEmpty(modlNew.VaucherNumber))
+                    if (modlNew.DetalleId == 0)
                     {
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
@@ -91,10 +112,11 @@ namespace Kondominium_BL
                     }
                     ContextP.SaveChanges();
 
-                    model.VaucherNumber = modlNew.VaucherNumber;
+                    model.DetalleId = modlNew.DetalleId;
                 }
 
-                return (GetById(model.VaucherNumber), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                UpdateTotalHeader(model.VaucherNumber);
+                return (GetByDetalleId(model.DetalleId), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {
@@ -103,6 +125,22 @@ namespace Kondominium_BL
             }
 
         }
+
+        public void UpdateTotalHeader(string VaucherNumber)
+        {
+            var det = ((decimal)contex.cuentasporcobrardetalle.Where(x => x.VaucherNumber == VaucherNumber && x.Eliminado != true).Sum(x => x.Monto));
+            using (var ContextP = new Kondominium_DAL.KEntities())
+            {
+                var modlExist = ContextP.cuentasporcobrar.Where(x => x.VaucherNumber == VaucherNumber).FirstOrDefault();
+
+                if (modlExist != null)
+                {
+                    modlExist.Total = det;
+                    ContextP.SaveChanges();
+                }
+            }
+        }
+
         public Resultado Delete(CuentasPorCobrarDetalleEntity model)
         {
             try
@@ -127,16 +165,15 @@ namespace Kondominium_BL
 
             }
         }
-        public Resultado SetDelete(string Id, string UserId)
+        public Resultado SetDelete(int Id, string UserId)
         {
             try
             {
+                string Vaucher = "";
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
 
-                    var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.VaucherNumber == Id).FirstOrDefault();
-                    // var modlNew = new Kondominium_DAL.cuentasporcobrardetalle();
-
+                    var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.DetalleId == Id).FirstOrDefault();
 
                     if (modlExist == null)
                         return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
@@ -145,9 +182,12 @@ namespace Kondominium_BL
 
                     modlExist.FechaDeModificacion = DateTime.Now;
                     modlExist.ModificadoPor = UserId;
+
+                    Vaucher = modlExist.VaucherNumber;
                     ContextP.SaveChanges();
                 }
 
+                UpdateTotalHeader(Vaucher);
                 return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
             }
             catch (Exception ex)

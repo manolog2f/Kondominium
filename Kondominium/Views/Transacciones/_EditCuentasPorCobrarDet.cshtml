@@ -1,0 +1,106 @@
+﻿@model Kondominium_Entities.CuentasPorCobrarDetalleEntity
+
+<style>
+    .Data-table td {
+        /*-- word-wrap: normal;*/
+        white-space: nowrap !important;
+    }
+</style>
+
+<script>
+
+    function SubmitUploadDetCXC() {
+
+        var form = document.getElementById("frmPartialUDocDet");
+        if (form.getAttribute("enctype") === "multipart/form-data") {
+            loading();
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    //debugger;
+                    var x = xhr.response;
+
+                    console.log(x);
+                    var t = JSON.parse(xhr.response);
+                    //var t1 = JSON.parse(t['Mensaje']);
+                    //debugger;
+                    var VaucherNumber = t['VaucherNumber']; // xhr.response.idTrans;
+                    var mensaje = t.mensaje.Mensaje; // xhr.response.mensaje.Mensaje;
+                    var idMensaje = t.mensaje.Codigo; //xhr.response.mensaje.CodigoMensaje;
+                    //debugger;
+                    setTimeout(function () {
+                        //Tu logica para redireccionar a la pagina con el ID
+
+                        if (VaucherNumber != null) {
+
+                            hide_loading();
+                            var getUrl = window.location;
+                            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                            var url = "";
+                            url = baseUrl + "/EditCuentasPorCobrar?VaucherNumber=" + VaucherNumber + "&codigo=" + idMensaje;
+                            location.href = url;
+                        }
+                    }, 3000);
+
+                }
+
+            }
+            xhr.send(new FormData(form));
+
+
+        }
+    }
+
+</script>
+
+
+
+<div class="form-horizontal">
+    <h4>Detalle</h4>
+    <hr />
+
+    @using (Ajax.BeginForm("_EditCuentasPorCobrarDetalleUpdate", "Transacciones", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd1", LoadingElementId = "loading" }, new { @id = "frmPartialUDocDet", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                @Html.HiddenFor(model => model.VaucherNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.DetalleId, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductoId, htmlAttributes: new { @class = "control-labelcol-md" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ProductoId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.ProductoId,
+                                          new SelectList(new Kondominium_BL.ProductosDatos().GetAll(), "ProductoId", "Descripcion"),
+                                          "Seleccione el Producto",
+                                          new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-labelcol-md" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-primary" onclick="SubmitUploadDetCXC()">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    Agregar Detalle
+                </button>
+            </div>
+        </div>
+
+    }
+
+</div>

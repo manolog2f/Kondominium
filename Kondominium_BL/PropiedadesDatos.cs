@@ -46,6 +46,42 @@ namespace Kondominium_BL
             return query.ToList();
         }
 
+        public List<PropiedadesEntity> GetAllByClienteId(int ClienteId,  bool VerEliminado = false)
+        {
+            var query = from p in  context.propiedades
+                        join cp in context.clientepropiedad on p.PropiedadId equals cp.PropiedadId
+                        where p.Eliminado == (VerEliminado?p.Eliminado:false) && cp.ClienteId == ClienteId
+                        select new PropiedadesEntity
+                           {
+                                PropiedadId = p.PropiedadId,
+                                TipoDePropiedad = p.TipoDePropiedad,
+                                Descripcion = p.Descripcion,
+                                Casa = p.Casa,
+                                PoligonoId = p.PoligonoId,
+                                ArancelId = p.ArancelId,
+                                FechaDeCreacion = p.FechaDeCreacion,
+                                FechaDeModificacion = p.FechaDeModificacion,
+                                CreadoPor = p.CreadoPor,
+                                ModificadoPor = p.ModificadoPor,
+                                Eliminado = p.Eliminado,
+                                TipoDePropiedadDesc = ((TipodePropiedades)p.TipoDePropiedad).ToString(),
+                                ArancelDescripcion = p.aranceles.Descripcion,
+                                PoligonoDescripcion = p.poligonos.PoligonoDescripcion,
+                                AvenidaDescripcion = p.avenida1.AvenidaDescripcion,
+                                CalleDescripcion = p.calles.CalleDescripcion,
+                                SendaDescripcion = p.sendas.SendaDescripcion,
+                                Calle = p.Calle,
+                                Avenida = p.Avenida,
+                                Senda = p.Senda,
+                                CasaLetra = p.CasaLetra
+                            };
+
+
+            return query.ToList();
+        }
+
+
+
         public PropiedadesEntity GetById(int Id)
         {
             var query = context.propiedades.Where(x=> x.PropiedadId ==  Id).

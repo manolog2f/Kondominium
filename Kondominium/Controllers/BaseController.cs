@@ -100,14 +100,18 @@ namespace Kondominium.Controllers
                 case 0:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Exito;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Procesado con Exito" : Mensaje;
+                    ViewBag.Successful = msg.Mensaje;
                     break;
                 case 9999:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Error;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
+                    ViewBag.Error = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
                     break;
                 case 5000:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Warning;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Proceso ejecutado, pero existe una advertencia" : Mensaje;
+
+                    ViewBag.Warning = msg.Mensaje;
                     break;
                 case 9000:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Log;
@@ -124,6 +128,7 @@ namespace Kondominium.Controllers
                 case 96:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.No_Existe;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro no Existe" : Mensaje;
+                    ViewBag.Warning = msg.Mensaje;
                     break;
             }
 

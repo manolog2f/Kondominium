@@ -134,16 +134,34 @@
     <Compile Include="config.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="configcobrosmensauldet.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="configcobrosmensual.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="contratos.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="contratosdetalle.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="cuentasgeneradas.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cuentasgeneradasdetalle.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cuentasgeneradasdetalleb.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="cuentasporcobrar.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cuentasporcobrardetalle.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cuentasporcobrarpago.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cxctype.cs">

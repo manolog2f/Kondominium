@@ -10,7 +10,6 @@ namespace Kondominium_BL
    public class CuentasPorCobrarDatos
     {
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
-
         public List<CuentasPorCobrarEntity> GetAll(bool VerEliminado = false)
         {
             var query = from cc in contex.cuentasporcobrar
@@ -31,6 +30,7 @@ namespace Kondominium_BL
                             CreadoPor =cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
+                            PropiedadId = cc.PropiedadId
                         };
 
 
@@ -58,6 +58,7 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
+                            PropiedadId = cc.PropiedadId
                         };
 
             return query.FirstOrDefault();
@@ -81,24 +82,28 @@ namespace Kondominium_BL
                         modlNew = modlExist;
                     }
 
-
-                    modlNew.VaucherNumber = model.VaucherNumber;
+                    //diciembre2021
+                    //NOviembre
+                    //Septiembre2021
+                    //modlNew.VaucherNumber = model.VaucherNumber;
                     modlNew.ClienteId = model.ClienteId;
                     modlNew.TipoCxC = model.TipoCxC;
                     modlNew.FechaDeEmision = model.FechaDeEmision;
                     modlNew.FechaDeVencimiento = model.FechaDeVencimiento;
                     modlNew.PeriodoFacturado = model.PeriodoFacturado;
                     modlNew.Total = model.Total;
-                    modlNew.NPE = model.NPE;
-                    modlNew.BRCode = model.BRCode;
+                    modlNew.NPE = model.NPE==null?"": model.NPE;
+                    modlNew.BRCode = model.BRCode==null?"": model.BRCode;
                     
                     modlNew.FechaDeModificacion = DateTime.Now;
-                    
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
+                    modlNew.Estado = 0;
+                    modlNew.PropiedadId = model.PropiedadId;
 
                     if (string.IsNullOrEmpty(modlNew.VaucherNumber))
                     {
+                        modlNew.VaucherNumber = new CxcTypeDatos().GenerateNextNumber(model.TipoCxC);
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
 
@@ -157,6 +162,12 @@ namespace Kondominium_BL
                     if (modlExist == null)
                         return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
 
+
+                    if (modlExist.Estado == 4)
+                    {
+                        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El Registro ha sido Anulado no puede ser Actualizado" });
+                    }
+
                     modlExist.Eliminado = true;
 
                     modlExist.FechaDeModificacion = DateTime.Now;
@@ -173,5 +184,46 @@ namespace Kondominium_BL
             }
 
         }
+
+        public Resultado SetEstado(string Id, string UserId, int Estado)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+
+                    var modlExist = ContextP.cuentasporcobrar.Where(x => x.VaucherNumber == Id).FirstOrDefault();
+                    // var modlNew = new Kondominium_DAL.cuentasporcobrar();
+
+
+                    if (modlExist != null)
+                    {
+                        if (modlExist.Eliminado == true)
+                            return ( new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro ha sido marcado como eliminado, no se puede actualizar" });
+                    }
+
+                    if (modlExist.Estado == 4)
+                    {
+                        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El Registro ha sido Anulado no puede ser Actualizado" });
+                    }
+
+                    modlExist.Estado = Estado;
+
+                    modlExist.FechaDeModificacion = DateTime.Now;
+                    modlExist.ModificadoPor = UserId;
+                    ContextP.SaveChanges();
+                }
+
+                return (new Resultado { Codigo = 0, Mensaje = "Registro "+  (Estado == 3?"Contabilizado": (Estado == 4?"Anulado":"procesado"))  +" con exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro procesar el Registro \n" + ex.Message });
+            }
+
+        }
+
+        //3Contabilizado // 4 Anulado
     }
 }

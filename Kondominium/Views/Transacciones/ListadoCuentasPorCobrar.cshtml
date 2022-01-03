@@ -55,31 +55,31 @@
                         @foreach (var item in Model)
                         {
 
-                        <tr>
-                            <td>
-                                @Html.ActionLink(item.VaucherNumber.ToString(), "EditCuentaPorPagar", new { VaucherNumber = item.VaucherNumber })
-                            </td>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TipoCxC)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeEmision)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeVencimiento)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PeriodoFacturado)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Total)
-                            </th>
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.VaucherNumber.ToString(), "EditCuentasPorCobrar", new { VaucherNumber = item.VaucherNumber })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.ClienteId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.TipoCxC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.FechaDeEmision)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.FechaDeVencimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.PeriodoFacturado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Total)
+                                </td>
 
 
-                        </tr>
+                            </tr>
                         }
                     </tbody>
                 </table>

@@ -35,5 +35,15 @@ namespace Kondominium.Models
         public Kondominium_Entities.Resultado mensaje { get; set; }
     }
 
+
+    public class jsModelCXC
+    {
+        public string JsFuntion { get; set; }
+        public string VaucherNumber { get; set; }
+        public int  ProductoId { get; set; }
+        public decimal Monto { get; set; }
+        public Kondominium_Entities.Resultado mensaje { get; set; }
+    }
+
 }
 

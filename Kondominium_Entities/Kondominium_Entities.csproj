@@ -50,8 +50,14 @@
     <Compile Include="ClientePropiedadDetalleEntity.cs" />
     <Compile Include="ClientePropiedadDocsEntity.cs" />
     <Compile Include="ClientePropiedadEntity.cs" />
+    <Compile Include="ConfigCobrosMensualDetEntity.cs" />
+    <Compile Include="ConfigCobrosMensualEntity.cs" />
     <Compile Include="ContratosDetalleEntity.cs" />
     <Compile Include="ContratosEntity.cs" />
+    <Compile Include="CuentasGeneradasDetalleBEntity.cs" />
+    <Compile Include="CuentasGeneradasDetalleEntity.cs" />
+    <Compile Include="CuentasGeneradasEntity.cs" />
+    <Compile Include="CuentasPorCobrarPagoEntity.cs" />
     <Compile Include="CxcEntity.cs" />
     <Compile Include="DocumentEntity.cs" />
     <Compile Include="LugaresEntity.cs" />

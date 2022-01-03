@@ -35,6 +35,20 @@ namespace Kondominium_BL
 
             return query.FirstOrDefault();
         }
+        public string GenerateNextNumber(string Id)
+        {
+            string Voucher = "";
+
+            var dato = GetById(Id);
+            Save(new CxcTypeEntity { Abrev = dato.Abrev, TypeName = dato.TypeName, Corr = dato.Corr + 1 });
+
+            Voucher = string.Concat("0000000000", dato.Corr.ToString());
+            Voucher = Voucher.Substring(Voucher.Length - 10, 10);
+            Voucher = string.Concat(dato.Abrev, Voucher);
+
+            return Voucher;
+        }
+        
 
         public (CxcTypeEntity, Resultado) Save(CxcTypeEntity model)
         {

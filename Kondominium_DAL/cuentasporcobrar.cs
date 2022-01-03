@@ -35,10 +35,13 @@ namespace Kondominium_DAL
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
         public Nullable<int> Estado { get; set; }
+        public Nullable<decimal> Pagado { get; set; }
+        public int PropiedadId { get; set; }
     
         public virtual clientes clientes { get; set; }
         public virtual cxctype cxctype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrardetalle> cuentasporcobrardetalle { get; set; }
+        public virtual propiedades propiedades { get; set; }
     }
 }

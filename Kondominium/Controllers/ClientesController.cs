@@ -10,9 +10,11 @@ using System.Web.UI;
 
 namespace Kondominium.Controllers
 {
+   
     public class ClientesController : BaseController
     {
 
+        ZoomTechLog.Log4NetMR.classClsRegistrarLog log = new ZoomTechLog.Log4NetMR.classClsRegistrarLog();
         /* Listado clientes*/
 
         [HttpGet]
@@ -333,6 +335,9 @@ namespace Kondominium.Controllers
 
                 this.Mensajes(respM);
                 ViewBag.Message = "Error al cargar el Archivo!!" + ex;
+
+
+                log.LogExeption("Error Almacenar Archivo", ZoomTechLog.LogType.Error, ex);
 
                 return Json(mdl);
             }

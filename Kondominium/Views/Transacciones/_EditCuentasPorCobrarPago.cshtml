@@ -1,0 +1,152 @@
+﻿@model Kondominium_Entities.CuentasPorCobrarPagoEntity
+
+<style>
+    .Data-table td {
+        /*-- word-wrap: normal;*/
+        white-space: nowrap !important;
+    }
+</style>
+
+<script>
+
+    function SubmitUploadCXCPago() {
+
+        var form = document.getElementById("frmPartialUDocPago");
+        if (form.getAttribute("enctype") === "multipart/form-data") {
+            loading();
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    //debugger;
+                    var x = xhr.response;
+
+                    console.log(x);
+                    var t = JSON.parse(xhr.response);
+                    //var t1 = JSON.parse(t['Mensaje']);
+                    //debugger;
+                    var VaucherNumber = t['VaucherNumber']; // xhr.response.idTrans;
+                    var mensaje = t.mensaje.Mensaje; // xhr.response.mensaje.Mensaje;
+                    var idMensaje = t.mensaje.Codigo; //xhr.response.mensaje.CodigoMensaje;
+                    //debugger;
+                    setTimeout(function () {
+                        //Tu logica para redireccionar a la pagina con el ID
+
+                        if (VaucherNumber != null) {
+
+                            hide_loading();
+                            var getUrl = window.location;
+                            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                            var url = "";
+                            url = baseUrl + "/EditCuentasPorCobrar?VaucherNumber=" + VaucherNumber + "&codigo=" + idMensaje;
+                            location.href = url;
+                        }
+                    }, 3000);
+
+                }
+
+            }
+            xhr.send(new FormData(form));
+
+
+        }
+    }
+
+</script>
+
+
+
+<div class="form-horizontal">
+
+    @using (Ajax.BeginForm("_EditCuentasPorCobrarPagoUpdate", "Transacciones", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd2", LoadingElementId = "loading" }, new { @id = "frmPartialUDocPago", enctype = "multipart/form-data" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+
+
+
+        @Html.HiddenFor(model => model.CuentasPorCobrarPagoId, new { htmlAttributes = new { @class = "form-control" } })
+
+        @Html.HiddenFor(model => model.VaucherNumber, new { htmlAttributes = new { @class = "form-control" } })
+
+
+        @Html.HiddenFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MetodoPago, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                     
+                        @Html.DropDownListFor(model => model.MetodoPago,
+                                                new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
+                                                {
+                                                    Text = x.ToString()
+                                                ,
+                                                    Value = x.ToString()
+                                                }),
+                                                "Seleccione El Metodo de pago",
+                                              new { @class = "form-control" })
+
+
+                        @Html.ValidationMessageFor(model => model.MetodoPago, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReferenciaPago, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReferenciaPago, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReferenciaPago, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-primary" onclick="SubmitUploadCXCPago()">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    Almacenar Pago
+                </button>
+            </div>
+        </div>
+    </div>
+    }

@@ -106,10 +106,16 @@
     <Compile Include="ClientePropiedadDocsDatos.cs" />
     <Compile Include="ClientesDatos.cs" />
     <Compile Include="ClientesPropiedadDetalleDatos.cs" />
+    <Compile Include="ConfigCobrosMensualDatos.cs" />
+    <Compile Include="ConfigCobrosMensualDetDatos.cs" />
     <Compile Include="ContratoDatos.cs" />
     <Compile Include="ContratoDetalleDatos.cs" />
+    <Compile Include="CuentasGeneradasDatos.cs" />
+    <Compile Include="CuentasGeneradasDetalleBDatos.cs" />
+    <Compile Include="CuentasGeneradasDetalleDatos.cs" />
     <Compile Include="CuentasPorCobrarDatos.cs" />
     <Compile Include="CuentasPorCobrarDetalleDatos.cs" />
+    <Compile Include="CuentasPorCobrarPagoDatos.cs" />
     <Compile Include="CxcDatos.cs" />
     <Compile Include="EmpresaDatos.cs" />
     <Compile Include="GeneradorCodigoData.cs" />

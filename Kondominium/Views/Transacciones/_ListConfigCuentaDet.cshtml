@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Kondominium_Entities.ConfigCobrosMensualDetEntity>
+
+@{
+    ViewBag.Title = "";
+    Layout = "";
+}
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductoId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductoDescripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Monto)
+                    </th>
+                    <th>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductoDescripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar Registro", "DeleteConfigCuentaDet", new { ProductoId = item.ProductoId })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
