@@ -10,6 +10,7 @@ namespace Kondominium.Controllers
 {
     public class TransaccionesController : BaseController
     {
+
         /* Listado de CXC*/
         [HttpGet]
         public ActionResult ListadoCuentasPorCobrar()
@@ -382,10 +383,109 @@ namespace Kondominium.Controllers
                 return RedirectToAction("EditConfigCuenta", new { codigo = ((int)model.Codigo) });
         }
 
-
         #endregion
 
+        #region "Generacion de Recibos Manual"
+        [HttpGet]
+        public ActionResult GenerarRecibos(string Periodo, int? CodigoR)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
 
+            var Codigo = new Resultado();
+
+            if (CodigoR != null)
+            {
+                Codigo.Codigo = (CodigosMensaje)CodigoR;
+                
+            }
+
+           var model = new Kondominium_BL.CuentasGeneradasDatos().GetById(Periodo);
+
+            if (model == null)
+            {
+                model = new CuentasGeneradasEntity();
+
+                var config = new Kondominium_BL.ConfigCobrosMensualDatos().GetById(1);
+                var FechaGenerar = new DateTime();
+                var FechaVencimiento = new DateTime();
+                var periodoActual = (DateTime.Now.ToString("MMMM") + ' ' + DateTime.Now.Year.ToString());
+
+                if (DateTime.Now.Month == 2 && (config.DiaDeGeneracion == 30 || config.DiaDeGeneracion == 29))
+                {
+                    FechaGenerar = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", "3", "-", "1"));
+                    FechaGenerar = FechaGenerar.AddDays(-1);
+                }
+                else
+                { 
+                    FechaGenerar = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaDeGeneracion.ToString()));                  
+                }
+
+                if (DateTime.Now.Month == 2 && (config.DiaVencimiento == 30 || config.DiaVencimiento == 29))
+                {
+                    FechaVencimiento = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", "3", "-", "1"));
+                    FechaVencimiento = FechaVencimiento.AddDays(-1);
+                }
+                else {
+
+
+                    FechaVencimiento = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaVencimiento.ToString()));
+                }
+
+                if (FechaGenerar > FechaVencimiento)
+                {
+                    FechaVencimiento = FechaVencimiento.AddDays(30);
+                }
+
+                model = new CuentasGeneradasEntity { PeriodoGenerado = periodoActual, FechaDeGeneracion = FechaGenerar, FechaDeVencimiento = FechaVencimiento };
+            }
+           
+
+
+
+
+            if (Codigo.Codigo != CodigosMensaje.Null)
+            {
+                Mensajes(Codigo);
+            }
+            ModelState.Clear();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult GenerarRecibos(CuentasGeneradasEntity model)
+        {
+            
+            return View(model);
+        }
+
+
+        public ActionResult ProcesoGenerarRecibos(string PeriodoGenerado, CuentasGeneradasEntity model)
+        {
+
+            /// Contar antes si el periodo ha sido generado para no volver a generar y arrojar un mensaje 
+            
+            if (! string.IsNullOrEmpty( PeriodoGenerado))
+            {
+                // Validar si el periodo ha sido Generado Antes
+                if (new Kondominium_BL.CuentasGeneradasDatos().ValidaGeneradas(PeriodoGenerado))
+                {
+                    ViewBag.MensajeT = "Este periodo ya fue generado, no puede ser generado de nuevo";
+                    return RedirectToAction("GenerarRecibos", new { Periodo = PeriodoGenerado, CodigoR = (int)CodigosMensaje.Error, });
+                }
+
+                //Console.WriteLine(form);
+                //var model = new Kondominium_BL.CuentasPorCobrarDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 3);
+
+                //return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)model.Codigo), Mensaje = model.Mensaje });
+            }
+
+            var d = new Resultado { Codigo = CodigosMensaje.Warning, Mensaje = "Prueba" };
+ 
+            return RedirectToAction("GenerarRecibos",  new {  CodigoR = (int)d.Codigo, Periodo = PeriodoGenerado  });
+        }
+
+        #endregion
 
 
         public List<CxcTypeEntity> ListTiposTransaccion()

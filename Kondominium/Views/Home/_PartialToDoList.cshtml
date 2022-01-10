@@ -1,136 +1,94 @@
-﻿<link href="~/Content/ToDo.css" rel="stylesheet" />
+﻿@model IEnumerable<Kondominium_Entities.TareasEntity>
+
+<link href="~/Content/ToDo.css" rel="stylesheet" />
+
+
+@*Alta = 1,
+    Media = 2,
+    Normal = 3*@
 
 <div class="container page-todo bootstrap snippets bootdeys">
-    <div class="col-sm-7 tasks">
+    <div class="col-sm tasks">
         <div class="task-list">
-            <h1>Tasks</h1>
-            <div class="priority high"><span>high priority</span></div>
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div>1 day</div>
-                </div>
-            </div>
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task high last">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div>1 day</div>
-                </div>
-            </div>
+            <h3>  <i class="fas fa-clipboard-check"></i>&nbsp; Tareas</h3>
 
-            <div class="priority medium"><span>medium priority</span></div>
+            <div class="priority high"><span>Prioridad Alta</span></div>
+            @{
+                var PAlta = Model.Where(x => x.Prioridad == 1).ToList();
+                var conta = PAlta.Count();
 
-            <div class="task medium">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task medium last">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
+                foreach (var item in PAlta)
+                {
+                    var className = "task high";
+                    if (conta <= 1)
+                    {
+                        className = "task high last";
+                    }
+                    <div class="@className">
+                        <div class="desc">
+                            <div class="title"> @item.Titulo </div>
+                            <div> @item.Descripcion </div>
+                        </div>
+                        <div class="time">
+                            <div class="date"> @item.FechaDeEjecucion </div>
+                            @*<div>  </div>*@
+                        </div>
+                    </div>
 
-            <div class="priority low"><span>low priority</span></div>
+                    conta -= conta;
 
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-                    <div> 1 day</div>
-                </div>
-            </div>
+                }
+
+            }
+            <div class="priority medium"><span>Prioridad Media</span></div>
+
+
+            @{
+                var PMEdio = Model.Where(x => x.Prioridad == 2).ToList();
+                conta = PMEdio.Count();
+
+                foreach (var item in PMEdio)
+                {
+                    var className = "task medium";
+                    if (conta <= 1)
+                    {
+                        className = "task medium last";
+                    }
+                    <div class="@className">
+                        <div class="desc">
+                            <div class="title"> @item.Titulo </div>
+                            <div> @item.Descripcion </div>
+                        </div>
+                        <div class="time">
+                            <div class="date"> @item.FechaDeEjecucion </div>
+                            @*<div>  </div>*@
+                        </div>
+                    </div>
+                    conta -= conta;
+                }
+            }
+            <div class="priority low"><span>Prioridad Baja</span></div>
+
+
+            @{
+                var PBAjo = Model.Where(x => x.Prioridad == 3).ToList();
+                conta = PBAjo.Count();
+
+                foreach (var item in PBAjo)
+                {
+                    <div class="task low">
+                        <div class="desc">
+                            <div class="title"> @item.Titulo </div>
+                            <div> @item.Descripcion </div>
+                        </div>
+                        <div class="time">
+                            <div class="date"> @item.FechaDeEjecucion </div>
+                            @*<div>  </div>*@
+                        </div>
+                    </div>
+                    conta -= conta;
+                }
+            }
             <div class="clearfix"></div>
         </div>
     </div>

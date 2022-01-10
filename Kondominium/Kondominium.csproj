@@ -598,7 +598,6 @@
     <Content Include="Views\Propiedades\ListadoSendas.cshtml" />
     <Content Include="Views\Propiedades\EditSendas.cshtml" />
     <Content Include="Views\Propiedades\EditPropiedades.cshtml" />
-    <Content Include="Views\Home\_PartialCalendar.cshtml" />
     <Content Include="Views\Home\_PartialToDoList.cshtml" />
     <Content Include="Views\Clientes\EditClientes.cshtml" />
     <Content Include="Views\Clientes\ListadoClientes.cshtml" />
@@ -630,6 +629,8 @@
     <Content Include="Views\Transacciones\EditConfigCuenta.cshtml" />
     <Content Include="Views\Transacciones\_ListConfigCuentaDet.cshtml" />
     <Content Include="Views\Transacciones\_EditAddConfigCuentaDet.cshtml" />
+    <Content Include="Views\Transacciones\GenerarRecibos.cshtml" />
+    <Content Include="Views\Home\_PartialCalendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

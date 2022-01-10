@@ -42,6 +42,8 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
+        
+
         public (ConfigCobrosMensualEntity, Resultado) Save(ConfigCobrosMensualEntity model)
         {
             try

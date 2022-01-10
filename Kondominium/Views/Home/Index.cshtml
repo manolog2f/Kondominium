@@ -3,6 +3,52 @@
     ViewBag.Title = "Inicio";
 }
 
+<script>
+    // Cargaremos el calendario la primera vez, con data generica.
+    $(document).ready(function () {
+
+        loading();
+
+            $.get('@Url.Action("_PartialCalendar", "Home")', { FechaInicio: null, FechaFin: null })
+                .done(function (data) {
+                    $("#PartialCalendar").html(data);
+                });
+
+    });
+
+
+
+   var submitCalendarFuntion;
+   function SubmitFilterCalendar()
+    {
+
+        var form = document.getElementById("frmPartialCalendar");
+        if (form.getAttribute("enctype") === "multipart/form-data")
+        {
+            loading();
+
+            var vInicio = document.getElementById("Inicio").value;
+            var vFin = document.getElementById("Fin").value;
+
+            $.get('@Url.Action("_PartialCalendar", "Home")', { FechaInicio: vInicio, FechaFin: vFin })
+                .done(function (data) {
+                    $("#PartialCalendar").html(data);
+                });
+
+
+              @*$.get('@Url.Action("_PartialCalendarPost", "Home")', { FechaInicio: vInicio, FechaFin: vFin })
+                .done(function (data) {
+                    $("#PartialCalendar").html(data);
+                });*@
+        }
+    }
+
+
+</script>
+
+
+
+
 <div class="jumbotron mt-2 jumbotron-la-hacienda mb-2">
     <a href="@Url.Action("Index", "Home")" class="logo mr-auto">
         <img src="~/Content/images/logo.png" class="img-fluid" />
@@ -20,21 +66,78 @@
 </div>
 
 <div class="la-hacienda-page">
-    <h2 class="mt-0 mb-2">
-        Komdomioniun
-    </h2>
-
     <div class="row">
         <div class="col-xl-6">
             <div class="card mb-4">
 
-                @Html.Partial("_PartialCalendar")
+                <h3>  <i class="fas fa-calendar-week"></i>&nbsp; Calendario</h3>
 
+
+                @using (Ajax.BeginForm("_PartialCalendarPost", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }, new { @id = "frmPartialCalendar", enctype = "multipart/form-data" }))
+                {
+
+                    <div>
+                        @{
+                            var Incio = new DateTime();
+                            var Final = new DateTime();
+
+                            Incio = DateTime.Now.AddDays(-1);
+                            Final = DateTime.Now.AddDays(35);
+
+                            if (ViewData["FInicio"] != null)
+                            {
+                                Incio = DateTime.Parse(ViewData["FInicio"].ToString());
+                                Final = DateTime.Parse(ViewData["FFin"].ToString());
+                            }
+                            <br />
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.Label("Desde", htmlAttributes: new { @class = "control-label col-md" })
+                                        <div class="col-md-10">
+                                            @Html.Editor(Incio.ToShortDateString(), new { htmlAttributes = new { @class = "form-control", type = "date", id = "Inicio", value = Incio.ToShortDateString() } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        @Html.Label("Hasta", htmlAttributes: new { @class = "control-label col-md" })
+                                        <div class="col-md-10">
+                                            @Html.Editor(Final.ToShortDateString(), new { htmlAttributes = new { @class = "form-control", type = "date", id = "Fin", value = Final.ToShortDateString() } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="container" style="margin-left:unset !important">
+
+                                            <div class="col-md-10">
+                                                <button type="button" class="btn btn-outline-info" onclick="SubmitFilterCalendar()">
+                                                    <i class="fa fa-filter" aria-hidden="true"></i>
+                                                    Filtrar Fechas
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                    <div>
+                        <div class="card-body" id="PartialCalendar">
+
+
+                        </div>
+                    </div>
+                }
             </div>
         </div>
         <div class="col-xl-6">
             <div class="card mb-4">
-                @Html.Partial("_PartialToDoList")
+                @Html.Partial("_PartialToDoList", new Kondominium_BL.TareasDatos().GetAll())
             </div>
         </div>
     </div>

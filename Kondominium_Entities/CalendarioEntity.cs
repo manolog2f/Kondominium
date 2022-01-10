@@ -33,5 +33,9 @@ namespace Kondominium_Entities
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
         public bool Eliminado { get; set; }
+        public string ClienteNombre { get; set; }
+        public string VPropiedad { get; set; }
+
+        public string VLugar { get; set; }
     }
 }

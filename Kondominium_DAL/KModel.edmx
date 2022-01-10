@@ -69,7 +69,7 @@
           <Property Name="ClienteId" Type="int" />
           <Property Name="PropiedadId" Type="int" />
           <Property Name="TituloEvento" Type="varchar" MaxLength="25" />
-          <Property Name="DescripcionEvento" Type="varchar" MaxLength="25" />
+          <Property Name="DescripcionEvento" Type="varchar" MaxLength="150" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
           <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
@@ -1421,7 +1421,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="ClienteId" Type="Int32" />
           <Property Name="PropiedadId" Type="Int32" />
           <Property Name="TituloEvento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="DescripcionEvento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionEvento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeCreacion" Type="DateTime" />
           <Property Name="FechaDeModificacion" Type="DateTime" />
           <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />

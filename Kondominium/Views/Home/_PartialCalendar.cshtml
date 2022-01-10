@@ -1,173 +1,120 @@
-﻿@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>*@
-<!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<!------ Include the above in your HEAD tag ---------->
+﻿@model IEnumerable<Kondominium_Entities.CalendarioEntity>
 
-<link href="~/Content/Calendar.css" rel="stylesheet" />
 
-<table>
-    <summary><strong>February</strong> 2014</summary>
-    <thead>
+<table class="table">
+    
+    @foreach (var item in Model)
+    {
+
         <tr>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-            <th>Sun</th>
+            <td>
+
+                @*<div class="col-xxl-3 col-md-6 mb-5">*@
+                    <div class="card card-raised bg-info text-white">
+                        <div class="card-body px-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="me-2">
+                                    <div class="display-5 text-white"> <h4> @Html.DisplayFor(modelItem => item.TituloEvento)  </h4></div>
+                                    <div class="card-text"> @Html.DisplayFor(modelItem => item.DescripcionEvento) </div>
+
+                                    <div class="card-text"> <i class="fas fa-hotel"> </i> @Html.DisplayFor(modelItem => item.VLugar) </div>
+                                    <br/>
+                                </div>
+                                <div class="icon-circle bg-white-50 text-info"><i class="material-icons"><i class="fas fa-calendar-alt"></i></i></div>
+                            </div>
+
+                            
+                            <div class="card-text">
+                                <div class="d-inline-flex align-items-center">
+                                    <i class="fas fa-calendar-day"> </i>
+                                    <div class="caption">
+                                        &nbsp  @Convert.ToDateTime(item.Fecha).ToString(" dd/MM/yyyy")
+                                    </div>
+                                </div>
+                                &nbsp &nbsp &nbsp
+                                <div class="d-inline-flex align-items-center">
+                                    <i class="fas fa-clock"></i>
+                                    @{
+                                        var fInicio = " " + item.HoraInicio.ToString();
+                                        var fFin = item.HoraFin.ToString();
+                                        <div class="caption fw-500 me-2"> &nbsp @fInicio - @fFin </div>
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div class="card-text">
+                                <div class="d-inline-flex align-items-center">
+                                    <i class="fas fa-users"> </i>
+                                    <div class="caption">
+                                        &nbsp  @Html.DisplayFor(modelItem => item.ClienteNombre)
+                                    </div>
+                                </div>
+                                &nbsp &nbsp &nbsp
+                                <div class="d-inline-flex align-items-center">
+                                    <i class="fas fa-warehouse"> </i>
+                                    <div class="caption">
+                                        &nbsp  @Html.DisplayFor(modelItem => item.VPropiedad)
+                                    </div>
+                                </div>
+                            </div>
+
+                     
+                            
+                        </div>
+                    </div>
+                @*</div>*@
+
+
+
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.CalendarioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LugarId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropiedadId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TituloEvento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionEvento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModificadoPor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Eliminado)
+                </td>*@
+
+
+
+
         </tr>
-    </thead>
-    <tr>
-        <td>
-            <span class="date">
-                27
-                <ul>
-                    <li>
-                        <span class="event">Bus Stop</span>
-                        <span class="time">4 pm</span>
-                    </li>
-                </ul>
-            </span>
-        </td>
-        <td>
-            <span class="date">28</span>
-        </td>
-        <td>
-            <span class="date">29</span>
-        </td>
-        <td>
-            <span class="date">30</span>
-        </td>
-        <td>
-            <span class="date">31</span>
-        </td>
-        <td class="weekend">
-            <span class="date">February 1</span>
-        </td>
-        <td class="weekend">
-            <span class="date">
-                2
-                <ul>
-                    <li>
-                        <span class="event">Super Bowl</span>
-                        <span class="time">6:30 pm</span>
-                    </li>
-                </ul>
-            </span>
-        </td>
-    </tr>
-    <tr class="previous-week">
-        <td>
-            <span class="date">3</span>
-        </td>
-        <td>
-            <span class="date">4</span>
-        </td>
-        <td>
-            <span class="date">5</span>
-        </td>
-        <td>
-            <span class="date">6</span>
-        </td>
-        <td>
-            <span class="date">7</span>
-        </td>
-        <td class="weekend">
-            <span class="date">8</span>
-        </td>
-        <td class="weekend">
-            <span class="date">9</span>
-        </td>
-    </tr>
-    <tr class="current-week">
-        <td>
-            <span class="date">10</span>
-        </td>
-        <td>
-            <span class="date">11</span>
-        </td>
-        <td>
-            <span class="date">12</span>
-        </td>
-        <td>
-            <span class="date">13</span>
-        </td>
-        <td class="current-day">
-            <span class="date">
-                14
-                <ul>
-                    <li class="different-calendar"><span class="event">Valentines Day</span></li>
-                </ul>
-            </span>
-        </td>
-        <td class="weekend">
-            <span class="date">15</span>
-        </td>
-        <td class="weekend">
-            <span class="date">16</span>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="date">17</span>
-        </td>
-        <td>
-            <span class="date">18</span>
-        </td>
-        <td>
-            <span class="date">19</span>
-        </td>
-        <td>
-            <span class="date">20</span>
-        </td>
-        <td>
-            <span class="date">21</span>
-        </td>
-        <td class="weekend">
-            <span class="date">22</span>
-        </td>
-        <td class="weekend">
-            <span class="date">23</span>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span class="date">24</span>
-        </td>
-        <td>
-            <span class="date">
-                25
-                <ul>
-                    <li class="different-calendar">
-                        <span class="event">Breakfast with Joe Smchoe The Baker Man</span>
-                        <span class="time">10 am</span>
-                    </li>
-                    <li>
-                        <span class="event">Code Review</span>
-                        <span class="time">Noon</span>
-                    </li>
-                    <li>
-                        <span class="event">Project X Kickoff</span>
-                        <span class="time">5 pm</span>
-                    </li>
-                </ul>
-            </span>
-        </td>
-        <td>
-            <span class="date">26</span>
-        </td>
-        <td>
-            <span class="date">27</span>
-        </td>
-        <td>
-            <span class="date">28</span>
-        </td>
-        <td class="weekend">
-            <span class="date">March 1</span>
-        </td>
-        <td class="weekend">
-            <span class="date">2</span>
-        </td>
-    </tr>
+    }
+
 </table>

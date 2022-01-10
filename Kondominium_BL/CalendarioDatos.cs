@@ -12,48 +12,50 @@ namespace Kondominium_BL
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<CalendarioEntity> GetAll()
         {
-            var query = from cal in context.calendario
-                        
-                        select new CalendarioEntity
-                        {
-                            CalendarioId = cal.CalendarioId,
-                            Fecha = cal.Fecha,
-                            HoraInicio = cal.HoraInicio,
-                            HoraFin = cal.HoraFin,
-                            LugarId = cal.LugarId,
-                            ClienteId = cal.ClienteId,
-                            PropiedadId = cal.PropiedadId,
-                            TituloEvento = cal.TituloEvento,
-                            DescripcionEvento = cal.DescripcionEvento,
-                            FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
-                            FechaDeModificacion = cal.FechaDeModificacion,
-                            CreadoPor = cal.CreadoPor,
-                            ModificadoPor = cal.ModificadoPor
-                        };
+            var query = context.calendario.Select(cal => new CalendarioEntity
+            {
+                CalendarioId = cal.CalendarioId,
+                Fecha = cal.Fecha,
+                HoraInicio = cal.HoraInicio,
+                HoraFin = cal.HoraFin,
+                LugarId = cal.LugarId,
+                ClienteId = cal.ClienteId,
+                PropiedadId = cal.PropiedadId,
+                TituloEvento = cal.TituloEvento,
+                DescripcionEvento = cal.DescripcionEvento,
+                FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
+                FechaDeModificacion = cal.FechaDeModificacion,
+                CreadoPor = cal.CreadoPor,
+                ModificadoPor = cal.ModificadoPor,
+                ClienteNombre = string.Concat(cal.clientes.Nombres, " ", cal.clientes.Apellidos),
+                VPropiedad = string.Concat(cal.propiedades.PoligonoId, "-", cal.propiedades.Casa.ToString(), cal.propiedades.CasaLetra),
+                VLugar = cal.lugares.Nombre
+            });
 
             return query.ToList();
         }
         public CalendarioEntity GetById(int Id)
         {
-            var query = from cal in context.calendario
-                        where cal.CalendarioId == Id
-                        select new CalendarioEntity
-                        {
-                            CalendarioId = cal.CalendarioId,
-                            Fecha = cal.Fecha,
-                            HoraInicio = cal.HoraInicio,
-                            HoraFin = cal.HoraFin,
-                            LugarId = cal.LugarId,
-                            ClienteId = cal.ClienteId,
-                            PropiedadId = cal.PropiedadId,
-                            TituloEvento = cal.TituloEvento,
-                            DescripcionEvento = cal.DescripcionEvento,
-                            FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
-                            FechaDeModificacion = cal.FechaDeModificacion,
-                            CreadoPor = cal.CreadoPor,
-                            ModificadoPor = cal.ModificadoPor
-                        };
-
+            var query = context.calendario.Where( x => x.CalendarioId == Id ).Select(cal => new CalendarioEntity
+            {
+                CalendarioId = cal.CalendarioId,
+                Fecha = cal.Fecha,
+                HoraInicio = cal.HoraInicio,
+                HoraFin = cal.HoraFin,
+                LugarId = cal.LugarId,
+                ClienteId = cal.ClienteId,
+                PropiedadId = cal.PropiedadId,
+                TituloEvento = cal.TituloEvento,
+                DescripcionEvento = cal.DescripcionEvento,
+                FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
+                FechaDeModificacion = cal.FechaDeModificacion,
+                CreadoPor = cal.CreadoPor,
+                ModificadoPor = cal.ModificadoPor,
+                ClienteNombre = string.Concat(cal.clientes.Nombres, " ", cal.clientes.Apellidos),
+                VPropiedad = string.Concat(cal.propiedades.PoligonoId, "-", cal.propiedades.Casa.ToString(), cal.propiedades.CasaLetra),
+                VLugar = cal.lugares.Nombre
+            });
+                        
             return query.FirstOrDefault();
         }
 
@@ -161,6 +163,31 @@ namespace Kondominium_BL
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
 
+        }
+
+        public List<CalendarioEntity> GetByStarEndDate(DateTime Inicio, DateTime Fin)
+        {
+            var query = context.calendario.Where( cal => cal.Fecha >= Inicio && cal.Fecha <= Fin).OrderBy(x => x.Fecha  ).Select( cal => new CalendarioEntity
+                        {
+                            CalendarioId = cal.CalendarioId,
+                            Fecha = cal.Fecha,
+                            HoraInicio = cal.HoraInicio,
+                            HoraFin = cal.HoraFin,
+                            LugarId = cal.LugarId,
+                            ClienteId = cal.ClienteId,
+                            PropiedadId = cal.PropiedadId,
+                            TituloEvento = cal.TituloEvento,
+                            DescripcionEvento = cal.DescripcionEvento,
+                            FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
+                            FechaDeModificacion = cal.FechaDeModificacion,
+                            CreadoPor = cal.CreadoPor,
+                            ModificadoPor = cal.ModificadoPor,
+                            ClienteNombre =  cal.clientes.Nombres + " " + cal.clientes.Apellidos,
+                            VPropiedad = string.Concat( cal.propiedades.PoligonoId , "-",   cal.propiedades.Casa.ToString() ,  cal.propiedades.CasaLetra),
+                            VLugar = cal.lugares.Nombre
+            });
+
+            return query.ToList();
         }
 
     }

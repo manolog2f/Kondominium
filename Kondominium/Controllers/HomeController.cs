@@ -23,7 +23,7 @@ namespace Kondominium.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contactanos, para consultas o dudas.";
 
             return View();
         }
@@ -52,17 +52,47 @@ namespace Kondominium.Controllers
             return View();
         }
 
-        public ActionResult _PartialCalendar(string mes )
+        public ActionResult _PartialCalendar(string FechaInicio = null, string FechaFin = null)
         {
-            /// Lista del calendario segun el mes
-            return PartialView();
+            var vFechaInicio = DateTime.Now.AddDays(-5);
+            var vFechaFin = DateTime.Now.AddDays(35);
+
+            if (!string.IsNullOrEmpty( FechaInicio) )
+            {
+                vFechaInicio = DateTime.Parse(FechaInicio);
+                vFechaFin = DateTime.Parse(FechaFin);
+            }
+
+            var Model = new Kondominium_BL.CalendarioDatos().GetByStarEndDate(vFechaInicio, vFechaFin);
+
+            ViewData["FInicio"] = vFechaInicio;
+            ViewData["FFin"] = vFechaFin;
+
+            return PartialView(Model);
         }
+      //  [HttpPost]
+         public ActionResult _PartialCalendarPost(string FechaInicio, string FechaFin)
+        {
+            var Model = new Kondominium_BL.CalendarioDatos().GetByStarEndDate( DateTime.Parse(FechaInicio), DateTime.Parse(FechaFin));
+            var mlResp = new Kondominium.Models.jsModelCalendar();
+            
+            mlResp.Inicio = FechaInicio;
+            mlResp.Final = FechaFin;
+            mlResp.LCal = Model;
+
+            ViewData["FInicio"] = DateTime.Parse(FechaInicio);
+            ViewData["FFin"] = DateTime.Parse(FechaFin);
+
+
+            return PartialView("_PartialCalendar", Model);
+        }
+
         public ActionResult _PartialToDoList()
         {
             /// lista de tipo Tareas con todas las tareas pendientes filtrado por el usuario actual
+            var Model = new Kondominium_BL.TareasDatos().GetAll();
             
-            
-            return PartialView();
+            return PartialView(Model);
         }
 
         public ActionResult Dashboard()

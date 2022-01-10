@@ -44,6 +44,30 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
+        /// <summary>
+        /// True Ya fue generada
+        /// False Aun no fue generada se puede generar
+        /// </summary>
+        /// <param name="Id">Periodo a generar</param>
+        /// <returns>bool</returns>
+        public bool ValidaGeneradas(string Id)
+        {
+            
+            var query = context.cuentasgeneradas.Where(x => x.PeriodoGenerado == Id).FirstOrDefault();
+
+            if (query != null)
+            {
+                var query2 = context.cuentasgeneradasdetalle.Where(x => x.PeriodoGenerado == Id).Count();
+
+                if (query2 > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
         public (CuentasGeneradasEntity, Resultado) Save(CuentasGeneradasEntity model)
         {
             try
