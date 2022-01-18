@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="KondominiumDataSet" targetNamespace="http://tempuri.org/KondominiumDataSet.xsd" xmlns:mstns="http://tempuri.org/KondominiumDataSet.xsd" xmlns="http://tempuri.org/KondominiumDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="kondomiDataSet" targetNamespace="http://tempuri.org/kondomiDataSet.xsd" xmlns:mstns="http://tempuri.org/kondomiDataSet.xsd" xmlns="http://tempuri.org/kondomiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="db_a43bba_kondomiConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_a43bba_kondomiConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.db_a43bba_kondomiConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="db_a43bba_kondomiConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_a43bba_kondomiConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.db_a43bba_kondomiConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="kondomiConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="kondomiConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.kondomiConnectionString.ConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="alertaTableAdapter" GeneratorDataComponentClassName="alertaTableAdapter" Name="alerta" UserDataComponentName="alertaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.alerta" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.alerta" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `alerta` WHERE ((`AlertaId` = @p1))</CommandText>
@@ -75,7 +74,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="alertatipoTableAdapter" GeneratorDataComponentClassName="alertatipoTableAdapter" Name="alertatipo" UserDataComponentName="alertatipoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.alertatipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.alertatipo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `alertatipo` WHERE ((`AlertaTipoId` = @p1))</CommandText>
@@ -134,7 +133,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="arancelesTableAdapter" GeneratorDataComponentClassName="arancelesTableAdapter" Name="aranceles" UserDataComponentName="arancelesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.aranceles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.aranceles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `aranceles` WHERE ((`ArancelId` = @p1))</CommandText>
@@ -197,7 +196,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="avenidaTableAdapter" GeneratorDataComponentClassName="avenidaTableAdapter" Name="avenida" UserDataComponentName="avenidaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.avenida" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.avenida" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `avenida` WHERE ((`AvenidaId` = @p1))</CommandText>
@@ -256,7 +255,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="calendarioTableAdapter" GeneratorDataComponentClassName="calendarioTableAdapter" Name="calendario" UserDataComponentName="calendarioTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.calendario" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.calendario" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `calendario` WHERE ((`CalendarioId` = @p1))</CommandText>
@@ -331,7 +330,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="callesTableAdapter" GeneratorDataComponentClassName="callesTableAdapter" Name="calles" UserDataComponentName="callesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.calles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.calles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `calles` WHERE ((`CalleId` = @p1))</CommandText>
@@ -390,7 +389,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientepropiedadTableAdapter" GeneratorDataComponentClassName="clientepropiedadTableAdapter" Name="clientepropiedad" UserDataComponentName="clientepropiedadTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedad" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedad" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `clientepropiedad` WHERE ((`ClienteId` = @p1) AND (`PropiedadId` = @p2) AND (`TipoCliente` = @p3))</CommandText>
@@ -459,7 +458,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientepropiedaddetalleTableAdapter" GeneratorDataComponentClassName="clientepropiedaddetalleTableAdapter" Name="clientepropiedaddetalle" UserDataComponentName="clientepropiedaddetalleTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedaddetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedaddetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `clientepropiedaddetalle` WHERE ((`ClienteId` = @p1) AND (`PropiedadId` = @p2) AND (`TipoCliente` = @p3))</CommandText>
@@ -540,7 +539,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientepropiedaddocsTableAdapter" GeneratorDataComponentClassName="clientepropiedaddocsTableAdapter" Name="clientepropiedaddocs" UserDataComponentName="clientepropiedaddocsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedaddocs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.clientepropiedaddocs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `clientepropiedaddocs` WHERE ((`ClientePropiedadDocsId` = @p1))</CommandText>
@@ -612,7 +611,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientesTableAdapter" GeneratorDataComponentClassName="clientesTableAdapter" Name="clientes" UserDataComponentName="clientesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.clientes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.clientes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `clientes` WHERE ((`ClienteId` = @p1))</CommandText>
@@ -693,7 +692,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientesdocsTableAdapter" GeneratorDataComponentClassName="clientesdocsTableAdapter" Name="clientesdocs" UserDataComponentName="clientesdocsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.clientesdocs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.clientesdocs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `clientesdocs` WHERE ((`ClienteDocId` = @p1))</CommandText>
@@ -756,7 +755,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="configTableAdapter" GeneratorDataComponentClassName="configTableAdapter" Name="config" UserDataComponentName="configTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.config" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.config" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `config` WHERE ((`ConfigId` = @p1))</CommandText>
@@ -810,9 +809,127 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="configcobrosmensauldetTableAdapter" GeneratorDataComponentClassName="configcobrosmensauldetTableAdapter" Name="configcobrosmensauldet" UserDataComponentName="configcobrosmensauldetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.configcobrosmensauldet" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `configcobrosmensauldet` WHERE ((`IdConfig` = @p1) AND (`ProductoId` = @p2))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `configcobrosmensauldet` (`IdConfig`, `ProductoId`, `Monto`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Monto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `IdConfig`, `ProductoId`, `Monto`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor` FROM `configcobrosmensauldet`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `configcobrosmensauldet` SET `IdConfig` = @p1, `ProductoId` = @p2, `Monto` = @p3, `FechaDeCreacion` = @p4, `FechaDeModificacion` = @p5, `CreadoPor` = @p6, `ModificadoPor` = @p7 WHERE ((`IdConfig` = @p8) AND (`ProductoId` = @p9))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Monto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdConfig" DataSetColumn="IdConfig" />
+              <Mapping SourceColumn="ProductoId" DataSetColumn="ProductoId" />
+              <Mapping SourceColumn="Monto" DataSetColumn="Monto" />
+              <Mapping SourceColumn="FechaDeCreacion" DataSetColumn="FechaDeCreacion" />
+              <Mapping SourceColumn="FechaDeModificacion" DataSetColumn="FechaDeModificacion" />
+              <Mapping SourceColumn="CreadoPor" DataSetColumn="CreadoPor" />
+              <Mapping SourceColumn="ModificadoPor" DataSetColumn="ModificadoPor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="configcobrosmensualTableAdapter" GeneratorDataComponentClassName="configcobrosmensualTableAdapter" Name="configcobrosmensual" UserDataComponentName="configcobrosmensualTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.configcobrosmensual" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `configcobrosmensual` WHERE ((`IdConfig` = @p1))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `configcobrosmensual` (`DiaDeGeneracion`, `DiaVencimiento`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="DiaDeGeneracion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="DiaVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `IdConfig`, `DiaDeGeneracion`, `DiaVencimiento`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor` FROM `configcobrosmensual`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `configcobrosmensual` SET `DiaDeGeneracion` = @p1, `DiaVencimiento` = @p2, `FechaDeCreacion` = @p3, `FechaDeModificacion` = @p4, `CreadoPor` = @p5, `ModificadoPor` = @p6 WHERE ((`IdConfig` = @p7))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="DiaDeGeneracion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="DiaVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="IdConfig" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdConfig" DataSetColumn="IdConfig" />
+              <Mapping SourceColumn="DiaDeGeneracion" DataSetColumn="DiaDeGeneracion" />
+              <Mapping SourceColumn="DiaVencimiento" DataSetColumn="DiaVencimiento" />
+              <Mapping SourceColumn="FechaDeCreacion" DataSetColumn="FechaDeCreacion" />
+              <Mapping SourceColumn="FechaDeModificacion" DataSetColumn="FechaDeModificacion" />
+              <Mapping SourceColumn="CreadoPor" DataSetColumn="CreadoPor" />
+              <Mapping SourceColumn="ModificadoPor" DataSetColumn="ModificadoPor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="contratosTableAdapter" GeneratorDataComponentClassName="contratosTableAdapter" Name="contratos" UserDataComponentName="contratosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.contratos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.contratos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `contratos` WHERE ((`ContratoId` = @p1))</CommandText>
@@ -893,7 +1010,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="contratosdetalleTableAdapter" GeneratorDataComponentClassName="contratosdetalleTableAdapter" Name="contratosdetalle" UserDataComponentName="contratosdetalleTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.contratosdetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.contratosdetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `contratosdetalle` WHERE ((`ContratoId` = @p1) AND (`ProductoId` = @p2))</CommandText>
@@ -940,9 +1057,202 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasgeneradasTableAdapter" GeneratorDataComponentClassName="cuentasgeneradasTableAdapter" Name="cuentasgeneradas" UserDataComponentName="cuentasgeneradasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasgeneradas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `cuentasgeneradas` WHERE ((`PeriodoGenerado` = @p1))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `cuentasgeneradas` (`PeriodoGenerado`, `Justificacion`, `FechaDeGeneracion`, `FechaDeVencimiento`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPo`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Justificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeGeneracion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `PeriodoGenerado`, `Justificacion`, `FechaDeGeneracion`, `FechaDeVencimiento`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPo` FROM `cuentasgeneradas`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `cuentasgeneradas` SET `PeriodoGenerado` = @p1, `Justificacion` = @p2, `FechaDeGeneracion` = @p3, `FechaDeVencimiento` = @p4, `FechaDeCreacion` = @p5, `FechaDeModificacion` = @p6, `CreadoPor` = @p7, `ModificadoPo` = @p8 WHERE ((`PeriodoGenerado` = @p9))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Justificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeGeneracion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PeriodoGenerado" DataSetColumn="PeriodoGenerado" />
+              <Mapping SourceColumn="Justificacion" DataSetColumn="Justificacion" />
+              <Mapping SourceColumn="FechaDeGeneracion" DataSetColumn="FechaDeGeneracion" />
+              <Mapping SourceColumn="FechaDeVencimiento" DataSetColumn="FechaDeVencimiento" />
+              <Mapping SourceColumn="FechaDeCreacion" DataSetColumn="FechaDeCreacion" />
+              <Mapping SourceColumn="FechaDeModificacion" DataSetColumn="FechaDeModificacion" />
+              <Mapping SourceColumn="CreadoPor" DataSetColumn="CreadoPor" />
+              <Mapping SourceColumn="ModificadoPo" DataSetColumn="ModificadoPo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasgeneradasdetalleTableAdapter" GeneratorDataComponentClassName="cuentasgeneradasdetalleTableAdapter" Name="cuentasgeneradasdetalle" UserDataComponentName="cuentasgeneradasdetalleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasgeneradasdetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `cuentasgeneradasdetalle` WHERE ((`PeriodoGenerado` = @p1) AND (`PropiedadId` = @p2) AND (`ClienteId` = @p3))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `cuentasgeneradasdetalle` (`PeriodoGenerado`, `PropiedadId`, `ClienteId`, `Fecha`, `FechaDeVencimiento`, `Total`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Total" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `PeriodoGenerado`, `PropiedadId`, `ClienteId`, `Fecha`, `FechaDeVencimiento`, `Total`, `FechaDeCreacion`, `FechaDeModificacion`, `CreadoPor`, `ModificadoPor` FROM `cuentasgeneradasdetalle`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `cuentasgeneradasdetalle` SET `PeriodoGenerado` = @p1, `PropiedadId` = @p2, `ClienteId` = @p3, `Fecha` = @p4, `FechaDeVencimiento` = @p5, `Total` = @p6, `FechaDeCreacion` = @p7, `FechaDeModificacion` = @p8, `CreadoPor` = @p9, `ModificadoPor` = @p10 WHERE ((`PeriodoGenerado` = @p11) AND (`PropiedadId` = @p12) AND (`ClienteId` = @p13))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeVencimiento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Total" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeCreacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FechaDeModificacion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="CreadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="ModificadoPor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p11" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p12" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p13" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PeriodoGenerado" DataSetColumn="PeriodoGenerado" />
+              <Mapping SourceColumn="PropiedadId" DataSetColumn="PropiedadId" />
+              <Mapping SourceColumn="ClienteId" DataSetColumn="ClienteId" />
+              <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
+              <Mapping SourceColumn="FechaDeVencimiento" DataSetColumn="FechaDeVencimiento" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="FechaDeCreacion" DataSetColumn="FechaDeCreacion" />
+              <Mapping SourceColumn="FechaDeModificacion" DataSetColumn="FechaDeModificacion" />
+              <Mapping SourceColumn="CreadoPor" DataSetColumn="CreadoPor" />
+              <Mapping SourceColumn="ModificadoPor" DataSetColumn="ModificadoPor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasgeneradasdetallebTableAdapter" GeneratorDataComponentClassName="cuentasgeneradasdetallebTableAdapter" Name="cuentasgeneradasdetalleb" UserDataComponentName="cuentasgeneradasdetallebTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasgeneradasdetalleb" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM `cuentasgeneradasdetalleb` WHERE ((`PeriodoGenerado` = @p1) AND (`PropiedadId` = @p2) AND (`ClienteId` = @p3) AND (`ProductoId` = @p4))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO `cuentasgeneradasdetalleb` (`PeriodoGenerado`, `PropiedadId`, `ClienteId`, `ProductoId`, `Monto`) VALUES (@p1, @p2, @p3, @p4, @p5)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Monto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `PeriodoGenerado`, `PropiedadId`, `ClienteId`, `ProductoId`, `Monto` FROM `cuentasgeneradasdetalleb`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE `cuentasgeneradasdetalleb` SET `PeriodoGenerado` = @p1, `PropiedadId` = @p2, `ClienteId` = @p3, `ProductoId` = @p4, `Monto` = @p5 WHERE ((`PeriodoGenerado` = @p6) AND (`PropiedadId` = @p7) AND (`ClienteId` = @p8) AND (`ProductoId` = @p9))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="NewDecimal" Scale="0" Size="0" SourceColumn="Monto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PeriodoGenerado" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="PropiedadId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ClienteId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="ProductoId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PeriodoGenerado" DataSetColumn="PeriodoGenerado" />
+              <Mapping SourceColumn="PropiedadId" DataSetColumn="PropiedadId" />
+              <Mapping SourceColumn="ClienteId" DataSetColumn="ClienteId" />
+              <Mapping SourceColumn="ProductoId" DataSetColumn="ProductoId" />
+              <Mapping SourceColumn="Monto" DataSetColumn="Monto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasporcobrarTableAdapter" GeneratorDataComponentClassName="cuentasporcobrarTableAdapter" Name="cuentasporcobrar" UserDataComponentName="cuentasporcobrarTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrar" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrar" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `cuentasporcobrar` WHERE ((`VaucherNumber` = @p1))</CommandText>
@@ -1031,7 +1341,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasporcobrardetalleTableAdapter" GeneratorDataComponentClassName="cuentasporcobrardetalleTableAdapter" Name="cuentasporcobrardetalle" UserDataComponentName="cuentasporcobrardetalleTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrardetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrardetalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `cuentasporcobrardetalle` WHERE ((`DetalleId` = @p1))</CommandText>
@@ -1097,7 +1407,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cuentasporcobrarpagoTableAdapter" GeneratorDataComponentClassName="cuentasporcobrarpagoTableAdapter" Name="cuentasporcobrarpago" UserDataComponentName="cuentasporcobrarpagoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrarpago" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cuentasporcobrarpago" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `cuentasporcobrarpago` WHERE ((`CuentasPorCobrarPagoId` = @p1))</CommandText>
@@ -1166,7 +1476,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="cxctypeTableAdapter" GeneratorDataComponentClassName="cxctypeTableAdapter" Name="cxctype" UserDataComponentName="cxctypeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.cxctype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.cxctype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `cxctype` WHERE ((`TypeName` = @p1))</CommandText>
@@ -1213,7 +1523,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="empresaTableAdapter" GeneratorDataComponentClassName="empresaTableAdapter" Name="empresa" UserDataComponentName="empresaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.empresa" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.empresa" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `empresa` WHERE ((`EmpresaId` = @p1))</CommandText>
@@ -1282,7 +1592,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="errorlogTableAdapter" GeneratorDataComponentClassName="errorlogTableAdapter" Name="errorlog" UserDataComponentName="errorlogTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.errorlog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.errorlog" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `errorlog` WHERE ((`RowId` = @p1))</CommandText>
@@ -1345,7 +1655,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fieldTableAdapter" GeneratorDataComponentClassName="fieldTableAdapter" Name="field" UserDataComponentName="fieldTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.field" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.field" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `field` WHERE ((`FieldId` = @p1) AND (`ObjectId` = @p2))</CommandText>
@@ -1409,7 +1719,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fieldsecurityTableAdapter" GeneratorDataComponentClassName="fieldsecurityTableAdapter" Name="fieldsecurity" UserDataComponentName="fieldsecurityTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.fieldsecurity" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.fieldsecurity" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `fieldsecurity` WHERE ((`FieldId` = @p1) AND (`ObjectId` = @p2) AND (`ProfileId` = @p3))</CommandText>
@@ -1478,7 +1788,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="log_actionTableAdapter" GeneratorDataComponentClassName="log_actionTableAdapter" Name="log_action" UserDataComponentName="log_actionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.log_action" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.log_action" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `log_action` WHERE ((`RowId` = @p1))</CommandText>
@@ -1531,7 +1841,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="lugaresTableAdapter" GeneratorDataComponentClassName="lugaresTableAdapter" Name="lugares" UserDataComponentName="lugaresTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.lugares" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.lugares" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `lugares` WHERE ((`LugarId` = @p1))</CommandText>
@@ -1588,7 +1898,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="mainmenuTableAdapter" GeneratorDataComponentClassName="mainmenuTableAdapter" Name="mainmenu" UserDataComponentName="mainmenuTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.mainmenu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.mainmenu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `mainmenu` WHERE ((`Id` = @p1))</CommandText>
@@ -1636,7 +1946,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="objectTableAdapter" GeneratorDataComponentClassName="objectTableAdapter" Name="object" UserDataComponentName="objectTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.object" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.object" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `object` WHERE ((`ObjectId` = @p1))</CommandText>
@@ -1692,7 +2002,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="objecttypeTableAdapter" GeneratorDataComponentClassName="objecttypeTableAdapter" Name="objecttype" UserDataComponentName="objecttypeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.objecttype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.objecttype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `objecttype` WHERE ((`ObjectTypeId` = @p1))</CommandText>
@@ -1736,7 +2046,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="permissionTableAdapter" GeneratorDataComponentClassName="permissionTableAdapter" Name="permission" UserDataComponentName="permissionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.permission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.permission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `permission` WHERE ((`PermissionId` = @p1))</CommandText>
@@ -1787,7 +2097,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="poligonosTableAdapter" GeneratorDataComponentClassName="poligonosTableAdapter" Name="poligonos" UserDataComponentName="poligonosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.poligonos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.poligonos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `poligonos` WHERE ((`PoligonoId` = @p1))</CommandText>
@@ -1846,7 +2156,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="productosTableAdapter" GeneratorDataComponentClassName="productosTableAdapter" Name="productos" UserDataComponentName="productosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.productos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.productos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `productos` WHERE ((`Productoid` = @p1))</CommandText>
@@ -1903,7 +2213,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="profileTableAdapter" GeneratorDataComponentClassName="profileTableAdapter" Name="profile" UserDataComponentName="profileTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `profile` WHERE ((`ProfileId` = @p1))</CommandText>
@@ -1959,7 +2269,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="profilepermissionTableAdapter" GeneratorDataComponentClassName="profilepermissionTableAdapter" Name="profilepermission" UserDataComponentName="profilepermissionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.profilepermission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.profilepermission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `profilepermission` WHERE ((`ProfileId` = @p1) AND (`ProfilePermissionId` = @p2))</CommandText>
@@ -2035,7 +2345,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="propiedadesTableAdapter" GeneratorDataComponentClassName="propiedadesTableAdapter" Name="propiedades" UserDataComponentName="propiedadesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.propiedades" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.propiedades" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `propiedades` WHERE ((`PropiedadId` = @p1))</CommandText>
@@ -2116,7 +2426,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="rolTableAdapter" GeneratorDataComponentClassName="rolTableAdapter" Name="rol" UserDataComponentName="rolTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.rol" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.rol" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `rol` WHERE ((`RolId` = @p1))</CommandText>
@@ -2172,7 +2482,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sendasTableAdapter" GeneratorDataComponentClassName="sendasTableAdapter" Name="sendas" UserDataComponentName="sendasTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.sendas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.sendas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `sendas` WHERE ((`SendaId` = @p1))</CommandText>
@@ -2231,7 +2541,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="submenuTableAdapter" GeneratorDataComponentClassName="submenuTableAdapter" Name="submenu" UserDataComponentName="submenuTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.submenu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.submenu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `submenu` WHERE ((`Id` = @p1))</CommandText>
@@ -2285,7 +2595,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="submenupermissionTableAdapter" GeneratorDataComponentClassName="submenupermissionTableAdapter" Name="submenupermission" UserDataComponentName="submenupermissionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.submenupermission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.submenupermission" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `submenupermission` WHERE ((`SubMenuId` = @p1) AND (`ProfileId` = @p2))</CommandText>
@@ -2349,7 +2659,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tareasTableAdapter" GeneratorDataComponentClassName="tareasTableAdapter" Name="tareas" UserDataComponentName="tareasTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.tareas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.tareas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tareas` WHERE ((`TareaId` = @p1))</CommandText>
@@ -2418,7 +2728,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="userTableAdapter" GeneratorDataComponentClassName="userTableAdapter" Name="user" UserDataComponentName="userTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.`user`" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `user` WHERE ((`UserId` = @p1))</CommandText>
@@ -2489,7 +2799,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="userconfigTableAdapter" GeneratorDataComponentClassName="userconfigTableAdapter" Name="userconfig" UserDataComponentName="userconfigTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.userconfig" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.userconfig" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `userconfig` WHERE ((`UserId` = @p1) AND (`PropertyName` = @p2))</CommandText>
@@ -2550,7 +2860,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="userprofileTableAdapter" GeneratorDataComponentClassName="userprofileTableAdapter" Name="userprofile" UserDataComponentName="userprofileTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="db_a43bba_kondomiConnectionString1 (Web.config)" DbObjectName="db_a43bba_kondomi.userprofile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="kondomiConnectionString (Web.config)" DbObjectName="db_a43bba_kondomi.userprofile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `userprofile` WHERE ((`UsuarioId` = @p1) AND (`ProfileId` = @p2))</CommandText>
@@ -2614,7 +2924,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="KondominiumDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="KondominiumDataSet" msprop:Generator_UserDSName="KondominiumDataSet">
+  <xs:element name="kondomiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="kondomiDataSet" msprop:Generator_UserDSName="kondomiDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="alerta" msprop:Generator_TableClassName="alertaDataTable" msprop:Generator_TableVarName="tablealerta" msprop:Generator_TablePropName="alerta" msprop:Generator_RowDeletingName="alertaRowDeleting" msprop:Generator_RowChangingName="alertaRowChanging" msprop:Generator_RowEvHandlerName="alertaRowChangeEventHandler" msprop:Generator_RowDeletedName="alertaRowDeleted" msprop:Generator_UserTableName="alerta" msprop:Generator_RowChangedName="alertaRowChanged" msprop:Generator_RowEvArgName="alertaRowChangeEvent" msprop:Generator_RowClassName="alertaRow">
@@ -2783,7 +3093,7 @@
               <xs:element name="DescripcionEvento" msprop:Generator_ColumnVarNameInTable="columnDescripcionEvento" msprop:Generator_ColumnPropNameInRow="DescripcionEvento" msprop:Generator_ColumnPropNameInTable="DescripcionEventoColumn" msprop:Generator_UserColumnName="DescripcionEvento" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="25" />
+                    <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -3141,6 +3451,56 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="configcobrosmensauldet" msprop:Generator_TableClassName="configcobrosmensauldetDataTable" msprop:Generator_TableVarName="tableconfigcobrosmensauldet" msprop:Generator_TablePropName="configcobrosmensauldet" msprop:Generator_RowDeletingName="configcobrosmensauldetRowDeleting" msprop:Generator_RowChangingName="configcobrosmensauldetRowChanging" msprop:Generator_RowEvHandlerName="configcobrosmensauldetRowChangeEventHandler" msprop:Generator_RowDeletedName="configcobrosmensauldetRowDeleted" msprop:Generator_UserTableName="configcobrosmensauldet" msprop:Generator_RowChangedName="configcobrosmensauldetRowChanged" msprop:Generator_RowEvArgName="configcobrosmensauldetRowChangeEvent" msprop:Generator_RowClassName="configcobrosmensauldetRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdConfig" msprop:Generator_ColumnVarNameInTable="columnIdConfig" msprop:Generator_ColumnPropNameInRow="IdConfig" msprop:Generator_ColumnPropNameInTable="IdConfigColumn" msprop:Generator_UserColumnName="IdConfig" type="xs:int" />
+              <xs:element name="ProductoId" msprop:Generator_ColumnVarNameInTable="columnProductoId" msprop:Generator_ColumnPropNameInRow="ProductoId" msprop:Generator_ColumnPropNameInTable="ProductoIdColumn" msprop:Generator_UserColumnName="ProductoId" type="xs:int" />
+              <xs:element name="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_ColumnPropNameInTable="MontoColumn" msprop:Generator_UserColumnName="Monto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FechaDeCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeCreacion" msprop:Generator_ColumnPropNameInRow="FechaDeCreacion" msprop:Generator_ColumnPropNameInTable="FechaDeCreacionColumn" msprop:Generator_UserColumnName="FechaDeCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeModificacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeModificacion" msprop:Generator_ColumnPropNameInRow="FechaDeModificacion" msprop:Generator_ColumnPropNameInTable="FechaDeModificacionColumn" msprop:Generator_UserColumnName="FechaDeModificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreadoPor" msprop:Generator_ColumnVarNameInTable="columnCreadoPor" msprop:Generator_ColumnPropNameInRow="CreadoPor" msprop:Generator_ColumnPropNameInTable="CreadoPorColumn" msprop:Generator_UserColumnName="CreadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ModificadoPor" msprop:Generator_ColumnVarNameInTable="columnModificadoPor" msprop:Generator_ColumnPropNameInRow="ModificadoPor" msprop:Generator_ColumnPropNameInTable="ModificadoPorColumn" msprop:Generator_UserColumnName="ModificadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="configcobrosmensual" msprop:Generator_TableClassName="configcobrosmensualDataTable" msprop:Generator_TableVarName="tableconfigcobrosmensual" msprop:Generator_TablePropName="configcobrosmensual" msprop:Generator_RowDeletingName="configcobrosmensualRowDeleting" msprop:Generator_RowChangingName="configcobrosmensualRowChanging" msprop:Generator_RowEvHandlerName="configcobrosmensualRowChangeEventHandler" msprop:Generator_RowDeletedName="configcobrosmensualRowDeleted" msprop:Generator_UserTableName="configcobrosmensual" msprop:Generator_RowChangedName="configcobrosmensualRowChanged" msprop:Generator_RowEvArgName="configcobrosmensualRowChangeEvent" msprop:Generator_RowClassName="configcobrosmensualRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdConfig" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIdConfig" msprop:Generator_ColumnPropNameInRow="IdConfig" msprop:Generator_ColumnPropNameInTable="IdConfigColumn" msprop:Generator_UserColumnName="IdConfig" type="xs:int" />
+              <xs:element name="DiaDeGeneracion" msprop:Generator_ColumnVarNameInTable="columnDiaDeGeneracion" msprop:Generator_ColumnPropNameInRow="DiaDeGeneracion" msprop:Generator_ColumnPropNameInTable="DiaDeGeneracionColumn" msprop:Generator_UserColumnName="DiaDeGeneracion" type="xs:int" minOccurs="0" />
+              <xs:element name="DiaVencimiento" msprop:Generator_ColumnVarNameInTable="columnDiaVencimiento" msprop:Generator_ColumnPropNameInRow="DiaVencimiento" msprop:Generator_ColumnPropNameInTable="DiaVencimientoColumn" msprop:Generator_UserColumnName="DiaVencimiento" type="xs:int" minOccurs="0" />
+              <xs:element name="FechaDeCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeCreacion" msprop:Generator_ColumnPropNameInRow="FechaDeCreacion" msprop:Generator_ColumnPropNameInTable="FechaDeCreacionColumn" msprop:Generator_UserColumnName="FechaDeCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeModificacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeModificacion" msprop:Generator_ColumnPropNameInRow="FechaDeModificacion" msprop:Generator_ColumnPropNameInTable="FechaDeModificacionColumn" msprop:Generator_UserColumnName="FechaDeModificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreadoPor" msprop:Generator_ColumnVarNameInTable="columnCreadoPor" msprop:Generator_ColumnPropNameInRow="CreadoPor" msprop:Generator_ColumnPropNameInTable="CreadoPorColumn" msprop:Generator_UserColumnName="CreadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ModificadoPor" msprop:Generator_ColumnVarNameInTable="columnModificadoPor" msprop:Generator_ColumnPropNameInRow="ModificadoPor" msprop:Generator_ColumnPropNameInTable="ModificadoPorColumn" msprop:Generator_UserColumnName="ModificadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="contratos" msprop:Generator_TableClassName="contratosDataTable" msprop:Generator_TableVarName="tablecontratos" msprop:Generator_TablePropName="contratos" msprop:Generator_RowDeletingName="contratosRowDeleting" msprop:Generator_RowChangingName="contratosRowChanging" msprop:Generator_RowEvHandlerName="contratosRowChangeEventHandler" msprop:Generator_RowDeletedName="contratosRowDeleted" msprop:Generator_UserTableName="contratos" msprop:Generator_RowChangedName="contratosRowChanged" msprop:Generator_RowEvArgName="contratosRowChangeEvent" msprop:Generator_RowClassName="contratosRow">
           <xs:complexType>
             <xs:sequence>
@@ -3196,6 +3556,95 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ContratoId" msprop:Generator_ColumnVarNameInTable="columnContratoId" msprop:Generator_ColumnPropNameInRow="ContratoId" msprop:Generator_ColumnPropNameInTable="ContratoIdColumn" msprop:Generator_UserColumnName="ContratoId" type="xs:int" />
+              <xs:element name="ProductoId" msprop:Generator_ColumnVarNameInTable="columnProductoId" msprop:Generator_ColumnPropNameInRow="ProductoId" msprop:Generator_ColumnPropNameInTable="ProductoIdColumn" msprop:Generator_UserColumnName="ProductoId" type="xs:int" />
+              <xs:element name="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_ColumnPropNameInTable="MontoColumn" msprop:Generator_UserColumnName="Monto" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="cuentasgeneradas" msprop:Generator_TableClassName="cuentasgeneradasDataTable" msprop:Generator_TableVarName="tablecuentasgeneradas" msprop:Generator_TablePropName="cuentasgeneradas" msprop:Generator_RowDeletingName="cuentasgeneradasRowDeleting" msprop:Generator_RowChangingName="cuentasgeneradasRowChanging" msprop:Generator_RowEvHandlerName="cuentasgeneradasRowChangeEventHandler" msprop:Generator_RowDeletedName="cuentasgeneradasRowDeleted" msprop:Generator_UserTableName="cuentasgeneradas" msprop:Generator_RowChangedName="cuentasgeneradasRowChanged" msprop:Generator_RowEvArgName="cuentasgeneradasRowChangeEvent" msprop:Generator_RowClassName="cuentasgeneradasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PeriodoGenerado" msprop:Generator_ColumnVarNameInTable="columnPeriodoGenerado" msprop:Generator_ColumnPropNameInRow="PeriodoGenerado" msprop:Generator_ColumnPropNameInTable="PeriodoGeneradoColumn" msprop:Generator_UserColumnName="PeriodoGenerado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Justificacion" msprop:Generator_ColumnVarNameInTable="columnJustificacion" msprop:Generator_ColumnPropNameInRow="Justificacion" msprop:Generator_ColumnPropNameInTable="JustificacionColumn" msprop:Generator_UserColumnName="Justificacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FechaDeGeneracion" msprop:Generator_ColumnVarNameInTable="columnFechaDeGeneracion" msprop:Generator_ColumnPropNameInRow="FechaDeGeneracion" msprop:Generator_ColumnPropNameInTable="FechaDeGeneracionColumn" msprop:Generator_UserColumnName="FechaDeGeneracion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeVencimiento" msprop:Generator_ColumnVarNameInTable="columnFechaDeVencimiento" msprop:Generator_ColumnPropNameInRow="FechaDeVencimiento" msprop:Generator_ColumnPropNameInTable="FechaDeVencimientoColumn" msprop:Generator_UserColumnName="FechaDeVencimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeCreacion" msprop:Generator_ColumnPropNameInRow="FechaDeCreacion" msprop:Generator_ColumnPropNameInTable="FechaDeCreacionColumn" msprop:Generator_UserColumnName="FechaDeCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeModificacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeModificacion" msprop:Generator_ColumnPropNameInRow="FechaDeModificacion" msprop:Generator_ColumnPropNameInTable="FechaDeModificacionColumn" msprop:Generator_UserColumnName="FechaDeModificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreadoPor" msprop:Generator_ColumnVarNameInTable="columnCreadoPor" msprop:Generator_ColumnPropNameInRow="CreadoPor" msprop:Generator_ColumnPropNameInTable="CreadoPorColumn" msprop:Generator_UserColumnName="CreadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ModificadoPo" msprop:Generator_ColumnVarNameInTable="columnModificadoPo" msprop:Generator_ColumnPropNameInRow="ModificadoPo" msprop:Generator_ColumnPropNameInTable="ModificadoPoColumn" msprop:Generator_UserColumnName="ModificadoPo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="cuentasgeneradasdetalle" msprop:Generator_TableClassName="cuentasgeneradasdetalleDataTable" msprop:Generator_TableVarName="tablecuentasgeneradasdetalle" msprop:Generator_TablePropName="cuentasgeneradasdetalle" msprop:Generator_RowDeletingName="cuentasgeneradasdetalleRowDeleting" msprop:Generator_RowChangingName="cuentasgeneradasdetalleRowChanging" msprop:Generator_RowEvHandlerName="cuentasgeneradasdetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="cuentasgeneradasdetalleRowDeleted" msprop:Generator_UserTableName="cuentasgeneradasdetalle" msprop:Generator_RowChangedName="cuentasgeneradasdetalleRowChanged" msprop:Generator_RowEvArgName="cuentasgeneradasdetalleRowChangeEvent" msprop:Generator_RowClassName="cuentasgeneradasdetalleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PeriodoGenerado" msprop:Generator_ColumnVarNameInTable="columnPeriodoGenerado" msprop:Generator_ColumnPropNameInRow="PeriodoGenerado" msprop:Generator_ColumnPropNameInTable="PeriodoGeneradoColumn" msprop:Generator_UserColumnName="PeriodoGenerado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropiedadId" msprop:Generator_ColumnVarNameInTable="columnPropiedadId" msprop:Generator_ColumnPropNameInRow="PropiedadId" msprop:Generator_ColumnPropNameInTable="PropiedadIdColumn" msprop:Generator_UserColumnName="PropiedadId" type="xs:int" />
+              <xs:element name="ClienteId" msprop:Generator_ColumnVarNameInTable="columnClienteId" msprop:Generator_ColumnPropNameInRow="ClienteId" msprop:Generator_ColumnPropNameInTable="ClienteIdColumn" msprop:Generator_UserColumnName="ClienteId" type="xs:int" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeVencimiento" msprop:Generator_ColumnVarNameInTable="columnFechaDeVencimiento" msprop:Generator_ColumnPropNameInRow="FechaDeVencimiento" msprop:Generator_ColumnPropNameInTable="FechaDeVencimientoColumn" msprop:Generator_UserColumnName="FechaDeVencimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FechaDeCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeCreacion" msprop:Generator_ColumnPropNameInRow="FechaDeCreacion" msprop:Generator_ColumnPropNameInTable="FechaDeCreacionColumn" msprop:Generator_UserColumnName="FechaDeCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FechaDeModificacion" msprop:Generator_ColumnVarNameInTable="columnFechaDeModificacion" msprop:Generator_ColumnPropNameInRow="FechaDeModificacion" msprop:Generator_ColumnPropNameInTable="FechaDeModificacionColumn" msprop:Generator_UserColumnName="FechaDeModificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreadoPor" msprop:Generator_ColumnVarNameInTable="columnCreadoPor" msprop:Generator_ColumnPropNameInRow="CreadoPor" msprop:Generator_ColumnPropNameInTable="CreadoPorColumn" msprop:Generator_UserColumnName="CreadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ModificadoPor" msprop:Generator_ColumnVarNameInTable="columnModificadoPor" msprop:Generator_ColumnPropNameInRow="ModificadoPor" msprop:Generator_ColumnPropNameInTable="ModificadoPorColumn" msprop:Generator_UserColumnName="ModificadoPor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="cuentasgeneradasdetalleb" msprop:Generator_TableClassName="cuentasgeneradasdetallebDataTable" msprop:Generator_TableVarName="tablecuentasgeneradasdetalleb" msprop:Generator_TablePropName="cuentasgeneradasdetalleb" msprop:Generator_RowDeletingName="cuentasgeneradasdetallebRowDeleting" msprop:Generator_RowChangingName="cuentasgeneradasdetallebRowChanging" msprop:Generator_RowEvHandlerName="cuentasgeneradasdetallebRowChangeEventHandler" msprop:Generator_RowDeletedName="cuentasgeneradasdetallebRowDeleted" msprop:Generator_UserTableName="cuentasgeneradasdetalleb" msprop:Generator_RowChangedName="cuentasgeneradasdetallebRowChanged" msprop:Generator_RowEvArgName="cuentasgeneradasdetallebRowChangeEvent" msprop:Generator_RowClassName="cuentasgeneradasdetallebRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PeriodoGenerado" msprop:Generator_ColumnVarNameInTable="columnPeriodoGenerado" msprop:Generator_ColumnPropNameInRow="PeriodoGenerado" msprop:Generator_ColumnPropNameInTable="PeriodoGeneradoColumn" msprop:Generator_UserColumnName="PeriodoGenerado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropiedadId" msprop:Generator_ColumnVarNameInTable="columnPropiedadId" msprop:Generator_ColumnPropNameInRow="PropiedadId" msprop:Generator_ColumnPropNameInTable="PropiedadIdColumn" msprop:Generator_UserColumnName="PropiedadId" type="xs:int" />
+              <xs:element name="ClienteId" msprop:Generator_ColumnVarNameInTable="columnClienteId" msprop:Generator_ColumnPropNameInRow="ClienteId" msprop:Generator_ColumnPropNameInTable="ClienteIdColumn" msprop:Generator_UserColumnName="ClienteId" type="xs:int" />
               <xs:element name="ProductoId" msprop:Generator_ColumnVarNameInTable="columnProductoId" msprop:Generator_ColumnPropNameInRow="ProductoId" msprop:Generator_ColumnPropNameInTable="ProductoIdColumn" msprop:Generator_UserColumnName="ProductoId" type="xs:int" />
               <xs:element name="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_ColumnPropNameInTable="MontoColumn" msprop:Generator_UserColumnName="Monto" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
@@ -4336,6 +4785,15 @@
       <xs:selector xpath=".//mstns:config" />
       <xs:field xpath="mstns:ConfigId" />
     </xs:unique>
+    <xs:unique name="configcobrosmensauldet_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:configcobrosmensauldet" />
+      <xs:field xpath="mstns:IdConfig" />
+      <xs:field xpath="mstns:ProductoId" />
+    </xs:unique>
+    <xs:unique name="configcobrosmensual_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:configcobrosmensual" />
+      <xs:field xpath="mstns:IdConfig" />
+    </xs:unique>
     <xs:unique name="contratos_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:contratos" />
       <xs:field xpath="mstns:ContratoId" />
@@ -4343,6 +4801,23 @@
     <xs:unique name="contratosdetalle_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:contratosdetalle" />
       <xs:field xpath="mstns:ContratoId" />
+      <xs:field xpath="mstns:ProductoId" />
+    </xs:unique>
+    <xs:unique name="cuentasgeneradas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cuentasgeneradas" />
+      <xs:field xpath="mstns:PeriodoGenerado" />
+    </xs:unique>
+    <xs:unique name="cuentasgeneradasdetalle_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cuentasgeneradasdetalle" />
+      <xs:field xpath="mstns:PeriodoGenerado" />
+      <xs:field xpath="mstns:PropiedadId" />
+      <xs:field xpath="mstns:ClienteId" />
+    </xs:unique>
+    <xs:unique name="cuentasgeneradasdetalleb_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cuentasgeneradasdetalleb" />
+      <xs:field xpath="mstns:PeriodoGenerado" />
+      <xs:field xpath="mstns:PropiedadId" />
+      <xs:field xpath="mstns:ClienteId" />
       <xs:field xpath="mstns:ProductoId" />
     </xs:unique>
     <xs:unique name="cuentasporcobrar_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
@@ -4473,6 +4948,8 @@
       <msdata:Relationship name="Fk_ClientePropiedad" msdata:parent="clientepropiedad" msdata:child="clientepropiedaddetalle" msdata:parentkey="ClienteId PropiedadId TipoCliente" msdata:childkey="ClienteId PropiedadId TipoCliente" msprop:Generator_UserChildTable="clientepropiedaddetalle" msprop:Generator_ChildPropName="GetclientepropiedaddetalleRows" msprop:Generator_UserRelationName="Fk_ClientePropiedad" msprop:Generator_ParentPropName="clientepropiedadRowParent" msprop:Generator_RelationVarName="relationFk_ClientePropiedad" msprop:Generator_UserParentTable="clientepropiedad" />
       <msdata:Relationship name="FK_ClientePropiedadDocs" msdata:parent="clientepropiedad" msdata:child="clientepropiedaddocs" msdata:parentkey="ClienteId PropiedadId TipoCliente" msdata:childkey="ClienteId PropiedadId TipoCliente" msprop:Generator_UserChildTable="clientepropiedaddocs" msprop:Generator_ChildPropName="GetclientepropiedaddocsRows" msprop:Generator_UserRelationName="FK_ClientePropiedadDocs" msprop:Generator_ParentPropName="clientepropiedadRowParent" msprop:Generator_RelationVarName="relationFK_ClientePropiedadDocs" msprop:Generator_UserParentTable="clientepropiedad" />
       <msdata:Relationship name="FKClienteId-ClienteidDOC" msdata:parent="clientes" msdata:child="clientesdocs" msdata:parentkey="ClienteId" msdata:childkey="ClienteId" msprop:Generator_UserChildTable="clientesdocs" msprop:Generator_ChildPropName="GetclientesdocsRows" msprop:Generator_UserRelationName="FKClienteId-ClienteidDOC" msprop:Generator_ParentPropName="clientesRow" msprop:Generator_RelationVarName="_relationFKClienteId_ClienteidDOC" msprop:Generator_UserParentTable="clientes" />
+      <msdata:Relationship name="FKIdConfigCobrosConfigMensual" msdata:parent="configcobrosmensual" msdata:child="configcobrosmensauldet" msdata:parentkey="IdConfig" msdata:childkey="IdConfig" msprop:Generator_UserChildTable="configcobrosmensauldet" msprop:Generator_ChildPropName="GetconfigcobrosmensauldetRows" msprop:Generator_UserRelationName="FKIdConfigCobrosConfigMensual" msprop:Generator_RelationVarName="relationFKIdConfigCobrosConfigMensual" msprop:Generator_UserParentTable="configcobrosmensual" msprop:Generator_ParentPropName="configcobrosmensualRow" />
+      <msdata:Relationship name="FkProductoId_ConfigCobMensualDet" msdata:parent="productos" msdata:child="configcobrosmensauldet" msdata:parentkey="Productoid" msdata:childkey="ProductoId" msprop:Generator_UserChildTable="configcobrosmensauldet" msprop:Generator_ChildPropName="GetconfigcobrosmensauldetRows" msprop:Generator_UserRelationName="FkProductoId_ConfigCobMensualDet" msprop:Generator_RelationVarName="relationFkProductoId_ConfigCobMensualDet" msprop:Generator_UserParentTable="productos" msprop:Generator_ParentPropName="productosRow" />
       <msdata:Relationship name="contratos_FK" msdata:parent="clientepropiedad" msdata:child="contratos" msdata:parentkey="ClienteId PropiedadId" msdata:childkey="ClienteId PropiedadId" msprop:Generator_UserChildTable="contratos" msprop:Generator_ChildPropName="GetcontratosRows" msprop:Generator_UserRelationName="contratos_FK" msprop:Generator_ParentPropName="clientepropiedadRowParent" msprop:Generator_RelationVarName="relationcontratos_FK" msprop:Generator_UserParentTable="clientepropiedad" />
       <msdata:Relationship name="contratosDetalle_FK" msdata:parent="productos" msdata:child="contratosdetalle" msdata:parentkey="Productoid" msdata:childkey="ProductoId" msprop:Generator_UserChildTable="contratosdetalle" msprop:Generator_ChildPropName="GetcontratosdetalleRows" msprop:Generator_UserRelationName="contratosDetalle_FK" msprop:Generator_RelationVarName="relationcontratosDetalle_FK" msprop:Generator_UserParentTable="productos" msprop:Generator_ParentPropName="productosRow" />
       <msdata:Relationship name="contratosDetalle_FK_1" msdata:parent="contratos" msdata:child="contratosdetalle" msdata:parentkey="ContratoId" msdata:childkey="ContratoId" msprop:Generator_UserChildTable="contratosdetalle" msprop:Generator_ChildPropName="GetcontratosdetalleRows" msprop:Generator_UserRelationName="contratosDetalle_FK_1" msprop:Generator_ParentPropName="contratosRow" msprop:Generator_RelationVarName="relationcontratosDetalle_FK_1" msprop:Generator_UserParentTable="contratos" />
