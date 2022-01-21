@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -59,7 +57,7 @@ namespace Kondominium_BL
         public List<ClientePropiedadDocsEntity> GetById(int ClienteId, int PropiedadId, string TipoCliente)
         {
             var query = from p in context.clientepropiedaddocs
-                        where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId && p.TipoCliente == TipoCliente 
+                        where p.ClienteId == ClienteId && p.PropiedadId == PropiedadId && p.TipoCliente == TipoCliente
                         select new ClientePropiedadDocsEntity
                         {
 
@@ -133,7 +131,7 @@ namespace Kondominium_BL
 
                     modlNew.Eliminado = model.Eliminado;
 
-                    modlNew.FechaModificacion  = DateTime.Now;
+                    modlNew.FechaModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 
@@ -165,7 +163,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.clientepropiedaddocs.Where( p => p.ClientePropiedadDocsId == model.ClientePropiedadDocsId).FirstOrDefault();
+                    var modlExist = ContextP.clientepropiedaddocs.Where(p => p.ClientePropiedadDocsId == model.ClientePropiedadDocsId).FirstOrDefault();
 
                     if (modlExist != null)
                     {

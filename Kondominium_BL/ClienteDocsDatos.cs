@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public  class ClienteDocsDatos
+    public class ClienteDocsDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ClienteDocsEntity> GetAll(bool VerEliminado = false)
@@ -23,7 +21,8 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
-                            ,ClienteDocId = p.ClienteDocId
+                            ,
+                            ClienteDocId = p.ClienteDocId
                         };
 
             return query.ToList();
@@ -42,7 +41,8 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
-                            ,ClienteDocId = p.ClienteDocId
+                            ,
+                            ClienteDocId = p.ClienteDocId
                         };
 
             return query.FirstOrDefault();
@@ -101,7 +101,7 @@ namespace Kondominium_BL
 
                     if (modlExist != null)
                     {
-                    
+
                         modlNew = modlExist;
                     }
 
@@ -122,7 +122,7 @@ namespace Kondominium_BL
                     }
                     cn.SaveChanges();
 
-                    
+
                 }
 
                 return (GetById(model.ClienteId, model.DocumentType), new Resultado { Codigo = 0, Mensaje = "Exito" });
@@ -140,7 +140,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.clientesdocs.Where(x => x.ClienteDocId == model.ClienteDocId ).FirstOrDefault();
+                    var modlExist = ContextP.clientesdocs.Where(x => x.ClienteDocId == model.ClienteDocId).FirstOrDefault();
 
                     if (modlExist != null)
                     {
@@ -158,6 +158,6 @@ namespace Kondominium_BL
 
             }
         }
-       
+
     }
 }

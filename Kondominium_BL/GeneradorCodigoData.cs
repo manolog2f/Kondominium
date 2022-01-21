@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -41,7 +37,7 @@ namespace Kondominium_BL
 
             xFecha = FechaPago.ToString("MMyy");
 
-            xBr = string.Concat("415", gln , "3902", xMonto, "8020", xReferencia , xFecha);
+            xBr = string.Concat("415", gln, "3902", xMonto, "8020", xReferencia, xFecha);
             xMostrar = string.Concat("(415) ", gln, "(3902) ", xMonto, "(8020) ", xReferencia, xFecha);
 
             return (xBr, xMostrar);
@@ -50,7 +46,7 @@ namespace Kondominium_BL
         public string NPE(string gln, decimal Monto, DateTime FechaPago, string arancel, string NumeroCasa, string LetraCasa, string Poligono)
         {
 
-          
+
             // Ultimos 4 digitos de gln
             var xgln = gln.Substring(gln.Length - 5, 5).Substring(0, 4);
             var xMonto = "";
@@ -58,7 +54,7 @@ namespace Kondominium_BL
             if (Monto.ToString().Contains("."))
                 xMonto = "00000000" + Monto.ToString().Replace(",", "").Replace(".", "");
             else
-                xMonto = "00000000" + Monto.ToString().Replace(",", "").Replace(".", "")+"00";
+                xMonto = "00000000" + Monto.ToString().Replace(",", "").Replace(".", "") + "00";
 
 
 
@@ -83,10 +79,10 @@ namespace Kondominium_BL
             return NPEFinal;
 
         }
-                
+
         public string ReemplazaABC(string textor)
         {
-            return   textor == ""?"00":textor.Replace("A", "01").
+            return textor == "" ? "00" : textor.Replace("A", "01").
             Replace("B", "02").
             Replace("C", "03").
             Replace("D", "04").
@@ -122,5 +118,5 @@ namespace Kondominium_BL
 
     }
 
-    
+
 }

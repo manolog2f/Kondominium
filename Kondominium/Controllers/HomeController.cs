@@ -1,8 +1,5 @@
 ﻿using Kondominium_Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Kondominium.Controllers
@@ -57,7 +54,7 @@ namespace Kondominium.Controllers
             var vFechaInicio = DateTime.Now.AddDays(-5);
             var vFechaFin = DateTime.Now.AddDays(35);
 
-            if (!string.IsNullOrEmpty( FechaInicio) )
+            if (!string.IsNullOrEmpty(FechaInicio))
             {
                 vFechaInicio = DateTime.Parse(FechaInicio);
                 vFechaFin = DateTime.Parse(FechaFin);
@@ -70,12 +67,12 @@ namespace Kondominium.Controllers
 
             return PartialView(Model);
         }
-      //  [HttpPost]
-         public ActionResult _PartialCalendarPost(string FechaInicio, string FechaFin)
+        //  [HttpPost]
+        public ActionResult _PartialCalendarPost(string FechaInicio, string FechaFin)
         {
-            var Model = new Kondominium_BL.CalendarioDatos().GetByStarEndDate( DateTime.Parse(FechaInicio), DateTime.Parse(FechaFin));
+            var Model = new Kondominium_BL.CalendarioDatos().GetByStarEndDate(DateTime.Parse(FechaInicio), DateTime.Parse(FechaFin));
             var mlResp = new Kondominium.Models.jsModelCalendar();
-            
+
             mlResp.Inicio = FechaInicio;
             mlResp.Final = FechaFin;
             mlResp.LCal = Model;
@@ -91,7 +88,7 @@ namespace Kondominium.Controllers
         {
             /// lista de tipo Tareas con todas las tareas pendientes filtrado por el usuario actual
             var Model = new Kondominium_BL.TareasDatos().GetAll();
-            
+
             return PartialView(Model);
         }
 
@@ -285,7 +282,7 @@ namespace Kondominium.Controllers
         public ActionResult EditCalendario(CalendarioEntity model, string TInicio, string TFIn)
         {
 
-            model.HoraFin = TimeSpan.Parse( TFIn);
+            model.HoraFin = TimeSpan.Parse(TFIn);
             model.HoraInicio = TimeSpan.Parse(TInicio);
 
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
@@ -326,7 +323,7 @@ namespace Kondominium.Controllers
 
         //public ActionResult _PartialToDoList()
         //{ 
-            
+
         //}
     }
 }

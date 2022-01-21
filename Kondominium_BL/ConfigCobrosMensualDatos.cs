@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class ConfigCobrosMensualDatos
+    public class ConfigCobrosMensualDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ConfigCobrosMensualEntity> GetAll(bool VerEliminado = false)
@@ -17,9 +15,9 @@ namespace Kondominium_BL
                 CreadoPor = x.CreadoPor,
                 FechaDeCreacion = x.FechaDeCreacion,
                 FechaDeModificacion = x.FechaDeModificacion,
-                DiaDeGeneracion = x.DiaDeGeneracion, 
-                DiaVencimiento = x.DiaVencimiento, 
-                IdConfig = x.IdConfig, 
+                DiaDeGeneracion = x.DiaDeGeneracion,
+                DiaVencimiento = x.DiaVencimiento,
+                IdConfig = x.IdConfig,
                 ModificadoPor = x.ModificadoPor
             });
 
@@ -42,7 +40,7 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        
+
 
         public (ConfigCobrosMensualEntity, Resultado) Save(ConfigCobrosMensualEntity model)
         {

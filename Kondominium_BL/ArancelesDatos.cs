@@ -2,13 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Kondominium_BL
 {
-   public class ArancelesDatos
+    public class ArancelesDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ArancelesEntity> GetAll(bool VerEliminado = false)
@@ -17,7 +15,7 @@ namespace Kondominium_BL
                         where VerEliminado ? a.Eliminado == a.Eliminado : a.Eliminado == false
                         select new ArancelesEntity
                         {
-                            Activo =  (Boolean)a.Activo,
+                            Activo = (Boolean)a.Activo,
                             ArancelId = a.ArancelId,
                             CreadoPor = a.CreadoPor,
                             Descripcion = a.Descripcion,
@@ -38,7 +36,7 @@ namespace Kondominium_BL
                         where a.ArancelId == Id
                         select new ArancelesEntity
                         {
-                            Activo =  (Boolean)a.Activo,
+                            Activo = (Boolean)a.Activo,
                             ArancelId = a.ArancelId,
                             CreadoPor = a.CreadoPor,
                             Descripcion = a.Descripcion,
@@ -57,7 +55,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    
+
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.aranceles();
 
@@ -70,7 +68,7 @@ namespace Kondominium_BL
 
                         modlNew = modlExist;
                     }
-                    
+
                     modlNew.Activo = model.Activo;
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Eliminado = model.Eliminado;
@@ -95,29 +93,29 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
 
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message  });
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
             }
 
         }
 
-        public  Resultado Delete(ArancelesEntity model)
+        public Resultado Delete(ArancelesEntity model)
         {
             try
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                     
+
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
 
-                    
+
                     if (modlExist != null)
                     {
                         ContextP.aranceles.Remove(modlExist);
                         ContextP.SaveChanges();
                         return new Resultado { Codigo = 0, Mensaje = "Exito Resgistro Eliminado Permanetemente" };
                     }
-                    else  
-                        return  new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
+                    else
+                        return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
                 }
 
             }

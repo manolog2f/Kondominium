@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
-using System.Net.Http.Headers;
 
 namespace Kondominium.Controllers
 {
@@ -56,7 +54,7 @@ namespace Kondominium.Controllers
 
         }
 
-        protected void Mensajes( Kondominium_Entities.Resultado res)
+        protected void Mensajes(Kondominium_Entities.Resultado res)
         {
             if (res.Codigo == Kondominium_Entities.CodigosMensaje.Error)
             {
@@ -65,7 +63,7 @@ namespace Kondominium.Controllers
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.Exito)
             {
                 //ViewBag.Warning = "Mensaje de warning que se mostraria";
-                if ( string.IsNullOrWhiteSpace(res.Mensaje))
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
                     res.Mensaje = "Registro Guardado de forma Exitosa!";
                 ViewBag.Successful = res.Mensaje;
             }
@@ -73,7 +71,7 @@ namespace Kondominium.Controllers
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Mensaje de warning";
-                
+
             }
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.No_Existe)
             {

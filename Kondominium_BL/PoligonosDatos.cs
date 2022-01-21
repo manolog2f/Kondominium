@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Kondominium_BL
@@ -15,18 +13,18 @@ namespace Kondominium_BL
         {
             var query = from p in context.poligonos
                         where VerEliminado ? p.Eliminado == p.Eliminado : p.Eliminado == false
-                        select new PoligonosEntity 
+                        select new PoligonosEntity
                         {
-                          PoligonoId = p.PoligonoId,
+                            PoligonoId = p.PoligonoId,
                             PoligonoDescripcion = p.PoligonoDescripcion,
-                          FechaDeCreacion = (DateTime)p.FechaDeCreacion,
-                          FechaDeModificacion = p.FechaDeModificacion,
-                          CreadoPor = p.CreadoPor,
-                          ModificadoPor = p.ModificadoPor,
-                          Eliminado = p.Eliminado,
+                            FechaDeCreacion = (DateTime)p.FechaDeCreacion,
+                            FechaDeModificacion = p.FechaDeModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor,
+                            Eliminado = p.Eliminado,
                         };
 
-     
+
 
             return query.ToList();
         }
@@ -47,7 +45,7 @@ namespace Kondominium_BL
 
             return query.FirstOrDefault();
         }
-       
+
         public (PoligonosEntity, Resultado) Save(PoligonosEntity model)
         {
             try
@@ -65,7 +63,7 @@ namespace Kondominium_BL
                         modlNew = modlExist;
                     }
 
-                     modlNew.PoligonoId = model.PoligonoId;
+                    modlNew.PoligonoId = model.PoligonoId;
                     modlNew.PoligonoDescripcion = model.PoligonoDescripcion;
                     modlNew.Eliminado = model.Eliminado;
                     modlNew.FechaDeModificacion = DateTime.Now;
@@ -73,7 +71,7 @@ namespace Kondominium_BL
 
 
 
-                    if (  modlExist == null)
+                    if (modlExist == null)
                     {
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;

@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class CalendarioDatos
+    public class CalendarioDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<CalendarioEntity> GetAll()
@@ -36,7 +34,7 @@ namespace Kondominium_BL
         }
         public CalendarioEntity GetById(int Id)
         {
-            var query = context.calendario.Where( x => x.CalendarioId == Id ).Select(cal => new CalendarioEntity
+            var query = context.calendario.Where(x => x.CalendarioId == Id).Select(cal => new CalendarioEntity
             {
                 CalendarioId = cal.CalendarioId,
                 Fecha = cal.Fecha,
@@ -55,7 +53,7 @@ namespace Kondominium_BL
                 VPropiedad = string.Concat(cal.propiedades.PoligonoId, "-", cal.propiedades.Casa.ToString(), cal.propiedades.CasaLetra),
                 VLugar = cal.lugares.Nombre
             });
-                        
+
             return query.FirstOrDefault();
         }
 
@@ -83,7 +81,7 @@ namespace Kondominium_BL
                     modlNew.PropiedadId = model.PropiedadId;
                     modlNew.TituloEvento = model.TituloEvento;
                     modlNew.DescripcionEvento = model.DescripcionEvento;
-                    modlNew.FechaDeModificacion = DateTime.Now;                   
+                    modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
 
@@ -167,24 +165,24 @@ namespace Kondominium_BL
 
         public List<CalendarioEntity> GetByStarEndDate(DateTime Inicio, DateTime Fin)
         {
-            var query = context.calendario.Where( cal => cal.Fecha >= Inicio && cal.Fecha <= Fin).OrderBy(x => x.Fecha  ).Select( cal => new CalendarioEntity
-                        {
-                            CalendarioId = cal.CalendarioId,
-                            Fecha = cal.Fecha,
-                            HoraInicio = cal.HoraInicio,
-                            HoraFin = cal.HoraFin,
-                            LugarId = cal.LugarId,
-                            ClienteId = cal.ClienteId,
-                            PropiedadId = cal.PropiedadId,
-                            TituloEvento = cal.TituloEvento,
-                            DescripcionEvento = cal.DescripcionEvento,
-                            FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
-                            FechaDeModificacion = cal.FechaDeModificacion,
-                            CreadoPor = cal.CreadoPor,
-                            ModificadoPor = cal.ModificadoPor,
-                            ClienteNombre =  cal.clientes.Nombres + " " + cal.clientes.Apellidos,
-                            VPropiedad = string.Concat( cal.propiedades.PoligonoId , "-",   cal.propiedades.Casa.ToString() ,  cal.propiedades.CasaLetra),
-                            VLugar = cal.lugares.Nombre
+            var query = context.calendario.Where(cal => cal.Fecha >= Inicio && cal.Fecha <= Fin).OrderBy(x => x.Fecha).Select(cal => new CalendarioEntity
+            {
+                CalendarioId = cal.CalendarioId,
+                Fecha = cal.Fecha,
+                HoraInicio = cal.HoraInicio,
+                HoraFin = cal.HoraFin,
+                LugarId = cal.LugarId,
+                ClienteId = cal.ClienteId,
+                PropiedadId = cal.PropiedadId,
+                TituloEvento = cal.TituloEvento,
+                DescripcionEvento = cal.DescripcionEvento,
+                FechaDeCreacion = (DateTime)cal.FechaDeCreacion,
+                FechaDeModificacion = cal.FechaDeModificacion,
+                CreadoPor = cal.CreadoPor,
+                ModificadoPor = cal.ModificadoPor,
+                ClienteNombre = cal.clientes.Nombres + " " + cal.clientes.Apellidos,
+                VPropiedad = string.Concat(cal.propiedades.PoligonoId, "-", cal.propiedades.Casa.ToString(), cal.propiedades.CasaLetra),
+                VLugar = cal.lugares.Nombre
             });
 
             return query.ToList();

@@ -2,21 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public  class CuentasGeneradasDetalleBDatos
+    public class CuentasGeneradasDetalleBDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<CuentasGeneradasDetalleBEntity> GetAll(bool VerEliminado = false)
         {
             var query = context.cuentasgeneradasdetalleb.Select(x => new CuentasGeneradasDetalleBEntity
-            {             
-                ClienteId = x.ClienteId, 
+            {
+                ClienteId = x.ClienteId,
                 PeriodoGenerado = x.PeriodoGenerado,
-                PropiedadId = x.PropiedadId, 
+                PropiedadId = x.PropiedadId,
                 Monto = x.Monto,
                 ProductoId = x.ProductoId
 
@@ -26,7 +24,7 @@ namespace Kondominium_BL
         }
         public CuentasGeneradasDetalleBEntity GetById(int PropiedadId, int ClienteId, string PeriodoGenerado, int ProductoId)
         {
-            var query = context.cuentasgeneradasdetalleb.Where(x => x.PeriodoGenerado == PeriodoGenerado && x.PropiedadId == PropiedadId && x.ClienteId ==  ClienteId && x.ProductoId == ProductoId).Select(x => new CuentasGeneradasDetalleBEntity
+            var query = context.cuentasgeneradasdetalleb.Where(x => x.PeriodoGenerado == PeriodoGenerado && x.PropiedadId == PropiedadId && x.ClienteId == ClienteId && x.ProductoId == ProductoId).Select(x => new CuentasGeneradasDetalleBEntity
             {
                 ClienteId = x.ClienteId,
                 PeriodoGenerado = x.PeriodoGenerado,
@@ -54,7 +52,7 @@ namespace Kondominium_BL
                         modlNew = modlExist;
                     }
                     modlNew.ProductoId = model.ProductoId;
-                    modlNew.ClienteId = model.ClienteId;           
+                    modlNew.ClienteId = model.ClienteId;
                     modlNew.PeriodoGenerado = model.PeriodoGenerado;
                     modlNew.PropiedadId = model.PropiedadId;
                     modlNew.Monto = model.Monto;
@@ -67,7 +65,7 @@ namespace Kondominium_BL
 
                 }
 
-                return (GetById( model.PropiedadId, model.ClienteId, model.PeriodoGenerado, model.ProductoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetById(model.PropiedadId, model.ClienteId, model.PeriodoGenerado, model.ProductoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {

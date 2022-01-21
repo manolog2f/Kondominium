@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -28,7 +26,7 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
-                           
+
                         };
 
             return query.ToList();

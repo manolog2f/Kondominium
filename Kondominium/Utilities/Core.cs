@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZTAdminEntities.Security;
+﻿using ZTAdminEntities.Security;
 //using System.Windows.Forms;
 
 namespace Kondominium.Utilities
@@ -42,24 +36,24 @@ namespace Kondominium.Utilities
             UserEmail"
             PassEmail"
             PortSMTP" */
-        }       
+        }
     }
 
     public static class UserConfig
     {
-        public static UserEntity  User;
-        
+        public static UserEntity User;
+
 
         static UserConfig()
         {
-            
-          
+
+
         }
 
 
     }
 
-    
 
-    
+
+
 }

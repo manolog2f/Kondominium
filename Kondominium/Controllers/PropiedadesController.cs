@@ -634,7 +634,7 @@ namespace Kondominium.Controllers
 
                 //if (modelr.Item2.Codigo == CodigosMensaje.Exito)
                 //{
-                   
+
 
                 //    return Json(mlResp);
                 //}

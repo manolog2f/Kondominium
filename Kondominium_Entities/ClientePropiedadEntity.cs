@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_Entities
 {
-   public class ClientePropiedadEntity
+    public class ClientePropiedadEntity
     {
         /// <summary>
         /// Id de cliente
@@ -58,5 +54,5 @@ namespace Kondominium_Entities
         /// </summary>
         public PropiedadesEntity Propiedad { get; set; }
 
-        }
+    }
 }

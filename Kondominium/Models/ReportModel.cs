@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Kondominium.Models
+﻿namespace Kondominium.Models
 {
     public class ReportModel
     {
@@ -22,7 +17,7 @@ namespace Kondominium.Models
     { }
 }
 namespace Kondominium.Models
-    {
-        public class CuentasPorCobrarPago : Kondominium_Entities.CuentasPorCobrarPagoEntity
+{
+    public class CuentasPorCobrarPago : Kondominium_Entities.CuentasPorCobrarPagoEntity
     { }
 }

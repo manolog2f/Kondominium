@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -60,7 +56,7 @@ namespace Kondominium_Entities
         /// Descripcion del arancel
         /// </summary>
         [DisplayName("Descripcion de Arancel")]
-        public string  ArancelDescripcion { get; set; }
+        public string ArancelDescripcion { get; set; }
 
         /// <summary>
         /// Fecha de Creación
@@ -131,7 +127,7 @@ namespace Kondominium_Entities
         private string vpropiedadCasa;
         public string VPropiedad   // property
         {
-            get { return PoligonoId  + '-' + Casa.ToString() + CasaLetra; }
+            get { return PoligonoId + '-' + Casa.ToString() + CasaLetra; }
             set { vpropiedadCasa = PoligonoId + '-' + Casa.ToString() + CasaLetra; }
         }
     }

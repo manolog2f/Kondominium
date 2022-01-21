@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -17,10 +15,10 @@ namespace Kondominium_BL
                 CreadoPor = x.CreadoPor,
                 FechaDeCreacion = x.FechaDeCreacion,
                 FechaDeModificacion = x.FechaDeModificacion,
-                FechaDeGeneracion = x.FechaDeGeneracion, 
-                FechaDeVencimiento = x.FechaDeVencimiento, 
-                Justificacion = x.Justificacion, 
-                ModificadoPo = x.ModificadoPo, 
+                FechaDeGeneracion = x.FechaDeGeneracion,
+                FechaDeVencimiento = x.FechaDeVencimiento,
+                Justificacion = x.Justificacion,
+                ModificadoPo = x.ModificadoPo,
                 PeriodoGenerado = x.PeriodoGenerado
             });
 
@@ -52,7 +50,7 @@ namespace Kondominium_BL
         /// <returns>bool</returns>
         public bool ValidaGeneradas(string Id)
         {
-            
+
             var query = context.cuentasgeneradas.Where(x => x.PeriodoGenerado == Id).FirstOrDefault();
 
             if (query != null)
@@ -117,7 +115,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.cuentasgeneradas.Where(x => x.PeriodoGenerado == model.PeriodoGenerado ).FirstOrDefault();
+                    var modlExist = ContextP.cuentasgeneradas.Where(x => x.PeriodoGenerado == model.PeriodoGenerado).FirstOrDefault();
 
                     if (modlExist != null)
                     {

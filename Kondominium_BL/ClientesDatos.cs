@@ -2,19 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class ClientesDatos
+    public class ClientesDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ClientesEntity> GetAll(bool VerEliminado = false)
         {
             var query = from c in context.clientes
-                        where  VerEliminado ? c.Eliminado == c.Eliminado: c.Eliminado == false 
+                        where VerEliminado ? c.Eliminado == c.Eliminado : c.Eliminado == false
                         select new ClientesEntity
                         {
                             ClienteId = c.ClienteId,
@@ -34,7 +31,7 @@ namespace Kondominium_BL
                             Eliminado = c.Eliminado,
                         };
 
-           
+
 
             return query.ToList();
 
@@ -85,17 +82,17 @@ namespace Kondominium_BL
                     //modlNew.ClienteId = model.ClienteId;
                     modlNew.Nombres = model.Nombres;
                     modlNew.Apellidos = model.Apellidos;
-                    modlNew.Documento1 =string.IsNullOrEmpty(model.Documento1)?"":model.Documento1;
+                    modlNew.Documento1 = string.IsNullOrEmpty(model.Documento1) ? "" : model.Documento1;
                     modlNew.Documento2 = string.IsNullOrEmpty(model.Documento2) ? "" : model.Documento2;
                     modlNew.Documento3 = string.IsNullOrEmpty(model.Documento3) ? "" : model.Documento3;
                     modlNew.Documento4 = string.IsNullOrEmpty(model.Documento4) ? "" : model.Documento4;
 
-                    modlNew.Email = string.IsNullOrEmpty(model.Email)?"": model.Email;
+                    modlNew.Email = string.IsNullOrEmpty(model.Email) ? "" : model.Email;
 
-                    modlNew.TelefonoMovil = string.IsNullOrEmpty(model.TelefonoMovil)?"":model.TelefonoMovil;
+                    modlNew.TelefonoMovil = string.IsNullOrEmpty(model.TelefonoMovil) ? "" : model.TelefonoMovil;
                     modlNew.TelefonoFijo = string.IsNullOrEmpty(model.TelefonoFijo) ? "" : model.TelefonoFijo;
                     modlNew.FechaDeModificacion = DateTime.Now;
-                   
+
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 
@@ -116,7 +113,7 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
 
-                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado."  + ex.Message});
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado." + ex.Message });
             }
         }
 

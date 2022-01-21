@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kondominium_Entities
+﻿namespace Kondominium_Entities
 {
     public class Resultado
     {
-        
+
         public string Mensaje { get; set; }
         public CodigosMensaje Codigo { get; set; }
 
@@ -17,7 +11,7 @@ namespace Kondominium_Entities
             Mensaje = null;
             Codigo = CodigosMensaje.Null;
         }
-}
+    }
 
     public enum CodigosMensaje
     {

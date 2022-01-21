@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public  class ClientePropiedadDatos
+    public class ClientePropiedadDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ClientePropiedadEntity> GetAll()
@@ -55,7 +53,7 @@ namespace Kondominium_BL
                             ClienteId = p.ClienteId,
                             PropiedadId = p.PropiedadId,
                             Justificacion = p.Justificacion,
-                            TipoCliente =  p.TipoCliente,
+                            TipoCliente = p.TipoCliente,
                             FechaDeCreacion = (DateTime)p.FechaDeCreacion,
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
@@ -69,24 +67,25 @@ namespace Kondominium_BL
         public ClientePropiedadEntity GetById(int ClienteId, int propiedadId)
         {
             var query = context.clientepropiedad
-                        .Where( p => p.ClienteId == ClienteId && p.PropiedadId == propiedadId)
-                        .Select( p =>  new ClientePropiedadEntity
+                        .Where(p => p.ClienteId == ClienteId && p.PropiedadId == propiedadId)
+                        .Select(p => new ClientePropiedadEntity
                         {
-                            Cliente = (  new ClientesEntity
-                                { 
-                                    Apellidos = p.clientes.Apellidos,
-                                    ClienteId = p.ClienteId, 
-                                    Nombres = p.clientes.Nombres,
-                                    Documento1 = p.clientes.Documento1,
-                                    Documento2 = p.clientes.Documento2,
-                                    Documento3 = p.clientes.Documento3,
-                                    Email = p.clientes.Email,
-                                    TelefonoFijo = p.clientes.TelefonoFijo,
-                                    TelefonoMovil = p.clientes.TelefonoMovil,
-                                    Eliminado = p.clientes.Eliminado,
-                                }
-                            ),
-                            Propiedad = ( new PropiedadesEntity {
+                            Cliente = (new ClientesEntity
+                            {
+                                Apellidos = p.clientes.Apellidos,
+                                ClienteId = p.ClienteId,
+                                Nombres = p.clientes.Nombres,
+                                Documento1 = p.clientes.Documento1,
+                                Documento2 = p.clientes.Documento2,
+                                Documento3 = p.clientes.Documento3,
+                                Email = p.clientes.Email,
+                                TelefonoFijo = p.clientes.TelefonoFijo,
+                                TelefonoMovil = p.clientes.TelefonoMovil,
+                                Eliminado = p.clientes.Eliminado,
+                            }
+                           ),
+                            Propiedad = (new PropiedadesEntity
+                            {
 
                                 PropiedadId = p.propiedades.PropiedadId,
                                 TipoDePropiedad = p.propiedades.TipoDePropiedad,
@@ -116,7 +115,7 @@ namespace Kondominium_BL
                             FechaDeModificacion = p.FechaDeModificacion,
                             CreadoPor = p.CreadoPor,
                             ModificadoPor = p.ModificadoPor
-                            
+
                         });
 
             return query.FirstOrDefault();
@@ -180,10 +179,10 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        public List<ClientePropiedadEntity> GetById(int propiedadId,  string TipoCliente)
+        public List<ClientePropiedadEntity> GetById(int propiedadId, string TipoCliente)
         {
             var query = context.clientepropiedad
-                        .Where(p =>  p.PropiedadId == propiedadId &&  p.TipoCliente == TipoCliente)
+                        .Where(p => p.PropiedadId == propiedadId && p.TipoCliente == TipoCliente)
                         .Select(p => new ClientePropiedadEntity
                         {
                             Cliente = (new ClientesEntity
@@ -259,7 +258,7 @@ namespace Kondominium_BL
                     modlNew.PropiedadId = model.PropiedadId;
                     modlNew.Justificacion = model.Justificacion;
                     modlNew.TipoCliente = model.TipoCliente;
-                  //  modlNew.// Elininado = model.// Elininado;
+                    //  modlNew.// Elininado = model.// Elininado;
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
 

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Kondominium
 {
@@ -68,7 +67,7 @@ namespace Kondominium
                 //"~/Content/sb-admin-2.css",
                 //"~/Content/sb-admin-2.min.css",
                 "~/Content/ZMT/datatables/dataTables.bootstrap4.css"
-                //"~/Content/ZMT/datatables/dataTables.bootstrap4.min.css"
+            //"~/Content/ZMT/datatables/dataTables.bootstrap4.min.css"
             ));
 
             BundleTable.EnableOptimizations = false;

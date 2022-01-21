@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Kondominium_Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kondominium_Entities;
 
 namespace Kondominium_BL
 {
@@ -12,7 +10,7 @@ namespace Kondominium_BL
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<PropiedadesEntity> GetAll(bool VerEliminado = false)
         {
-            var query = context.propiedades.Where( x => ( VerEliminado?x.Eliminado ==x.Eliminado: x.Eliminado == false) ).Select(x => new PropiedadesEntity
+            var query = context.propiedades.Where(x => (VerEliminado ? x.Eliminado == x.Eliminado : x.Eliminado == false)).Select(x => new PropiedadesEntity
             {
                 PropiedadId = x.PropiedadId,
                 TipoDePropiedad = x.TipoDePropiedad,
@@ -37,54 +35,52 @@ namespace Kondominium_BL
                 Avenida = x.Avenida,
                 Senda = x.Senda,
                 CasaLetra = x.CasaLetra
-                
-                
+
+
 
             });
-           
+
 
             return query.ToList();
         }
 
-        public List<PropiedadesEntity> GetAllByClienteId(int ClienteId,  bool VerEliminado = false)
+        public List<PropiedadesEntity> GetAllByClienteId(int ClienteId, bool VerEliminado = false)
         {
-            var query = from p in  context.propiedades
+            var query = from p in context.propiedades
                         join cp in context.clientepropiedad on p.PropiedadId equals cp.PropiedadId
-                        where p.Eliminado == (VerEliminado?p.Eliminado:false) && cp.ClienteId == ClienteId
+                        where p.Eliminado == (VerEliminado ? p.Eliminado : false) && cp.ClienteId == ClienteId
                         select new PropiedadesEntity
-                           {
-                                PropiedadId = p.PropiedadId,
-                                TipoDePropiedad = p.TipoDePropiedad,
-                                Descripcion = p.Descripcion,
-                                Casa = p.Casa,
-                                PoligonoId = p.PoligonoId,
-                                ArancelId = p.ArancelId,
-                                FechaDeCreacion = p.FechaDeCreacion,
-                                FechaDeModificacion = p.FechaDeModificacion,
-                                CreadoPor = p.CreadoPor,
-                                ModificadoPor = p.ModificadoPor,
-                                Eliminado = p.Eliminado,
-                                TipoDePropiedadDesc = ((TipodePropiedades)p.TipoDePropiedad).ToString(),
-                                ArancelDescripcion = p.aranceles.Descripcion,
-                                PoligonoDescripcion = p.poligonos.PoligonoDescripcion,
-                                AvenidaDescripcion = p.avenida1.AvenidaDescripcion,
-                                CalleDescripcion = p.calles.CalleDescripcion,
-                                SendaDescripcion = p.sendas.SendaDescripcion,
-                                Calle = p.Calle,
-                                Avenida = p.Avenida,
-                                Senda = p.Senda,
-                                CasaLetra = p.CasaLetra
-                            };
+                        {
+                            PropiedadId = p.PropiedadId,
+                            TipoDePropiedad = p.TipoDePropiedad,
+                            Descripcion = p.Descripcion,
+                            Casa = p.Casa,
+                            PoligonoId = p.PoligonoId,
+                            ArancelId = p.ArancelId,
+                            FechaDeCreacion = p.FechaDeCreacion,
+                            FechaDeModificacion = p.FechaDeModificacion,
+                            CreadoPor = p.CreadoPor,
+                            ModificadoPor = p.ModificadoPor,
+                            Eliminado = p.Eliminado,
+                            TipoDePropiedadDesc = ((TipodePropiedades)p.TipoDePropiedad).ToString(),
+                            ArancelDescripcion = p.aranceles.Descripcion,
+                            PoligonoDescripcion = p.poligonos.PoligonoDescripcion,
+                            AvenidaDescripcion = p.avenida1.AvenidaDescripcion,
+                            CalleDescripcion = p.calles.CalleDescripcion,
+                            SendaDescripcion = p.sendas.SendaDescripcion,
+                            Calle = p.Calle,
+                            Avenida = p.Avenida,
+                            Senda = p.Senda,
+                            CasaLetra = p.CasaLetra
+                        };
 
 
             return query.ToList();
         }
-
-
 
         public PropiedadesEntity GetById(int Id)
         {
-            var query = context.propiedades.Where(x=> x.PropiedadId ==  Id).
+            var query = context.propiedades.Where(x => x.PropiedadId == Id).
                         Select(x => new PropiedadesEntity
                         {
                             PropiedadId = x.PropiedadId,
@@ -135,7 +131,7 @@ namespace Kondominium_BL
                     modlNew.TipoDePropiedad = model.TipoDePropiedad;
                     modlNew.Descripcion = model.Descripcion;
                     modlNew.Casa = model.Casa;
-                    modlNew.CasaLetra = model.CasaLetra ;
+                    modlNew.CasaLetra = model.CasaLetra;
 
                     modlNew.PoligonoId = model.PoligonoId;
                     modlNew.ArancelId = model.ArancelId;
@@ -144,7 +140,7 @@ namespace Kondominium_BL
                     modlNew.Senda = model.Senda;
 
                     modlNew.FechaDeModificacion = DateTime.Now;
-                    
+
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

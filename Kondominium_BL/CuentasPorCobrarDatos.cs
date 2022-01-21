@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class CuentasPorCobrarDatos
+    public class CuentasPorCobrarDatos
     {
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
         public List<CuentasPorCobrarEntity> GetAll(bool VerEliminado = false)
@@ -24,10 +22,10 @@ namespace Kondominium_BL
                             PeriodoFacturado = cc.PeriodoFacturado,
                             Total = cc.Total,
                             NPE = cc.NPE,
-                            BRCode =cc.BRCode,
+                            BRCode = cc.BRCode,
                             FechaDeCreacion = cc.FechaDeCreacion,
                             FechaDeModificacion = cc.FechaDeModificacion,
-                            CreadoPor =cc.CreadoPor,
+                            CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
                             PropiedadId = cc.PropiedadId
@@ -92,9 +90,9 @@ namespace Kondominium_BL
                     modlNew.FechaDeVencimiento = model.FechaDeVencimiento;
                     modlNew.PeriodoFacturado = model.PeriodoFacturado;
                     modlNew.Total = model.Total;
-                    modlNew.NPE = model.NPE==null?"": model.NPE;
-                    modlNew.BRCode = model.BRCode==null?"": model.BRCode;
-                    
+                    modlNew.NPE = model.NPE == null ? "" : model.NPE;
+                    modlNew.BRCode = model.BRCode == null ? "" : model.BRCode;
+
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
@@ -199,7 +197,7 @@ namespace Kondominium_BL
                     if (modlExist != null)
                     {
                         if (modlExist.Eliminado == true)
-                            return ( new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro ha sido marcado como eliminado, no se puede actualizar" });
+                            return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro ha sido marcado como eliminado, no se puede actualizar" });
                     }
 
                     if (modlExist.Estado == 4)
@@ -214,7 +212,7 @@ namespace Kondominium_BL
                     ContextP.SaveChanges();
                 }
 
-                return (new Resultado { Codigo = 0, Mensaje = "Registro "+  (Estado == 3?"Contabilizado": (Estado == 4?"Anulado":"procesado"))  +" con exito" });
+                return (new Resultado { Codigo = 0, Mensaje = "Registro " + (Estado == 3 ? "Contabilizado" : (Estado == 4 ? "Anulado" : "procesado")) + " con exito" });
             }
             catch (Exception ex)
             {

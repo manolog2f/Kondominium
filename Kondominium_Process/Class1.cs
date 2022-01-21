@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kondominium_Process
+﻿namespace Kondominium_Process
 {
     public class Class1
     {

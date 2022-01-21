@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class CuentasPorCobrarDetalleDatos
+    public class CuentasPorCobrarDetalleDatos
     {
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
 
@@ -56,7 +54,7 @@ namespace Kondominium_BL
         public CuentasPorCobrarDetalleEntity GetByDetalleId(int DetalleId)
         {
             var query = from cd in contex.cuentasporcobrardetalle
-                        where cd.DetalleId == DetalleId 
+                        where cd.DetalleId == DetalleId
                         select new CuentasPorCobrarDetalleEntity
                         {
                             VaucherNumber = cd.VaucherNumber,
@@ -96,9 +94,9 @@ namespace Kondominium_BL
                     modlNew.VaucherNumber = model.VaucherNumber;
                     //modlNew.DetalleId = model.DetalleId;
                     modlNew.ProductoId = model.ProductoId;
-                    modlNew.Descripcion =  new ProductosDatos().GetById(model.ProductoId).Descripcion;
+                    modlNew.Descripcion = new ProductosDatos().GetById(model.ProductoId).Descripcion;
                     modlNew.Monto = model.Monto;
-                   
+
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;

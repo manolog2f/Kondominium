@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Kondominium.Utilities;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Kondominium.Utilities;
 
 namespace Kondominium.Controllers
 {
@@ -103,8 +102,8 @@ namespace Kondominium.Controllers
         {
             try
             {
-                var vdel = new Kondominium_BL.UserConfigDatos().GetByName(UserId, "VerEliminados").PropertyValue; 
-                Session["ViewDeleted"] = string.IsNullOrEmpty(vdel) ? false: (vdel=="1"?true:false);
+                var vdel = new Kondominium_BL.UserConfigDatos().GetByName(UserId, "VerEliminados").PropertyValue;
+                Session["ViewDeleted"] = string.IsNullOrEmpty(vdel) ? false : (vdel == "1" ? true : false);
 
                 Core.ViewDeleted = string.IsNullOrEmpty(vdel) ? false : (vdel == "1" ? true : false);
 
@@ -177,7 +176,7 @@ namespace Kondominium.Controllers
         public ActionResult ForgotPassword()
         {
 
-  
+
             return View();
         }
 
@@ -194,7 +193,7 @@ namespace Kondominium.Controllers
             // Verificar que el Usuario Exista.
 
             var user = new ZTAdminBL.Security.UserData().GetById(UserId);
-            
+
             if (string.IsNullOrEmpty(user.Email))
             {
                 Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Usuario no Existe" });
@@ -202,11 +201,11 @@ namespace Kondominium.Controllers
             }
 
 
-            
+
             // Generar Nuevo Password 
             string newPass = System.Web.Security.Membership.GeneratePassword(8, 5);
 
-            
+
 
 
             // Ruta del template HTML
@@ -216,19 +215,19 @@ namespace Kondominium.Controllers
 
             // Enviar Correo a usuario Indicado
             var sendmail = new ZTAdminBL.Utilities.Email().sendMAil(new ZTAdminEntities.Utilities.MailEntity
-                            {
-                                Body = new Utilities.Email().GetBodyForgetPassword(newPass, dataFile),
-                                Attachment = new List<byte[]>(),
-                                From = Core.FromEmail,
-                                Pass = Core.PassEmail,
-                                Server = Core.SMTServer,
-                                Port = int.Parse(Core.PortSMTP),
-                                UserId = Core.UserEmail,
-                                IncludeAttachment = false,
-                                To = new string[] { user.Email.ToString() },
-                                Html = true,
-                                Subject = "Recupear Password Kondominium"
-                            });
+            {
+                Body = new Utilities.Email().GetBodyForgetPassword(newPass, dataFile),
+                Attachment = new List<byte[]>(),
+                From = Core.FromEmail,
+                Pass = Core.PassEmail,
+                Server = Core.SMTServer,
+                Port = int.Parse(Core.PortSMTP),
+                UserId = Core.UserEmail,
+                IncludeAttachment = false,
+                To = new string[] { user.Email.ToString() },
+                Html = true,
+                Subject = "Recupear Password Kondominium"
+            });
 
             if (sendmail.Cod == 0)
             {
@@ -244,7 +243,7 @@ namespace Kondominium.Controllers
                 Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Surgio un error al tratar de recuperar su password." });
                 return View();
             }
-            
+
         }
 
         //
@@ -291,7 +290,7 @@ namespace Kondominium.Controllers
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
 
-            
+
             new Kondominium.Utilities.Log().Set("LogOff", HttpContext.User.Identity.Name, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
             return RedirectToAction("Login", "Account");
             ///return RedirectToAction("Index", "Home");
@@ -339,7 +338,7 @@ namespace Kondominium.Controllers
             user.Active = userBl.Active;
             user.Email = userBl.Email.Trim();
 
-            user.Password1 = string.IsNullOrEmpty(userBl.Password)? "000000000000000" : userBl.Password;
+            user.Password1 = string.IsNullOrEmpty(userBl.Password) ? "000000000000000" : userBl.Password;
             user.ValidatePassword = string.IsNullOrEmpty(userBl.Password) ? "000000000000000" : userBl.Password;
 
             user.RolId = userBl.RolId.Trim();
@@ -368,7 +367,7 @@ namespace Kondominium.Controllers
                     Email = user.Email,
                     LastName = user.LastName,
                     Name = user.Name,
-                    Password = string.IsNullOrEmpty(user.Password1)?"000000000000000": user.Password1,
+                    Password = string.IsNullOrEmpty(user.Password1) ? "000000000000000" : user.Password1,
                     RolId = user.RolId,
                     UserId = user.UserId,
                     UserExecute = user.UserId

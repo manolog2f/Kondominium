@@ -2,18 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public  class TareasDatos
+    public class TareasDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<TareasEntity> GetAll()
         {
             var query = from t in context.tareas
-                        
+
                         select new TareasEntity
                         {
                             TareaId = t.TareaId,
@@ -76,7 +74,7 @@ namespace Kondominium_BL
 
         public (TareasEntity, Resultado) Save(TareasEntity model)
         {
-            try 
+            try
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
@@ -84,7 +82,7 @@ namespace Kondominium_BL
                     var modlNew = new Kondominium_DAL.tareas();
 
                     if (modlExist != null)
-                    modlNew = modlExist;
+                        modlNew = modlExist;
 
 
                     modlNew.Prioridad = model.Prioridad;
@@ -95,7 +93,7 @@ namespace Kondominium_BL
                     modlNew.FechaDeEjecucion = model.FechaDeEjecucion;
                     modlNew.Estatus = model.Estatus;
                     modlNew.UsuarioAsignado = model.UsuarioAsignado;
-           
+
                     modlNew.FechaDeModificacion = model.FechaDeModificacion;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
@@ -167,7 +165,7 @@ namespace Kondominium_BL
                     modlExist.ModificadoPor = UserId;
                     ContextP.SaveChanges();
                 }
-                 
+
                 return (new Resultado { Codigo = 0, Mensaje = "Registro eliminado con exito" });
             }
             catch (Exception ex)

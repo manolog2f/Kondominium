@@ -3,7 +3,6 @@ using Kondominium_Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Kondominium.Controllers
@@ -278,6 +277,56 @@ namespace Kondominium.Controllers
             return View(new ContratosEntity() { });
         }
 
+        [HttpGet]
+        public ActionResult ListPagos()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetAll();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult EditPagos(string VaucherNumber, string ClienteId, int? codigo = null, string Mensaje = "")
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (VaucherNumber != null)
+            {
+                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetByVaucherNumberId(VaucherNumber);
+
+                if (model != null)
+                {
+                    return View(model);
+                }
+                return View(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = int.Parse(ClienteId), Monto = 0 });
+            }
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult EditPagos(CuentasPorCobrarPago model)
+        {
+
+
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = HttpContext.User.Identity.Name.ToString();
+
+            var modelr = new Kondominium_BL.CuentasPorCobrarPagoDatos().Save(model);
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                ViewBag.ClienteId = model.ClienteId;
+                return RedirectToAction("EditPagos", new { VaucherNumber = modelr.Item1.VaucherNumber, ClienteId = modelr.Item1.ClienteId, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+        }
+
         #region "Configuracion de cuentas por Generar"
 
         [HttpGet]
@@ -378,9 +427,9 @@ namespace Kondominium.Controllers
 
 
         public ActionResult DeleteConfigCuentaDet(int ProductoId)
-        {           
-                var model = new Kondominium_BL.ConfigCobrosMensualDetDatos().Delete(1, ProductoId );
-                return RedirectToAction("EditConfigCuenta", new { codigo = ((int)model.Codigo) });
+        {
+            var model = new Kondominium_BL.ConfigCobrosMensualDetDatos().Delete(1, ProductoId);
+            return RedirectToAction("EditConfigCuenta", new { codigo = ((int)model.Codigo) });
         }
 
         #endregion
@@ -397,10 +446,10 @@ namespace Kondominium.Controllers
             if (CodigoR != null)
             {
                 Codigo.Codigo = (CodigosMensaje)CodigoR;
-                
+
             }
 
-           var model = new Kondominium_BL.CuentasGeneradasDatos().GetById(Periodo);
+            var model = new Kondominium_BL.CuentasGeneradasDatos().GetById(Periodo);
 
             if (model == null)
             {
@@ -417,8 +466,8 @@ namespace Kondominium.Controllers
                     FechaGenerar = FechaGenerar.AddDays(-1);
                 }
                 else
-                { 
-                    FechaGenerar = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaDeGeneracion.ToString()));                  
+                {
+                    FechaGenerar = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaDeGeneracion.ToString()));
                 }
 
                 if (DateTime.Now.Month == 2 && (config.DiaVencimiento == 30 || config.DiaVencimiento == 29))
@@ -426,7 +475,8 @@ namespace Kondominium.Controllers
                     FechaVencimiento = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", "3", "-", "1"));
                     FechaVencimiento = FechaVencimiento.AddDays(-1);
                 }
-                else {
+                else
+                {
 
 
                     FechaVencimiento = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaVencimiento.ToString()));
@@ -439,7 +489,7 @@ namespace Kondominium.Controllers
 
                 model = new CuentasGeneradasEntity { PeriodoGenerado = periodoActual, FechaDeGeneracion = FechaGenerar, FechaDeVencimiento = FechaVencimiento };
             }
-           
+
 
 
 
@@ -455,7 +505,7 @@ namespace Kondominium.Controllers
         [HttpPost]
         public ActionResult GenerarRecibos(CuentasGeneradasEntity model)
         {
-            
+
             return View(model);
         }
 
@@ -464,8 +514,8 @@ namespace Kondominium.Controllers
         {
 
             /// Contar antes si el periodo ha sido generado para no volver a generar y arrojar un mensaje 
-            
-            if (! string.IsNullOrEmpty( PeriodoGenerado))
+
+            if (!string.IsNullOrEmpty(PeriodoGenerado))
             {
                 // Validar si el periodo ha sido Generado Antes
                 if (new Kondominium_BL.CuentasGeneradasDatos().ValidaGeneradas(PeriodoGenerado))
@@ -481,8 +531,8 @@ namespace Kondominium.Controllers
             }
 
             var d = new Resultado { Codigo = CodigosMensaje.Warning, Mensaje = "Prueba" };
- 
-            return RedirectToAction("GenerarRecibos",  new {  CodigoR = (int)d.Codigo, Periodo = PeriodoGenerado  });
+
+            return RedirectToAction("GenerarRecibos", new { CodigoR = (int)d.Codigo, Periodo = PeriodoGenerado });
         }
 
         #endregion
@@ -533,5 +583,41 @@ namespace Kondominium.Controllers
                 throw;
             }
         }
+
+
+
+        [HttpPost]
+        public JsonResult AjaxMethodPropiedad(string Cliente, int ClienteID)
+        {
+            CascadingModel model = new CascadingModel();
+            
+            model.Propiedades  = PopulateDropDown(ClienteID);
+            
+            
+            return Json(model);
+        }
+
+
+
+        private static List<SelectListItem> PopulateDropDown(int ClienteId)
+        {
+            List<SelectListItem> RList = new List<SelectListItem>();
+            var cons = new Kondominium_BL.PropiedadesDatos().GetAllByClienteId(ClienteId);
+
+
+            foreach (var item in cons)
+            {
+                RList.Add(new SelectListItem
+                {
+                    Text =   item.VPropiedad,
+                    Value =  item.PropiedadId.ToString()
+                });
+            }
+
+            return RList;
+        }
+
+
+
     }
 }

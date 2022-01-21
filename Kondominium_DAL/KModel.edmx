@@ -334,6 +334,7 @@
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
           <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -689,8 +690,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'contratos_FK' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="contratos_FK" />-->
         <Association Name="contratosDetalle_FK">
           <End Role="productos" Type="Self.productos" Multiplicity="1" />
@@ -1713,6 +1714,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -2749,6 +2751,7 @@ advertencia 6035: La relación 'contratos_FK' tiene columnas que no forman parte
           <EntitySetMapping Name="cuentasporcobrarpago">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrarpago">
               <MappingFragment StoreEntitySet="cuentasporcobrarpago">
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
                 <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />

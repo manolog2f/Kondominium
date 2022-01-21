@@ -2,58 +2,56 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public class ContratoDatos
+    public class ContratoDatos
     {
 
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ContratosEntity> GetAll(bool VerEliminado = false)
         {
-            var query = context.contratos.Select( x => new ContratosEntity
-                        {
-                          Activo = x.Activo,
-                          Categoria = x.Categoria,
-                          ClienteId = x.ClienteId,
-                          ContratoId = x.ContratoId,
-                           CreadoPor = x.CreadoPor,
-                           DiaMesaFacturar = x.DiaMesaFacturar,
-                           FechaDeCreacion = x.FechaDeCreacion,
-                           FechaDeModificacion = x.FechaDeModificacion,
-                           FechaFin = x.FechaFin,
-                           FechaInicio = x.FechaInicio,
-                           Frecuencia = x.Frecuencia,
-                           ModificadoPor = x.ModificadoPor,
-                           PropiedadId = x.PropiedadId,
-                           TipoCliente = x.TipoCliente,
+            var query = context.contratos.Select(x => new ContratosEntity
+            {
+                Activo = x.Activo,
+                Categoria = x.Categoria,
+                ClienteId = x.ClienteId,
+                ContratoId = x.ContratoId,
+                CreadoPor = x.CreadoPor,
+                DiaMesaFacturar = x.DiaMesaFacturar,
+                FechaDeCreacion = x.FechaDeCreacion,
+                FechaDeModificacion = x.FechaDeModificacion,
+                FechaFin = x.FechaFin,
+                FechaInicio = x.FechaInicio,
+                Frecuencia = x.Frecuencia,
+                ModificadoPor = x.ModificadoPor,
+                PropiedadId = x.PropiedadId,
+                TipoCliente = x.TipoCliente,
 
-                        });
+            });
 
             return query.ToList();
         }
         public ContratosEntity GetById(int Id)
         {
-            var query = context.contratos.Where(x=> x.ContratoId == Id).Select(x => new ContratosEntity
-                        {
-                            Activo = x.Activo,
-                            Categoria = x.Categoria,
-                            ClienteId = x.ClienteId,
-                            ContratoId = x.ContratoId,
-                            CreadoPor = x.CreadoPor,
-                            DiaMesaFacturar = x.DiaMesaFacturar,
-                            FechaDeCreacion = x.FechaDeCreacion,
-                            FechaDeModificacion = x.FechaDeModificacion,
-                            FechaFin = x.FechaFin,
-                            FechaInicio = x.FechaInicio,
-                            Frecuencia = x.Frecuencia,
-                            ModificadoPor = x.ModificadoPor,
-                            PropiedadId = x.PropiedadId,
-                            TipoCliente = x.TipoCliente,
+            var query = context.contratos.Where(x => x.ContratoId == Id).Select(x => new ContratosEntity
+            {
+                Activo = x.Activo,
+                Categoria = x.Categoria,
+                ClienteId = x.ClienteId,
+                ContratoId = x.ContratoId,
+                CreadoPor = x.CreadoPor,
+                DiaMesaFacturar = x.DiaMesaFacturar,
+                FechaDeCreacion = x.FechaDeCreacion,
+                FechaDeModificacion = x.FechaDeModificacion,
+                FechaFin = x.FechaFin,
+                FechaInicio = x.FechaInicio,
+                Frecuencia = x.Frecuencia,
+                ModificadoPor = x.ModificadoPor,
+                PropiedadId = x.PropiedadId,
+                TipoCliente = x.TipoCliente,
 
-                        });
+            });
 
             return query.FirstOrDefault();
         }
@@ -69,27 +67,27 @@ namespace Kondominium_BL
 
                     if (modlExist != null)
                     {
-                        
+
                         modlNew = modlExist;
                     }
 
                     // modlNew.ContratoId = model.ContratoId;
 
 
-                            modlNew.Activo = model.Activo;
-                            modlNew.Categoria = model.Categoria;
-                            modlNew.ClienteId = model.ClienteId;
-                         
-                            modlNew.DiaMesaFacturar = model.DiaMesaFacturar;
-                            
-                            
-                            modlNew.FechaFin = model.FechaFin;
-                            modlNew.FechaInicio = model.FechaInicio;
-                            modlNew.Frecuencia = model.Frecuencia;
-                            
-                            modlNew.PropiedadId = model.PropiedadId;
-                            modlNew.TipoCliente = model.TipoCliente;
-                    
+                    modlNew.Activo = model.Activo;
+                    modlNew.Categoria = model.Categoria;
+                    modlNew.ClienteId = model.ClienteId;
+
+                    modlNew.DiaMesaFacturar = model.DiaMesaFacturar;
+
+
+                    modlNew.FechaFin = model.FechaFin;
+                    modlNew.FechaInicio = model.FechaInicio;
+                    modlNew.Frecuencia = model.Frecuencia;
+
+                    modlNew.PropiedadId = model.PropiedadId;
+                    modlNew.TipoCliente = model.TipoCliente;
+
 
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;

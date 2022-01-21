@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -18,7 +16,7 @@ namespace Kondominium_BL
                 FechaDeCreacion = x.FechaDeCreacion,
                 FechaDeModificacion = x.FechaDeModificacion,
                 IdConfig = x.IdConfig,
-                ModificadoPor = x.ModificadoPor, 
+                ModificadoPor = x.ModificadoPor,
                 Monto = x.Monto,
                 ProductoId = x.ProductoId,
                 ProductoDescripcion = x.productos.Descripcion
@@ -129,6 +127,6 @@ namespace Kondominium_BL
 
             }
         }
-   
+
     }
 }

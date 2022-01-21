@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Kondominium_Entities.CuentasPorCobrarPagoEntity>
+
+@{
+    ViewBag.Title = "ListPagos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Listado de pagos</h1>
+    <p class="mb-4"></p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-plus-circle"></i>
+                @Html.ActionLink("Crear Nuevo", "EditPagos")
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CuentasPorCobrarPagoId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VaucherNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClienteId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MetodoPago)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReferenciaPago)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Observacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeModificacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreadoPor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModificadoPor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Monto)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CuentasPorCobrarPagoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VaucherNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClienteId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MetodoPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReferenciaPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Observacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Monto)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

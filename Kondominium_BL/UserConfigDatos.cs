@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class UserConfigDatos
+    public class UserConfigDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public UserConfigEntity GetByName(string UserId, string NameId)
@@ -26,14 +24,14 @@ namespace Kondominium_BL
                                 ModifiedDate = x.ModifiedDate
                             });
 
-                    return query.FirstOrDefault();
+                return query.FirstOrDefault();
             }
             catch (Exception)
             {
 
                 throw;
             }
-            
+
         }
         public List<UserConfigEntity> GetAllByName(string UserId, string NameId)
         {
@@ -83,7 +81,7 @@ namespace Kondominium_BL
                     modlNew.ModifiedDate = DateTime.Now;
                     modlNew.ModifiedByUserId = uconf.ModifiedByUserId;
 
-                    if (modlExist  == null)
+                    if (modlExist == null)
                     {
                         modlNew.CreateDate = DateTime.Now;
                         modlNew.CreateByUserId = uconf.CreateByUserId;
@@ -92,7 +90,7 @@ namespace Kondominium_BL
                     }
                     ContextP.SaveChanges();
 
-                    
+
                 }
 
                 return (GetByName(uconf.UserId, uconf.PropertyName), new Resultado { Codigo = 0, Mensaje = "Exito" });

@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-  public class CxcTypeDatos
+    public class CxcTypeDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<CxcTypeEntity> GetAll()
@@ -48,7 +46,7 @@ namespace Kondominium_BL
 
             return Voucher;
         }
-        
+
 
         public (CxcTypeEntity, Resultado) Save(CxcTypeEntity model)
         {

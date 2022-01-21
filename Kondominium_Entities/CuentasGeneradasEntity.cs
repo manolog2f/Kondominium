@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_Entities
 {
@@ -19,7 +15,7 @@ namespace Kondominium_Entities
         [DisplayName("Fecha de Facturacion"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> FechaDeGeneracion { get; set; }
-        
+
         [DataType(DataType.Date)]
         [DisplayName("Fecha de Vencimiento"), Required(ErrorMessage = "Debe ingresar la fecha correspondiente.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]

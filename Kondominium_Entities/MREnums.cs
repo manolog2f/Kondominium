@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kondominium_Entities
+﻿namespace Kondominium_Entities
 {
-  public  class MREnums
+    public class MREnums
     {
     }
 

@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -25,7 +23,8 @@ namespace Kondominium_BL
                             FechaDeModificacion = cc.FechaDeModificacion,
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
-                            Monto = cc.Monto
+                            Monto = cc.Monto,
+                            PropiedadId = cc.PropiedadId
                         };
 
 
@@ -49,7 +48,8 @@ namespace Kondominium_BL
                             FechaDeModificacion = cc.FechaDeModificacion,
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
-                            Monto = cc.Monto
+                            Monto = cc.Monto,
+                            PropiedadId = cc.PropiedadId
                         };
 
             return query.FirstOrDefault();
@@ -71,7 +71,8 @@ namespace Kondominium_BL
                             FechaDeModificacion = cc.FechaDeModificacion,
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
-                            Monto = cc.Monto
+                            Monto = cc.Monto,
+                            PropiedadId = cc.PropiedadId
                         };
 
             return query.FirstOrDefault();
@@ -104,10 +105,11 @@ namespace Kondominium_BL
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Monto = model.Monto;
+                    modlNew.PropiedadId = model.PropiedadId;
 
-                    if (modlNew.CuentasPorCobrarPagoId == 0 )
+                    if (modlNew.CuentasPorCobrarPagoId == 0)
                     {
-                        
+
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
 

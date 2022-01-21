@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -75,9 +73,9 @@ namespace Kondominium_BL
                     modlNew.Documento3 = model.Documento3;
                     modlNew.Direccion = model.Direccion;
                     modlNew.Logo = model.Logo;
-                    
+
                     modlNew.FechaDeModificacion = DateTime.Now;
-                    
+
                     modlNew.ModificadoPor = model.ModificadoPor;
 
                     if (modlNew.EmpresaId == 0)

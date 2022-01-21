@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -24,7 +22,7 @@ namespace Kondominium_BL
                             ModificadoPor = prop.ModificadoPor,
                             Eliminado = prop.Eliminado,
                         };
-          
+
             return query.ToList();
         }
 
@@ -45,7 +43,7 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
-        public (ProductosEntity, Resultado) Save (ProductosEntity model)
+        public (ProductosEntity, Resultado) Save(ProductosEntity model)
         {
             try
             {
@@ -59,14 +57,14 @@ namespace Kondominium_BL
                         if (modlExist.Eliminado == true)
                             return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
 
-                    modlNew = modlExist;
+                        modlNew = modlExist;
                     }
 
                     //modlNew.Productoid = model.Productoid;
                     modlNew.Descripcion = model.Descripcion;
-                    
+
                     modlNew.FechaDeModificacion = DateTime.Now;
-                    
+
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
 

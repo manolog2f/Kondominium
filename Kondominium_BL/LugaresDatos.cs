@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
@@ -13,10 +11,10 @@ namespace Kondominium_BL
         public List<LugaresEntity> GetAll()
         {
             var query = from l in context.lugares
-                        
+
                         select new LugaresEntity
                         {
-                            
+
                             LugarId = l.LugarId,
                             Nombre = l.Nombre,
                             Descripcion = l.Descripcion,
@@ -58,7 +56,7 @@ namespace Kondominium_BL
 
                     if (modlExist != null)
                         modlNew = modlExist;
-                    
+
 
                     modlNew.LugarId = model.LugarId;
                     modlNew.Nombre = model.Nombre;

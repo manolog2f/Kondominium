@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_BL
 {
-   public class ContratoDetalleDatos
+    public class ContratoDetalleDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
         public List<ContratosDetalleEntity> GetAll(bool VerEliminado = false)
@@ -39,7 +37,7 @@ namespace Kondominium_BL
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.contratosdetalle.Where(x => x.ContratoId == model.ContratoId  && x.ProductoId == model.ProductoId).FirstOrDefault();
+                    var modlExist = cn.contratosdetalle.Where(x => x.ContratoId == model.ContratoId && x.ProductoId == model.ProductoId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.contratosdetalle();
 
                     if (modlExist != null)

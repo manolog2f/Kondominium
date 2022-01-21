@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kondominium_Entities
 {
- public class CuentasGeneradasDetalleEntity
+    public class CuentasGeneradasDetalleEntity
     {
         public string PeriodoGenerado { get; set; }
         public int PropiedadId { get; set; }
