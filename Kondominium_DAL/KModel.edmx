@@ -239,6 +239,16 @@
           <Property Name="ProductoId" Type="int" Nullable="false" />
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" />
         </EntityType>
+        <EntityType Name="correlativos">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abrev" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Abrev" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Corr" Type="bigint" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="cuentasgeneradas">
           <Key>
             <PropertyRef Name="PeriodoGenerado" />
@@ -335,6 +345,8 @@
           <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="PropiedadId" Type="int" />
+          <Property Name="FechadePago" Type="datetime" Precision="0" />
+          <Property Name="Estado" Type="int" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -729,6 +741,30 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="cuentasporcobrarpago_FK">
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="0..1" />
+          <End Role="cuentasporcobrarpago" Type="Self.cuentasporcobrarpago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrarpago">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cuentasporcobrarpago_FK_1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+          <End Role="cuentasporcobrarpago" Type="Self.cuentasporcobrarpago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrarpago">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CxcClientesFK">
           <End Role="clientes" Type="Self.clientes" Multiplicity="1" />
           <End Role="cuentasporcobrar" Type="Self.cuentasporcobrar" Multiplicity="*" />
@@ -1030,6 +1066,7 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <EntitySet Name="configcobrosmensual" EntityType="Self.configcobrosmensual" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="contratos" EntityType="Self.contratos" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="contratosdetalle" EntityType="Self.contratosdetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="correlativos" EntityType="Self.correlativos" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasgeneradas" EntityType="Self.cuentasgeneradas" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasgeneradasdetalle" EntityType="Self.cuentasgeneradasdetalle" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="cuentasgeneradasdetalleb" EntityType="Self.cuentasgeneradasdetalleb" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -1087,6 +1124,14 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <AssociationSet Name="cuentasporcobrar_FK" Association="Self.cuentasporcobrar_FK">
             <End Role="cxctype" EntitySet="cxctype" />
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
+          </AssociationSet>
+          <AssociationSet Name="cuentasporcobrarpago_FK" Association="Self.cuentasporcobrarpago_FK">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="cuentasporcobrarpago" EntitySet="cuentasporcobrarpago" />
+          </AssociationSet>
+          <AssociationSet Name="cuentasporcobrarpago_FK_1" Association="Self.cuentasporcobrarpago_FK_1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cuentasporcobrarpago" EntitySet="cuentasporcobrarpago" />
           </AssociationSet>
           <AssociationSet Name="CxcClientesFK" Association="Self.CxcClientesFK">
             <End Role="clientes" EntitySet="clientes" />
@@ -1352,6 +1397,15 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
             <End Role="user" EntitySet="user" />
             <End Role="userconfig" EntitySet="userconfig" />
           </AssociationSet>
+          <EntitySet Name="correlativos" EntityType="db_a43bba_kondomiModel.correlativos" />
+          <AssociationSet Name="cuentasporcobrarpago_FK_1" Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="cuentasporcobrarpago" EntitySet="cuentasporcobrarpago" />
+          </AssociationSet>
+          <AssociationSet Name="cuentasporcobrarpago_FK" Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK">
+            <End Role="propiedades" EntitySet="propiedades" />
+            <End Role="cuentasporcobrarpago" EntitySet="cuentasporcobrarpago" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="alerta">
           <Key>
@@ -1526,6 +1580,7 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientes" ToRole="clientepropiedad" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="clientes" ToRole="cuentasporcobrar" />
           <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientes" ToRole="clientesdocs" />
+          <NavigationProperty Name="cuentasporcobrarpago" Relationship="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" FromRole="clientes" ToRole="cuentasporcobrarpago" />
         </EntityType>
         <EntityType Name="clientesdocs">
           <Key>
@@ -1715,6 +1770,10 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Monto" Type="Decimal" Nullable="false" />
           <Property Name="PropiedadId" Type="Int32" />
+          <Property Name="FechadePago" Type="DateTime" />
+          <Property Name="Estado" Type="Int32" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" FromRole="cuentasporcobrarpago" ToRole="clientes" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.cuentasporcobrarpago_FK" FromRole="cuentasporcobrarpago" ToRole="propiedades" />
         </EntityType>
         <EntityType Name="cxctype">
           <Key>
@@ -1933,6 +1992,7 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.FKPRopiedadIdCXC" FromRole="propiedades" ToRole="cuentasporcobrar" />
           <NavigationProperty Name="poligonos" Relationship="db_a43bba_kondomiModel.PropiesdesPoligonosFK" FromRole="propiedades" ToRole="poligonos" />
           <NavigationProperty Name="sendas" Relationship="db_a43bba_kondomiModel.PropiedadesSendaFK" FromRole="propiedades" ToRole="sendas" />
+          <NavigationProperty Name="cuentasporcobrarpago" Relationship="db_a43bba_kondomiModel.cuentasporcobrarpago_FK" FromRole="propiedades" ToRole="cuentasporcobrarpago" />
         </EntityType>
         <EntityType Name="rol">
           <Key>
@@ -2418,6 +2478,40 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="correlativos">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abrev" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Abrev" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Corr" Type="Int64" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="cuentasporcobrarpago_FK_1">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrarpago" Role="cuentasporcobrarpago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrarpago">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cuentasporcobrarpago_FK">
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.cuentasporcobrarpago" Role="cuentasporcobrarpago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="propiedades">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="cuentasporcobrarpago">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2751,6 +2845,8 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <EntitySetMapping Name="cuentasporcobrarpago">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.cuentasporcobrarpago">
               <MappingFragment StoreEntitySet="cuentasporcobrarpago">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechadePago" ColumnName="FechadePago" />
                 <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
@@ -3086,6 +3182,16 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="correlativos">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.correlativos">
+              <MappingFragment StoreEntitySet="correlativos">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Corr" ColumnName="Corr" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

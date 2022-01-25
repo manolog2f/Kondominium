@@ -5,10 +5,42 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@if (Model.Estado >= 3)
+{
+
+    <script>
+        $(function () {
+            $('input[type="text"]').prop('readonly', true);
+            $('input[type="date"]').prop('readonly', true);
+
+
+            $("select").each(function () {
+                $(this).attr("disabled", "disabled");
+            });
+
+            $('linkMRX').click(function () { return false; });
+
+        });
+    </script>
+}
+
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Ingreso de Cuentas por Cobrar</h1>
+    
+    @if (Model.Estado == 3)
+    {
+        <h2 class="h2 mb-4" style="color:cornflowerblue">Contabilizado...</h2>
+
+    }
+    @if (Model.Estado == 4)
+    {
+        <h2 class="h2 mb-4" style="color:indianred">Anulado...</h2>
+
+    }
+
 
     <div class="row">
 
@@ -150,29 +182,32 @@
 
                                         @if ((Model != null ? Model.Eliminado : false) != true)
                                         {
-                                            <div class="container" style="margin-left:unset !important">
+                                        <div class="container" style="margin-left:unset !important">
 
-                                                @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
-
+                                            @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
+                                            @if (Model.Estado <= 2 || Model.Estado == null)
+                                            {
                                                 <button type="submit" value="Guardar" class="btn btn-primary">
                                                     <i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>Guardar
                                                 </button>
-
+                                            }
+                                            @if (Model.Estado <= 2)
+                                            {
                                                 <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
                                                     <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
                                                 </a>
+                                            }
+                                            @if (Model.Estado != 4 && Model.Estado != null)
+                                            {
+                                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#AnularModal">
+                                                <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
+                                            </a>
+                                            }
+                                            <a class="btn btn-info" href="#" data-toggle="modal" data-target="#AnularModal">
+                                                <i class="fas fa-print fa-sm fa-fw mr-2 text-gray-400"></i>Imprimir
+                                            </a>
 
-
-
-                                                <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#AnularModal">
-                                                    <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
-                                                </a>
-
-                                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#AnularModal">
-                                                    <i class="fas fa-print fa-sm fa-fw mr-2 text-gray-400"></i>Imprimir
-                                                </a>
-
-                                            </div>
+                                        </div>
 
                                         }
                                     </div>
@@ -196,10 +231,14 @@
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
 
-                                        <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
-                                            <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
-                                        </a>
+                                        @if (Model.Estado < 3)
+                                        {
+                                            <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
+                                                <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
+                                            </a>
+                                        }
 
+                                        <br/>
 
                                         @Html.Action("_EditCuentasPorCobrarDetalle", "Transacciones", new { VaucherNumber = Model.VaucherNumber })
 

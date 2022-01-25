@@ -149,6 +149,9 @@
     <Compile Include="contratosdetalle.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="correlativos.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="cuentasgeneradas.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>

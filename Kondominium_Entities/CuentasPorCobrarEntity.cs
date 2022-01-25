@@ -82,5 +82,7 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Id de Propiedad")]
         public int PropiedadId { get; set; }
+
+        public int? Estado { get; set; }
     }
 }

@@ -71,5 +71,6 @@ namespace Kondominium_DAL
         public virtual DbSet<user> user { get; set; }
         public virtual DbSet<userconfig> userconfig { get; set; }
         public virtual DbSet<userprofile> userprofile { get; set; }
+        public virtual DbSet<correlativos> correlativos { get; set; }
     }
 }

@@ -116,6 +116,7 @@
     <Compile Include="ConfigCobrosMensualDetDatos.cs" />
     <Compile Include="ContratoDatos.cs" />
     <Compile Include="ContratoDetalleDatos.cs" />
+    <Compile Include="CorrelativosDatos.cs" />
     <Compile Include="CuentasGeneradasDatos.cs" />
     <Compile Include="CuentasGeneradasDetalleBDatos.cs" />
     <Compile Include="CuentasGeneradasDetalleDatos.cs" />

@@ -54,6 +54,7 @@
     <Compile Include="ConfigCobrosMensualEntity.cs" />
     <Compile Include="ContratosDetalleEntity.cs" />
     <Compile Include="ContratosEntity.cs" />
+    <Compile Include="CorrelativosEntity.cs" />
     <Compile Include="CuentasGeneradasDetalleBEntity.cs" />
     <Compile Include="CuentasGeneradasDetalleEntity.cs" />
     <Compile Include="CuentasGeneradasEntity.cs" />

@@ -81,6 +81,9 @@
         <AssociationConnector Association="db_a43bba_kondomiModel.RolUserFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.SubMenuPermissionFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.userconfig_FK" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.correlativos" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

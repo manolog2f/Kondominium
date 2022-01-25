@@ -287,7 +287,7 @@ namespace Kondominium.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditPagos(string VaucherNumber, string ClienteId, int? codigo = null, string Mensaje = "")
+        public ActionResult EditPagos(string VaucherNumber,  int? codigo = null, string Mensaje = "")
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
@@ -299,10 +299,10 @@ namespace Kondominium.Controllers
                 {
                     return View(model);
                 }
-                return View(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = int.Parse(ClienteId), Monto = 0 });
+                
             }
 
-            return View();
+            return View(new CuentasPorCobrarPagoEntity { CuentasPorCobrarPagoId = 0,  Monto = 0 , FechadePago = DateTime.Now});
 
         }
 
@@ -314,7 +314,7 @@ namespace Kondominium.Controllers
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = HttpContext.User.Identity.Name.ToString();
 
-            var modelr = new Kondominium_BL.CuentasPorCobrarPagoDatos().Save(model);
+            var modelr = new Kondominium_BL.CuentasPorCobrarPagoDatos().SavePago(model);
 
             if (modelr.Item2.Codigo == CodigosMensaje.Exito)
             {
@@ -326,6 +326,32 @@ namespace Kondominium.Controllers
                 return View(modelr.Item1);
             }
         }
+
+        public ActionResult UpdatePagoContabilizado(string VaucherNumber)
+        {
+            if (VaucherNumber != null)
+            {
+                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 3);
+
+                return RedirectToAction("EditPagos", new { VaucherNumber = VaucherNumber, codigo = ((int)model.Codigo), Mensaje = model.Mensaje });
+            }
+            return RedirectToAction("EditPagos", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
+        }
+        public ActionResult UpdatePagoAnulado(string VaucherNumber)
+        {
+
+
+            if (VaucherNumber != null)
+            {
+                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 4);
+
+                return RedirectToAction("EditPagos", new { VaucherNumber = VaucherNumber, codigo = ((int)model.Codigo), Mensaje = model.Mensaje });
+            }
+            return RedirectToAction("EditPagos", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
+        }
+
+
+
 
         #region "Configuracion de cuentas por Generar"
 

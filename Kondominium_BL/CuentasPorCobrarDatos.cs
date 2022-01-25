@@ -28,7 +28,8 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            Estado = cc.Estado
                         };
 
 
@@ -56,7 +57,8 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            Estado = cc.Estado
                         };
 
             return query.FirstOrDefault();

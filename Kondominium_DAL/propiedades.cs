@@ -20,6 +20,7 @@ namespace Kondominium_DAL
             this.calendario = new HashSet<calendario>();
             this.clientepropiedad = new HashSet<clientepropiedad>();
             this.cuentasporcobrar = new HashSet<cuentasporcobrar>();
+            this.cuentasporcobrarpago = new HashSet<cuentasporcobrarpago>();
         }
     
         public int PropiedadId { get; set; }
@@ -49,5 +50,7 @@ namespace Kondominium_DAL
         public virtual ICollection<cuentasporcobrar> cuentasporcobrar { get; set; }
         public virtual poligonos poligonos { get; set; }
         public virtual sendas sendas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cuentasporcobrarpago> cuentasporcobrarpago { get; set; }
     }
 }

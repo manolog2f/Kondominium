@@ -26,5 +26,10 @@ namespace Kondominium_DAL
         public string ModificadoPor { get; set; }
         public decimal Monto { get; set; }
         public Nullable<int> PropiedadId { get; set; }
+        public Nullable<System.DateTime> FechadePago { get; set; }
+        public Nullable<int> Estado { get; set; }
+    
+        public virtual clientes clientes { get; set; }
+        public virtual propiedades propiedades { get; set; }
     }
 }

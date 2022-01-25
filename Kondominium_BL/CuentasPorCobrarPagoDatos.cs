@@ -10,8 +10,8 @@ namespace Kondominium_BL
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
         public List<CuentasPorCobrarPagoEntity> GetAll()
         {
-            var query = from cc in contex.cuentasporcobrarpago
-                        select new CuentasPorCobrarPagoEntity
+            var query = contex.cuentasporcobrarpago.Select(
+                        cc => new CuentasPorCobrarPagoEntity
                         {
                             VaucherNumber = cc.VaucherNumber,
                             ClienteId = cc.ClienteId,
@@ -24,8 +24,12 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
-                        };
+                            PropiedadId = cc.PropiedadId,
+                            FechadePago = cc.FechadePago,
+                            ClientFullName =   cc.clientes.Nombres + " " + cc.clientes.Apellidos,
+                            VPropiedad = cc.propiedades.PoligonoId + "-" + cc.propiedades.Casa.ToString() +  cc.propiedades.CasaLetra,
+                            Estado = cc.Estado
+                        });
 
 
 
@@ -49,7 +53,9 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,    
+                            FechadePago = cc.FechadePago,
+                            Estado = cc.Estado
                         };
 
             return query.FirstOrDefault();
@@ -72,7 +78,9 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            FechadePago = cc.FechadePago,
+                            Estado = cc.Estado
                         };
 
             return query.FirstOrDefault();
@@ -107,6 +115,9 @@ namespace Kondominium_BL
                     modlNew.Monto = model.Monto;
                     modlNew.PropiedadId = model.PropiedadId;
 
+                    modlNew.FechadePago = model.FechadePago;
+
+
                     if (modlNew.CuentasPorCobrarPagoId == 0)
                     {
 
@@ -129,6 +140,103 @@ namespace Kondominium_BL
             }
 
         }
+
+        public (CuentasPorCobrarPagoEntity, Resultado) SavePago(CuentasPorCobrarPagoEntity model)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == model.CuentasPorCobrarPagoId).FirstOrDefault();
+                    var modlNew = new Kondominium_DAL.cuentasporcobrarpago();
+
+
+                    if (modlExist != null)
+                    {
+                        //if (modlExist.Eliminado == true)
+                        //    return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+
+                        modlNew = modlExist;
+                    }
+
+                    modlNew.ClienteId = model.ClienteId;
+                    modlNew.VaucherNumber = model.VaucherNumber;
+
+                    modlNew.MetodoPago = model.MetodoPago;
+                    modlNew.Observacion = model.Observacion;
+                    modlNew.ReferenciaPago = model.ReferenciaPago;
+                    modlNew.FechaDeModificacion = DateTime.Now;
+                    modlNew.ModificadoPor = model.ModificadoPor;
+                    modlNew.Monto = model.Monto;
+                    modlNew.PropiedadId = model.PropiedadId;
+
+                    modlNew.FechadePago = model.FechadePago;
+
+
+                    if (string.IsNullOrEmpty(modlNew.VaucherNumber))
+                    {
+                        modlNew.VaucherNumber = new CorrelativosDatos().GenerateNextNumber("Pago");
+
+                        modlNew.FechaDeCreacion = DateTime.Now;
+                        modlNew.CreadoPor = model.CreadoPor;
+                        modlNew.Estado = 1;
+
+                        ContextP.cuentasporcobrarpago.Add(modlNew);
+                    }
+                    ContextP.SaveChanges();
+
+                    model.CuentasPorCobrarPagoId = modlNew.CuentasPorCobrarPagoId;
+                }
+
+                return (GetById(model.CuentasPorCobrarPagoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
+            }
+
+        }
+
+        public Resultado SetEstado(string Id, string UserId, int Estado)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+
+                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.VaucherNumber == Id).FirstOrDefault();
+                    // var modlNew = new Kondominium_DAL.cuentasporcobrar();
+
+
+                    if (modlExist != null)
+                    {
+                        //if (modlExist.Eliminado == true)
+                        //    return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro ha sido marcado como eliminado, no se puede actualizar" });
+                    }
+
+                    if (modlExist.Estado == 4)
+                    {
+                        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El Registro ha sido Anulado no puede ser Actualizado" });
+                    }
+
+                    modlExist.Estado = Estado;
+
+                    modlExist.FechaDeModificacion = DateTime.Now;
+                    modlExist.ModificadoPor = UserId;
+                    ContextP.SaveChanges();
+                }
+
+                return (new Resultado { Codigo = 0, Mensaje = "Registro " + (Estado == 3 ? "Contabilizado" : (Estado == 4 ? "Anulado" : "procesado")) + " con exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro procesar el Registro \n" + ex.Message });
+            }
+
+        }
+
 
         public Resultado Delete(CuentasPorCobrarPagoEntity model)
         {
