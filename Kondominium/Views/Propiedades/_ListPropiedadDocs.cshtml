@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Kondominium_Entities.PropiedadesDocsEntity>
+
+<script>
+    function OpenModalPopUp(PropiedadId, DocumentType) {
+        $('.xPropiedadId').text(PropiedadId);
+        $('.xDocumentType').text(DocumentType);
+        $('#UploadFileModalPropiedad').modal();
+    };
+</script>
+
+
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                @*<i class="fas fa-plus-circle"></i>*@
+                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadFileModalPropiedad">
+                    <i class="fas fa-upload fa-sm fa-fw mr-2 text-gray-300"></i>    Cargar Nuevo Documento
+                </a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                ...
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PropiedadesDocId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DocumentType)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteFileModal">
+                                        <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"> </i>
+                                    </a>
+
+                                    @Html.ActionLink("Ver", "_DownloadFIlePropiedad", new { Id = item.PropiedadesDocId }, new { target = "_blank", @class = "btn btn-info " })
+
+
+                                    <!-- Delete Modal confirmacion -->
+                                    <div class="modal fade" id="DeleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header badge-warning">
+                                                    <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    @Html.ActionLink("Eliminar", "DeleteLinePropDocs", new { Id = (Model == null ? "" : item.PropiedadesDocId.ToString()) }, new { @class = "btn btn-danger" })
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*//End Delete Modal confirmacion*@
+
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropiedadesDocId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentType)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

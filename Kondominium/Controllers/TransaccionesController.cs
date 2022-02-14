@@ -234,8 +234,6 @@ namespace Kondominium.Controllers
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
         }
-
-
         public ActionResult DeleteCxcDet(int DetalleId, string VaucherNumber)
         {
             if (DetalleId != 0)
@@ -246,9 +244,6 @@ namespace Kondominium.Controllers
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = CodigosMensaje.No_Existe });
         }
-
-
-
         [HttpGet]
         public ActionResult ListadoContratos()
         {
@@ -258,7 +253,6 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ContratoDatos().GetAll();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult EditContratos(int? Id, int? codigo = null)
         {
@@ -276,7 +270,6 @@ namespace Kondominium.Controllers
             }
             return View(new ContratosEntity() { });
         }
-
         [HttpGet]
         public ActionResult ListPagos()
         {
@@ -285,7 +278,6 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetAll();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult EditPagos(string VaucherNumber, string ClienteId, int? codigo = null, string Mensaje = "")
         {
@@ -302,10 +294,9 @@ namespace Kondominium.Controllers
                 return View(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = int.Parse(ClienteId), Monto = 0 });
             }
 
-            return View();
+            return View(new CuentasPorCobrarPagoEntity { VaucherNumber = "", Monto = 0, Estado = 0 });
 
         }
-
         [HttpPost]
         public ActionResult EditPagos(CuentasPorCobrarPago model)
         {
@@ -425,7 +416,6 @@ namespace Kondominium.Controllers
 
         }
 
-
         public ActionResult DeleteConfigCuentaDet(int ProductoId)
         {
             var model = new Kondominium_BL.ConfigCobrosMensualDetDatos().Delete(1, ProductoId);
@@ -506,10 +496,16 @@ namespace Kondominium.Controllers
         public ActionResult GenerarRecibos(CuentasGeneradasEntity model)
         {
 
+            var kmG = new Kondominium_BL.GeneraracionMensuales().GenerarRecibosMensuales(model.FechaDeGeneracion.Value.Month, model.FechaDeGeneracion.Value.Year, (DateTime)model.FechaDeGeneracion, (DateTime)model.FechaDeVencimiento, model.PeriodoGenerado, HttpContext.User.Identity.Name.ToString());
+
+
+            if (kmG.Item1.Codigo != CodigosMensaje.Null)
+            {
+                Mensajes(kmG.Item1);
+            }
+            ModelState.Clear();
             return View(model);
         }
-
-
         public ActionResult ProcesoGenerarRecibos(string PeriodoGenerado, CuentasGeneradasEntity model)
         {
 
@@ -534,9 +530,63 @@ namespace Kondominium.Controllers
 
             return RedirectToAction("GenerarRecibos", new { CodigoR = (int)d.Codigo, Periodo = PeriodoGenerado });
         }
-
         #endregion
 
+        #region "Generacion de Balance"
+        [HttpGet]
+        public ActionResult BalanceCliente(int? id)
+        {
+            var model = new List<Kondominium_Entities.vwBalanceEntity>();
+
+            if (id != null)
+            {
+                model = new Kondominium_BL.BalanceDatos().ByCliente((int)id);
+
+                var totrecibo = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotRecibo);
+                var totPago = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotPago);
+                var balance = totrecibo - totPago;
+
+                ViewBag.TotalRecibos = totrecibo;
+                ViewBag.TotalPagos = totPago;
+                ViewBag.Balance = balance;
+            }
+            else
+            {
+                ViewBag.TotalRecibos = 0;
+                ViewBag.TotalPagos = 0;
+                ViewBag.Balance = 0;
+            }
+            return View(model);
+        }
+
+
+        [HttpGet]
+        public ActionResult BalancePropiedad(int? id)
+        {
+            var model = new List<Kondominium_Entities.vwBalanceEntity>();
+
+            if (id != null)
+            {
+                model = new Kondominium_BL.BalanceDatos().ByPropiedad((int)id);
+
+                var totrecibo = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotRecibo);
+                var totPago = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotPago);
+                var balance = totrecibo - totPago;
+
+                ViewBag.TotalRecibos = totrecibo;
+                ViewBag.TotalPagos = totPago;
+                ViewBag.Balance = balance;
+            }
+            else
+            {
+                ViewBag.TotalRecibos = 0;
+                ViewBag.TotalPagos = 0;
+                ViewBag.Balance = 0;
+            }
+            return View(model);
+        }
+
+        #endregion
 
         public List<CxcTypeEntity> ListTiposTransaccion()
         {
@@ -568,7 +618,6 @@ namespace Kondominium.Controllers
             }
         }
 
-
         public List<string> ListTipoMetodoPago()
         {
             try
@@ -584,8 +633,6 @@ namespace Kondominium.Controllers
             }
         }
 
-
-
         [HttpPost]
         public JsonResult AjaxMethodPropiedad(string Cliente, int ClienteID)
         {
@@ -596,8 +643,6 @@ namespace Kondominium.Controllers
             
             return Json(model);
         }
-
-
 
         private static List<SelectListItem> PopulateDropDown(int ClienteId)
         {

@@ -167,24 +167,45 @@ namespace Kondominium.Controllers
         //return new FileStreamResult(new MemoryStream(document.Data), document.ContentType) {FileDownloadName = document.Name };
 
 
-        public ActionResult DownloadFile(string FileNameparam)
-        {
-            string filename = "File.pdf";
-            //string filepath = AppDomain.CurrentDomain.BaseDirectory + "/Path/To/File/" + filename;
-            string filepath = FileNameparam;
-            byte[] filedata = System.IO.File.ReadAllBytes(filepath);
-            string contentType = MimeMapping.GetMimeMapping(filepath);
+        //public ActionResult DownloadFile(string FileNameparam)
+        //{
+        //    string filename = "File.pdf";
+        //    //string filepath = AppDomain.CurrentDomain.BaseDirectory + "/Path/To/File/" + filename;
+        //    string filepath = FileNameparam;
+        //    byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+        //    string contentType = MimeMapping.GetMimeMapping(filepath);
 
-            var cd = new System.Net.Mime.ContentDisposition
-            {
-                FileName = filename,
-                Inline = true,
-            };
+        //    var cd = new System.Net.Mime.ContentDisposition
+        //    {
+        //        FileName = filename,
+        //        Inline = true,
+        //    };
 
-            Response.AppendHeader("Content-Disposition", cd.ToString());
+        //    Response.AppendHeader("Content-Disposition", cd.ToString());
 
-            return File(filedata, contentType);
-        }
+        //    return File(filedata, contentType);
+        //}
+
+        //public ActionResult DownloadFile(string DocumentId)
+        //{
+        //    string filename = "File.pdf";
+        //    //string filepath = AppDomain.CurrentDomain.BaseDirectory + "/Path/To/File/" + filename;
+        //    string filepath = FileNameparam;
+        //    byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+        //    string contentType = MimeMapping.GetMimeMapping(filepath);
+
+        //    var cd = new System.Net.Mime.ContentDisposition
+        //    {
+        //        FileName = filename,
+        //        Inline = true,
+        //    };
+
+        //    Response.AppendHeader("Content-Disposition", cd.ToString());
+
+        //    return File(filedata, contentType);
+        //}
+
+
         #endregion
     }
 }

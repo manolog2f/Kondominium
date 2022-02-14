@@ -98,13 +98,18 @@
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ZoomTechUtils">
+      <HintPath>..\..\Pristellav2\ZTUtils\bin\Debug\ZoomTechUtils.dll</HintPath>
+    </Reference>
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\ZstdNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlamedaDatos.cs" />
     <Compile Include="ArancelesDatos.cs" />
     <Compile Include="AvenidasDatos.cs" />
+    <Compile Include="BalanceDatos.cs" />
     <Compile Include="CalendarioDatos.cs" />
     <Compile Include="CallesDatos.cs" />
     <Compile Include="ClienteDocsDatos.cs" />
@@ -125,12 +130,15 @@
     <Compile Include="CxcDatos.cs" />
     <Compile Include="EmpresaDatos.cs" />
     <Compile Include="GeneradorCodigoData.cs" />
+    <Compile Include="GeneraracionMensuales.cs" />
     <Compile Include="LugaresDatos.cs" />
     <Compile Include="PeriodoFacturadoDatos.cs" />
     <Compile Include="PoligonosDatos.cs" />
     <Compile Include="ProductosDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadesDatos.cs" />
+    <Compile Include="PropiedadesDocsDatos.cs" />
+    <Compile Include="ReportData.cs" />
     <Compile Include="SendasDatos.cs" />
     <Compile Include="TareasDatos.cs" />
     <Compile Include="UserConfigDatos.cs" />

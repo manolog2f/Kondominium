@@ -20,7 +20,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Tipo de Propiedad
         /// </summary>
-        [DisplayName("Tipo de Propiedad Descripcion")]
+        [DisplayName("Tipo de Propiedad")]
         public string TipoDePropiedadDesc { get; set; }
 
         /// <summary>
@@ -32,30 +32,30 @@ namespace Kondominium_Entities
         /// <summary>
         /// Casa
         /// </summary>
-        [DisplayName("Casa")]
+        [DisplayName("Numero de Casa")]
         public int Casa { get; set; }
         /// <summary>
         /// Id de Polígono
         /// </summary>
-        [DisplayName("Id de Polígono")]
+        [DisplayName("Polígono")]
         public string PoligonoId { get; set; }
 
         /// <summary>
         /// Descripcion del  Polígono
         /// </summary>
-        [DisplayName("Descripion de Polígono")]
+        [DisplayName("Polígono")]
         public string PoligonoDescripcion { get; set; }
 
         /// <summary>
         /// Id de Arancel
         /// </summary>
-        [DisplayName("Id de Arancel")]
+        [DisplayName("Arancel")]
         public Nullable<int> ArancelId { get; set; }
 
         /// <summary>
         /// Descripcion del arancel
         /// </summary>
-        [DisplayName("Descripcion de Arancel")]
+        [DisplayName("Arancel")]
         public string ArancelDescripcion { get; set; }
 
         /// <summary>
@@ -84,37 +84,37 @@ namespace Kondominium_Entities
         /// <summary>
         /// Senda id
         /// </summary>
-        [DisplayName("Id de Senda")]
+        [DisplayName("Senda")]
         public string Senda { get; set; }
 
         /// <summary>
         /// Descripcion de la Senda
         /// </summary>
-        [DisplayName("Descripion de Senda")]
+        [DisplayName("Senda")]
         public string SendaDescripcion { get; set; }
 
         /// <summary>
         /// Calle id
         /// </summary>
-        [DisplayName("Id de calle")]
+        [DisplayName("calle")]
         public string Calle { get; set; }
 
         /// <summary>
         /// Descripcion de la Calle
         /// </summary>
-        [DisplayName("Descripion de Calle")]
+        [DisplayName("Calle")]
         public string CalleDescripcion { get; set; }
 
         /// <summary>
         /// Avenida id
         /// </summary>
-        [DisplayName("Id de Avenida")]
+        [DisplayName("Avenida")]
         public string Avenida { get; set; }
 
         /// <summary>
         /// Descripcion de la Avenida
         /// </summary>
-        [DisplayName("Descripion de Avenida")]
+        [DisplayName("Avenida")]
         public string AvenidaDescripcion { get; set; }
 
 
@@ -130,6 +130,20 @@ namespace Kondominium_Entities
             get { return PoligonoId + '-' + Casa.ToString() + CasaLetra; }
             set { vpropiedadCasa = PoligonoId + '-' + Casa.ToString() + CasaLetra; }
         }
+
+
+        /// <summary>
+        /// Alameda ID
+        /// </summary>
+        [DisplayName("Alameda Id")]
+        public string Alameda { get; set; }
+
+        /// <summary>
+        /// Alameda ID
+        /// </summary>
+        [DisplayName("Alameda")]
+        public string AlamedaDescripcion { get; set; }
+
     }
 
 }

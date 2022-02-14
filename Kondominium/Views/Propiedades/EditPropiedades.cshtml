@@ -135,7 +135,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Senda,
                                                      new Kondominium_BL.SendasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                     { Text = x.SendaId, Value = x.SendaId }),
+                                                     { Text = x.SendaDescripcion, Value = x.SendaId }),
                                                                                                   "Seleccione la Senda",
                                                                                                   new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Senda, "", new { @class = "text-danger" })
@@ -149,7 +149,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Calle,
                                                  new Kondominium_BL.CallesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                 { Text = x.CalleId, Value = x.CalleId }),
+                                                 { Text = x.CalleDescripcion, Value = x.CalleId }),
                                                                                               "Seleccione la Calle",
                                                                                               new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
@@ -162,7 +162,7 @@
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Avenida,
                             new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                            { Text = x.AvenidaId, Value = x.AvenidaId }),
+                            { Text = x.AvenidaDescripcion, Value = x.AvenidaId }),
                                                                          "Seleccione la Avenida",
                                                                          new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Avenida, "", new { @class = "text-danger" })
@@ -172,6 +172,21 @@
 
                                     </div>
                                     <div class="row">
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Alameda, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.Alameda,
+                                                     new Kondominium_BL.AlamedaDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+                                                     { Text = x.AlamedaDescripcion, Value = x.AlamedaId }),
+                                                                                                  "Seleccione la Alameda",
+                                                                                                  new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Senda, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.ArancelId, htmlAttributes: new { @class = "control-label col-md" })
@@ -188,10 +203,32 @@
                                             </div>
                                         </div>
 
+                                        <div class="col"></div>
+
                                     </div>
 
                                 </div>
                             </div>
+
+
+
+                            <!-- Doc Propiedades -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                                        Documentos de la Propiedad
+                                    </a>
+                                </div>
+                                <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        @Html.Action("_ListPropiedadDocs", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString() })
+
+                                    </div>
+                                </div>
+                            </div>
+
 
 
 
@@ -211,7 +248,7 @@
 
                                         </div>
                                         <br>
-                                        
+
 
                                         @Html.Action("_ListadoPropietariosPropiedad", "Propiedades", new { Id = Model.PropiedadId.ToString() })
 
@@ -380,3 +417,42 @@
 <div>
     @Html.ActionLink("Retornar  a la Lista", "ListadoPropiedades", "Propiedades")
 </div>
+
+
+
+
+
+
+@if (Model.PropiedadId != null)
+{
+    <div class="modal fade" id="UploadFileModalPropiedad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
+
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @{
+                        int xPropiedadId = Model.PropiedadId;
+                        string xDocumentType = "";
+
+                    }
+
+
+                    @Html.Action("_EditPropiedadesFileUpload", "Propiedades", new { PropiedadId = xPropiedadId, DocumentType = xDocumentType })
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

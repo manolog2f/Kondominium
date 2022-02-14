@@ -33,6 +33,12 @@
                                 @Html.DisplayNameFor(model => model.ClienteId)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.FullNameCondomino)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VPropiedad)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.TipoCxC)
                             </th>
                             <th>
@@ -55,31 +61,37 @@
                         @foreach (var item in Model)
                         {
 
-                            <tr>
-                                <td>
-                                    @Html.ActionLink(item.VaucherNumber.ToString(), "EditCuentasPorCobrar", new { VaucherNumber = item.VaucherNumber })
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.ClienteId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.TipoCxC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.FechaDeEmision)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.FechaDeVencimiento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.PeriodoFacturado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.Total)
-                                </td>
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.VaucherNumber.ToString(), "EditCuentasPorCobrar", new { VaucherNumber = item.VaucherNumber })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.ClienteId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.FullNameCondomino)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.VPropiedad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.TipoCxC)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.FechaDeEmision)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.FechaDeVencimiento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.PeriodoFacturado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Total)
+                            </td>
 
 
-                            </tr>
+                        </tr>
                         }
                     </tbody>
                 </table>

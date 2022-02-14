@@ -1,5 +1,6 @@
 ﻿using Kondominium.Models;
 using Kondominium_Entities;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -291,6 +292,56 @@ namespace Kondominium.Controllers
 
 
         #region  "Subir Archivo"
+        //[HttpPost]
+        //public ActionResult _UploadFileH(HttpPostedFileBase file, FormCollection form)
+        //{
+        //    var mdl = new jsModel();
+        //    var respM = new Resultado();
+
+
+
+        //    mdl.ClienteId = int.Parse(form["ClienteId"].ToString());
+        //    mdl.DocumentType = form["DocumentType"];
+        //    mdl.ClienteDocId = int.Parse(form["ClienteDocId"]);
+        //    try
+        //    {
+
+        //        //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
+        //        if (file.ContentLength > 0)
+        //        {
+        //            string _FileName = Path.GetFileName(file.FileName);
+        //            string targetFolder = HttpContext.Server.MapPath("~/Documents/Clientes/" + mdl.ClienteId);
+        //            if (!Directory.Exists(targetFolder))
+        //            {
+        //                Directory.CreateDirectory(targetFolder);
+        //            }
+
+        //            string targetPath = Path.Combine(targetFolder, _FileName);
+        //            var docSave = new Kondominium_BL.ClienteDocsDatos().Save(new ClienteDocsEntity { ClienteDocId = mdl.ClienteDocId, ClienteId = mdl.ClienteId, DocumentType = mdl.DocumentType, UrlDocument = targetPath, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString() });
+
+        //            mdl.JsFuntion = "T";
+        //            mdl.ClienteDocId = docSave.Item1.ClienteDocId;
+        //            file.SaveAs(targetPath);
+        //            mdl.mensaje = docSave.Item2;
+        //        }
+        //        return Json(mdl);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        respM.Codigo = CodigosMensaje.Error;
+        //        respM.Mensaje = ex.Message;
+        //        mdl.JsFuntion = "Err";
+        //        mdl.mensaje = respM;
+
+        //        this.Mensajes(respM);
+        //        ViewBag.Message = "Error al cargar el Archivo!!" + ex;
+
+
+        //        log.LogExeption("Error Almacenar Archivo", ZoomTechLog.LogType.Error, ex);
+
+        //        return Json(mdl);
+        //    }
+        //}
         [HttpPost]
         public ActionResult _UploadFileH(HttpPostedFileBase file, FormCollection form)
         {
@@ -305,22 +356,21 @@ namespace Kondominium.Controllers
             try
             {
 
-                //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string targetFolder = HttpContext.Server.MapPath("~/Documents/Clientes/" + mdl.ClienteId);
-                    if (!Directory.Exists(targetFolder))
+                    string theFileName = Path.GetFileName(file.FileName);
+                    byte[] thePictureAsBytes = new byte[file.ContentLength];
+                    using (BinaryReader theReader = new BinaryReader(file.InputStream))
                     {
-                        Directory.CreateDirectory(targetFolder);
+                        thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
                     }
 
-                    string targetPath = Path.Combine(targetFolder, _FileName);
-                    var docSave = new Kondominium_BL.ClienteDocsDatos().Save(new ClienteDocsEntity { ClienteDocId = mdl.ClienteDocId, ClienteId = mdl.ClienteId, DocumentType = mdl.DocumentType, UrlDocument = targetPath, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString() });
+                    var docSave = new Kondominium_BL.ClienteDocsDatos().Save(new ClienteDocsEntity { ClienteDocId = mdl.ClienteDocId, ClienteId = mdl.ClienteId, DocumentType = mdl.DocumentType, UrlDocument = file.FileName, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString(), Document = thePictureAsBytes });
 
                     mdl.JsFuntion = "T";
                     mdl.ClienteDocId = docSave.Item1.ClienteDocId;
-                    file.SaveAs(targetPath);
+
+                    
                     mdl.mensaje = docSave.Item2;
                 }
                 return Json(mdl);
@@ -341,6 +391,18 @@ namespace Kondominium.Controllers
                 return Json(mdl);
             }
         }
+
+        public FileResult _DownloadFIle(int Id)
+        {
+
+                var doc = new Kondominium_BL.ClienteDocsDatos().GetByClienteDocId(Id);
+
+                string mimeType = new Kondominium_Entities.Utilites.MimeTypeEntity().MimeTypeList().Where(x => x.Extension.Contains( new Utilities.General().ExtraerExtencion(doc.UrlDocument))).FirstOrDefault().Type;
+                
+
+                return File(doc.Document, mimeType);
+        }
+
 
         #endregion
 

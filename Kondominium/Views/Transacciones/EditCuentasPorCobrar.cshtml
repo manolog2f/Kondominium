@@ -5,10 +5,14 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
+
+
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Ingreso de Cuentas por Cobrar</h1>
+    <h1 class="h3 mb-4 text-gray-800">Registro de Recibos</h1>
 
     <div class="row">
 
@@ -59,6 +63,21 @@
                                         </div>
 
                                         <div class="col">
+                                            
+                                            <div class="form-group">
+                                                <br>
+                                                @if (Model.Estado != null)
+                                                {
+                                                    if (Model.Estado == 4)
+                                                    {
+                                                        <h4 style="border: red 3px dashed; color: red; width: min-content;">Anulado</h4>
+                                                    }
+                                                    if (Model.Estado == 3)
+                                                    {
+                                                        <h4 style="border: dodgerblue 3px dashed; color: dodgerblue; width: min-content; ">Contabilizado</h4>
+                                                    }
+                                                }
+                                            </div>
                                         </div>
                                         <div class="col">
                                         </div>
@@ -168,9 +187,11 @@
                                                     <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
                                                 </a>
 
-                                                <a class="btn btn-info" href="#" data-toggle="modal" data-target="#AnularModal">
-                                                    <i class="fas fa-print fa-sm fa-fw mr-2 text-gray-400"></i>Imprimir
-                                                </a>
+                                                @if (Model.VaucherNumber != null)
+                                                {
+                                                    @Html.ActionLink("Imprimir", "Recibo", "Report", new { VaucherNumber = Model.VaucherNumber.ToString() }, new { target = "_blank", @class = "btn btn-info" })
+                                                }
+
 
                                             </div>
 

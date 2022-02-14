@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -96,11 +96,17 @@
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ZoomTechUtils">
+      <HintPath>..\..\Pristellav2\ZTUtils\bin\Debug\ZoomTechUtils.dll</HintPath>
+    </Reference>
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\ZstdNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alameda.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="alerta.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
     <Compile Include="clientesdocs.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="cobrosmensalesloggeneracion.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="config.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
@@ -147,6 +156,9 @@
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="contratosdetalle.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="correlativos.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cuentasgeneradas.cs">
@@ -231,6 +243,9 @@
     <Compile Include="propiedades.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="propiedadesdocs.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="rol.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
@@ -253,6 +268,15 @@
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="userprofile.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwbalance.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwpagos.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwrecibo.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

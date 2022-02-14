@@ -1,6 +1,7 @@
 ﻿using Kondominium_Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace Kondominium_BL
@@ -34,7 +35,11 @@ namespace Kondominium_BL
                 Calle = x.Calle,
                 Avenida = x.Avenida,
                 Senda = x.Senda,
-                CasaLetra = x.CasaLetra
+                CasaLetra = x.CasaLetra,
+
+                Alameda = x.Alameda,
+                AlamedaDescripcion = x.alameda1.AlamedaDescripcion
+
 
 
 
@@ -71,7 +76,10 @@ namespace Kondominium_BL
                             Calle = p.Calle,
                             Avenida = p.Avenida,
                             Senda = p.Senda,
-                            CasaLetra = p.CasaLetra
+                            CasaLetra = p.CasaLetra,
+
+                            Alameda = p.Alameda,
+                            AlamedaDescripcion = p.alameda1.AlamedaDescripcion
                         };
 
 
@@ -106,10 +114,27 @@ namespace Kondominium_BL
                             Avenida = x.Avenida,
                             Senda = x.Senda,
                             CasaLetra = x.CasaLetra
+                            ,
+
+                            Alameda = x.Alameda,
+                            AlamedaDescripcion = x.alameda1.AlamedaDescripcion
 
                         });
 
             return query.FirstOrDefault();
+        }
+
+        public DataTable DataTable(int Id)
+        {
+
+            var dTabla = new DataTable();
+
+            using (var _context = new Kondominium_DAL.KEntities())
+            {
+                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.propiedades.Where( x=> x.PropiedadId == Id).ToList());
+            }
+
+            return dTabla;
         }
         public (PropiedadesEntity, Resultado) Save(PropiedadesEntity model)
         {
@@ -143,6 +168,8 @@ namespace Kondominium_BL
 
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
+
+                    modlNew.Alameda = model.Alameda;
 
 
                     if (modlExist == null)

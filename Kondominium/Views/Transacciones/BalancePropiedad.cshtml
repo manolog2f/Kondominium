@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Kondominium_Entities.vwBalanceEntity>
+
+@{
+    ViewBag.Title = "BalancePropiedad";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Balance de Propiedad</h1>
+    <p class="mb-4"></p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-plus-circle"></i>
+                @*@Html.ActionLink("Crear Nuevo", "EditCuentasPorCobrar")*@
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VaucherNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClienteId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TipoCxC)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeEmision)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeVencimiento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PeriodoFacturado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotRecibo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotPago)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PropiedadId)
+                            </th>
+                            <th></th>
+                        </tr>
+                    <thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VaucherNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClienteId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoCxC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeEmision)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeVencimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PeriodoFacturado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotRecibo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Estado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropiedadId)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+                <div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.Label("Total Recibos:")
+                                <div class="col-md-10">
+                                    <div class="form-control">
+                                        @ViewBag.TotalRecibos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.Label("Total Pagos:")
+                                <div class="col-md-10">
+                                    <div class="form-control">
+                                        @ViewBag.TotalPagos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.Label("Balance:")
+                                <div class="col-md-10">
+                                    <div class="form-control">
+                                        @ViewBag.Balance
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

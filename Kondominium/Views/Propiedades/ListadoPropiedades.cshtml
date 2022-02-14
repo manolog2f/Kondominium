@@ -45,14 +45,19 @@
                                 @Html.DisplayNameFor(model => model.CasaLetra)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Senda)
+                                @Html.DisplayNameFor(model => model.SendaDescripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Calle)
+                                @Html.DisplayNameFor(model => model.CalleDescripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Avenida)
+                                @Html.DisplayNameFor(model => model.AvenidaDescripcion)
                             </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlamedaDescripcion)
+                            </th>
+
                             <th>
                                 @Html.DisplayNameFor(model => model.ArancelDescripcion)
                             </th>
@@ -81,7 +86,7 @@
 
                         <tr @eliminadox>
                             <td>
-                                @Html.ActionLink(item.PropiedadId.ToString(), "EditPropiedades", new { id = item.PropiedadId })
+                                @Html.ActionLink(item.VPropiedad.ToString(), "EditPropiedades", new { id = item.PropiedadId })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TipoDePropiedadDesc)
@@ -99,14 +104,19 @@
                                 @Html.DisplayFor(modelItem => item.CasaLetra)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Senda)
+                                @Html.DisplayFor(modelItem => item.SendaDescripcion)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Calle)
+                                @Html.DisplayFor(modelItem => item.CalleDescripcion)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Avenida)
+                                @Html.DisplayFor(modelItem => item.AvenidaDescripcion)
                             </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AlamedaDescripcion)
+                            </td>
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.ArancelDescripcion)
                             </td>

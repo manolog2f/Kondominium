@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Kondominium_Entities.AlamedaEntity>
+
+@{
+    ViewBag.Title = "ListadoAlamedas";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Lista de Alamedas</h1>
+    <p class="mb-4"></p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-plus-circle"></i>
+                @Html.ActionLink("Crear Nuevo", "EditAlamedas")
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlamedaId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlamedaDescripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaDeModificacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreadoPor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModificadoPor)
+                            </th>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.Eliminado)
+                            </th>*@
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.AlamedaId .ToString(), "EditAlamedas", new { id = item.AlamedaId })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AlamedaDescripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreadoPor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Eliminado)
+                                </td>*@
+                            </tr>
+                        }
+
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

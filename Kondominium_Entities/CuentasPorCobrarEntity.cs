@@ -14,7 +14,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Id de Cliente
         /// </summary>
-        [DisplayName("Id de Condómino")]
+        [DisplayName("Condómino")]
         public int ClienteId { get; set; }
         /// <summary>
         /// Cuentas por Cobrar
@@ -82,5 +82,46 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Id de Propiedad")]
         public int PropiedadId { get; set; }
+        /// <summary>
+        /// 1 Creado\r\n2 Impreso\r\n3 Contabilizado\r\n4 Anulado
+        /// </summary>
+        public int Estado { get; set; }
+
+
+
+        /// <summary>
+        /// Condomino Full Name
+        /// </summary>
+        [DisplayName("Nombre Condomino")]
+        public string FullNameCondomino { get; set; }
+
+        /// <summary>
+        /// Letra de la casa ** Opcional
+        /// </summary>
+        [DisplayName("Letra de la casa")]
+        public string CasaLetra { get; set; }
+
+        private string vpropiedadCasa;
+        /// <summary>
+        /// Propiedad
+        /// </summary>
+        [DisplayName("Propiedad")]
+        public string VPropiedad   // property
+        {
+            get { return PoligonoId + '-' + Casa.ToString() + CasaLetra; }
+            set { vpropiedadCasa = PoligonoId + '-' + Casa.ToString() + CasaLetra; }
+        }
+
+        /// <summary>
+        /// Casa
+        /// </summary>
+        [DisplayName("Casa")]
+        public int Casa { get; set; }
+        /// <summary>
+        /// Id de Polígono
+        /// </summary>
+        [DisplayName("Id de Polígono")]
+        public string PoligonoId { get; set; }
+
     }
 }

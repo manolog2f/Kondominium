@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlamedaEntity.cs" />
     <Compile Include="ArancelesEntity.cs" />
     <Compile Include="AvenidasEntity.cs" />
     <Compile Include="CalendarioEntity.cs" />
@@ -61,6 +62,8 @@
     <Compile Include="CxcEntity.cs" />
     <Compile Include="DocumentEntity.cs" />
     <Compile Include="LugaresEntity.cs" />
+    <Compile Include="PropiedadesDocsEntity.cs" />
+    <Compile Include="Utilites\MimeTypeEntity.cs" />
     <Compile Include="MREnums.cs" />
     <Compile Include="PoligonosEntity.cs" />
     <Compile Include="ClientesEntity.cs" />
@@ -75,6 +78,9 @@
     <Compile Include="UserConfigEntity.cs" />
     <Compile Include="Utilites\MenuEntity.cs" />
     <Compile Include="Utilites\Resultado.cs" />
+    <Compile Include="vwBalanceEntity.cs" />
+    <Compile Include="vwPagosEntity.cs" />
+    <Compile Include="vwReciboEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

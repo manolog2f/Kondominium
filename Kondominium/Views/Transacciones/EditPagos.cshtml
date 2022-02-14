@@ -138,6 +138,20 @@
                                             </div>
                                         </div>
                                         <div class="col">
+
+                                            <div class="form-group">
+                                                <br>
+                                            
+                                                    @if (Model.Estado == 4)
+                                                    {
+                                                        <h4 style="border: red 3px dashed; color: red; width: min-content;">Anulado</h4>
+                                                    }
+                                                    @if (Model.Estado == 3)
+                                                    {
+                                                        <h4 style="border: dodgerblue 3px dashed; color: dodgerblue; width: min-content; ">Contabilizado</h4>
+                                                    }
+                                                
+                                            </div>
                                         </div>
                                     </div>
 
@@ -149,8 +163,8 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.ClienteId,
-    new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
-     "Seleccione el Condómino", new { @class = "form-control" })
+new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
+"Seleccione el Condómino", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -168,7 +182,7 @@
                                                 @Html.LabelFor(model => model.PropiedadId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
 
-                                                    @Html.DropDownListFor(model => model.PropiedadId, mdl.Propiedades, "Please select",  new { @class = "form-control" })
+                                                    @Html.DropDownListFor(model => model.PropiedadId, mdl.Propiedades, "Please select", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.PropiedadId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -183,14 +197,14 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.MetodoPago,
-                                                                            new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
-                                                                            {
-                                                                                Text = x.ToString()
-                                                                            ,
-                                                                                Value = x.ToString()
-                                                                            }),
-                                                                            "Seleccione El Metodo de pago",
-                                                                          new { @class = "form-control" })
+                             new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
+                             {
+                                 Text = x.ToString()
+                             ,
+                                 Value = x.ToString()
+                             }),
+                             "Seleccione El Metodo de pago",
+                           new { @class = "form-control" })
 
 
                                                     @Html.ValidationMessageFor(model => model.MetodoPago, "", new { @class = "text-danger" })
@@ -319,6 +333,18 @@
                                 <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                     <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                 </a>
+
+
+                                @{ 
+                                    var vaucher = Model.VaucherNumber == null ? "" : Model.VaucherNumber;
+
+
+                                    if (Model != null)
+                                    {
+                                        @Html.ActionLink("Imprimir", "Pagos", "Report", new { VaucherNumber = vaucher }, new { target = "_blank", @class = "btn btn-info" })
+                                        }
+
+                               }
 
                             </div>
 

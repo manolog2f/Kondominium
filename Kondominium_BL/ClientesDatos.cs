@@ -1,6 +1,7 @@
 ﻿using Kondominium_Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace Kondominium_BL
@@ -62,6 +63,30 @@ namespace Kondominium_BL
                         };
             return query.FirstOrDefault();
         }
+
+        public DataTable DataTable()
+        {
+
+            var dTabla = new DataTable();
+
+            using (var _context = new Kondominium_DAL.KEntities())
+            {
+                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.clientes.ToList());
+            }
+
+            return dTabla;
+        }
+
+        public DataTable DataTable(int Id)
+        {
+            var dTabla = new DataTable();
+            using (var _context = new Kondominium_DAL.KEntities())
+            {
+                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.clientes.Where( x => x.ClienteId == Id ).ToList());
+            }
+            return dTabla;
+        }
+
         public (ClientesEntity, Resultado) Save(ClientesEntity model)
         {
             try

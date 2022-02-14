@@ -24,7 +24,13 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            Estado =   (int)cc.Estado,
+                            Casa = cc.propiedades.Casa,
+                            CasaLetra = cc.propiedades.CasaLetra,
+                            PoligonoId = cc.propiedades.PoligonoId,
+                            FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+
                         };
 
 
@@ -49,8 +55,15 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            Estado = (int)cc.Estado,
+                            Casa = cc.propiedades.Casa,
+                            CasaLetra = cc.propiedades.CasaLetra,
+                            PoligonoId = cc.propiedades.PoligonoId,
+                            FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+
                         };
+
 
             return query.FirstOrDefault();
         }
@@ -72,8 +85,15 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
-                            PropiedadId = cc.PropiedadId
+                            PropiedadId = cc.PropiedadId,
+                            Estado = (int)cc.Estado,
+                            Casa = cc.propiedades.Casa,
+                            CasaLetra = cc.propiedades.CasaLetra,
+                            PoligonoId = cc.propiedades.PoligonoId,
+                            FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+
                         };
+
 
             return query.FirstOrDefault();
         }

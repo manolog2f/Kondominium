@@ -10,9 +10,7 @@ namespace Kondominium_BL
         Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
         public List<CuentasPorCobrarEntity> GetAll(bool VerEliminado = false)
         {
-            var query = from cc in contex.cuentasporcobrar
-                        where VerEliminado ? cc.Eliminado == cc.Eliminado : cc.Eliminado == false
-                        select new CuentasPorCobrarEntity
+            var query = contex.cuentasporcobrar.Where(x =>  VerEliminado ? x.Eliminado == x.Eliminado : x.Eliminado == false).Select( cc =>  new CuentasPorCobrarEntity
                         {
                             VaucherNumber = cc.VaucherNumber,
                             ClienteId = cc.ClienteId,
@@ -28,8 +26,14 @@ namespace Kondominium_BL
                             CreadoPor = cc.CreadoPor,
                             ModificadoPor = cc.ModificadoPor,
                             Eliminado = cc.Eliminado,
-                            PropiedadId = cc.PropiedadId
-                        };
+                            PropiedadId = cc.PropiedadId,
+                            Estado = (int)cc.Estado,
+                            Casa = cc.propiedades.Casa,
+                            CasaLetra = cc.propiedades.CasaLetra,
+                            PoligonoId = cc.propiedades.PoligonoId,
+                            FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim() , " ", cc.clientes.Nombres.Trim())
+
+                        });
 
 
 
@@ -38,26 +42,30 @@ namespace Kondominium_BL
 
         public CuentasPorCobrarEntity GetById(string Id)
         {
-            var query = from cc in contex.cuentasporcobrar
-                        where cc.VaucherNumber == Id
-                        select new CuentasPorCobrarEntity
-                        {
-                            VaucherNumber = cc.VaucherNumber,
-                            ClienteId = cc.ClienteId,
-                            TipoCxC = cc.TipoCxC,
-                            FechaDeEmision = cc.FechaDeEmision,
-                            FechaDeVencimiento = cc.FechaDeVencimiento,
-                            PeriodoFacturado = cc.PeriodoFacturado,
-                            Total = cc.Total,
-                            NPE = cc.NPE,
-                            BRCode = cc.BRCode,
-                            FechaDeCreacion = cc.FechaDeCreacion,
-                            FechaDeModificacion = cc.FechaDeModificacion,
-                            CreadoPor = cc.CreadoPor,
-                            ModificadoPor = cc.ModificadoPor,
-                            Eliminado = cc.Eliminado,
-                            PropiedadId = cc.PropiedadId
-                        };
+            var query = contex.cuentasporcobrar.Where(x => x.VaucherNumber == Id).Select(cc => new CuentasPorCobrarEntity
+            {
+                VaucherNumber = cc.VaucherNumber,
+                ClienteId = cc.ClienteId,
+                TipoCxC = cc.TipoCxC,
+                FechaDeEmision = cc.FechaDeEmision,
+                FechaDeVencimiento = cc.FechaDeVencimiento,
+                PeriodoFacturado = cc.PeriodoFacturado,
+                Total = cc.Total,
+                NPE = cc.NPE,
+                BRCode = cc.BRCode,
+                FechaDeCreacion = cc.FechaDeCreacion,
+                FechaDeModificacion = cc.FechaDeModificacion,
+                CreadoPor = cc.CreadoPor,
+                ModificadoPor = cc.ModificadoPor,
+                Eliminado = cc.Eliminado,
+                PropiedadId = cc.PropiedadId,
+                Estado = (int)cc.Estado,
+                Casa = cc.propiedades.Casa,
+                CasaLetra = cc.propiedades.CasaLetra,
+                PoligonoId = cc.propiedades.PoligonoId,
+                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+
+            });
 
             return query.FirstOrDefault();
         }
@@ -97,6 +105,68 @@ namespace Kondominium_BL
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
                     modlNew.Estado = 0;
+                    modlNew.PropiedadId = model.PropiedadId;
+
+                    if (string.IsNullOrEmpty(modlNew.VaucherNumber))
+                    {
+                        modlNew.VaucherNumber = new CxcTypeDatos().GenerateNextNumber(model.TipoCxC);
+                        modlNew.FechaDeCreacion = DateTime.Now;
+                        modlNew.CreadoPor = model.CreadoPor;
+
+                        ContextP.cuentasporcobrar.Add(modlNew);
+                    }
+                    ContextP.SaveChanges();
+
+                    model.VaucherNumber = modlNew.VaucherNumber;
+                }
+
+                return (GetById(model.VaucherNumber), new Resultado { Codigo = 0, Mensaje = "Exito" });
+            }
+            catch (Exception ex)
+            {
+
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
+            }
+
+        }
+
+        public (CuentasPorCobrarEntity, Resultado) SaveA(CuentasPorCobrarEntity model, string Arancel, string NumeroCasa, string LetraCasa, string Poligono)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = ContextP.cuentasporcobrar.Where(x => x.VaucherNumber == model.VaucherNumber).FirstOrDefault();
+                    var modlNew = new Kondominium_DAL.cuentasporcobrar();
+                    var gln = contex.empresa.FirstOrDefault().Documento3; ///(gln)
+
+
+                    if (modlExist != null)
+                    {
+                        if (modlExist.Eliminado == true)
+                            return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+
+                        modlNew = modlExist;
+                    }
+
+                    //diciembre2021
+                    //NOviembre
+                    //Septiembre2021
+                    //modlNew.VaucherNumber = model.VaucherNumber;
+
+                    modlNew.ClienteId = model.ClienteId;
+                    modlNew.TipoCxC = model.TipoCxC;
+                    modlNew.FechaDeEmision = model.FechaDeEmision;
+                    modlNew.FechaDeVencimiento = model.FechaDeVencimiento;
+                    modlNew.PeriodoFacturado = model.PeriodoFacturado;
+                    modlNew.Total = model.Total;
+                    modlNew.NPE = new GeneradorCodigoData().NPE(gln, model.Total, model.FechaDeVencimiento, Arancel, NumeroCasa, LetraCasa, Poligono);
+                    modlNew.BRCode = new GeneradorCodigoData().BR(gln, model.Total, model.FechaDeVencimiento, Arancel, NumeroCasa, LetraCasa, Poligono).barra;
+
+                    modlNew.FechaDeModificacion = DateTime.Now;
+                    modlNew.ModificadoPor = model.ModificadoPor;
+                    modlNew.Eliminado = model.Eliminado;
+                    modlNew.Estado = 3;
                     modlNew.PropiedadId = model.PropiedadId;
 
                     if (string.IsNullOrEmpty(modlNew.VaucherNumber))
