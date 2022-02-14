@@ -139,14 +139,16 @@
         </div>
 
 
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="button" class="btn btn-primary" onclick="SubmitUploadCXCPago()">
-                    <i class="fa fa-save" aria-hidden="true"></i>
-                    Almacenar Pago
-                </button>
+        @if (Model.Estado < 2)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" class="btn btn-primary" onclick="SubmitUploadCXCPago()">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        Almacenar Pago
+                    </button>
+                </div>
             </div>
-        </div>
+        }
     </div>
     }

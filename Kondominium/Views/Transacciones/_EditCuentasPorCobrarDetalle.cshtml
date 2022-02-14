@@ -52,7 +52,7 @@
                                     @Html.DisplayFor(modelItem => item.Monto)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Eliminar Registro", "DeleteCxcDet", new { DetalleId = item.DetalleId, VaucherNumber = item.VaucherNumber })
+                                    @Html.ActionLink("Eliminar Registro", "DeleteCxcDet", new { DetalleId = item.DetalleId, VaucherNumber = item.VaucherNumber }, new { id = "linkMRX" })
                                 </td>
                             </tr>
                         }

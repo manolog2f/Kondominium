@@ -14,7 +14,7 @@
                 $(this).attr("disabled", "disabled");
             }
         });
- 
+
         $("select").change(function () {
             var value = 0;
             var id = $(this).attr("id");
@@ -84,13 +84,38 @@
 </script>
 
 
+@if (Model.Estado >= 3)
+{ 
+    
+    <script>
+        $(function () {
+            $('input[type="text"]').prop('readonly', true);
+            $('input[type="date"]').prop('readonly', true);
+     
 
-
+            $("select").each(function () {
+                $(this).attr("disabled", "disabled");
+            });
+        });
+    </script>
+}
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"> Editar Pagos</h1>
+
+    @if (Model.Estado == 3)
+    {
+        <h2 class="h2 mb-4" style="color:cornflowerblue">Contabilizado...</h2>
+
+    }
+    @if (Model.Estado == 4)
+    {
+        <h2 class="h2 mb-4" style="color:indianred">Anulado...</h2>
+
+    }
+
 
     <div class="row">
 
@@ -175,6 +200,10 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
                                         @{
                                             var mdl = new Kondominium.Models.CascadingModel();
 
+                                            if (Model.ClienteId != null)
+                                            {
+                                                mdl.Propiedades = new Kondominium_BL.PropiedadesDatos().GetAllByClienteId((int)Model.ClienteId).Select(x => new SelectListItem { Value = x.PropiedadId.ToString(), Text = x.VPropiedad }).ToList();
+                                            }
                                         }
 
                                         <div class="col">
@@ -327,8 +356,18 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
 
                             <div class="container" style="margin-left:unset !important">
 
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @{
+                                    if (Model.Estado <= 2 || Model.Estado == null)
+                                    {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    }
 
+                                    if (Model.Estado <= 2)
+                                    {
+                                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
+                                            <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
+                                        </a>
+                                    }
 
                                 <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                     <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
@@ -369,32 +408,68 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
     </div>
 </div>
 
-<!-- Delete Modal confirmacion -->
-<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+<!-- Contabilizar Modal confirmacion -->
+<div class="modal fade" id="ContabilizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header badge-warning">
-                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de contabilizar el registro?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+                Seleccione "Contabilizar" a continuación si está listo para Contabilizar el registro actual
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                @*@Html.ActionLink("Eliminar", "DeleteCalles", new { Id = (Model.CalleId == null ? "" : Model.CalleId.ToString()) }, new { @class = "btn btn-danger" })*@
+
+                @Html.ActionLink("Contabilizar", "UpdatePagoContabilizado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
 
 
             </div>
         </div>
     </div>
 </div>
-@*//End Delete Modal confirmacion*@
+@*//End Contabilizar Modal confirmacion*@
+
+
+<!-- Anular Modal confirmacion -->
+<div class="modal fade" id="AnularModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header badge-warning">
+                <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Anular el registro?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione "Anular" a continuación si está listo para Anular el registro actual
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
+                @Html.ActionLink("Anular", "UpdatePagoAnulado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@*//End Anular Modal confirmacion*@
+
+
 
 
 
 <div>
-    @Html.ActionLink("Retornar  a la Lista", "ListadoCalles", "Propiedades")
+    @Html.ActionLink("Retornar  a la Lista", "ListPagos", "Transacciones")
 </div>
+
+
+
+
+

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\MR\Desarrollo\Kondominium\Kondominium_DAL\KModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\MR\Desarrollo\Komdomino\Kondominium\Kondominium_DAL\KModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,34 +1,38 @@
-﻿using Kondominium_Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Kondominium_Entities;
 
 namespace Kondominium_BL
 {
-    public class CxcTypeDatos
+    public class CorrelativosDatos
     {
         Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
-        public List<CxcTypeEntity> GetAll()
+        public List<CorrelativosEntity> GetAll()
         {
-            var query = from p in context.cxctype
-                        select new CxcTypeEntity
+            var query = from p in context.correlativos
+                        select new CorrelativosEntity
                         {
                             Abrev = p.Abrev,
                             Corr = p.Corr,
-                            TypeName = p.TypeName
+                            Name = p.Name,
+                            Tipo = p.Tipo
                         };
 
             return query.ToList();
         }
-        public CxcTypeEntity GetById(string Id)
+        public CorrelativosEntity GetById(string Id)
         {
-            var query = from p in context.cxctype
-                        where p.TypeName == Id
-                        select new CxcTypeEntity
+            var query = from p in context.correlativos
+                        where p.Name == Id
+                        select new CorrelativosEntity
                         {
                             Abrev = p.Abrev,
                             Corr = p.Corr,
-                            TypeName = p.TypeName
+                            Name = p.Name,
+                            Tipo = p.Tipo
                         };
 
             return query.FirstOrDefault();
@@ -38,7 +42,7 @@ namespace Kondominium_BL
             string Voucher = "";
 
             var dato = GetById(Id);
-            Save(new CxcTypeEntity { Abrev = dato.Abrev, TypeName = dato.TypeName, Corr = dato.Corr + 1 });
+            Save(new CorrelativosEntity { Abrev = dato.Abrev, Name = dato.Name, Corr = dato.Corr + 1, Tipo = dato.Tipo });
 
             Voucher = string.Concat("0000000000", dato.Corr.ToString());
             Voucher = Voucher.Substring(Voucher.Length - 10, 10);
@@ -47,17 +51,17 @@ namespace Kondominium_BL
             return Voucher;
         }
 
-       
 
 
-        public (CxcTypeEntity, Resultado) Save(CxcTypeEntity model)
+
+        public (CorrelativosEntity, Resultado) Save(CorrelativosEntity model)
         {
             try
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.cxctype.Where(x => x.TypeName == model.TypeName).FirstOrDefault();
-                    var modlNew = new Kondominium_DAL.cxctype();
+                    var modlExist = cn.correlativos.Where(x => x.Name == model.Name).FirstOrDefault();
+                    var modlNew = new Kondominium_DAL.correlativos();
 
                     if (modlExist != null)
                     {
@@ -71,12 +75,12 @@ namespace Kondominium_BL
 
                     if (modlExist == null)
                     {
-                        modlNew.TypeName = model.TypeName;
-                        cn.cxctype.Add(modlNew);
+                        modlNew.Name = model.Name;
+                        cn.correlativos.Add(modlNew);
                     }
                     cn.SaveChanges();
                 }
-                return (GetById(model.TypeName), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetById(model.Name), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {

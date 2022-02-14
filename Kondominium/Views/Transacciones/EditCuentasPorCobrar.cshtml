@@ -169,14 +169,17 @@
 
                                         @if ((Model != null ? Model.Eliminado : false) != true)
                                         {
-                                            <div class="container" style="margin-left:unset !important">
+                                        <div class="container" style="margin-left:unset !important">
 
-                                                @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
-
+                                            @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
+                                            @if (Model.Estado <= 2 || Model.Estado == null)
+                                            {
                                                 <button type="submit" value="Guardar" class="btn btn-primary">
                                                     <i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>Guardar
                                                 </button>
-
+                                            }
+                                            @if (Model.Estado <= 2)
+                                            {
                                                 <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
                                                     <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
                                                 </a>
@@ -193,7 +196,7 @@
                                                 }
 
 
-                                            </div>
+                                        </div>
 
                                         }
                                     </div>
@@ -217,10 +220,14 @@
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
 
-                                        <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
-                                            <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
-                                        </a>
+                                        @if (Model.Estado < 3)
+                                        {
+                                            <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
+                                                <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
+                                            </a>
+                                        }
 
+                                        <br/>
 
                                         @Html.Action("_EditCuentasPorCobrarDetalle", "Transacciones", new { VaucherNumber = Model.VaucherNumber })
 
