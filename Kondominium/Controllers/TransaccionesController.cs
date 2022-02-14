@@ -295,6 +295,7 @@ namespace Kondominium.Controllers
             }
 
             return View(new CuentasPorCobrarPagoEntity { VaucherNumber = "", Monto = 0, Estado = 0 });
+            
 
         }
         [HttpPost]
