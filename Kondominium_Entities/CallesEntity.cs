@@ -8,9 +8,13 @@ namespace Kondominium_Entities
     {
 
         [DisplayName("Id de Calle")]
+        [Required]
+        [MinLength(1)]
+        [StringLength(5, ErrorMessage = "El id no debe e exceder de 5 caracteres")]
         public string CalleId { get; set; }
         [DisplayName("Calle Descripcion")]
         [StringLength(45, ErrorMessage = "La descripción no debe exceder de 45 caracteres")]
+        [Required]
         public string CalleDescripcion { get; set; }
         [DisplayName("Fecha de creación")]
         public Nullable<System.DateTime> FechaDeCreacion { get; set; }

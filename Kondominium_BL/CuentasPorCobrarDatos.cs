@@ -293,5 +293,37 @@ namespace Kondominium_BL
         }
 
         //3Contabilizado // 4 Anulado
+
+        public CuentasPorCobrarEntity GetByNPE(string NPE)
+        {
+            var query = contex.cuentasporcobrar.Where(x => x.NPE == NPE).Select(cc => new CuentasPorCobrarEntity
+            {
+                VaucherNumber = cc.VaucherNumber,
+                ClienteId = cc.ClienteId,
+                TipoCxC = cc.TipoCxC,
+                FechaDeEmision = cc.FechaDeEmision,
+                FechaDeVencimiento = cc.FechaDeVencimiento,
+                PeriodoFacturado = cc.PeriodoFacturado,
+                Total = cc.Total,
+                NPE = cc.NPE,
+                BRCode = cc.BRCode,
+                FechaDeCreacion = cc.FechaDeCreacion,
+                FechaDeModificacion = cc.FechaDeModificacion,
+                CreadoPor = cc.CreadoPor,
+                ModificadoPor = cc.ModificadoPor,
+                Eliminado = cc.Eliminado,
+                PropiedadId = cc.PropiedadId,
+                Estado = (int)cc.Estado,
+                Casa = cc.propiedades.Casa,
+                CasaLetra = cc.propiedades.CasaLetra,
+                PoligonoId = cc.propiedades.PoligonoId,
+                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+
+            });
+
+            return query.FirstOrDefault();
+        }
+
+
     }
 }

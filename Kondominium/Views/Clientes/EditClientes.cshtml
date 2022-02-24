@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<script>
+    jQuery(function ($) {
+        $("#Documento1").mask("99999999-9");
+        $("#TelefonoMovil").mask("(999) 9999-9999");
+        $("#TelefonoFijo").mask("(999) 9999-9999");
+        $("#Documento2").mask("9999-999999-999-9");
+        $("#ssn").mask("999-99-9999");
+    });
+</script>
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -64,7 +74,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control"  } })
                                                     @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -85,7 +95,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Documento1, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Documento1, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Documento1, new { htmlAttributes = new { @class = "form-control", placeholder = "00000000-0" } })
                                                     @Html.ValidationMessageFor(model => model.Documento1, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -94,7 +104,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Documento2, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Documento2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Documento2, new { htmlAttributes = new { @class = "form-control", placeholder = "0000-000000-000-0" } })
                                                     @Html.ValidationMessageFor(model => model.Documento2, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -125,7 +135,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TelefonoMovil, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TelefonoMovil, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.TelefonoMovil, new { htmlAttributes = new { @class = "form-control", placeholder = "(503) 7777-5555" } })
                                                     @Html.ValidationMessageFor(model => model.TelefonoMovil, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -134,7 +144,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TelefonoFijo, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @class = "form-control", placeholder = "(503) 2525-5555" } })
                                                     @Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -147,15 +157,15 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "tucorreo@domio.com" } })
                                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    </div>
                                 </div>
+                            </div>
 
 
                             @if (Model.ClienteId != null && Model.ClienteId != 0)
@@ -189,12 +199,12 @@
 
                                         <div class="row">
 
+
                                             <div class="col">
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.FechaDeCreacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                                        @Html.ValidationMessageFor(model => model.FechaDeCreacion, "", new { @class = "text-danger" })
+                                                        <input type="text" id="txtFechaCreacion" name="txtFechaCreacion" value="@Model.FechaDeCreacion" class="form-control" readonly="readonly" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -202,11 +212,14 @@
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.FechaDeModificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                                        @Html.ValidationMessageFor(model => model.FechaDeModificacion, "", new { @class = "text-danger" })
+                                                        <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
+
+
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col">
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md" })
@@ -306,32 +319,32 @@
 
 @if (Model.ClienteId != null)
 {
-<div class="modal fade" id="UploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header badge-warning">
+    <div class="modal fade" id="UploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
 
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @{
-                    int xClienteId = Model.ClienteId;
-                    string xDocumentType = "";
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @{
+                        int xClienteId = Model.ClienteId;
+                        string xDocumentType = "";
 
-                }
+                    }
 
 
-                @Html.Action("_EditClientesFileUpload", "Clientes", new { ClienteId = xClienteId, DocumentType = xDocumentType })
+                    @Html.Action("_EditClientesFileUpload", "Clientes", new { ClienteId = xClienteId, DocumentType = xDocumentType })
 
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 }
 

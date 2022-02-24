@@ -40,6 +40,7 @@ namespace Kondominium_DAL
         public string Avenida { get; set; }
         public string CasaLetra { get; set; }
         public string Alameda { get; set; }
+        public string PaseoId { get; set; }
     
         public virtual aranceles aranceles { get; set; }
         public virtual avenida avenida1 { get; set; }
@@ -57,5 +58,6 @@ namespace Kondominium_DAL
         public virtual alameda alameda1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<propiedadesdocs> propiedadesdocs { get; set; }
+        public virtual paseo paseo { get; set; }
     }
 }

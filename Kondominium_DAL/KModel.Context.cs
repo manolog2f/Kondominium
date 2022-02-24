@@ -33,9 +33,7 @@ namespace Kondominium_DAL
         public virtual DbSet<calles> calles { get; set; }
         public virtual DbSet<clientepropiedad> clientepropiedad { get; set; }
         public virtual DbSet<clientepropiedaddetalle> clientepropiedaddetalle { get; set; }
-        public virtual DbSet<clientepropiedaddocs> clientepropiedaddocs { get; set; }
         public virtual DbSet<clientes> clientes { get; set; }
-        public virtual DbSet<clientesdocs> clientesdocs { get; set; }
         public virtual DbSet<config> config { get; set; }
         public virtual DbSet<configcobrosmensauldet> configcobrosmensauldet { get; set; }
         public virtual DbSet<configcobrosmensual> configcobrosmensual { get; set; }
@@ -77,6 +75,9 @@ namespace Kondominium_DAL
         public virtual DbSet<vwpagos> vwpagos { get; set; }
         public virtual DbSet<vwbalance> vwbalance { get; set; }
         public virtual DbSet<alameda> alameda { get; set; }
+        public virtual DbSet<clientepropiedaddocs> clientepropiedaddocs { get; set; }
+        public virtual DbSet<clientesdocs> clientesdocs { get; set; }
         public virtual DbSet<propiedadesdocs> propiedadesdocs { get; set; }
+        public virtual DbSet<paseo> paseo { get; set; }
     }
 }

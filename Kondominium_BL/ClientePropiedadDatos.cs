@@ -47,7 +47,13 @@ namespace Kondominium_BL
                                 SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
                                 Calle = p.propiedades.Calle,
                                 Avenida = p.propiedades.Avenida,
-                                Senda = p.propiedades.Senda
+                                Senda = p.propiedades.Senda,
+                                Alameda = p.propiedades.Alameda,
+                                AlamedaDescripcion  = p.propiedades.alameda1.AlamedaDescripcion,
+                                CasaLetra = p.propiedades.CasaLetra,
+                                PaseoDescripcion = p.propiedades.paseo.PaseoDescripcion,
+                                PaseoId = p.propiedades.PaseoId,
+
 
                             }),
                             ClienteId = p.ClienteId,
@@ -104,7 +110,12 @@ namespace Kondominium_BL
                                 SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
                                 Calle = p.propiedades.Calle,
                                 Avenida = p.propiedades.Avenida,
-                                Senda = p.propiedades.Senda
+                                Senda = p.propiedades.Senda,
+                                Alameda = p.propiedades.Alameda,
+                                AlamedaDescripcion = p.propiedades.alameda1.AlamedaDescripcion,
+                                CasaLetra = p.propiedades.CasaLetra,
+                                PaseoDescripcion = p.propiedades.paseo.PaseoDescripcion,
+                                PaseoId = p.propiedades.PaseoId,
 
                             }),
                             ClienteId = p.ClienteId,
@@ -162,7 +173,12 @@ namespace Kondominium_BL
                                 SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
                                 Calle = p.propiedades.Calle,
                                 Avenida = p.propiedades.Avenida,
-                                Senda = p.propiedades.Senda
+                                Senda = p.propiedades.Senda,
+                                Alameda = p.propiedades.Alameda,
+                                AlamedaDescripcion = p.propiedades.alameda1.AlamedaDescripcion,
+                                CasaLetra = p.propiedades.CasaLetra,
+                                PaseoDescripcion = p.propiedades.paseo.PaseoDescripcion,
+                                PaseoId = p.propiedades.PaseoId,
 
                             }),
                             ClienteId = p.ClienteId,
@@ -219,7 +235,12 @@ namespace Kondominium_BL
                                 SendaDescripcion = p.propiedades.sendas.SendaDescripcion,
                                 Calle = p.propiedades.Calle,
                                 Avenida = p.propiedades.Avenida,
-                                Senda = p.propiedades.Senda
+                                Senda = p.propiedades.Senda,
+                                Alameda = p.propiedades.Alameda,
+                                AlamedaDescripcion = p.propiedades.alameda1.AlamedaDescripcion,
+                                CasaLetra = p.propiedades.CasaLetra,
+                                PaseoDescripcion = p.propiedades.paseo.PaseoDescripcion,
+                                PaseoId = p.propiedades.PaseoId,
 
                             }),
                             ClienteId = p.ClienteId,

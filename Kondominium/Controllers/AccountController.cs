@@ -97,6 +97,8 @@ namespace Kondominium.Controllers
             try
             {
                 var vdel = new Kondominium_BL.UserConfigDatos().GetByName(UserId, "VerEliminados").PropertyValue;
+
+
                 Session["ViewDeleted"] = !string.IsNullOrEmpty(vdel) && (vdel == "1" ? true : false);
 
                 Core.ViewDeleted = string.IsNullOrEmpty(vdel) ? false : (vdel == "1" ? true : false);

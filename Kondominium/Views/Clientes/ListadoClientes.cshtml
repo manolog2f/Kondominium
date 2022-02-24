@@ -23,11 +23,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-striped table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
+                                Condomino
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Nombres)
@@ -48,27 +48,27 @@
                                 @Html.DisplayNameFor(model => model.Email)
                             </th>
                             @*<th>
-                                @Html.DisplayNameFor(model => model.TipoCliente)
-                            </th>*@
+                    @Html.DisplayNameFor(model => model.TipoCliente)
+                </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.TelefonoMovil)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.TelefonoFijo)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeModificacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CreadoPor)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ModificadoPor)
-                            </th>
-                            
+                            @*<th>
+                    @Html.DisplayNameFor(model => model.FechaDeCreacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaDeModificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreadoPor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModificadoPor)
+                </th>*@
+
                         </tr>
 
                     </thead>
@@ -83,7 +83,14 @@
 
                             <tr @eliminadox>
                                 <td>
-                                    @Html.ActionLink(item.ClienteId.ToString(), "EditClientes", new { id = item.ClienteId })
+
+                                    @*<button type="button" class="btn btn-primary btn-sm">
+            <i class="fas fa-edit"></i>
+        </button>*@
+                                    @Html.ActionLink(string.Concat(" Editar"), "EditClientes", new { id = item.ClienteId }, new { @class = "fa fa-edit btn btn-primary btn-sm" })
+
+                                    @Html.ActionLink(string.Concat(" Balance"), "BalanceCliente", "Transacciones", new { id = item.ClienteId }, new { @class = "fa fa-bar-chart btn btn-secondary btn-sm" })
+
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Nombres)
@@ -92,7 +99,11 @@
                                     @Html.DisplayFor(modelItem => item.Apellidos)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Documento1)
+                                    @{
+                                        var dui = String.Format(item.Documento1, "########-#");
+
+                                    }
+                                    @dui
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Documento2)
@@ -104,29 +115,34 @@
                                     @Html.DisplayFor(modelItem => item.Email)
                                 </td>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.TipoCliente)
-                                </td>*@
+                        @Html.DisplayFor(modelItem => item.TipoCliente)
+                    </td>*@
                                 <td>
+                                    @*@{
+                            var tel = Convert.ToUInt64(String.Format("{0:(###) ####-####}", item.TelefonoMovil.Replace("-", "").Replace("(", "").Replace(" ", "").Replace(")", "").Replace(".","") ));
+
+                        }
+                        @tel*@
                                     @Html.DisplayFor(modelItem => item.TelefonoMovil)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.TelefonoFijo)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreadoPor)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ModificadoPor)
-                                </td>
+                                @*<td>
+                        @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreadoPor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModificadoPor)
+                    </td>*@
                             </tr>
-                            }
-                        </tbody>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

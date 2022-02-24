@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Kondominium_Entities.ClientePropiedadEntity>
+﻿@model IEnumerable<Kondominium_Entities.PaseoEntity>
 
 @{
-    ViewBag.Title = "Listado Condómino/Propiedades";
+    ViewBag.Title = "ListadoPaseos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -10,7 +10,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Lista de Condómino / Propiedad</h1>
+    <h1 class="h3 mb-2 text-gray-800">Lista de Paseos</h1>
     <p class="mb-4"></p>
 
     <!-- DataTales Example -->
@@ -18,7 +18,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
                 <i class="fas fa-plus-circle"></i>
-                @Html.ActionLink("Crear Nuevo", "EditClientesPropiedades")
+                @Html.ActionLink("Crear Nuevo", "EditPaseo")
             </h6>
         </div>
         <div class="card-body">
@@ -27,19 +27,10 @@
                     <thead>
                         <tr>
                             <th>
-                                ....
+                                @Html.DisplayNameFor(model => model.PaseoId)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PropiedadId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TipoCliente)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Justificacion)
+                                @Html.DisplayNameFor(model => model.PaseoDescripcion)
                             </th>
                             @*<th>
                     @Html.DisplayNameFor(model => model.FechaDeCreacion)
@@ -55,34 +46,22 @@
                 </th>*@
 
                         </tr>
-
-
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            string eliminadox = "";
+                            if (item.Eliminado)
+                            {
+                                eliminadox = "style=text-decoration:line-through;color:red;";
+                            }
 
-                            <tr>
+                            <tr @eliminadox>
                                 <td>
-                                    @Html.ActionLink("Editar", "EditClientesPropiedades", new { ClienteId = item.ClienteId, PropiedadId = item.PropiedadId })
+                                    @Html.ActionLink(item.PaseoId.ToString(), "EditPoligonos", new { id = item.PaseoId })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Cliente.VFullName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Propiedad.VPropiedad)
-                                </td>
-                                <td>
-                                    @{
-                                        var itemc = new Kondominium_Entities.TipoClientes();
-                                        itemc = (Kondominium_Entities.TipoClientes)int.Parse(item.TipoCliente);
-
-                                    }
-
-                                    @Html.DisplayFor(modelItem => itemc)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Justificacion)
+                                    @Html.DisplayFor(modelItem => item.PaseoDescripcion)
                                 </td>
                                 @*<td>
                         @Html.DisplayFor(modelItem => item.FechaDeCreacion)
@@ -96,7 +75,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ModificadoPor)
                     </td>*@
-
                             </tr>
                         }
                     </tbody>

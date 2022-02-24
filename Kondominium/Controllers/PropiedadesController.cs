@@ -496,6 +496,80 @@ namespace Kondominium.Controllers
 
 
 
+
+        /* -------------- Paseos -------------- */
+        [HttpGet]
+        public ActionResult ListadoPaseos()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.PaseoDatos().GetAll();
+            return View(model);
+        }
+        /*Paseo Edit*/
+        [HttpGet]
+        public ActionResult EditPaseo(string Id, int? codigo = null)
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+            if (Id != null)
+            {
+                var model = new Kondominium_BL.PaseoDatos().GetById(Id);
+                if (codigo != null)
+                {
+                    Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+                }
+                ModelState.Clear();
+
+                return View(model);
+            }
+
+
+            return View(new PaseoEntity());
+        }
+        [HttpPost]
+        public ActionResult EditPaseo(PaseoEntity model)
+        {
+            model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
+            model.CreadoPor = model.ModificadoPor;
+
+            var modelr = new Kondominium_BL.PaseoDatos().Save(model);
+
+            Mensajes(modelr.Item2);
+            ModelState.Clear();
+
+            if (modelr.Item2.Codigo == CodigosMensaje.Exito)
+            {
+                return RedirectToAction("EditPaseo", new { Id = modelr.Item1.PaseoId, codigo = 0 });
+            }
+            else
+            {
+                return View(modelr.Item1);
+            }
+
+        }
+        //DeletePaseo/6
+        //[HttpPost]
+        public ActionResult DeletePaseo(string Id)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+
+            var modelr = new Kondominium_BL.PaseoDatos().SetDelete(Id, userid);
+
+            Mensajes(modelr);
+            ModelState.Clear();
+            return RedirectToAction("EditPaseo", new { Id = Id, codigo = 9898 });
+
+        }
+
+        /*End Paseo Edit*/
+
+
+
+
+
+
         /*MMTO Propiedades*/
         [HttpGet]
         public ActionResult EditPropiedades(string Id, int? codigo = null)

@@ -10,12 +10,16 @@ namespace Kondominium_Entities
         /// 
         /// </summary>
         [DisplayName("Id de Avenida")]
+        [Required]
+        [MinLength(1)]
+        [StringLength(5, ErrorMessage = "El Id no debe exceder de 5 caracteres")]
         public string AvenidaId { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [DisplayName("Avenida Descripcion")]
         [StringLength(45, ErrorMessage = "La descripción no debe exceder de 45 caracteres")]
+        [Required]
         public string AvenidaDescripcion { get; set; }
         /// <summary>
         /// 

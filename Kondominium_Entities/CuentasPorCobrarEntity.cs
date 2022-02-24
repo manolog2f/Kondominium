@@ -19,7 +19,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Cuentas por Cobrar
         /// </summary>
-        [DisplayName("Cuentas por Cobrar")]
+        [DisplayName("Tipo")]
         public string TipoCxC { get; set; }
         /// <summary>
         /// Fecha de Emision

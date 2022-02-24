@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,9 @@ namespace Kondominium.Controllers
 {
     public class ReportController : Controller
     {
+
+      
+
         // GET: Report
         public ActionResult Index() { return View(); }
         /// <summary>
@@ -39,6 +43,9 @@ namespace Kondominium.Controllers
             Warning[] warnings = null;
             string encoding;
             string filenameExtension;
+
+            
+
             streamBytes = rv.LocalReport.Render("PDF", null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
             return File(streamBytes, mimeType, string.Concat("Recibo",VaucherNumber,".pdf")); 
         }
@@ -66,7 +73,8 @@ namespace Kondominium.Controllers
             rv.LocalReport.DataSources.Add(DataSRecibo);
             rv.LocalReport.DataSources.Add(DataSEmpresa);
 
-
+            
+            
             rv.LocalReport.Refresh();
             ViewBag.ReportViewer = rv;
 

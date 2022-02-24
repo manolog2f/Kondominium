@@ -224,6 +224,9 @@
     <Compile Include="objecttype.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="paseo.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="permission.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>

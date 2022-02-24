@@ -31,7 +31,7 @@ namespace Kondominium_BL
                             PoligonoId = cc.propiedades.PoligonoId,
                             FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
 
-                        };
+                        });
 
 
 

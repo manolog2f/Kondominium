@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using Kondominium.Models;
+using Kondominium.Utilities;
+using Kondominium_Entities;
+using System.Web.Mvc;
 
 namespace Kondominium.Controllers
 {
@@ -221,6 +224,60 @@ namespace Kondominium.Controllers
 
 
         #endregion
+
+        #region "Test Envio de Coreos"
+
+
+        [HttpGet]
+        public ActionResult EnvioEmailTest()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EnvioEmailTest(EmailModel model)
+        {
+            try
+            {
+                // Enviar Correo a usuario Indicado
+                var sendmail = new ZTAdminBL.Utilities.Email().sendMAil(new ZTAdminEntities.Utilities.MailEntity
+                {
+                    Body = model.Body,
+                    //Attachment = new List<byte[]>(),
+                    From = Core.FromEmail,
+                    Pass = Core.PassEmail,
+                    Server = Core.SMTServer,
+                    Port = int.Parse(Core.PortSMTP),
+                    UserId = Core.UserEmail,
+                    IncludeAttachment = false,
+                    To = new string[] { model.TO },
+                    Subject = model.Subject
+                });
+
+                if (sendmail.Cod == 0)
+                {
+
+                    Mensajes(new Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Exito, Mensaje = "Envio de correo exitoso" });
+                    return View();
+                }
+                else
+                {
+                    Mensajes(new Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Surgio un error al enviar el correo de pruebas" });
+                    return View();
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                Mensajes(new Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = ex.Message });
+                return View(model);
+                throw;
+            }
+        }
+
+        #endregion
+
 
     }
 

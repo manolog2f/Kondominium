@@ -23,120 +23,127 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PropiedadId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TipoDePropiedadDesc)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PoligonoId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Casa)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CasaLetra)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.SendaDescripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CalleDescripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AvenidaDescripcion)
-                            </th>
+                @*<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">*@
+                    <table class="table table-striped table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Propiedad
+                                </th>
+                                <th>
+                                    ...
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TipoDePropiedadDesc)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PoligonoId)
+                                </th>
+                                <th>
+                                    # Casa
+                                </th>
+                                <th>
+                                    Letra
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SendaDescripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CalleDescripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AvenidaDescripcion)
+                                </th>
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.AlamedaDescripcion)
-                            </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AlamedaDescripcion)
+                                </th>
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.ArancelDescripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeCreacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaDeModificacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CreadoPor)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ModificadoPor)
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            string eliminadox = "";
-                            if (item.Eliminado)
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ArancelDescripcion)
+                                </th>
+                                @*<th>
+            @Html.DisplayNameFor(model => model.FechaDeCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreadoPor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModificadoPor)
+        </th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
                             {
-                                eliminadox = "style=text-decoration:line-through;color:red;";
+                                string eliminadox = "";
+                                if (item.Eliminado)
+                                {
+                                    eliminadox = "style=text-decoration:line-through;color:red;";
+                                }
+
+                            <tr @eliminadox>
+                                <td>
+                                    @Html.ActionLink(item.VPropiedad.ToString(), "EditPropiedades", new { id = item.PropiedadId })
+
+                                <td>
+                                    @Html.ActionLink(string.Concat(" Balance"), "BalancePropiedad", "Transacciones", new { id = item.PropiedadId }, new { @class = "fa fa-bar-chart btn btn-secondary btn-sm" })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoDePropiedadDesc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PoligonoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Casa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CasaLetra)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SendaDescripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CalleDescripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AvenidaDescripcion)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AlamedaDescripcion)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ArancelDescripcion)
+                                </td>
+                                @*<td>
+            @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreadoPor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModificadoPor)
+        </td>*@
+                            </tr>
                             }
-
-                        <tr @eliminadox>
-                            <td>
-                                @Html.ActionLink(item.VPropiedad.ToString(), "EditPropiedades", new { id = item.PropiedadId })
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TipoDePropiedadDesc)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PoligonoId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Casa)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CasaLetra)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SendaDescripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CalleDescripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AvenidaDescripcion)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AlamedaDescripcion)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ArancelDescripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreadoPor)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ModificadoPor)
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+</div>
         </div>
     </div>
 

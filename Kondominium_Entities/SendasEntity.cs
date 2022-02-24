@@ -8,6 +8,7 @@ namespace Kondominium_Entities
     {
 
         [DisplayName("Id de Senda")]
+        [StringLength(5, ErrorMessage = "El Id no puede ser mas largo de 5 caracteres")]
         public string SendaId { get; set; }
         [DisplayName("Descripcion de Senda")]
         [StringLength(45, ErrorMessage = "La descripción no debe exceder de 45 caracteres")]

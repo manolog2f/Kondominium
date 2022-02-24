@@ -145,7 +145,7 @@
           <Property Name="TipoCliente" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
-          <Property Name="Document" Type="blob" />
+          <Property Name="Document" Type="longblob" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
           <Property Name="FechaModificacion" Type="datetime" Precision="0" />
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
@@ -180,7 +180,7 @@
           <Property Name="ClienteId" Type="int" Nullable="false" />
           <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
-          <Property Name="Document" Type="blob" />
+          <Property Name="Document" Type="longblob" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
           <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
@@ -489,6 +489,18 @@
           <Property Name="ObjectTypeId" Type="int" Nullable="false" />
           <Property Name="ObjectTypeDesc" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="paseo">
+          <Key>
+            <PropertyRef Name="PaseoId" />
+          </Key>
+          <Property Name="PaseoId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PaseoDescripcion" Type="varchar" MaxLength="45" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="6" Nullable="false" />
+          <Property Name="CreadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="ModificadoPor" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="permission">
           <Key>
             <PropertyRef Name="PermissionId" />
@@ -572,6 +584,7 @@
           <Property Name="Avenida" Type="varchar" MaxLength="5" />
           <Property Name="CasaLetra" Type="varchar" MaxLength="2" />
           <Property Name="Alameda" Type="varchar" MaxLength="5" />
+          <Property Name="PaseoId" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="propiedadesdocs">
           <Key>
@@ -581,7 +594,7 @@
           <Property Name="PropiedadId" Type="int" Nullable="false" />
           <Property Name="DocumentType" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="UrlDocument" Type="varchar" MaxLength="500" />
-          <Property Name="Document" Type="blob" />
+          <Property Name="Document" Type="longblob" />
           <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
           <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
@@ -1182,6 +1195,18 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PropiedaesPaseoFK">
+          <End Role="paseo" Type="Self.paseo" Multiplicity="0..1" />
+          <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paseo">
+              <PropertyRef Name="PaseoId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="PaseoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PropiesdesArancelesFK">
           <End Role="aranceles" Type="Self.aranceles" Multiplicity="0..1" />
           <End Role="propiedades" Type="Self.propiedades" Multiplicity="*" />
@@ -1278,6 +1303,7 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <EntitySet Name="mainmenu" EntityType="Self.mainmenu" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="object" EntityType="Self.object" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="objecttype" EntityType="Self.objecttype" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="paseo" EntityType="Self.paseo" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="permission" EntityType="Self.permission" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="poligonos" EntityType="Self.poligonos" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -1498,6 +1524,10 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             <End Role="sendas" EntitySet="sendas" />
             <End Role="propiedades" EntitySet="propiedades" />
           </AssociationSet>
+          <AssociationSet Name="PropiedaesPaseoFK" Association="Self.PropiedaesPaseoFK">
+            <End Role="paseo" EntitySet="paseo" />
+            <End Role="propiedades" EntitySet="propiedades" />
+          </AssociationSet>
           <AssociationSet Name="PropiesdesArancelesFK" Association="Self.PropiesdesArancelesFK">
             <End Role="aranceles" EntitySet="aranceles" />
             <End Role="propiedades" EntitySet="propiedades" />
@@ -1532,9 +1562,7 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <EntitySet Name="calles" EntityType="db_a43bba_kondomiModel.calles" />
           <EntitySet Name="clientepropiedad" EntityType="db_a43bba_kondomiModel.clientepropiedad" />
           <EntitySet Name="clientepropiedaddetalle" EntityType="db_a43bba_kondomiModel.clientepropiedaddetalle" />
-          <EntitySet Name="clientepropiedaddocs" EntityType="db_a43bba_kondomiModel.clientepropiedaddocs" />
           <EntitySet Name="clientes" EntityType="db_a43bba_kondomiModel.clientes" />
-          <EntitySet Name="clientesdocs" EntityType="db_a43bba_kondomiModel.clientesdocs" />
           <EntitySet Name="config" EntityType="db_a43bba_kondomiModel.config" />
           <EntitySet Name="configcobrosmensauldet" EntityType="db_a43bba_kondomiModel.configcobrosmensauldet" />
           <EntitySet Name="configcobrosmensual" EntityType="db_a43bba_kondomiModel.configcobrosmensual" />
@@ -1614,17 +1642,9 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             <End Role="clientepropiedad" EntitySet="clientepropiedad" />
             <End Role="clientepropiedaddetalle" EntitySet="clientepropiedaddetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClientePropiedadDocs" Association="db_a43bba_kondomiModel.FK_ClientePropiedadDocs">
-            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
-            <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
-          </AssociationSet>
           <AssociationSet Name="CxcClientesFK" Association="db_a43bba_kondomiModel.CxcClientesFK">
             <End Role="clientes" EntitySet="clientes" />
             <End Role="cuentasporcobrar" EntitySet="cuentasporcobrar" />
-          </AssociationSet>
-          <AssociationSet Name="FKClienteId_ClienteidDOC" Association="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC">
-            <End Role="clientes" EntitySet="clientes" />
-            <End Role="clientesdocs" EntitySet="clientesdocs" />
           </AssociationSet>
           <AssociationSet Name="FKIdConfigCobrosConfigMensual" Association="db_a43bba_kondomiModel.FKIdConfigCobrosConfigMensual">
             <End Role="configcobrosmensual" EntitySet="configcobrosmensual" />
@@ -1708,10 +1728,25 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             <End Role="alameda" EntitySet="alameda" />
             <End Role="propiedades" EntitySet="propiedades" />
           </AssociationSet>
+          <EntitySet Name="clientepropiedaddocs" EntityType="db_a43bba_kondomiModel.clientepropiedaddocs" />
+          <EntitySet Name="clientesdocs" EntityType="db_a43bba_kondomiModel.clientesdocs" />
           <EntitySet Name="propiedadesdocs" EntityType="db_a43bba_kondomiModel.propiedadesdocs" />
+          <AssociationSet Name="FK_ClientePropiedadDocs" Association="db_a43bba_kondomiModel.FK_ClientePropiedadDocs">
+            <End Role="clientepropiedad" EntitySet="clientepropiedad" />
+            <End Role="clientepropiedaddocs" EntitySet="clientepropiedaddocs" />
+          </AssociationSet>
+          <AssociationSet Name="FKClienteId_ClienteidDOC" Association="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="clientesdocs" EntitySet="clientesdocs" />
+          </AssociationSet>
           <AssociationSet Name="FKPropiedadId_ClienteidDOC" Association="db_a43bba_kondomiModel.FKPropiedadId_ClienteidDOC">
             <End Role="propiedades" EntitySet="propiedades" />
             <End Role="propiedadesdocs" EntitySet="propiedadesdocs" />
+          </AssociationSet>
+          <EntitySet Name="paseo" EntityType="db_a43bba_kondomiModel.paseo" />
+          <AssociationSet Name="PropiedaesPaseoFK" Association="db_a43bba_kondomiModel.PropiedaesPaseoFK">
+            <End Role="paseo" EntitySet="paseo" />
+            <End Role="propiedades" EntitySet="propiedades" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="alerta">
@@ -1846,24 +1881,6 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.Fk_ClientePropiedad" FromRole="clientepropiedaddetalle" ToRole="clientepropiedad" />
         </EntityType>
-        <EntityType Name="clientepropiedaddocs">
-          <Key>
-            <PropertyRef Name="ClientePropiedadDocsId" />
-          </Key>
-          <Property Name="ClientePropiedadDocsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClienteId" Type="Int32" Nullable="false" />
-          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
-          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="FechaDeCreacion" Type="DateTime" />
-          <Property Name="FechaModificacion" Type="DateTime" />
-          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Eliminado" Type="Boolean" />
-          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDocs" FromRole="clientepropiedaddocs" ToRole="clientepropiedad" />
-        </EntityType>
         <EntityType Name="clientes">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -1886,23 +1903,8 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <NavigationProperty Name="calendario" Relationship="db_a43bba_kondomiModel.FKClientesCalendariox" FromRole="clientes" ToRole="calendario" />
           <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.ClientePropiedadPK1" FromRole="clientes" ToRole="clientepropiedad" />
           <NavigationProperty Name="cuentasporcobrar" Relationship="db_a43bba_kondomiModel.CxcClientesFK" FromRole="clientes" ToRole="cuentasporcobrar" />
-          <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientes" ToRole="clientesdocs" />
           <NavigationProperty Name="cuentasporcobrarpago" Relationship="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" FromRole="clientes" ToRole="cuentasporcobrarpago" />
-        </EntityType>
-        <EntityType Name="clientesdocs">
-          <Key>
-            <PropertyRef Name="ClienteDocId" />
-          </Key>
-          <Property Name="ClienteDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClienteId" Type="Int32" Nullable="false" />
-          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="FechaDeCreacion" Type="DateTime" />
-          <Property Name="FechaDeModificacion" Type="DateTime" />
-          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientesdocs" ToRole="clientes" />
+          <NavigationProperty Name="clientesdocs" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientes" ToRole="clientesdocs" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -2303,6 +2305,8 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <Property Name="Alameda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="alameda1" Relationship="db_a43bba_kondomiModel.PropiedadesAlamedaFK" FromRole="propiedades" ToRole="alameda" />
           <NavigationProperty Name="propiedadesdocs" Relationship="db_a43bba_kondomiModel.FKPropiedadId_ClienteidDOC" FromRole="propiedades" ToRole="propiedadesdocs" />
+          <Property Name="PaseoId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="paseo" Relationship="db_a43bba_kondomiModel.PropiedaesPaseoFK" FromRole="propiedades" ToRole="paseo" />
         </EntityType>
         <EntityType Name="rol">
           <Key>
@@ -2556,22 +2560,6 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClientePropiedadDocs">
-          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="1" />
-          <End Type="db_a43bba_kondomiModel.clientepropiedaddocs" Role="clientepropiedaddocs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clientepropiedad">
-              <PropertyRef Name="ClienteId" />
-              <PropertyRef Name="PropiedadId" />
-              <PropertyRef Name="TipoCliente" />
-            </Principal>
-            <Dependent Role="clientepropiedaddocs">
-              <PropertyRef Name="ClienteId" />
-              <PropertyRef Name="PropiedadId" />
-              <PropertyRef Name="TipoCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CxcClientesFK">
           <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.cuentasporcobrar" Role="cuentasporcobrar" Multiplicity="*" />
@@ -2580,18 +2568,6 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
               <PropertyRef Name="ClienteId" />
             </Principal>
             <Dependent Role="cuentasporcobrar">
-              <PropertyRef Name="ClienteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKClienteId_ClienteidDOC">
-          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
-          <End Type="db_a43bba_kondomiModel.clientesdocs" Role="clientesdocs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="clientes">
-              <PropertyRef Name="ClienteId" />
-            </Principal>
-            <Dependent Role="clientesdocs">
               <PropertyRef Name="ClienteId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2983,6 +2959,39 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="clientepropiedaddocs">
+          <Key>
+            <PropertyRef Name="ClientePropiedadDocsId" />
+          </Key>
+          <Property Name="ClientePropiedadDocsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" />
+          <Property Name="TipoCliente" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <NavigationProperty Name="clientepropiedad" Relationship="db_a43bba_kondomiModel.FK_ClientePropiedadDocs" FromRole="clientepropiedaddocs" ToRole="clientepropiedad" />
+        </EntityType>
+        <EntityType Name="clientesdocs">
+          <Key>
+            <PropertyRef Name="ClienteDocId" />
+          </Key>
+          <Property Name="ClienteDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UrlDocument" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clientes" Relationship="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" FromRole="clientesdocs" ToRole="clientes" />
+        </EntityType>
         <EntityType Name="propiedadesdocs">
           <Key>
             <PropertyRef Name="PropiedadesDocId" />
@@ -2998,6 +3007,34 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.FKPropiedadId_ClienteidDOC" FromRole="propiedadesdocs" ToRole="propiedades" />
         </EntityType>
+        <Association Name="FK_ClientePropiedadDocs">
+          <End Type="db_a43bba_kondomiModel.clientepropiedad" Role="clientepropiedad" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientepropiedaddocs" Role="clientepropiedaddocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientepropiedad">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Principal>
+            <Dependent Role="clientepropiedaddocs">
+              <PropertyRef Name="ClienteId" />
+              <PropertyRef Name="PropiedadId" />
+              <PropertyRef Name="TipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClienteId_ClienteidDOC">
+          <End Type="db_a43bba_kondomiModel.clientes" Role="clientes" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.clientesdocs" Role="clientesdocs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="clientesdocs">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKPropiedadId_ClienteidDOC">
           <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="1" />
           <End Type="db_a43bba_kondomiModel.propiedadesdocs" Role="propiedadesdocs" Multiplicity="*" />
@@ -3007,6 +3044,31 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             </Principal>
             <Dependent Role="propiedadesdocs">
               <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="paseo">
+          <Key>
+            <PropertyRef Name="PaseoId" />
+          </Key>
+          <Property Name="PaseoId" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PaseoDescripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" Nullable="false" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="propiedades" Relationship="db_a43bba_kondomiModel.PropiedaesPaseoFK" FromRole="paseo" ToRole="propiedades" />
+        </EntityType>
+        <Association Name="PropiedaesPaseoFK">
+          <End Type="db_a43bba_kondomiModel.paseo" Role="paseo" Multiplicity="0..1" />
+          <End Type="db_a43bba_kondomiModel.propiedades" Role="propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paseo">
+              <PropertyRef Name="PaseoId" />
+            </Principal>
+            <Dependent Role="propiedades">
+              <PropertyRef Name="PaseoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3138,24 +3200,6 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="clientepropiedaddocs">
-            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientepropiedaddocs">
-              <MappingFragment StoreEntitySet="clientepropiedaddocs">
-                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
-                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
-                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
-                <ScalarProperty Name="Document" ColumnName="Document" />
-                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
-                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
-                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
-                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
-                <ScalarProperty Name="ClientePropiedadDocsId" ColumnName="ClientePropiedadDocsId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientes">
               <MappingFragment StoreEntitySet="clientes">
@@ -3174,21 +3218,6 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clientesdocs">
-            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientesdocs">
-              <MappingFragment StoreEntitySet="clientesdocs">
-                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
-                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
-                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
-                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
-                <ScalarProperty Name="Document" ColumnName="Document" />
-                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
-                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
-                <ScalarProperty Name="ClienteDocId" ColumnName="ClienteDocId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3554,6 +3583,7 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <EntitySetMapping Name="propiedades">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.propiedades">
               <MappingFragment StoreEntitySet="propiedades">
+                <ScalarProperty Name="PaseoId" ColumnName="PaseoId" />
                 <ScalarProperty Name="Alameda" ColumnName="Alameda" />
                 <ScalarProperty Name="CasaLetra" ColumnName="CasaLetra" />
                 <ScalarProperty Name="Avenida" ColumnName="Avenida" />
@@ -3815,6 +3845,39 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="clientepropiedaddocs">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientepropiedaddocs">
+              <MappingFragment StoreEntitySet="clientepropiedaddocs">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ClientePropiedadDocsId" ColumnName="ClientePropiedadDocsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientesdocs">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.clientesdocs">
+              <MappingFragment StoreEntitySet="clientesdocs">
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="UrlDocument" ColumnName="UrlDocument" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ClienteDocId" ColumnName="ClienteDocId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="propiedadesdocs">
             <EntityTypeMapping TypeName="db_a43bba_kondomiModel.propiedadesdocs">
               <MappingFragment StoreEntitySet="propiedadesdocs">
@@ -3827,6 +3890,19 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
                 <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
                 <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
                 <ScalarProperty Name="PropiedadesDocId" ColumnName="PropiedadesDocId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paseo">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.paseo">
+              <MappingFragment StoreEntitySet="paseo">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="PaseoDescripcion" ColumnName="PaseoDescripcion" />
+                <ScalarProperty Name="PaseoId" ColumnName="PaseoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

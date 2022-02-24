@@ -97,10 +97,10 @@ namespace Kondominium.Controllers
                     var modelr = new Kondominium_BL.ClienteDocsDatos().Delete(datos);
                     if (modelr.Codigo == CodigosMensaje.Exito)
                     {
-                        if (System.IO.File.Exists(datos.UrlDocument))
-                        {
-                            System.IO.File.Delete(datos.UrlDocument);
-                        }
+                        //if (System.IO.File.Exists(datos.UrlDocument))
+                        //{
+                        //    System.IO.File.Delete(datos.UrlDocument);
+                        //}
                         return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = 0 });
                     }
 

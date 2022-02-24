@@ -38,9 +38,10 @@ namespace Kondominium_BL
                 CasaLetra = x.CasaLetra,
 
                 Alameda = x.Alameda,
-                AlamedaDescripcion = x.alameda1.AlamedaDescripcion
+                AlamedaDescripcion = x.alameda1.AlamedaDescripcion,
 
-
+                PaseoDescripcion = x.paseo.PaseoDescripcion,
+                PaseoId = x.PaseoId,
 
 
             });
@@ -80,6 +81,11 @@ namespace Kondominium_BL
 
                             Alameda = p.Alameda,
                             AlamedaDescripcion = p.alameda1.AlamedaDescripcion
+
+                            ,
+
+                            PaseoDescripcion = p.paseo.PaseoDescripcion,
+                            PaseoId = p.PaseoId,
                         };
 
 
@@ -117,7 +123,12 @@ namespace Kondominium_BL
                             ,
 
                             Alameda = x.Alameda,
-                            AlamedaDescripcion = x.alameda1.AlamedaDescripcion
+                            AlamedaDescripcion = x.alameda1.AlamedaDescripcion,
+
+
+
+                            PaseoDescripcion = x.paseo.PaseoDescripcion,
+                            PaseoId = x.PaseoId,
 
                         });
 
@@ -170,6 +181,8 @@ namespace Kondominium_BL
                     modlNew.Eliminado = model.Eliminado;
 
                     modlNew.Alameda = model.Alameda;
+
+                    modlNew.PaseoId = model.PaseoId;
 
 
                     if (modlExist == null)

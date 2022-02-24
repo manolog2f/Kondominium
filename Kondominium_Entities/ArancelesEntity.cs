@@ -21,6 +21,7 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Descripcion")]
         [StringLength(50, ErrorMessage = "La descripción no debe exceder de 50 caracteres")]
+        [Required]
         public string Descripcion { get; set; }
         /// <summary>
         /// Id del Arancel

@@ -256,6 +256,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>kondomiDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\jsModel.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\UserConfigModel.cs" />
@@ -469,6 +470,8 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.multiselect.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -683,6 +686,9 @@
     <Content Include="Views\Propiedades\EditAlamedas.cshtml" />
     <Content Include="Views\Propiedades\_ListPropiedadDocs.cshtml" />
     <Content Include="Views\Propiedades\_EditPropiedadesFileUpload.cshtml" />
+    <Content Include="Views\Sistema\EnvioEmailTest.cshtml" />
+    <Content Include="Views\Propiedades\ListadoPaseos.cshtml" />
+    <Content Include="Views\Propiedades\EditPaseo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,10 @@ namespace Kondominium
                 "~/Scripts/jquery.form.js",
                 "~/Scripts/chosen.jquery.min.js",
                 "~/Scripts/jquery-1.12.4.js",
-                "~/Scripts/jquery-ui-1.12.1.min.js"
+                "~/Scripts/jquery-ui-1.12.1.min.js",
+                "~/Scripts/jquery.maskedinput.js",
+                "~/Scripts/jquery.maskedinput.min.js"
+
 
 
             ));

@@ -47,7 +47,14 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.AvenidaId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.AvenidaId, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @if (Model == null || Model.AvenidaId == null)
+                                                    {
+                                                        @Html.EditorFor(model => model.AvenidaId, new { htmlAttributes = new { @class = "form-control" } })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.EditorFor(model => model.AvenidaId, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                                    }
                                                     @Html.ValidationMessageFor(model => model.AvenidaId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -78,12 +85,13 @@
 
                                         <div class="row">
 
+
+
                                             <div class="col">
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.FechaDeCreacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                                        @Html.ValidationMessageFor(model => model.FechaDeCreacion, "", new { @class = "text-danger" })
+                                                        <input type="text" id="txtFechaCreacion" name="txtFechaCreacion" value="@Model.FechaDeCreacion" class="form-control" readonly="readonly" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,11 +99,14 @@
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.FechaDeModificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                                        @Html.ValidationMessageFor(model => model.FechaDeModificacion, "", new { @class = "text-danger" })
+                                                        <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
+
+
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div class="col">
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md" })

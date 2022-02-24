@@ -144,6 +144,19 @@ namespace Kondominium_Entities
         [DisplayName("Alameda")]
         public string AlamedaDescripcion { get; set; }
 
+
+        /// <summary>
+        /// Paseo ID
+        /// </summary>
+        [DisplayName("Paseo Id")]
+        public string PaseoId { get; set; }
+
+        /// <summary>
+        /// Paseo Descripcion
+        /// </summary>
+        [DisplayName("Paseo")]
+        public string PaseoDescripcion { get; set; }
+
     }
 
 }

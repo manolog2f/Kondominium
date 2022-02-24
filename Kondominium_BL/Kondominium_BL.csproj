@@ -133,6 +133,7 @@
     <Compile Include="GeneradorCodigoData.cs" />
     <Compile Include="GeneraracionMensuales.cs" />
     <Compile Include="LugaresDatos.cs" />
+    <Compile Include="PaseoDatos.cs" />
     <Compile Include="PeriodoFacturadoDatos.cs" />
     <Compile Include="PoligonosDatos.cs" />
     <Compile Include="ProductosDatos.cs" />

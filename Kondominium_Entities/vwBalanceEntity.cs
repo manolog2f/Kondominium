@@ -20,6 +20,15 @@ namespace Kondominium_Entities
             public string Estado { get; set; }
             public Nullable<int> PropiedadId { get; set; }
 
+        /// <summary>
+        /// Cliente  
+        /// </summary>
+        public ClientesEntity Cliente { get; set; }
+        /// <summary>
+        /// Propieadd Entity
+        /// </summary>
+        public PropiedadesEntity Propiedad { get; set; }
+
     }
 }
 
