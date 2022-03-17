@@ -99,7 +99,7 @@
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="ZoomTechUtils">
-      <HintPath>..\..\Pristellav2\ZTUtils\bin\Debug\ZoomTechUtils.dll</HintPath>
+      <HintPath>..\ZMTDLL\ZoomTechUtils.dll</HintPath>
     </Reference>
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.27\lib\net452\ZstdNet.dll</HintPath>
@@ -153,10 +153,6 @@
     <ProjectReference Include="..\Kondominium_Entities\Kondominium_Entities.csproj">
       <Project>{73f6ec44-80cb-495f-b76a-87a549e9d82f}</Project>
       <Name>Kondominium_Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kondominium_Process\Kondominium_Process.csproj">
-      <Project>{a0d24f82-1e19-4c05-b3cc-bcc8ceb0cc3e}</Project>
-      <Name>Kondominium_Process</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kondominium_vbFunciones\Kondominium_vbFunciones.vbproj">
       <Project>{7d6ee432-2fb1-4ebe-8305-0b11ef28ff8d}</Project>

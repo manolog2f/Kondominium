@@ -130,6 +130,7 @@ namespace Kondominium_BL
                     modlNew.FechadePago = model.FechadePago;
 
 
+
                     if (modlNew.CuentasPorCobrarPagoId == 0)
                     {
 
@@ -198,6 +199,7 @@ namespace Kondominium_BL
                     ContextP.SaveChanges();
 
                     model.CuentasPorCobrarPagoId = modlNew.CuentasPorCobrarPagoId;
+                    
                 }
 
                 return (GetById(model.CuentasPorCobrarPagoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
