@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kondominium_Entities;
+
 namespace Kondominium_BL
 {
     public class GeneraracionMensuales
     {
-        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+
         public (Kondominium_Entities.Resultado, CuentasGeneradasEntity) GenerarRecibosMensuales(int mes, int año, DateTime FechaGeneracion, DateTime FechaVencimiento, string PeriodoFacturado, string usuario)
         {
             //var FechaGeneracion = new DateTime();
@@ -37,22 +39,18 @@ namespace Kondominium_BL
             //}
             //FechaVencimiento = DateTime.Parse(string.Concat(año.ToString(), "-", mesVencimiento.ToString(), "-", configHeader.DiaDeGeneracion.ToString()));
 
-
             /*Almacenar Generacion*/
             var g = CuentasGeneradasH(FechaGeneracion, FechaVencimiento, usuario, PeriodoFacturado);
-
 
             /*Obtener Listado de Propiedades*/
             var listPropiedades = context.propiedades.ToList();
 
-
             foreach (var item in listPropiedades)
             {
-
                 var header = new Kondominium_Entities.CuentasPorCobrarEntity();
                 //var detalle = new Kondominium_Entities.CuentasPorCobrarDetalleEntity();
 
-                /* Buscar el propietario Responsable de la propiedad 
+                /* Buscar el propietario Responsable de la propiedad
                  *  Si hubiera mas de un propietario responsable se tomara el de mayor rango,
                  *  Si hubieran tres en el mismo rango se colocara el primero.
                  */
@@ -96,16 +94,13 @@ namespace Kondominium_BL
                         }
                     }
                 }
-
             }
-
 
             return (new Resultado { Codigo = 0, Mensaje = "Proceso Generado con exito" }, g);
         }
 
         private void AlmacenarLogGeneracion(int año, int mes, string observacion, int propiedadID, int clienteID)
         {
-
             var log = new Kondominium_DAL.cobrosmensalesloggeneracion();
             log.Año = año;
             log.Mes = mes;
@@ -113,7 +108,6 @@ namespace Kondominium_BL
             log.PropiedadId = propiedadID;
             log.Fecha = DateTime.Now;
             log.ClienteId = clienteID;
-
 
             context.cobrosmensalesloggeneracion.Add(log);
             context.SaveChanges();
@@ -123,11 +117,33 @@ namespace Kondominium_BL
         {
             /*Inserta Encabezado*/
 
-
             var arancel = context.aranceles.Where(x => x.ArancelId == pro.ArancelId).FirstOrDefault();
             decimal TotalHeader = 0;
 
-            TotalHeader = (decimal)arancel.Monto + (decimal)cDet.Sum(x => x.Monto).Value;
+            var detFinal = new List<Kondominium_DAL.configcobrosmensauldet>();
+            var propiedad = context.propiedades.Where(x => x.PropiedadId == propiedadID).FirstOrDefault();
+
+            foreach (var item in cDet.GroupBy(x => x.ProductoId))
+            {
+                if (cDet.Where(x => x.ProductoId == item.Key).Count() > 1)
+                {
+                    var detA = new Kondominium_DAL.configcobrosmensauldet();
+                    var detFOr = cDet.Where(x => x.ProductoId == item.Key).OrderBy(x => x.MTamañoV2).ToList();
+
+                    for (int i = 0; i <= detFOr.Count() - 1; i++)
+                    {
+                        if (propiedad.TamañoV2 > detFOr[i].MTamañoV2)
+                            detA = detFOr[i];
+                    }
+                    detFinal.Add(detA);
+                }
+                else
+                {
+                    detFinal.Add(cDet.Where(x => x.ProductoId == item.Key).FirstOrDefault());
+                }
+            }
+
+            TotalHeader = (decimal)arancel.Monto + (decimal)detFinal.Sum(x => x.Monto).Value;
 
             var header = new CuentasPorCobrarDatos().SaveA(new CuentasPorCobrarEntity
             {
@@ -147,9 +163,8 @@ namespace Kondominium_BL
 
             if (header.Item2.Codigo != 0)
             {
-                AlmacenarLogGeneracion(FechaGeneracion.Month, FechaGeneracion.Year, header.Item2.Mensaje , propiedadID, clienteID);
+                AlmacenarLogGeneracion(FechaGeneracion.Month, FechaGeneracion.Year, header.Item2.Mensaje, propiedadID, clienteID);
                 return "";
-
             }
 
             var detalle = new CuentasPorCobrarDetalleDatos().Save(new CuentasPorCobrarDetalleEntity
@@ -165,7 +180,7 @@ namespace Kondominium_BL
                 VaucherNumber = header.Item1.VaucherNumber
             });
 
-            foreach (var item in cDet)
+            foreach (var item in detFinal)
             {
                 var detallei = new CuentasPorCobrarDetalleDatos().Save(new CuentasPorCobrarDetalleEntity
                 {
@@ -179,12 +194,9 @@ namespace Kondominium_BL
                     ProductoId = item.ProductoId,
                     VaucherNumber = header.Item1.VaucherNumber
                 });
-
             }
 
             return header.Item1.VaucherNumber;
-
-
         }
 
         private CuentasGeneradasEntity CuentasGeneradasH(DateTime fGeneracion, DateTime fVencimiento, string usuario, string PeriodoFacturado)

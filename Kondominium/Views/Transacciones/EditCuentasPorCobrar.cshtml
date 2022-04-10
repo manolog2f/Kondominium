@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
-
-
-
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -18,25 +14,18 @@
 
         <div class="col-lg">
 
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
                 </div>
 
-
                 <div class="form-horizontal">
-
-
 
                     <!-- Acordion -->
                     <div id="accordion">
 
-
                         @using (Html.BeginForm())
                         {
-
-
 
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -49,7 +38,6 @@
                                     </a>
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
-
 
                                     <div class="row">
                                         <div class="col">
@@ -81,16 +69,13 @@
                                         </div>
                                         <div class="col">
                                         </div>
-
                                     </div>
-
 
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.TipoCxC, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-
 
                                                     @Html.DropDownListFor(model => model.TipoCxC, new SelectList(new Kondominium.Controllers.TransaccionesController().ListTiposTransaccion(), "TypeName", "TypeName"), "Seleccione el tipo de Transaccion", new { @class = "form-control" })
 
@@ -104,7 +89,6 @@
                                                 @Html.LabelFor(model => model.PeriodoFacturado, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @*@Html.EditorFor(model => model.PeriodoFacturado, new { htmlAttributes = new { @class = "form-control" } })*@
-
 
                                                     @Html.DropDownListFor(model => model.PeriodoFacturado, new SelectList(new Kondominium.Controllers.TransaccionesController().ListPeriodos()), "Seleccione el periodo", new { @class = "form-control" })
 
@@ -125,9 +109,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                  
+
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -159,7 +142,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div class="row">
@@ -168,7 +150,6 @@
                                         {
                                             <div class="container" style="margin-left:unset !important">
 
-                                             
                                                 @if (Model.Estado <= 2 || Model.Estado == null)
                                                 {
                                                     <button type="submit" value="Guardar" class="btn btn-primary">
@@ -181,8 +162,6 @@
                                                         <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
                                                     </a>
 
-
-
                                                     <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#AnularModal">
                                                         <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
                                                     </a>
@@ -190,216 +169,190 @@
                                                 @if (Model.VaucherNumber != null)
                                                 {
                                                     @Html.ActionLink("Imprimir", "Recibo", "Report", new { VaucherNumber = Model.VaucherNumber.ToString() }, new { target = "_blank", @class = "btn btn-info" })
+
+                                                    <a class="btn btn-info" href="..\Report\ReciboEmail?VaucherNumber=@Model.VaucherNumber">
+                                                        <i class="fa fa-envelope mr-2 text-gray-400"></i>Enviar
+                                                    </a>
                                                 }
-
-
                                             </div>
 
                                         }
                                     </div>
 
-                                            <br>
-                                            <br>
+                                    <br>
+                                    <br>
                                 </div>
-                                
-                                
 
+                                @if (Model.VaucherNumber != null)
+                                {
+                                    <!-- Detalle -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                                Detalle
+                                            </a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
 
-                                        @if (Model.VaucherNumber != null)
-                                        {
-                                            <!-- Detalle -->
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                                                        Detalle
+                                                @if (Model.Estado < 3)
+                                                {
+                                                    <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
+                                                        <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
                                                     </a>
-                                                </div>
-                                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                                    <div class="card-body">
+                                                }
 
-                                                        @if (Model.Estado < 3)
-                                                        {
-                                                            <a class="btn btn-info" href="#" data-toggle="modal" data-target="#UploadDetModal">
-                                                                <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
-                                                            </a>
-                                                        }
+                                                <br />
 
-                                                        <br />
-
-                                                        @Html.Action("_EditCuentasPorCobrarDetalle", "Transacciones", new { VaucherNumber = Model.VaucherNumber })
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Detalle -->
-                                        }
-
-
-                                        @if (Model.VaucherNumber != null)
-                                        {
-                                            <!-- Pago -->
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                                                        Registro de Pago
-                                                    </a>
-                                                </div>
-                                                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                                    <div class="card-body">
-
-                                                        @Html.Action("_EditCuentasPorCobrarPago", "Transacciones", new { VaucherNumber = Model.VaucherNumber, ClienteId = Model.ClienteId, Monto = Model.Total })
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Pago -->
-                                        }
-
-
-                                        <div class="card">
-                                            <div class="card-header">
-                                                Totales
-                                            </div>
-                                            <div>
-
-
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-                                                                @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-
-
+                                                @Html.Action("_EditCuentasPorCobrarDetalle", "Transacciones", new { VaucherNumber = Model.VaucherNumber })
                                             </div>
                                         </div>
-
-                            </div>
-                        }
-                        </div>
-
-
-                    </div>
-                
-        </div>
-    </div>
- </div>
-
-
-            <!-- Delete Modal confirmacion -->
-            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header badge-warning">
-                            <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*//End Delete Modal confirmacion*@
-
-
-            <!-- Contabilizar Modal confirmacion -->
-            <div class="modal fade" id="ContabilizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header badge-warning">
-                            <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de contabilizar el registro?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Seleccione "Contabilizar" a continuación si está listo para Contabilizar el registro actual
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-
-                            @Html.ActionLink("Contabilizar", "UpdateCxCContabilizado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*//End Contabilizar Modal confirmacion*@
-
-
-            <!-- Anular Modal confirmacion -->
-            <div class="modal fade" id="AnularModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header badge-warning">
-                            <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Anular el registro?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Seleccione "Anular" a continuación si está listo para Anular el registro actual
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-
-                            @Html.ActionLink("Anular", "UpdateCxCAnulado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*//End Anular Modal confirmacion*@
-
-            <div>
-                @Html.ActionLink("Retornar  a la Lista", "ListadoCuentasPorCobrar", "Transacciones")
-            </div>
-
-
-            @if (Model.VaucherNumber != null)
-            {
-                <div class="modal fade" id="UploadDetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header badge-warning">
-
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                @{
-                                    string xVaucher = Model.VaucherNumber.ToString();
-
+                                    </div>
+                                    <!-- Fin Detalle -->
                                 }
 
-                                @Html.Action("_EditCuentasPorCobrarDet", "Transacciones", new { VaucherNumber = xVaucher })
+                                @if (Model.VaucherNumber != null)
+                                {
+                                    <!-- Pago -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                                Registro de Pago
+                                            </a>
+                                        </div>
+                                        <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
 
+                                                @Html.Action("_EditCuentasPorCobrarPago", "Transacciones", new { VaucherNumber = Model.VaucherNumber, ClienteId = Model.ClienteId, Monto = Model.Total })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Fin Pago -->
+                                }
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        Totales
+                                    </div>
+                                    <div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-            }
+    <!-- Delete Modal confirmacion -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
+                    <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Eliminar el registro?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Seleccione "Eliminar" a continuación si está listo para eliminar el registro actual
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    @*//End Delete Modal confirmacion*@
+
+    <!-- Contabilizar Modal confirmacion -->
+    <div class="modal fade" id="ContabilizarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
+                    <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de contabilizar el registro?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Seleccione "Contabilizar" a continuación si está listo para Contabilizar el registro actual
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
+                    @Html.ActionLink("Contabilizar", "UpdateCxCContabilizado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+    @*//End Contabilizar Modal confirmacion*@
+
+    <!-- Anular Modal confirmacion -->
+    <div class="modal fade" id="AnularModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header badge-warning">
+                    <h5 class="modal-title" style="color:#1f1d1de3" id="exampleModalLabel">¿Esta seguro de Anular el registro?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Seleccione "Anular" a continuación si está listo para Anular el registro actual
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
+                    @Html.ActionLink("Anular", "UpdateCxCAnulado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+    @*//End Anular Modal confirmacion*@
+
+    <div>
+        @Html.ActionLink("Retornar  a la Lista", "ListadoCuentasPorCobrar", "Transacciones")
+    </div>
+
+    @if (Model.VaucherNumber != null)
+    {
+        <div class="modal fade" id="UploadDetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header badge-warning">
+
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            string xVaucher = Model.VaucherNumber.ToString();
+
+                        }
+
+                        @Html.Action("_EditCuentasPorCobrarDet", "Transacciones", new { VaucherNumber = xVaucher })
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }

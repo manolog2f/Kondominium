@@ -913,45 +913,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ANULADO</Value>
-                <Style>
-                  <FontSize>20pt</FontSize>
-                  <Color>Red</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.81166cm</Top>
-        <Left>10.00146cm</Left>
-        <Height>0.94396cm</Height>
-        <Width>5.32222cm</Width>
-        <ZIndex>16</ZIndex>
-        <Visibility>
-          <Hidden>=iif(First(Fields!Estado.Value, "Recibo") &lt; 4, true, false)</Hidden>
-        </Visibility>
-        <Style>
-          <Border>
-            <Color>Red</Color>
-            <Style>Dashed</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
     <Height>4.49957in</Height>
     <Style />
@@ -959,7 +920,7 @@
   <Width>6.483in</Width>
   <Page>
     <PageHeader>
-      <Height>2.55586cm</Height>
+      <Height>2.43267cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -978,6 +939,45 @@
             </Border>
           </Style>
         </Image>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>ANULADO</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                    <Color>Red</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.61558cm</Top>
+          <Left>5.53995cm</Left>
+          <Height>0.94396cm</Height>
+          <Width>5.32222cm</Width>
+          <ZIndex>1</ZIndex>
+          <Visibility>
+            <Hidden>=iif(First(Fields!Estado.Value, "Recibo") &lt; 4, true, false)</Hidden>
+          </Visibility>
+          <Style>
+            <Border>
+              <Color>Red</Color>
+              <Style>Dashed</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>

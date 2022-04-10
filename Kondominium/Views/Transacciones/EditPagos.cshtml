@@ -226,14 +226,14 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.MetodoPago,
-                             new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
-                             {
-                                 Text = x.ToString()
-                             ,
-                                 Value = x.ToString()
-                             }),
-                             "Seleccione El Metodo de pago",
-                           new { @class = "form-control" })
+new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
+{
+    Text = x.ToString()
+,
+    Value = x.ToString()
+}),
+"Seleccione El Metodo de pago",
+new { @class = "form-control" })
 
 
                                                     @Html.ValidationMessageFor(model => model.MetodoPago, "", new { @class = "text-danger" })
@@ -371,8 +371,8 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
                                         <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
                                             <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
                                         </a>
+                                        }
                                     }
-
                                 <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                     <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                 </a>
@@ -385,7 +385,7 @@ new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), 
                                     if (Model != null)
                                     {
                                         @Html.ActionLink("Imprimir", "Pagos", "Report", new { VaucherNumber = vaucher }, new { target = "_blank", @class = "btn btn-info" })
-                                        }
+                                   }
 
                                }
 

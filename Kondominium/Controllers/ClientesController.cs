@@ -10,11 +10,9 @@ using System.Web.Mvc;
 
 namespace Kondominium.Controllers
 {
-
     public class ClientesController : BaseController
     {
-
-        ZoomTechLog.Log4NetMR.classClsRegistrarLog log = new ZoomTechLog.Log4NetMR.classClsRegistrarLog();
+        private ZoomTechLog.Log4NetMR.classClsRegistrarLog log = new ZoomTechLog.Log4NetMR.classClsRegistrarLog();
         /* Listado clientes*/
 
         [HttpGet]
@@ -26,7 +24,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ClientesDatos().GetAll();
             return View(model);
         }
+
         /*Clientes Edit*/
+
         [HttpGet]
         public ActionResult EditClientes(string Id, int? codigo = null)
         {
@@ -41,12 +41,12 @@ namespace Kondominium.Controllers
                 }
                 ModelState.Clear();
 
-
                 ViewBag.ClienteId = model.ClienteId;
                 return View(model);
             }
             return View(new ClientesEntity());
         }
+
         [HttpPost]
         public ActionResult EditClientes(ClientesEntity model)
         {
@@ -68,8 +68,8 @@ namespace Kondominium.Controllers
                 ViewBag.ClienteId = model.ClienteId;
                 return View(modelr.Item1);
             }
-
         }
+
         //[HttpPost]
         public ActionResult DeleteClientes(int Id)
         {
@@ -81,9 +81,7 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditClientes", new { Id = Id, codigo = 9898 });
-
         }
-
 
         public ActionResult DeleteLineClientesDocs(int Id)
         {
@@ -134,7 +132,6 @@ namespace Kondominium.Controllers
             return PartialView("_ListClienteDocs", new List<ClienteDocsEntity>());
         }
 
-
         [HttpGet]
         public ActionResult _EditClientesFileUpload(string ClienteId, string DocumentType, int? codigo = null)
         {
@@ -155,12 +152,10 @@ namespace Kondominium.Controllers
 
                 //model.ClienteId =  ;
 
-
                 return View(model);
             }
             return View(new ClienteDocsEntity());
         }
-
 
         [HttpPost]
         public ActionResult _EditClientesFileUploadPost(ClienteDocsEntity model, FormCollection form)
@@ -180,15 +175,14 @@ namespace Kondominium.Controllers
             {
                 return View("_EditClientesFileUpload", modelr.Item1);
             }
-
         }
-
 
         /*/_UpdateClienteDocs  /// _AddClienteDocs
 
         /*End Edit Clientes*/
 
         /* Listado Propiedades Clientes */
+
         [HttpGet]
         public ActionResult ListadoClientesPropiedades()
         {
@@ -198,7 +192,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ClientePropiedadDatos().GetAll();
             return View(model);
         }
+
         /*Clientes Edit clientes Propiedades*/
+
         [HttpGet]
         public ActionResult EditClientesPropiedades(string ClienteId, string PropiedadId, int? codigo = null)
         {
@@ -217,6 +213,7 @@ namespace Kondominium.Controllers
             }
             return View(new ClientePropiedadEntity());
         }
+
         [HttpPost]
         public ActionResult EditClientesPropiedades(ClientePropiedadEntity model)
         {
@@ -236,13 +233,7 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
-
-
-
-
-
 
         public List<ClientesEntity> ListClientes()
         {
@@ -289,23 +280,19 @@ namespace Kondominium.Controllers
             }
         }
 
+        #region "Subir Archivo"
 
-
-        #region  "Subir Archivo"
         //[HttpPost]
         //public ActionResult _UploadFileH(HttpPostedFileBase file, FormCollection form)
         //{
         //    var mdl = new jsModel();
         //    var respM = new Resultado();
 
-
-
         //    mdl.ClienteId = int.Parse(form["ClienteId"].ToString());
         //    mdl.DocumentType = form["DocumentType"];
         //    mdl.ClienteDocId = int.Parse(form["ClienteDocId"]);
         //    try
         //    {
-
         //        //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
         //        if (file.ContentLength > 0)
         //        {
@@ -336,7 +323,6 @@ namespace Kondominium.Controllers
         //        this.Mensajes(respM);
         //        ViewBag.Message = "Error al cargar el Archivo!!" + ex;
 
-
         //        log.LogExeption("Error Almacenar Archivo", ZoomTechLog.LogType.Error, ex);
 
         //        return Json(mdl);
@@ -348,14 +334,11 @@ namespace Kondominium.Controllers
             var mdl = new jsModel();
             var respM = new Resultado();
 
-
-
             mdl.ClienteId = int.Parse(form["ClienteId"].ToString());
             mdl.DocumentType = form["DocumentType"];
             mdl.ClienteDocId = int.Parse(form["ClienteDocId"]);
             try
             {
-
                 if (file.ContentLength > 0)
                 {
                     string theFileName = Path.GetFileName(file.FileName);
@@ -370,7 +353,6 @@ namespace Kondominium.Controllers
                     mdl.JsFuntion = "T";
                     mdl.ClienteDocId = docSave.Item1.ClienteDocId;
 
-                    
                     mdl.mensaje = docSave.Item2;
                 }
                 return Json(mdl);
@@ -385,7 +367,6 @@ namespace Kondominium.Controllers
                 this.Mensajes(respM);
                 ViewBag.Message = "Error al cargar el Archivo!!" + ex;
 
-
                 log.LogExeption("Error Almacenar Archivo", ZoomTechLog.LogType.Error, ex);
 
                 return Json(mdl);
@@ -394,20 +375,13 @@ namespace Kondominium.Controllers
 
         public FileResult _DownloadFIle(int Id)
         {
+            var doc = new Kondominium_BL.ClienteDocsDatos().GetByClienteDocId(Id);
 
-                var doc = new Kondominium_BL.ClienteDocsDatos().GetByClienteDocId(Id);
+            string mimeType = new Kondominium_Entities.Utilites.MimeTypeEntity().MimeTypeList().Where(x => x.Extension.Contains(new Utilities.General().ExtraerExtencion(doc.UrlDocument))).FirstOrDefault().Type;
 
-                string mimeType = new Kondominium_Entities.Utilites.MimeTypeEntity().MimeTypeList().Where(x => x.Extension.Contains( new Utilities.General().ExtraerExtencion(doc.UrlDocument))).FirstOrDefault().Type;
-                
-
-                return File(doc.Document, mimeType);
+            return File(doc.Document, mimeType);
         }
 
-
-        #endregion
-
-
+        #endregion "Subir Archivo"
     }
-
-
 }

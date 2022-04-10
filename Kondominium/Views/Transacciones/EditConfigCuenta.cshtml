@@ -14,21 +14,15 @@
 
         <div class="col-lg">
 
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
                 </div>
 
-
                 <div class="form-horizontal">
-
-
 
                     <!-- Acordion -->
                     <div id="accordion">
-
-
 
                         <!-- General -->
                         <div class="card">
@@ -39,15 +33,11 @@
                             </div>
                             <div id="collapseOne" class="collapse show" data-parent="#accordion">
 
-
                                 @using (Html.BeginForm())
                                 {
 
-
-
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
 
                                     <div class="row">
                                         <div class="col">
@@ -80,35 +70,17 @@
                                         </div>
                                     </div>
 
-
-
-
                                     <br>
-
-
-
-
 
                                     <div class="container" style="margin-left:unset !important">
 
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
-
-
-
                                     </div>
-
-
 
                                     <br>
                                 }
-
                             </div>
-
-
-
                         </div>
-
-
 
                         @if (Model.IdConfig != null)
                         {
@@ -126,16 +98,12 @@
                                             <i class="fas fa-plus-circle fa-sm fa-fw mr-2 text-gray-300"></i> Agregar Producto
                                         </a>
 
-
                                         @Html.Action("_ListConfigCuentaDet", "Transacciones")
-
                                     </div>
                                 </div>
                             </div>
                             <!-- Fin Detalle -->
                         }
-
-
 
                         <!-- Sistema -->
                         <div class="card">
@@ -148,8 +116,6 @@
                                 <div class="card-body">
 
                                     <div class="row">
-
-
 
                                         <div class="col">
                                             <div class="form-group">
@@ -164,12 +130,9 @@
                                                 @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
-
-
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="col">
                                             <div class="form-group">
@@ -189,27 +152,16 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
-
-
 
 @if (Model.IdConfig != 0)
 {
@@ -223,9 +175,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
-                    @Html.Action("_EditAddConfigCuentaDet", "Transacciones")
 
+                    @Html.Action("_EditAddConfigCuentaDet", "Transacciones")
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>

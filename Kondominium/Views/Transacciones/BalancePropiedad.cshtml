@@ -144,6 +144,17 @@
 
                     </div>
 
+
+
+                    @{
+
+                        var PropiedadIdX = Model.Count() == 0 ? 0 : Model.FirstOrDefault().PropiedadId;
+                    }
+                    @*@Html.ActionLink("Exportar Excel", "ExportExcelBalanceCliente", "Transacciones", new { ClientId = ClienteIdx }, new { target = "_blank", @class = "btn btn-info" })*@
+                    <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+                    @Html.ActionLink("Imprimir", "BalancePropiedad", "Report", new { Id = PropiedadIdX }, new { target = "_blank", @class = "btn btn-info" })
+
+
                 </div>
             </div>
         </div>

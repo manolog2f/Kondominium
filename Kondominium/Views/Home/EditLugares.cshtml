@@ -14,7 +14,6 @@
 
         <div class="col-lg">
 
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
@@ -32,7 +31,6 @@
 
                         <!-- Acordion -->
                         <div id="accordion">
-
 
                             <!-- General -->
                             <div class="card">
@@ -72,12 +70,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
-
 
                             <!-- Sistema -->
                             <div class="card">
@@ -89,7 +83,6 @@
                                 <div id="collapseThree" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div class="row">
-
 
                                             <div class="col">
                                                 <div class="form-group">
@@ -104,12 +97,9 @@
                                                     @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
                                                         <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
-
-
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                             <div class="col">
                                                 <div class="form-group">
@@ -129,17 +119,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
 
                             <br>
-
-
-
 
                             @{
                                 if ((Model != null ? Model.Eliminado : false) != true)
@@ -148,30 +133,20 @@
 
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
 
-
                                         <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                             <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                         </a>
-
                                     </div>
 
                                 }
                             }
 
                             <br>
-
                         </div>
                     </div>
 
-
-
                 }
-
-
             </div>
-
-
-
         </div>
     </div>
 </div>
@@ -192,15 +167,11 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 @Html.ActionLink("Eliminar", "DeleteLugares", new { Id = (Model == null ? "" : Model.LugarId.ToString()) }, new { @class = "btn btn-danger" })
-
-
             </div>
         </div>
     </div>
 </div>
 @*//End Delete Modal confirmacion*@
-
-
 
 <div>
     @Html.ActionLink("Retornar  a la Lista", "ListadoLugares", "Home")

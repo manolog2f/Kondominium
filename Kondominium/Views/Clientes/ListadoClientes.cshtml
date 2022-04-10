@@ -83,14 +83,12 @@
 
                             <tr @eliminadox>
                                 <td>
-
-                                    @*<button type="button" class="btn btn-primary btn-sm">
-            <i class="fas fa-edit"></i>
-        </button>*@
-                                    @Html.ActionLink(string.Concat(" Editar"), "EditClientes", new { id = item.ClienteId }, new { @class = "fa fa-edit btn btn-primary btn-sm" })
-
-                                    @Html.ActionLink(string.Concat(" Balance"), "BalanceCliente", "Transacciones", new { id = item.ClienteId }, new { @class = "fa fa-bar-chart btn btn-secondary btn-sm" })
-
+                                    <a class="btn btn-primary btn-sm" href="..\Clientes\EditClientes\@item.ClienteId">
+                                        <i class="fa fa-edit mr-2 text-gray-400"></i>Editar
+                                    </a>
+                                    <a class="btn btn-secondary btn-sm" href="..\Transacciones\BalanceCliente\@item.ClienteId">
+                                        <i class="fa fa-th mr-2 text-gray-400"></i>Balance
+                                    </a>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Nombres)

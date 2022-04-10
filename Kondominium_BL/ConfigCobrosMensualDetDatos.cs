@@ -7,7 +7,8 @@ namespace Kondominium_BL
 {
     public class ConfigCobrosMensualDetDatos
     {
-        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+
         public List<ConfigCobrosMensualDetEntity> GetAll(bool VerEliminado = false)
         {
             var query = context.configcobrosmensauldet.Select(x => new ConfigCobrosMensualDetEntity
@@ -19,14 +20,17 @@ namespace Kondominium_BL
                 ModificadoPor = x.ModificadoPor,
                 Monto = x.Monto,
                 ProductoId = x.ProductoId,
-                ProductoDescripcion = x.productos.Descripcion
+                ProductoDescripcion = x.productos.Descripcion,
+                MTamañoV2 = x.MTamañoV2,
+                IdDetalleConf = x.IdDetalleConf
             });
 
             return query.ToList();
         }
+
         public ConfigCobrosMensualDetEntity GetById(int Id)
         {
-            var query = context.configcobrosmensauldet.Where(x => x.IdConfig == Id).Select(x => new ConfigCobrosMensualDetEntity
+            var query = context.configcobrosmensauldet.Where(x => x.IdDetalleConf == Id).Select(x => new ConfigCobrosMensualDetEntity
             {
                 CreadoPor = x.CreadoPor,
                 FechaDeCreacion = x.FechaDeCreacion,
@@ -35,8 +39,9 @@ namespace Kondominium_BL
                 ModificadoPor = x.ModificadoPor,
                 Monto = x.Monto,
                 ProductoId = x.ProductoId,
-                ProductoDescripcion = x.productos.Descripcion
-
+                ProductoDescripcion = x.productos.Descripcion,
+                MTamañoV2 = x.MTamañoV2,
+                IdDetalleConf = x.IdDetalleConf
             });
 
             return query.FirstOrDefault();
@@ -53,8 +58,9 @@ namespace Kondominium_BL
                 ModificadoPor = x.ModificadoPor,
                 Monto = x.Monto,
                 ProductoId = x.ProductoId,
-                ProductoDescripcion = x.productos.Descripcion
-
+                ProductoDescripcion = x.productos.Descripcion,
+                MTamañoV2 = x.MTamañoV2,
+                IdDetalleConf = x.IdDetalleConf
             });
 
             return query.ToList();
@@ -66,12 +72,11 @@ namespace Kondominium_BL
             {
                 using (var cn = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = cn.configcobrosmensauldet.Where(x => x.IdConfig == model.IdConfig && x.ProductoId == model.ProductoId).FirstOrDefault();
+                    var modlExist = cn.configcobrosmensauldet.Where(x => x.IdDetalleConf == model.IdDetalleConf).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.configcobrosmensauldet();
 
                     if (modlExist != null)
                     {
-
                         modlNew = modlExist;
                     }
                     modlNew.Monto = model.Monto;
@@ -81,6 +86,7 @@ namespace Kondominium_BL
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
 
+                    modlNew.MTamañoV2 = model.MTamañoV2;
 
                     if (modlExist == null)
                     {
@@ -90,26 +96,24 @@ namespace Kondominium_BL
                     }
                     cn.SaveChanges();
 
-                    model.IdConfig = modlNew.IdConfig;
-
+                    model.IdDetalleConf = modlNew.IdDetalleConf;
                 }
 
-                return (GetById(model.IdConfig), new Resultado { Codigo = 0, Mensaje = "Exito" });
+                return (GetById(model.IdDetalleConf), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado. \n" + ex.Message });
-
             }
         }
 
-        public Resultado Delete(int IdConfig, int ProductoId)
+        public Resultado Delete(int IdDetalleConf)
         {
             try
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.configcobrosmensauldet.Where(x => x.IdConfig == IdConfig && x.ProductoId == ProductoId).FirstOrDefault();
+                    var modlExist = ContextP.configcobrosmensauldet.Where(x => x.IdDetalleConf == IdDetalleConf).FirstOrDefault();
 
                     if (modlExist != null)
                     {
@@ -124,9 +128,7 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
-
             }
         }
-
     }
 }

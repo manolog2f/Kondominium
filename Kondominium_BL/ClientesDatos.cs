@@ -30,6 +30,7 @@ namespace Kondominium_BL
                             CreadoPor = c.CreadoPor,
                             ModificadoPor = c.ModificadoPor,
                             Eliminado = c.Eliminado,
+                            Pais = c.Pais
                         };
 
 
@@ -60,6 +61,7 @@ namespace Kondominium_BL
                             CreadoPor = c.CreadoPor,
                             ModificadoPor = c.ModificadoPor,
                             Eliminado = c.Eliminado,
+                            Pais = c.Pais
                         };
             return query.FirstOrDefault();
         }
@@ -120,6 +122,8 @@ namespace Kondominium_BL
 
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
+
+                    modlNew.Pais = model.Pais;
 
                     if (model.ClienteId == 0)
                     {

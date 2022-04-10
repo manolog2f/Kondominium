@@ -55,7 +55,7 @@
                         @foreach (var item in Model)
                         {
                             string eliminadox = "";
-                            if (item.Eliminado)
+                            if ((bool)item.Eliminado)
                             {
                                 eliminadox = "style=text-decoration:line-through;color:red;";
                             }

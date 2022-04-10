@@ -74,7 +74,12 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            string eliminadox = "";
+                            if ((bool)item.Eliminado)
+                            {
+                                eliminadox = "style=text-decoration:line-through;color:red;";
+                            }
+                            <tr @eliminadox>
                                 <td>
                                     @Html.ActionLink(item.CalendarioId.ToString(), "EditCalendario", new { id = item.CalendarioId })
                                 </td>
@@ -122,8 +127,8 @@
                                     @Html.DisplayFor(modelItem => item.ModificadoPor)
                                 </td>
                             </tr>
-                        }
-                    </tbody>
+                            }
+                        </tbody>
                 </table>
             </div>
         </div>

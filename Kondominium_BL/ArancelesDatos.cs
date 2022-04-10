@@ -3,12 +3,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Kondominium_BL
 {
     public class ArancelesDatos
     {
-        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+
+        public Resultado Delete(ArancelesEntity model)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
+
+                    if (modlExist != null)
+                    {
+                        ContextP.aranceles.Remove(modlExist);
+                        ContextP.SaveChanges();
+                        return new Resultado { Codigo = 0, Mensaje = "Exito Resgistro Eliminado Permanetemente" };
+                    }
+                    else
+                        return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro eliminar el Registro \n" + ex.Message };
+            }
+        }
+
         public List<ArancelesEntity> GetAll(bool VerEliminado = false)
         {
             var query = from a in context.aranceles
@@ -26,10 +50,9 @@ namespace Kondominium_BL
                             Monto = a.Monto,
                         };
 
-
-
             return query.ToList();
         }
+
         public ArancelesEntity GetById(int Id)
         {
             var query = from a in context.aranceles
@@ -49,16 +72,15 @@ namespace Kondominium_BL
 
             return query.FirstOrDefault();
         }
+
         public (ArancelesEntity, Resultado) Save(ArancelesEntity model)
         {
             try
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.aranceles();
-
 
                     if (modlExist != null)
                     {
@@ -92,38 +114,7 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
-            }
-
-        }
-
-        public Resultado Delete(ArancelesEntity model)
-        {
-            try
-            {
-                using (var ContextP = new Kondominium_DAL.KEntities())
-                {
-
-                    var modlExist = ContextP.aranceles.Where(x => x.ArancelId == model.ArancelId).FirstOrDefault();
-
-
-                    if (modlExist != null)
-                    {
-                        ContextP.aranceles.Remove(modlExist);
-                        ContextP.SaveChanges();
-                        return new Resultado { Codigo = 0, Mensaje = "Exito Resgistro Eliminado Permanetemente" };
-                    }
-                    else
-                        return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Registro no encontrado" };
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro eliminar el Registro \n" + ex.Message };
-
             }
         }
 
@@ -134,10 +125,8 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
                     var modlExist = ContextP.aranceles.Where(x => x.ArancelId == Id).FirstOrDefault();
                     // var modlNew = new Kondominium_DAL.aranceles();
-
 
                     if (modlExist == null)
                         return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
@@ -153,11 +142,8 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
-
         }
-
     }
 }

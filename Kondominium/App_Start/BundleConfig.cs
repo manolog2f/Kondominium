@@ -54,7 +54,8 @@ namespace Kondominium
                 "~/Scripts/demo/datatables-demo.js",
                 //"~/Scripts/ZMT/Menu.js",
                 "~/Scripts/ZMT/ZMTDatetimePicker.js",
-                "~/Scripts/ZMT/ZMTUtils.js"
+                "~/Scripts/ZMT/ZMTUtils.js",
+                "~/Scripts/ZMT/ZMTExportExcel.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -143,6 +143,7 @@
     <Compile Include="ReportData.cs" />
     <Compile Include="SendasDatos.cs" />
     <Compile Include="TareasDatos.cs" />
+    <Compile Include="UploadFileHDatos.cs" />
     <Compile Include="UserConfigDatos.cs" />
   </ItemGroup>
   <ItemGroup>

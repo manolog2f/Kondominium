@@ -264,6 +264,9 @@
     <Compile Include="tareas.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="uploadfileh.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="user.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>

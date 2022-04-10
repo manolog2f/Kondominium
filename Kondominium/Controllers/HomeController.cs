@@ -29,6 +29,7 @@ namespace Kondominium.Controllers
         {
             return PartialView();
         }
+
         public ActionResult _PartialFooter2()
         {
             return PartialView();
@@ -67,6 +68,7 @@ namespace Kondominium.Controllers
 
             return PartialView(Model);
         }
+
         //  [HttpPost]
         public ActionResult _PartialCalendarPost(string FechaInicio, string FechaFin)
         {
@@ -79,7 +81,6 @@ namespace Kondominium.Controllers
 
             ViewData["FInicio"] = DateTime.Parse(FechaInicio);
             ViewData["FFin"] = DateTime.Parse(FechaFin);
-
 
             return PartialView("_PartialCalendar", Model);
         }
@@ -107,7 +108,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.TareasDatos().GetAll();
             return View(model);
         }
+
         /*Tareas Edit*/
+
         [HttpGet]
         public ActionResult EditTareas(string Id, int? codigo = null)
         {
@@ -126,9 +129,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new TareasEntity());
         }
+
         [HttpPost]
         public ActionResult EditTareas(TareasEntity model)
         {
@@ -148,30 +151,23 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
-
 
         //[HttpPost]
         public ActionResult DeleteTareas(int Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
 
-
             var modelr = new Kondominium_BL.TareasDatos().SetDelete(Id, userid);
 
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditTareas", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Edit Tareas*/
 
-
-
         /*Lugares*/
-
 
         [HttpGet]
         public ActionResult ListadoLugares()
@@ -183,7 +179,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.LugaresDatos().GetAll();
             return View(model);
         }
+
         /*Tareas Edit*/
+
         [HttpGet]
         public ActionResult EditLugares(string Id, int? codigo = null)
         {
@@ -202,9 +200,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new LugaresEntity());
         }
+
         [HttpPost]
         public ActionResult EditLugares(LugaresEntity model)
         {
@@ -224,25 +222,20 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
 
-        [HttpPost]
         public ActionResult DeleteLugares(int Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
-
 
             var modelr = new Kondominium_BL.LugaresDatos().SetDelete(Id, userid);
 
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditLugares", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Edit Lugares*/
-
 
         /*Calendario*/
 
@@ -256,7 +249,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.CalendarioDatos().GetAll();
             return View(model);
         }
+
         /*Tareas Edit*/
+
         [HttpGet]
         public ActionResult EditCalendario(string Id, int? codigo = null)
         {
@@ -275,12 +270,21 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new CalendarioEntity());
         }
+
         [HttpPost]
         public ActionResult EditCalendario(CalendarioEntity model, string TInicio, string TFIn)
         {
+            if (TFIn == "")
+            {
+                TFIn = "00:00";
+            }
+
+            if (TInicio == "")
+            {
+                TInicio = "00:00";
+            }
 
             model.HoraFin = TimeSpan.Parse(TFIn);
             model.HoraInicio = TimeSpan.Parse(TInicio);
@@ -301,29 +305,23 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
 
-        [HttpPost]
         public ActionResult DeleteCalendario(int Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
-
 
             var modelr = new Kondominium_BL.CalendarioDatos().SetDelete(Id, userid);
 
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditCalendario", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Edit Calendario*/
 
-
         //public ActionResult _PartialToDoList()
-        //{ 
-
+        //{
         //}
     }
 }

@@ -33,6 +33,12 @@ namespace Kondominium.Models
         public Kondominium_Entities.Resultado mensaje { get; set; }
     }
 
+    public class jsDocModel
+    {
+        public string JsFuntion { get; set; }
+        public int idTrans { get; set; }
+        public Kondominium_Entities.Resultado mensaje { get; set; }
+    }
 
     public class jsModelCXC
     {
@@ -59,7 +65,6 @@ namespace Kondominium.Models
         {
             this.Clientes = new List<SelectListItem>();
             this.Propiedades = new List<SelectListItem>();
-            
         }
 
         public List<SelectListItem> Clientes { get; set; }
@@ -68,6 +73,4 @@ namespace Kondominium.Models
         public int ClienteId { get; set; }
         public int PropiedadId { get; set; }
     }
-
 }
-

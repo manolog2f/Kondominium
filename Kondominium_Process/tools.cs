@@ -35,7 +35,7 @@ namespace Kondominium_Process
                 {
                     zero = decimal.Parse(strValue);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     zero = decimal.Zero;
                 }

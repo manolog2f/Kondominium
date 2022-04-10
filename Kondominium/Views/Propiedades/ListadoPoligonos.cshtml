@@ -34,17 +34,17 @@
                                 @Html.DisplayNameFor(model => model.PoligonoDescripcion)
                             </th>
                             @*<th>
-                    @Html.DisplayNameFor(model => model.FechaDeCreacion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaDeModificacion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreadoPor)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModificadoPor)
-                </th>*@
+                            @Html.DisplayNameFor(model => model.FechaDeCreacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaDeModificacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreadoPor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModificadoPor)
+                        </th>*@
 
                         </tr>
                     </thead>
@@ -65,21 +65,25 @@
                                     @Html.DisplayFor(modelItem => item.PoligonoDescripcion)
                                 </td>
                                 @*<td>
-                        @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreadoPor)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModificadoPor)
-                    </td>*@
+                                @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaDeModificacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreadoPor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModificadoPor)
+                            </td>*@
                             </tr>
                         }
                     </tbody>
                 </table>
+            </div>
+
+            <div>
+                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
             </div>
         </div>
     </div>

@@ -65,8 +65,6 @@
         Esposa = 22,
         Amigo = 23,
         Otro = 24
-
-
     }
 
     public enum TipodePropiedades
@@ -106,7 +104,6 @@
         X,
         Y,
         Z
-
     }
 
     public enum MetodoPago
@@ -116,5 +113,15 @@
         Transferencia = 3,
         Cheque = 4,
         Efectivo = 5
+    }
+
+    public enum Pais
+    {
+        SV = 503,
+        USA = 1,
+        GT = 502,
+        MX = 52,
+        CA = 1,
+        Otro = 0
     }
 }

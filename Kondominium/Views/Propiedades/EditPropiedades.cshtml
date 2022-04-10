@@ -21,13 +21,10 @@
                         <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
                     </div>
 
-
-
                     <div class="form-horizontal">
 
                         <!-- Acordion -->
                         <div id="accordion">
-
 
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -56,9 +53,9 @@
                                                 @Html.LabelFor(model => model.TipoDePropiedad, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.TipoDePropiedad,
-                                                 EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipodePropiedades)),
-                                                 "Seleccione la categoria",
-                                                 new { @class = "form-control" })
+  EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipodePropiedades)),
+  "Seleccione la categoria",
+  new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.TipoDePropiedad, "", new { @class = "text-danger" })
                                                 </div>
@@ -76,17 +73,16 @@
                                     </div>
                                     <div class="row">
 
-
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PoligonoId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.PoligonoId,
-                                                 new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                 { Text = x.PoligonoId, Value = x.PoligonoId }),
-                                                 "Seleccione el poligono",
-                                                 new { @class = "form-control" })
+  new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+  { Text = x.PoligonoId, Value = x.PoligonoId }),
+  "Seleccione el poligono",
+  new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.PoligonoId, "", new { @class = "text-danger" })
                                                 </div>
@@ -108,36 +104,31 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.CasaLetra,
-                                                 new Kondominium.Controllers.PropiedadesController().ListABC().Select(x => new SelectListItem
-                                                 {
-                                                     Text = x.ToString()
-                                                 ,
-                                                     Value = x.ToString()
-                                                 }),
-                                                 "Seleccione la letra de la casa",
-                                               new { @class = "form-control" })
-
+  new Kondominium.Controllers.PropiedadesController().ListABC().Select(x => new SelectListItem
+  {
+      Text = x.ToString()
+  ,
+      Value = x.ToString()
+  }),
+  "Seleccione la letra de la casa",
+new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.CasaLetra, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="row">
-
 
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Senda, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Senda,
-                                                     new Kondominium_BL.SendasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                     { Text = x.SendaDescripcion, Value = x.SendaId }),
-                                                                                                  "Seleccione la Senda",
-                                                                                                  new { @class = "form-control" })
+      new Kondominium_BL.SendasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+      { Text = x.SendaDescripcion, Value = x.SendaId }),
+                                                   "Seleccione la Senda",
+                                                   new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Senda, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -148,10 +139,10 @@
                                                 @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Calle,
-                                                 new Kondominium_BL.CallesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                 { Text = x.CalleDescripcion, Value = x.CalleId }),
-                                                                                              "Seleccione la Calle",
-                                                                                              new { @class = "form-control" })
+  new Kondominium_BL.CallesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+  { Text = x.CalleDescripcion, Value = x.CalleId }),
+                                               "Seleccione la Calle",
+                                               new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -161,16 +152,16 @@
                                                 @Html.LabelFor(model => model.Avenida, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Avenida,
-                            new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                            { Text = x.AvenidaDescripcion, Value = x.AvenidaId }),
-                                                                         "Seleccione la Avenida",
-                                                                         new { @class = "form-control" })
+new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.AvenidaDescripcion, Value = x.AvenidaId }),
+                          "Seleccione la Avenida",
+                          new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Avenida, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
+
                                     <div class="row">
 
                                         <div class="col">
@@ -178,31 +169,28 @@
                                                 @Html.LabelFor(model => model.Alameda, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Alameda,
-                                                     new Kondominium_BL.AlamedaDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                     { Text = x.AlamedaDescripcion, Value = x.AlamedaId }),
-                                                                                                  "Seleccione la Alameda",
-                                                                                                  new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.Senda, "", new { @class = "text-danger" })
+      new Kondominium_BL.AlamedaDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+      { Text = x.AlamedaDescripcion, Value = x.AlamedaId }),
+                                                   "Seleccione la Alameda",
+                                                   new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Alameda, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PaseoDescripcion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.PaseoId,
-                                                     new Kondominium_BL.PaseoDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                                     { Text = x.PaseoDescripcion, Value = x.PaseoId }),
-                                                                                                  "Seleccione el paseo",
-                                                                                                  new { @class = "form-control" })
+      new Kondominium_BL.PaseoDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+      { Text = x.PaseoDescripcion, Value = x.PaseoId }),
+                                                   "Seleccione el paseo",
+                                                   new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.PaseoId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                         <div class="col">
                                             <div class="form-group">
@@ -210,24 +198,44 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.ArancelId,
-                                               new Kondominium_BL.ArancelesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-                                               { Text = x.Descripcion, Value = x.ArancelId.ToString() }),
-                                               "Seleccione la categoria",
-                                               new { @class = "form-control" })
+new Kondominium_BL.ArancelesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.Descripcion, Value = x.ArancelId.ToString() }),
+"Seleccione la categoria",
+new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.ArancelId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-
-                                        @*<div class="col"></div>*@
-
                                     </div>
 
+                                    <div class="row">
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TamañoV2, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.TamañoV2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TamañoV2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ConstruidoM2, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.ConstruidoM2, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.ConstruidoM2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-
 
                             <!-- Doc Propiedades -->
                             <div class="card">
@@ -239,15 +247,10 @@
                                 <div id="collapseSix" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
 
-
                                         @Html.Action("_ListPropiedadDocs", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString() })
-
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                             <!-- Propietarios -->
                             <div class="card">
@@ -262,13 +265,10 @@
                                         <div>
 
                                             @Html.ActionLink("Agregar Propietario", "EditPropiedadCliente", new { PropiedadId = Model.PropiedadId, TipoCliente = "0" }, new { @class = "btn btn-info fa fa-plus-circle " })
-
                                         </div>
                                         <br>
 
-
                                         @Html.Action("_ListadoPropietariosPropiedad", "Propiedades", new { Id = Model.PropiedadId.ToString() })
-
                                     </div>
                                 </div>
                             </div>
@@ -285,12 +285,10 @@
                                         <div>
 
                                             @Html.ActionLink("Agregar Inquilino", "EditPropiedadCliente", new { PropiedadId = Model.PropiedadId, TipoCliente = "1" }, new { @class = "btn btn-info fa fa-plus-circle " })
-
                                         </div>
                                         <br>
 
                                         @Html.Action("_ListadoInquilinosPropiedad", "Propiedades", new { Id = Model.PropiedadId.ToString() })
-
                                     </div>
                                 </div>
                             </div>
@@ -307,16 +305,13 @@
                                         <div>
 
                                             @Html.ActionLink("Agregar Otros", "EditPropiedadCliente", new { PropiedadId = Model.PropiedadId, TipoCliente = "2" }, new { @class = "btn btn-info fa fa-plus-circle " })
-
                                         </div>
                                         <br>
 
                                         @Html.Action("_ListadoOtrosPropiedad", "Propiedades", new { Id = Model.PropiedadId })
-
                                     </div>
                                 </div>
                             </div>
-
 
                             <!-- Sistema -->
                             <div class="card">
@@ -329,8 +324,6 @@
                                     <div class="card-body">
 
                                         <div class="row">
-
-
 
                                             <div class="col">
                                                 <div class="form-group">
@@ -345,12 +338,9 @@
                                                     @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
                                                         <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
-
-
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                             <div class="col">
                                                 <div class="form-group">
@@ -370,9 +360,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -387,24 +375,20 @@
 
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
 
-
                                         <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                             <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                         </a>
-
                                     </div>
 
                                 }
                             }
 
                             <br>
-
                         </div>
                     </div>
                 </div>
 
             }
-
         </div>
     </div>
 </div>
@@ -424,27 +408,18 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                @Html.ActionLink("Eliminar", "DeletePropiedades", new { Id = (Model.PropiedadId == null ? "0" : Model.PropiedadId.ToString()) }, new { @class = "btn btn-danger" })
-
-
+                @Html.ActionLink("Eliminar", "DeletePropiedades", new { Id = (Model.PropiedadId.ToString()) }, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>
 </div>
 @*//End Delete Modal confirmacion*@
 
-
-
 <div>
     @Html.ActionLink("Retornar  a la Lista", "ListadoPropiedades", "Propiedades")
 </div>
 
-
-
-
-
-
-@if (Model.PropiedadId != null)
+@if (Model.PropiedadId != 0)
 {
     <div class="modal fade" id="UploadFileModalPropiedad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -462,9 +437,7 @@
 
                     }
 
-
                     @Html.Action("_EditPropiedadesFileUpload", "Propiedades", new { PropiedadId = xPropiedadId, DocumentType = xDocumentType })
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -474,6 +447,3 @@
     </div>
 
 }
-
-
-

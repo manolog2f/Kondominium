@@ -29,9 +29,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.VaucherNumber)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
-                            </th>
+
                             <th>
                                 @Html.DisplayNameFor(model => model.FullNameCondomino)
                             </th>
@@ -65,9 +63,7 @@
                                 <td>
                                     @Html.ActionLink(item.VaucherNumber.ToString(), "EditCuentasPorCobrar", new { VaucherNumber = item.VaucherNumber })
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.ClienteId)
-                                </td>
+
                                 <td>
                                     @Html.DisplayFor(model => item.FullNameCondomino)
                                 </td>
@@ -96,6 +92,11 @@
                     </tbody>
                 </table>
             </div>
+
+            <div>
+                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+            </div>
+
         </div>
     </div>
 

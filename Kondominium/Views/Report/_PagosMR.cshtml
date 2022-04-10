@@ -1,0 +1,222 @@
+﻿@model IEnumerable<Kondominium_Entities.vwPagosEntity>
+
+@{
+    ViewBag.Title = "Recibo";
+    Layout = "~/Views/Shared/_Layoutblank.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 9pt;
+        }
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            margin-top: 0cm;
+            margin-right: 0cm;
+            margin-bottom: 8.0pt;
+            margin-left: 0cm;
+            line-height: 107%;
+            font-size: 10.0pt;
+            font-family: "Times New Roman",serif;
+        }
+
+        p.EmptyCellLayoutStyle, li.EmptyCellLayoutStyle, div.EmptyCellLayoutStyle {
+            /* mso-style-name: EmptyCellLayoutStyle;*/
+            margin-top: 0cm;
+            margin-right: 0cm;
+            margin-bottom: 8.0pt;
+            margin-left: 0cm;
+            line-height: 107%;
+            font-size: 1.0pt;
+            font-family: "Times New Roman",serif;
+        }
+
+        .MsoChpDefault {
+            font-size: 10.0pt;
+        }
+
+        .MsoPapDefault {
+            margin-bottom: 8.0pt;
+            line-height: 107%;
+        }
+        /* Page Definitions */
+        .WordSection1 {
+            /* size: 595.25pt 841.85pt;*/
+            margin: 56.65pt 56.65pt 56.65pt 56.65pt;
+        }
+
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        /* List Definitions */
+        ol {
+            margin-bottom: 0cm;
+        }
+
+        ul {
+            margin-bottom: 0cm;
+        }
+        -->
+    </style>
+</head>
+<body lang=ES-SV style='word-wrap:break-word'>
+
+    <div class="WordSection1" id="ReportRecibo">
+        @{
+            var company = new Kondominium_BL.EmpresaDatos().GetById(1);
+            var base64 = Convert.ToBase64String(company.Logo);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            var modelFirst = Model.FirstOrDefault();
+
+        }
+
+        <table>
+            <tr>
+                <td style="width:80%">
+
+                    <H2>Pago</H2>
+                    <H4>@company.EmpresaNombre</H4>
+
+                    <P>Direccion: @company.Direccion  </P>
+                    <P>NIT: @company.Documento2 </P>
+                </td>
+                <td>
+
+                    <div style=" float: right ; text-align:right">
+                        <p>
+                            <img src="@imgSrc" style="width:100px;height:100px" align="middle">
+                        </p>
+                        <H4 style="color: red;  float: right ; text-align:right" id="VaucherN">  @modelFirst.VaucherNumber </H4>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <hr style="color: #6e7c3e; background-color: #6e7c3e; height: 2px; border: none; max-width: 100%; " />
+
+        <table style="max-width: 100%;">
+            <tr>
+                <td width="50%">
+                    Condomino: @modelFirst.FullName
+                </td>
+                <td width="50%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Propiedad:
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Descripcion: @modelFirst.PropiedadDescripcion
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+
+        <div style="background-color: #6e7c3e ;padding-left:4px">
+            <label style="color:white">Detalle del Periodo Facturado</label>
+        </div>
+
+        <table class="table" style="max-width: 100%;">
+            <tr>
+                <th width="10%">Id</th>
+                <th width="60%">Descripcion</th>
+                <th width="30%">Monto</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        $  @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <table>
+            <tr>
+                <td style="width:50%">
+                    <div>
+                        <table style="background-color: #6e7c3e; color:white">
+                            <tr>
+                                <td style="padding-left:4px">
+                                    <h4>Total a pagar:</h4>
+                                </td>
+                                <td style="text-align:right; padding-right:4px ">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:4px">
+                                    <h6>Vencimiento:</h6>
+                                </td>
+                                <td style="padding-right:4px ">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    @{
+                        if (modelFirst.Estado == 3)
+                        {
+                            <div style="border-style: solid; border-color: #a9d2a7; color: #97bf95; width: 200px; text-align: center; font-family: cursive; border-width: 5px; -moz-border-radius: 7px; -webkit-border-radius: 7px; /* padding: 5px; */ background-color: #ffffff00; transform: rotate(-10deg);">
+                                <h2>PAGADO</h2>
+                                <P>Registrado el 24/02/2022 10:01</P>
+                            </div>
+                        }
+                        if (modelFirst.Estado == 4)
+                        {
+                            <div style="border-style: solid; border-color: crimson; color: crimson; width: 200px; text-align: center; font-family: cursive; border-width: 5px; -moz-border-radius: 7px; -webkit-border-radius: 7px; /* padding: 5px; */ background-color: #ffffff00; transform: rotate(-10deg); ">
+                                <h2>Anulado</h2>
+                                <P>Registrado el 24/02/2022 10:01</P>
+                            </div>
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <div style="background-color: #6e7c3e; padding-left:4px">
+            <label style="color:white">Observaciones de la Administracion</label>
+        </div>
+
+        <div>
+            <span>
+                PARA PAGAR VÍA TRANSFERENCIA ELECTRÓNICA o DEPÓSITO EN CUENTA, LOS DATOS SON: Cuenta corriente: 569-001813-2 del Banco Agrícola, Cuenta corriente: 201096518 del Banco de América             Central,CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA. Y ENVIAR EL COMPROBANTE DE LA TRANSFERENCIA o DEPÓSITO INDICANDO EL N° DE LA PROPIEDAD, POLÍGONO Y MES QUE PAGA, al email  <span style="font-weight: bold;">cuentas.lahacienda@gmail.com.</span> "Gracias"
+            </span>
+            <br>
+            <span>
+                Si paga con cheque SE RUEGA EXTENDER CHEQUE A NOMBRE DE "CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA".
+            </span>
+            <br>
+            <span>
+                Si paga con NPE verifique que el recibo corresponda al mes que está pagando.
+            </span>
+            <br>
+            <span style="font-weight: bold;text-align:center ">
+                @*<p style="text-align:center">*@
+                Si usted ya realizo su pago; hacer caso omiso de este mensaje.
+                @*</p>*@
+            </span>
+        </div>
+    </div>
+</body>
+</html>

@@ -79,6 +79,12 @@ namespace Kondominium.Controllers
                     ViewBag.Warning = "Registro no existe";
 
             }
+            else if (res.Codigo == Kondominium_Entities.CodigosMensaje.Eliminado)
+            {
+                if (string.IsNullOrWhiteSpace(res.Mensaje))
+                    ViewBag.Warning = "Registro Eliminado satisfactoriamente";
+
+            }
             else
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))

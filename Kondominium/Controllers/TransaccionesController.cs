@@ -1,16 +1,22 @@
 ﻿using Kondominium.Models;
 using Kondominium_Entities;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using ClosedXML.Excel;
+using System.Web;
+using System.Configuration;
 
 namespace Kondominium.Controllers
 {
     public class TransaccionesController : BaseController
     {
-
         /* Listado de CXC*/
+
         [HttpGet]
         public ActionResult ListadoCuentasPorCobrar()
         {
@@ -62,13 +68,11 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
 
         [HttpGet]
         public ActionResult _EditCuentasPorCobrarDetalle(string VaucherNumber, int? codigo = null)
         {
-
             if (VaucherNumber != null)
             {
                 var model = new Kondominium_BL.CuentasPorCobrarDetalleDatos().GetByVaucher(VaucherNumber);
@@ -83,11 +87,9 @@ namespace Kondominium.Controllers
                 }
 
                 return PartialView(new List<CuentasPorCobrarDetalleEntity>());
-
             }
             return PartialView(new List<CuentasPorCobrarDetalleEntity>());
         }
-
 
         [HttpGet]
         public ActionResult _EditCuentasPorCobrarDet(string VaucherNumber, int? DetalleId)
@@ -104,7 +106,6 @@ namespace Kondominium.Controllers
             }
             return PartialView(new CuentasPorCobrarDetalleEntity());
         }
-
 
         [HttpGet]
         public ActionResult _EditCuentasPorCobrarPago(string VaucherNumber, int ClienteId, Decimal Monto)
@@ -124,7 +125,6 @@ namespace Kondominium.Controllers
 
         public ActionResult _EditCuentasPorCobrarPagoUpdate(FormCollection form)
         {
-
             var mlResp = new jsModelCXC();
             var respM = new Resultado();
 
@@ -165,12 +165,10 @@ namespace Kondominium.Controllers
 
                 return Json(mlResp);
             }
-
         }
 
         public ActionResult _EditCuentasPorCobrarDetalleUpdate(FormCollection form)
         {
-
             var mlResp = new jsModelCXC();
             var respM = new Resultado();
 
@@ -209,7 +207,6 @@ namespace Kondominium.Controllers
 
                 return Json(mlResp);
             }
-
         }
 
         public ActionResult UpdateCxCContabilizado(string VaucherNumber)
@@ -222,10 +219,9 @@ namespace Kondominium.Controllers
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
         }
+
         public ActionResult UpdateCxCAnulado(string VaucherNumber)
         {
-
-
             if (VaucherNumber != null)
             {
                 var model = new Kondominium_BL.CuentasPorCobrarDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 4);
@@ -234,6 +230,7 @@ namespace Kondominium.Controllers
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
         }
+
         public ActionResult DeleteCxcDet(int DetalleId, string VaucherNumber)
         {
             if (DetalleId != 0)
@@ -244,6 +241,7 @@ namespace Kondominium.Controllers
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = CodigosMensaje.No_Existe });
         }
+
         [HttpGet]
         public ActionResult ListadoContratos()
         {
@@ -253,6 +251,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ContratoDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditContratos(int? Id, int? codigo = null)
         {
@@ -270,6 +269,7 @@ namespace Kondominium.Controllers
             }
             return View(new ContratosEntity() { });
         }
+
         [HttpGet]
         public ActionResult ListPagos()
         {
@@ -278,6 +278,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditPagos(string VaucherNumber, string ClienteId, int? codigo = null, string Mensaje = "")
         {
@@ -295,14 +296,11 @@ namespace Kondominium.Controllers
             }
 
             return View(new CuentasPorCobrarPagoEntity { VaucherNumber = "", Monto = 0, Estado = 0 });
-            
-
         }
+
         [HttpPost]
         public ActionResult EditPagos(CuentasPorCobrarPago model)
         {
-
-
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = HttpContext.User.Identity.Name.ToString();
 
@@ -326,7 +324,6 @@ namespace Kondominium.Controllers
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
-
 
             var model = new Kondominium_BL.ConfigCobrosMensualDatos().GetById(1);
             if (codigo != null)
@@ -356,7 +353,6 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
 
         [HttpGet]
@@ -377,7 +373,6 @@ namespace Kondominium.Controllers
 
         public ActionResult _EditAddConfigCuentaDetUpdate(FormCollection form)
         {
-
             var mlResp = new jsModelCXC();
             var respM = new Resultado();
 
@@ -385,9 +380,11 @@ namespace Kondominium.Controllers
             {
                 var model = new ConfigCobrosMensualDetEntity
                 {
+                    IdDetalleConf = int.Parse(form["IdDetalleConf"]),
                     IdConfig = int.Parse(form["IdConfig"]),
                     Monto = decimal.Parse(form["Monto"]),
                     ProductoId = int.Parse(form["ProductoId"]),
+                    MTamañoV2 = decimal.Parse(form["MTamañoV2"]),
                     ModificadoPor = HttpContext.User.Identity.Name.ToString(),
                     CreadoPor = HttpContext.User.Identity.Name.ToString()
                 };
@@ -414,18 +411,18 @@ namespace Kondominium.Controllers
 
                 return Json(mlResp);
             }
-
         }
 
-        public ActionResult DeleteConfigCuentaDet(int ProductoId)
+        public ActionResult DeleteConfigCuentaDet(int IdDetalleConf)
         {
-            var model = new Kondominium_BL.ConfigCobrosMensualDetDatos().Delete(1, ProductoId);
+            var model = new Kondominium_BL.ConfigCobrosMensualDetDatos().Delete(IdDetalleConf);
             return RedirectToAction("EditConfigCuenta", new { codigo = ((int)model.Codigo) });
         }
 
-        #endregion
+        #endregion "Configuracion de cuentas por Generar"
 
         #region "Generacion de Recibos Manual"
+
         [HttpGet]
         public ActionResult GenerarRecibos(string Periodo, int? CodigoR)
         {
@@ -437,7 +434,6 @@ namespace Kondominium.Controllers
             if (CodigoR != null)
             {
                 Codigo.Codigo = (CodigosMensaje)CodigoR;
-
             }
 
             var model = new Kondominium_BL.CuentasGeneradasDatos().GetById(Periodo);
@@ -468,8 +464,6 @@ namespace Kondominium.Controllers
                 }
                 else
                 {
-
-
                     FechaVencimiento = Convert.ToDateTime(string.Concat(DateTime.Now.Year.ToString(), "-", DateTime.Now.Month.ToString(), "-", config.DiaVencimiento.ToString()));
                 }
 
@@ -480,10 +474,6 @@ namespace Kondominium.Controllers
 
                 model = new CuentasGeneradasEntity { PeriodoGenerado = periodoActual, FechaDeGeneracion = FechaGenerar, FechaDeVencimiento = FechaVencimiento };
             }
-
-
-
-
 
             if (Codigo.Codigo != CodigosMensaje.Null)
             {
@@ -496,9 +486,7 @@ namespace Kondominium.Controllers
         [HttpPost]
         public ActionResult GenerarRecibos(CuentasGeneradasEntity model)
         {
-
             var kmG = new Kondominium_BL.GeneraracionMensuales().GenerarRecibosMensuales(model.FechaDeGeneracion.Value.Month, model.FechaDeGeneracion.Value.Year, (DateTime)model.FechaDeGeneracion, (DateTime)model.FechaDeVencimiento, model.PeriodoGenerado, HttpContext.User.Identity.Name.ToString());
-
 
             if (kmG.Item1.Codigo != CodigosMensaje.Null)
             {
@@ -507,10 +495,10 @@ namespace Kondominium.Controllers
             ModelState.Clear();
             return View(model);
         }
+
         public ActionResult ProcesoGenerarRecibos(string PeriodoGenerado, CuentasGeneradasEntity model)
         {
-
-            /// Contar antes si el periodo ha sido generado para no volver a generar y arrojar un mensaje 
+            /// Contar antes si el periodo ha sido generado para no volver a generar y arrojar un mensaje
 
             if (!string.IsNullOrEmpty(PeriodoGenerado))
             {
@@ -531,9 +519,11 @@ namespace Kondominium.Controllers
 
             return RedirectToAction("GenerarRecibos", new { CodigoR = (int)d.Codigo, Periodo = PeriodoGenerado });
         }
-        #endregion
+
+        #endregion "Generacion de Recibos Manual"
 
         #region "Generacion de Balance"
+
         [HttpGet]
         public ActionResult BalanceCliente(int? id)
         {
@@ -559,7 +549,6 @@ namespace Kondominium.Controllers
             }
             return View(model);
         }
-
 
         [HttpGet]
         public ActionResult BalancePropiedad(int? id)
@@ -587,7 +576,7 @@ namespace Kondominium.Controllers
             return View(model);
         }
 
-        #endregion
+        #endregion "Generacion de Balance"
 
         public List<CxcTypeEntity> ListTiposTransaccion()
         {
@@ -638,11 +627,38 @@ namespace Kondominium.Controllers
         public JsonResult AjaxMethodPropiedad(string Cliente, int ClienteID)
         {
             CascadingModel model = new CascadingModel();
-            
-            model.Propiedades  = PopulateDropDown(ClienteID);
-            
-            
+
+            model.Propiedades = PopulateDropDown(ClienteID);
+
             return Json(model);
+        }
+
+        public FileResult ExportExcelBalanceCliente(int? ClientId)
+        {
+            var model = new List<Kondominium_Entities.vwBalanceEntity>();
+
+            if (ClientId != null)
+            {
+                model = new Kondominium_BL.BalanceDatos().ByCliente((int)ClientId);
+
+                var totrecibo = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotRecibo);
+                var totPago = model.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotPago);
+                var balance = totrecibo - totPago;
+            }
+
+            DataTable dt = new DataTable("Grid");
+            dt = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(model);
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, "Komdomium");
+                // wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Komdomium.xlsx");
+                }
+            }
         }
 
         private static List<SelectListItem> PopulateDropDown(int ClienteId)
@@ -650,20 +666,94 @@ namespace Kondominium.Controllers
             List<SelectListItem> RList = new List<SelectListItem>();
             var cons = new Kondominium_BL.PropiedadesDatos().GetAllByClienteId(ClienteId);
 
-
             foreach (var item in cons)
             {
                 RList.Add(new SelectListItem
                 {
-                    Text =   item.VPropiedad,
-                    Value =  item.PropiedadId.ToString()
+                    Text = item.VPropiedad,
+                    Value = item.PropiedadId.ToString()
                 });
             }
 
             return RList;
         }
 
+        #region CargaRecibosdePago
 
+        [HttpGet]
+        public ActionResult UploadFile(int id = 0)
+        {
+            var demoJs = new jsDocModel();
 
+            if (id != 0)
+                demoJs.idTrans = id;
+            // demoJs.JsFuntion = "$(window).load(function() {SubmitLoadInvoice();}); ";
+            return View(demoJs);
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(jsModel model)
+        {
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult _UploadFileH(HttpPostedFileBase file)
+        {
+            var mdl = new jsDocModel();
+            var respM = new Resultado();
+
+            mdl.idTrans = 0;
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    if (!Directory.Exists(GetPahtFileUploaded()))
+                    {
+                        Directory.CreateDirectory(GetPahtFileUploaded());
+                    }
+
+                    string _path = Path.Combine(GetPahtFileUploaded(), _FileName);
+                    file.SaveAs(_path);
+
+                    var user = this.GetCurrentUser();
+
+                    // Guardar Encabezado.
+
+                    var resp = new Kondominium_BL.UploadFileHDatos().Save(new UploadFileHEntity { Estado = 0, FileName = _path, UploadDate = DateTime.Now, UserId = GetCurrentUser() });
+
+                    var larchivo = new Kondominium_Process.Process().LeerArchivo(_path);
+
+                    //respM = resp.resp;
+
+                    mdl.idTrans = resp.Item1.UploadFileHId;//  resp.id;
+                    mdl.mensaje = new Resultado { Codigo = 0, Mensaje = "Prueba" };  //resp.resp;
+                }
+
+                return Json(mdl);
+            }
+            catch (Exception ex)
+            {
+                respM.Codigo = CodigosMensaje.Error;
+                respM.Mensaje = ex.Message;
+
+                mdl.mensaje = respM;
+
+                this.Mensajes(respM);
+                ViewBag.Message = "File upload failed!!" + ex;
+
+                return Json(mdl);
+            }
+        }
+
+        public string GetPahtFileUploaded()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+
+            return appSettings["UploadedFiles"] ?? "Configuration not exist";
+        }
+
+        #endregion CargaRecibosdePago
     }
 }

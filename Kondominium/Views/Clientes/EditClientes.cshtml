@@ -6,10 +6,43 @@
 }
 
 <script>
+    //jQuery(function ($) {
+    //    $("#Documento1").mask("99999999-9");
+    //    $("#TelefonoMovil").mask("(999) 9999-9999");
+    //    $("#TelefonoFijo").mask("(999) 9999-9999");
+    //    $("#Documento2").mask("9999-999999-999-9");
+    //    $("#ssn").mask("999-99-9999");
+    //});
+
+    function getval(valord) {
+        // debugger;
+        var sel = valord.value;
+
+        if (sel == "503") {
+            $("#TelefonoMovil").mask("(999) 9999-9999");
+            $("#TelefonoFijo").mask("(999) 9999-9999");
+        }
+        else if (sel == "1") {
+            $("#TelefonoMovil").mask("+1 (999) 999-9999");
+            $("#TelefonoFijo").mask("+1 (999) 999-9999");
+        }
+        else if (sel == "502") {
+            $("#TelefonoMovil").mask("(999) 999-9999");
+            $("#TelefonoFijo").mask("(999) 999-9999");
+        }
+        else if (sel == "52") {
+            $("#TelefonoMovil").mask("(99) 999-9999999");
+            $("#TelefonoFijo").mask("(99) 999-9999999");
+        }
+        else {
+            $("#TelefonoMovil").mask("999999999999");
+            $("#TelefonoFijo").mask("999999999999");
+        };
+
+    };
+
     jQuery(function ($) {
         $("#Documento1").mask("99999999-9");
-        $("#TelefonoMovil").mask("(999) 9999-9999");
-        $("#TelefonoFijo").mask("(999) 9999-9999");
         $("#Documento2").mask("9999-999999-999-9");
         $("#ssn").mask("999-99-9999");
     });
@@ -24,12 +57,10 @@
 
         <div class="col-lg">
 
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
                 </div>
-
 
                 @using (Html.BeginForm())
                 {
@@ -43,7 +74,6 @@
                         <!-- Acordion -->
                         <div id="accordion">
 
-
                             <!-- General -->
                             <div class="card">
                                 <div class="card-header">
@@ -54,12 +84,9 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
 
                                     <div class="row">
-
-
                                     </div>
 
                                     <div class="row">
-
 
                                         <div class="card-body">
                                             <div class="form-group">
@@ -74,7 +101,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control"  } })
+                                                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -130,29 +157,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.TelefonoMovil, htmlAttributes: new { @class = "control-label col-md" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TelefonoMovil, new { htmlAttributes = new { @class = "form-control", placeholder = "(503) 7777-5555" } })
-                                                    @Html.ValidationMessageFor(model => model.TelefonoMovil, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.TelefonoFijo, htmlAttributes: new { @class = "control-label col-md" })
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @class = "form-control", placeholder = "(503) 2525-5555" } })
-                                                    @Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
                                         <div class="card-body">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md" })
@@ -162,13 +166,48 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Pais, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.Pais, EnumHelper.GetSelectList(typeof(Kondominium_Entities.Pais)), "Seleccione el pais", new { @class = "form-control", name = "pais", id = "pais", onchange = "getval(this);" })
+                                                    @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TelefonoMovil, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.TelefonoMovil, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    @Html.ValidationMessageFor(model => model.TelefonoMovil, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TelefonoFijo, htmlAttributes: new { @class = "control-label col-md" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.TelefonoFijo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    @Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-
-                            @if (Model.ClienteId != null && Model.ClienteId != 0)
+                            @if (Model != null && Model.ClienteId != 0)
                             {
                                 <!-- DetalleDocs -->
                                 <div class="card">
@@ -181,7 +220,6 @@
                                         <div class="card-body">
 
                                             @Html.Action("_ListClienteDocs", "Clientes", new { ClienteId = Model.ClienteId })
-
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +237,6 @@
 
                                         <div class="row">
 
-
                                             <div class="col">
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
@@ -213,12 +250,9 @@
                                                     @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                     <div class="col-md-10">
                                                         <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
-
-
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                             <div class="col">
                                                 <div class="form-group">
@@ -238,17 +272,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
 
                             <br>
-
-
-
 
                             @{
                                 if ((Model != null ? Model.Eliminado : false) != true)
@@ -260,25 +289,20 @@
                                         <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                             <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                         </a>
-
                                     </div>
 
                                 }
                             }
 
                             <br>
-
                         </div>
                     </div>
 
                 }
             </div>
-
         </div>
-
     </div>
 </div>
-
 
 <!-- Delete Modal confirmacion -->
 <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -296,28 +320,17 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
-
-
             </div>
         </div>
     </div>
 </div>
 @*//End Delete Modal confirmacion*@
 
-
-
-
-
-
-
 <div>
     @Html.ActionLink("Retornar  a la Lista", "ListadoClientes", "Clientes")
 </div>
 
-
-
-
-@if (Model.ClienteId != null)
+@if (Model != null)
 {
     <div class="modal fade" id="UploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -335,9 +348,7 @@
 
                     }
 
-
                     @Html.Action("_EditClientesFileUpload", "Clientes", new { ClienteId = xClienteId, DocumentType = xDocumentType })
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -348,11 +359,5 @@
 
 }
 
-
-
-
-
-
 <div id="UploadFileMensajes">
-
 </div>

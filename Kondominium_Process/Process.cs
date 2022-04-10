@@ -16,7 +16,6 @@ namespace Kondominium_Process
 {
     public class Process
     {
-    
         private CuentasPorCobrarDatos obj_CuentasPorCobrarDatos = new CuentasPorCobrarDatos();
         private CuentasPorCobrarPagoDatos obj_CuentasPorCobrarPagoDatos = new CuentasPorCobrarPagoDatos();
         private CuentasPorCobrarEntity CuentasPorCobrar = new CuentasPorCobrarEntity();
@@ -49,26 +48,21 @@ namespace Kondominium_Process
             LeerArchivo_BAG2(ruta);
 
             return (dtRDB, fileName);
-
-           
         }
 
-     
         public void LeerArchivo_BAG2(string ruta)
         {
-            
             DateTime? fecha_archivo = null;
             decimal monto_archivo = 0;
             DateTime fecha;
 
-            int id_codificacion=0;
+            int id_codificacion = 0;
             string codificacion = "";
             decimal monto = 0;
 
             string gln = "";
             string referencia;
 
-            
             int id_banco = 0;
             string banco = ""; // Nombre del banco
 
@@ -76,12 +70,10 @@ namespace Kondominium_Process
             string referencia1 = "";
             string referencia2 = "";
 
-
             /// cuenta los registros no validos
-            int reg = 0;
+            //int reg = 0;
             string[] lines = File.ReadAllLines(@ruta);
 
-          
             string entidad = "";
             string campo = "";
             string valor = "";
@@ -89,7 +81,6 @@ namespace Kondominium_Process
 
             (entidad, campo, valor, larg) = LeerDefEntidad("GLN", "");
             gln = valor;
-
 
             /////////////   BANCO    //////////////
             string codigo_banco = tools.GetUntilOrEmpty(ruta);
@@ -102,7 +93,6 @@ namespace Kondominium_Process
                     banco = item.GetDescription();
                 }
             }
-
 
             try
             {
@@ -130,8 +120,6 @@ namespace Kondominium_Process
                 /////////////////// Detalle  //////////////////////
                 for (int i = 0; i < lines.Length; i++)
                 {
-
-
                     char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
                     if (tipo == Convert.ToChar("D"))
                     {
@@ -145,10 +133,9 @@ namespace Kondominium_Process
                         {
                             /************** BARRAS ********************/
                             id_codificacion = 1;
-                           // referencia1 = linea.Substring(0, linea.Length - 44);
+                            // referencia1 = linea.Substring(0, linea.Length - 44);
                             referencia1 = linea.Substring(57, linea.Length - 57 - 44); /* 57 del inicio y 44 del final */
                             referencia = LeerConfig("BAR4") != 0 ? referencia1.Substring(referencia1.Length - LeerConfig("BAR4"), LeerConfig("BAR4")) : "";
-                            
                         }
                         else
                         {
@@ -159,8 +146,6 @@ namespace Kondominium_Process
                             referencia = LeerConfig("NPE4") != 0 ? referencia2.Substring(referencia2.Length - LeerConfig("NPE4") - 1, LeerConfig("NPE4")) : "";
                         }
 
-
-                        
                         //////////////  CODIFICACION  //////////////
                         Array items_codificacion = Enum.GetValues(typeof(enumerados.codificacion));
                         foreach (enumerados.codificacion item in items_codificacion)
@@ -179,13 +164,12 @@ namespace Kondominium_Process
                         else if (id_codificacion == 2)
                         {
                             string ref2 = "";
-                            for (int x = 0; x < referencia2.Length/4; x++)
+                            for (int x = 0; x < referencia2.Length / 4; x++)
                             {
-                                ref2 = ref2 + referencia2.Substring(x*4,4) + " ";
+                                ref2 = ref2 + referencia2.Substring(x * 4, 4) + " ";
                             }
                             referencia2 = ref2.Substring(0, ref2.Length - 1);
                             CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByNPE(referencia2);
-
                         }
 
                         CuentasPorCobrarPago.VaucherNumber = CuentasPorCobrar.VaucherNumber;
@@ -198,9 +182,7 @@ namespace Kondominium_Process
                         CuentasPorCobrarPago.FechadePago = fecha;
 
                         obj_CuentasPorCobrarPagoDatos.SavePago(CuentasPorCobrarPago);
-
                     }
-
                 }
             }
             catch (Exception ex)
@@ -312,9 +294,6 @@ namespace Kondominium_Process
             }
             return (entidad, campo, valor, largo);
         }
-
-
-
     }
 
     public static class Helper
@@ -325,6 +304,5 @@ namespace Kondominium_Process
             var attr = field.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attr.Length == 0 ? value.ToString() : (attr[0] as DescriptionAttribute).Description;
         }
-
     }
 }

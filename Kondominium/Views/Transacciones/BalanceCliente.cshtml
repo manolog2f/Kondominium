@@ -92,17 +92,13 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Propiedad.VPropiedad)
                                 </td>
-                                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>*@
+                                
                             </tr>
                         }
                     </tbody>
                 </table>
-            
-            
+
+
 
                 <div>
                     <div class="row">
@@ -144,8 +140,17 @@
 
                     </div>
 
-                    </div>
+                    @{
+
+                        var ClienteIdx = Model.Count() == 0 ? 0 : Model.FirstOrDefault().ClienteId;
+                    }
+                    @*@Html.ActionLink("Exportar Excel", "ExportExcelBalanceCliente", "Transacciones", new { ClientId = ClienteIdx }, new { target = "_blank", @class = "btn btn-info" })*@
+                    <button onclick="exportTableToExcel('dataTable')"  class="btn btn-info">Exportar Excel</button>
+                    @Html.ActionLink("Imprimir", "BalanceCondomino", "Report", new { Id = ClienteIdx }, new { target = "_blank", @class = "btn btn-info" })
+
+
                 </div>
+            </div>
         </div>
     </div>
 

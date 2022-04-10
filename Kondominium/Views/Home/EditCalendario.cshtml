@@ -90,6 +90,12 @@
                                                     
                                                     @{
                                                         var TInicio = Model.HoraInicio.ToString();
+
+                                                        if (Model == null)
+                                                        {
+                                                            TInicio = "00:00";
+                                                        }
+
                                                      }
 
 
@@ -103,6 +109,11 @@
 
                                                 @{
                                                     var TFin = Model.HoraFin.ToString();
+
+                                                    if (Model == null)
+                                                    {
+                                                        TInicio = "00:00";
+                                                    }
                                                 }
 
 
@@ -227,8 +238,13 @@
                                 {
                                     <div class="container" style="margin-left:unset !important">
 
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-
+                                        @*@{  TimeSpan xtime;
+                                            TimeSpan xtime2;
+                                        }
+                                        @if (TimeSpan.TryParse(TInicio, out xtime) && TimeSpan.TryParse(TFin, out xtime2))
+                                        {*@
+                                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @*}*@
 
                                         <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                             <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
@@ -237,7 +253,7 @@
                                     </div>
 
                                 }
-                            }
+                                        }
 
                             <br>
 

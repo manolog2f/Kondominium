@@ -8,7 +8,8 @@ namespace Kondominium_BL
 {
     public class PropiedadesDatos
     {
-        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+
         public List<PropiedadesEntity> GetAll(bool VerEliminado = false)
         {
             var query = context.propiedades.Where(x => (VerEliminado ? x.Eliminado == x.Eliminado : x.Eliminado == false)).Select(x => new PropiedadesEntity
@@ -43,9 +44,9 @@ namespace Kondominium_BL
                 PaseoDescripcion = x.paseo.PaseoDescripcion,
                 PaseoId = x.PaseoId,
 
-
+                ConstruidoM2 = x.ConstruidoM2,
+                TamañoV2 = x.TamañoV2
             });
-
 
             return query.ToList();
         }
@@ -78,16 +79,13 @@ namespace Kondominium_BL
                             Avenida = p.Avenida,
                             Senda = p.Senda,
                             CasaLetra = p.CasaLetra,
-
                             Alameda = p.Alameda,
-                            AlamedaDescripcion = p.alameda1.AlamedaDescripcion
-
-                            ,
-
+                            AlamedaDescripcion = p.alameda1.AlamedaDescripcion,
                             PaseoDescripcion = p.paseo.PaseoDescripcion,
                             PaseoId = p.PaseoId,
+                            ConstruidoM2 = p.ConstruidoM2,
+                            TamañoV2 = p.TamañoV2
                         };
-
 
             return query.ToList();
         }
@@ -125,11 +123,10 @@ namespace Kondominium_BL
                             Alameda = x.Alameda,
                             AlamedaDescripcion = x.alameda1.AlamedaDescripcion,
 
-
-
                             PaseoDescripcion = x.paseo.PaseoDescripcion,
                             PaseoId = x.PaseoId,
-
+                            ConstruidoM2 = x.ConstruidoM2,
+                            TamañoV2 = x.TamañoV2
                         });
 
             return query.FirstOrDefault();
@@ -137,16 +134,16 @@ namespace Kondominium_BL
 
         public DataTable DataTable(int Id)
         {
-
             var dTabla = new DataTable();
 
             using (var _context = new Kondominium_DAL.KEntities())
             {
-                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.propiedades.Where( x=> x.PropiedadId == Id).ToList());
+                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.propiedades.Where(x => x.PropiedadId == Id).ToList());
             }
 
             return dTabla;
         }
+
         public (PropiedadesEntity, Resultado) Save(PropiedadesEntity model)
         {
             try
@@ -183,7 +180,8 @@ namespace Kondominium_BL
                     modlNew.Alameda = model.Alameda;
 
                     modlNew.PaseoId = model.PaseoId;
-
+                    modlNew.ConstruidoM2 = model.ConstruidoM2;
+                    modlNew.TamañoV2 = model.TamañoV2;
 
                     if (modlExist == null)
                     {
@@ -198,11 +196,9 @@ namespace Kondominium_BL
                 }
 
                 return (GetById(model.PropiedadId), new Resultado { Codigo = 0, Mensaje = "Exito" });
-
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
             }
         }
@@ -228,19 +224,17 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
-
             }
         }
+
         public Resultado SetDelete(int Id, string UserId)
         {
             try
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
                     var modlExist = ContextP.propiedades.Where(x => x.PropiedadId == Id).FirstOrDefault();
                     // var modlNew = new Kondominium_DAL.propiedades();
-
 
                     if (modlExist == null)
                         return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
@@ -256,15 +250,12 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
-
         }
 
         public List<string> Letras()
         {
-
             var rlist = new List<string>();
 
             rlist.Add(" ");
@@ -300,7 +291,6 @@ namespace Kondominium_BL
 
         public List<string> Parentesco()
         {
-
             var rlist = new List<string>();
 
             rlist.Add("Padre");

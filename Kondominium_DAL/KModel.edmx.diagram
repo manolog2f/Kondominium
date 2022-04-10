@@ -9,15 +9,11 @@
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.alertatipo" Width="1.5" PointX="15" PointY="0.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.aranceles" Width="1.5" PointX="0.75" PointY="6.25" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.avenida" Width="1.5" PointX="0.75" PointY="11.5" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.calendario" Width="1.5" PointX="8.25" PointY="10.625" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.calles" Width="1.5" PointX="0.75" PointY="18.25" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientepropiedad" Width="1.5" PointX="8.25" PointY="6" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientepropiedaddetalle" Width="1.5" PointX="10.5" PointY="3.75" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientes" Width="1.5" PointX="6" PointY="4.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.config" Width="1.5" PointX="0.75" PointY="2.375" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.configcobrosmensauldet" Width="1.5" PointX="13.5" PointY="16.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.configcobrosmensual" Width="1.5" PointX="11.25" PointY="21.5" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.contratos" Width="1.5" PointX="8.25" PointY="20.625" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.contratosdetalle" Width="1.5" PointX="10.5" PointY="17.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasgeneradas" Width="1.5" PointX="2.75" PointY="2.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.cuentasgeneradasdetalle" Width="1.5" PointX="2.75" PointY="16.375" />
@@ -31,7 +27,6 @@
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.field" Width="1.5" PointX="17.75" PointY="20.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.fieldsecurity" Width="1.5" PointX="19.75" PointY="2.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.log_action" Width="1.5" PointX="19.75" PointY="6.375" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.lugares" Width="1.5" PointX="6" PointY="16.5" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.mainmenu" Width="1.5" PointX="12.75" PointY="13.125" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.object" Width="1.5" PointX="19.75" PointY="9.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.objecttype" Width="1.5" PointX="15.75" PointY="16.875" />
@@ -53,17 +48,9 @@
         <AssociationConnector Association="db_a43bba_kondomiModel.AlertaTpo_AlertaFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiesdesArancelesFK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesAvenidasFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FKClientesCalendariox" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FKLugaresCalendariox" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiedadesCallesFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.ClientePropiedadPK1" />
         <AssociationConnector Association="db_a43bba_kondomiModel.ClientePropiedadPk2" />
         <AssociationConnector Association="db_a43bba_kondomiModel.Fk_ClientePropiedad" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.CxcClientesFK" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FKIdConfigCobrosConfigMensual" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FkProductoId_ConfigCobMensualDet" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.contratosDetalle_FK_1" />
         <AssociationConnector Association="db_a43bba_kondomiModel.contratosDetalle_FK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrar_FK" />
         <AssociationConnector Association="db_a43bba_kondomiModel.CxcDestalleCxcHeaderFK" />
@@ -79,9 +66,7 @@
         <AssociationConnector Association="db_a43bba_kondomiModel.userconfig_FK" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.cobrosmensalesloggeneracion" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.correlativos" Width="1.5" PointX="10.375" PointY="0.75" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" />
         <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwrecibo" Width="1.5" PointX="22.375" PointY="5.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwpagos" Width="1.5" PointX="22.375" PointY="15.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwbalance" Width="1.5" PointX="22.375" PointY="22.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.alameda" Width="1.5" PointX="24.375" PointY="0.75" />
@@ -90,10 +75,26 @@
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientesdocs" Width="1.5" PointX="8.25" PointY="26.375" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.propiedadesdocs" Width="1.5" PointX="5.25" PointY="25.625" />
         <AssociationConnector Association="db_a43bba_kondomiModel.FK_ClientePropiedadDocs" />
-        <AssociationConnector Association="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" />
         <AssociationConnector Association="db_a43bba_kondomiModel.FKPropiedadId_ClienteidDOC" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.paseo" Width="1.5" PointX="10.375" PointY="9" />
         <AssociationConnector Association="db_a43bba_kondomiModel.PropiedaesPaseoFK" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.configcobrosmensauldet" Width="1.5" PointX="13.5" PointY="16.875" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FKIdConfig" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FkProductoId_ConfigCobMensualDet" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.clientes" Width="1.5" PointX="1.875" PointY="25.625" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.ClientePropiedadPK1" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.cuentasporcobrarpago_FK_1" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.CxcClientesFK" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FKClienteId_ClienteidDOC" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.lugares" Width="1.5" PointX="7.375" PointY="1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.calendario" Width="1.5" PointX="13.625" PointY="24.75" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FKClientesCalendariox" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FKLugaresCalendariox" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.FkPropiedadesCalendarioZ" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwrecibo" Width="1.5" PointX="22.375" PointY="5.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.contratos" Width="1.5" PointX="8" PointY="20.75" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.contratosDetalle_FK_1" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.uploadfileh" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

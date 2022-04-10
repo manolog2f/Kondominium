@@ -697,45 +697,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ANULADO</Value>
-                <Style>
-                  <FontSize>20pt</FontSize>
-                  <Color>Red</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.03528cm</Top>
-        <Left>5.24279cm</Left>
-        <Height>0.94396cm</Height>
-        <Width>5.32222cm</Width>
-        <ZIndex>13</ZIndex>
-        <Visibility>
-          <Hidden>=iif(First(Fields!Estado.Value, "Pago") &lt; 4, true, false)</Hidden>
-        </Visibility>
-        <Style>
-          <Border>
-            <Color>Red</Color>
-            <Style>Dashed</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
     <Height>5.44097in</Height>
     <Style />
@@ -762,6 +723,45 @@
             </Border>
           </Style>
         </Image>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>ANULADO</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                    <Color>Red</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.55315cm</Top>
+          <Left>5.28689cm</Left>
+          <Height>0.94396cm</Height>
+          <Width>5.32222cm</Width>
+          <ZIndex>1</ZIndex>
+          <Visibility>
+            <Hidden>=iif(First(Fields!Estado.Value, "Pago") &lt; 4, true, false)</Hidden>
+          </Visibility>
+          <Style>
+            <Border>
+              <Color>Red</Color>
+              <Style>Dashed</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
