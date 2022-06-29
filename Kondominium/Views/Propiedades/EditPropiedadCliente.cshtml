@@ -14,19 +14,15 @@
 
         <div class="col-lg">
 
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Edicion</h6>
                 </div>
 
-
                 <div class="form-horizontal">
-
 
                     <!-- Acordion -->
                     <div id="accordion">
-
 
                         <!-- General -->
                         <div class="card">
@@ -42,8 +38,6 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
 
                                     <div class="row">
-
-
                                     </div>
 
                                     <div class="row">
@@ -87,13 +81,9 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
 
-
                                     <div class="row">
-
-
 
                                         <div class="card-body">
                                             <div class="form-group">
@@ -104,9 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
 
                                     <div class="row">
                                         <br>
@@ -115,18 +103,15 @@
 
                                             <input type="submit" value="Guardar" class="btn btn-primary" />
 
-
                                             <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                                 <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar
                                             </a>
-
                                         </div>
 
                                         <br>
                                         <br>
                                         <br>
                                     </div>
-
                                 </div>
 
                             }
@@ -143,8 +128,6 @@
 
                                     <div class="row">
 
-
-
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.FechaDeCreacion, htmlAttributes: new { @class = "control-label col-md" })
@@ -158,12 +141,9 @@
                                                 @Html.LabelFor(model => model.FechaDeModificacion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     <input type="text" id="txtFechaModificacion" name="txtFechaModificacion" value="@Model.FechaDeModificacion" class="form-control" readonly="readonly" />
-
-
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="col">
                                             <div class="form-group">
@@ -183,13 +163,10 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
 
                         @if (((Model.ClienteId != null && Model.ClienteId != 0) && (Model.PropiedadId != null && Model.PropiedadId != 0)) && Model.TipoCliente != "0")
                         {
@@ -203,15 +180,11 @@
                                 <div id="collapseFour" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
 
-
                                         @Html.Action("_EditPropiedadClienteDet", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString(), TipoCliente = Model.TipoCliente.ToString(), ClienteId = Model.ClienteId.ToString() })
-
                                     </div>
                                 </div>
                             </div>
                         }
-
-
 
                         @if ((Model.ClienteId != null && Model.ClienteId != 0) && (Model.PropiedadId != null && Model.PropiedadId != 0))
                         {
@@ -225,32 +198,16 @@
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         @Html.Action("_ListPropiedadClienteDocs", "Propiedades", new { PropiedadId = Model.PropiedadId.ToString(), TipoCliente = Model.TipoCliente.ToString(), ClienteId = Model.ClienteId.ToString() })
-
                                     </div>
                                 </div>
                             </div>
                         }
-
-
-
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
     </div>
 </div>
-
-
-
-
-
-
-
 
 <!-- Delete Modal confirmacion -->
 <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -267,9 +224,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                @Html.ActionLink("Eliminar", "DeleteClientes", new { Id = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
-
-
+                @Html.ActionLink("Eliminar", "DeletePropiedadesClientes", new { propiedadId = (Model == null ? "" : Model.PropiedadId.ToString()), clienteId = (Model == null ? "" : Model.ClienteId.ToString()) }, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>
@@ -278,10 +233,6 @@
 <div>
     @Html.ActionLink("Retornar a la Propiedad", "EditPropiedades", new { Id = Model.PropiedadId.ToString() })
 </div>
-
-
-
-
 
 @if (Model.ClienteId != null)
 {
@@ -301,9 +252,8 @@
                         string xPropiedadId = Model.PropiedadId.ToString();
                         string xTipoClienteId = Model.TipoCliente.ToString();
                     }
-                    
-                    @Html.Action("_EditPropiedadesClientesFileUpload", "Propiedades", new { PropiedadId = xPropiedadId, ClienteId = xClienteId, TipoClienteId = xTipoClienteId, DocumentType = xDocumentType })
 
+                    @Html.Action("_EditPropiedadesClientesFileUpload", "Propiedades", new { PropiedadId = xPropiedadId, ClienteId = xClienteId, TipoClienteId = xTipoClienteId, DocumentType = xDocumentType })
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -314,11 +264,5 @@
 
 }
 
-
-
-
-
-
 <div id="UploadFileMensajes">
-
 </div>

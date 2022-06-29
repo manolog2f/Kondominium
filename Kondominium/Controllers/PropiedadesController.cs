@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,7 +23,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.ArancelesDatos().GetAll();
             return View(model);
         }
+
         /*Arancel Edit*/
+
         [HttpGet]
         public ActionResult EditArancel(string Id, int? codigo = null)
         {
@@ -40,9 +43,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new ArancelesEntity());
         }
+
         [HttpPost]
         public ActionResult EditArancel(ArancelesEntity model)
         {
@@ -62,8 +65,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         //DeleteArancel/6
         //[HttpPost]
         public ActionResult DeleteArancel(int Id)
@@ -76,12 +79,9 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditArancel", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Edit Arancel*/
-
-
 
         [HttpGet]
         public ActionResult ListadoPoligonos()
@@ -92,7 +92,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.PoligonosDatos().GetAll();
             return View(model);
         }
+
         /*Poligono Edit*/
+
         [HttpGet]
         public ActionResult EditPoligonos(string Id, int? codigo = null)
         {
@@ -110,9 +112,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new PoligonosEntity());
         }
+
         [HttpPost]
         public ActionResult EditPoligonos(PoligonosEntity model)
         {
@@ -132,8 +134,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         //DeleteArancel/6
         //[HttpPost]
         public ActionResult DeletePoligonos(string Id)
@@ -145,12 +147,9 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditPoligonos", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Poligono Edit*/
-
-
 
         [HttpGet]
         public ActionResult ListadoProductos()
@@ -163,6 +162,7 @@ namespace Kondominium.Controllers
         }
 
         /*Producto Edit*/
+
         [HttpGet]
         public ActionResult EditProductos(string Id, int? codigo = null)
         {
@@ -180,9 +180,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new ProductosEntity());
         }
+
         [HttpPost]
         public ActionResult EditProductos(ProductosEntity model)
         {
@@ -202,8 +202,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         //DeleteArancel/6
         //[HttpPost]
         public ActionResult DeleteProductos(int Id)
@@ -216,14 +216,9 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditProductos", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Productos Edit*/
-
-
-
-
 
         [HttpGet]
         public ActionResult ListadoPropiedades()
@@ -247,6 +242,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.AvenidasDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditAvenidas(string Id, int? codigo = null)
         {
@@ -264,9 +260,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new AvenidasEntity());
         }
+
         [HttpPost]
         public ActionResult EditAvenidas(AvenidasEntity model)
         {
@@ -286,8 +282,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         public ActionResult DeleteAvenidas(string Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
@@ -297,10 +293,10 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditAvenidas", new { Id = Id, codigo = 9898 });
-
         }
 
         /*Calles*/
+
         [HttpGet]
         public ActionResult ListadoCalles()
         {
@@ -310,6 +306,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.CallesDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditCalles(string Id, int? codigo = null)
         {
@@ -327,9 +324,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new CallesEntity());
         }
+
         [HttpPost]
         public ActionResult EditCalles(CallesEntity model)
         {
@@ -349,8 +346,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         public ActionResult DeleteCalles(string Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
@@ -360,7 +357,6 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditCalles", new { Id = Id, codigo = 9898 });
-
         }
 
         /*Sendas*/
@@ -374,6 +370,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.SendasDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditSendas(string Id, int? codigo = null)
         {
@@ -391,9 +388,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new SendasEntity());
         }
+
         [HttpPost]
         public ActionResult EditSendas(SendasEntity model)
         {
@@ -413,8 +410,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         public ActionResult DeleteSendas(string Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
@@ -424,10 +421,7 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditSendas", new { Id = Id, codigo = 9898 });
-
         }
-
-
 
         // ---------------------- * -----------------------------------------------
         /*Alamedas*/
@@ -441,6 +435,7 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.AlamedaDatos().GetAll();
             return View(model);
         }
+
         [HttpGet]
         public ActionResult EditAlamedas(string Id, int? codigo = null)
         {
@@ -458,9 +453,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new AlamedaEntity());
         }
+
         [HttpPost]
         public ActionResult EditAlamedas(AlamedaEntity model)
         {
@@ -480,8 +475,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         public ActionResult DeleteAlamedas(string Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
@@ -491,13 +486,10 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditAlamedas", new { Id = Id, codigo = 9898 });
-
         }
 
-
-
-
         /* -------------- Paseos -------------- */
+
         [HttpGet]
         public ActionResult ListadoPaseos()
         {
@@ -507,7 +499,9 @@ namespace Kondominium.Controllers
             var model = new Kondominium_BL.PaseoDatos().GetAll();
             return View(model);
         }
+
         /*Paseo Edit*/
+
         [HttpGet]
         public ActionResult EditPaseo(string Id, int? codigo = null)
         {
@@ -525,9 +519,9 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new PaseoEntity());
         }
+
         [HttpPost]
         public ActionResult EditPaseo(PaseoEntity model)
         {
@@ -547,8 +541,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         //DeletePaseo/6
         //[HttpPost]
         public ActionResult DeletePaseo(string Id)
@@ -560,17 +554,12 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditPaseo", new { Id = Id, codigo = 9898 });
-
         }
 
         /*End Paseo Edit*/
 
-
-
-
-
-
         /*MMTO Propiedades*/
+
         [HttpGet]
         public ActionResult EditPropiedades(string Id, int? codigo = null)
         {
@@ -588,14 +577,21 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new PropiedadesEntity());
         }
+
         [HttpPost]
         public ActionResult EditPropiedades(PropiedadesEntity model)
         {
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = model.ModificadoPor;
+            //var form = new FormCollection();
+            var TamañoV2 = Request["TamañoV2"].ToString().Replace(",", "");
+            var ConstruidoM2 = Request["ConstruidoM2"].ToString().Replace(",", "");
+
+            model.TamañoV2 = Convert.ToDecimal(TamañoV2);
+
+            model.ConstruidoM2 = Convert.ToDecimal(ConstruidoM2);
 
             var modelr = new Kondominium_BL.PropiedadesDatos().Save(model);
 
@@ -610,8 +606,8 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
+
         public ActionResult DeletePropiedades(string Id)
         {
             string userid = HttpContext.User.Identity.Name.ToString();
@@ -621,14 +617,10 @@ namespace Kondominium.Controllers
             Mensajes(modelr);
             ModelState.Clear();
             return RedirectToAction("EditPropiedades", new { Id = Id, codigo = 9898 });
-
         }
 
-
-        public ActionResult _ListPropiedadDocs(string PropiedadId,  int? codigo = null)
+        public ActionResult _ListPropiedadDocs(string PropiedadId, int? codigo = null)
         {
-        
-
             if (PropiedadId != null)
             {
                 var model = new Kondominium_BL.PropiedadesDocsDatos().GetListById(int.Parse(PropiedadId));
@@ -642,27 +634,25 @@ namespace Kondominium.Controllers
                 {
                     return PartialView("_ListPropiedadDocs", model);
                 }
-
             }
             return PartialView("_ListPropiedadDocs", new List<PropiedadesDocsEntity>());
         }
 
-        #region  "Subir Archivo"
+        #region "Subir Archivo"
+
         [HttpPost]
         public ActionResult _UploadFileHPropiedad(HttpPostedFileBase file, FormCollection form)
         {
             var mdl = new jsModelPC();
             var respM = new Resultado();
 
-            
             mdl.DocumentType = form["DocumentType"];
             mdl.ClienteDocId = int.Parse(form["PropiedadesDocId"]);
             mdl.PropiedadId = int.Parse(form["PropiedadId"]);
-           // mdl.TipoClienteId = form["TipoCliente"];
+            // mdl.TipoClienteId = form["TipoCliente"];
 
             try
             {
-
                 //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
                 if (file.ContentLength > 0)
                 {
@@ -673,7 +663,7 @@ namespace Kondominium.Controllers
                         thePictureAsBytes = theReader.ReadBytes(file.ContentLength);
                     }
 
-                    var docSave = new Kondominium_BL.PropiedadesDocsDatos().Save(new PropiedadesDocsEntity { PropiedadesDocId = mdl.ClienteDocId,  DocumentType = mdl.DocumentType, UrlDocument = file.FileName, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString(), PropiedadId = mdl.PropiedadId,  Document = thePictureAsBytes });
+                    var docSave = new Kondominium_BL.PropiedadesDocsDatos().Save(new PropiedadesDocsEntity { PropiedadesDocId = mdl.ClienteDocId, DocumentType = mdl.DocumentType, UrlDocument = file.FileName, ModificadoPor = HttpContext.User.Identity.Name.ToString(), CreadoPor = HttpContext.User.Identity.Name.ToString(), PropiedadId = mdl.PropiedadId, Document = thePictureAsBytes });
 
                     mdl.JsFuntion = "T";
                     //mdl.ClienteDocId = docSave.Item1.PropiedadesDocId;
@@ -698,23 +688,19 @@ namespace Kondominium.Controllers
 
         public FileResult _DownloadFIlePropiedad(int Id)
         {
-
             var doc = new Kondominium_BL.PropiedadesDocsDatos().GetByDocumentId(Id);
 
             string mimeType = new Kondominium_Entities.Utilites.MimeTypeEntity().MimeTypeList().Where(x => x.Extension.Contains(new Utilities.General().ExtraerExtencion(doc.UrlDocument))).FirstOrDefault().Type;
 
-
             return File(doc.Document, mimeType);
         }
-
-
 
         [HttpGet]
         public ActionResult _EditPropiedadesFileUpload(string PropiedadId, string DocumentType, int? codigo = null)
         {
-            if ( DocumentType != null && PropiedadId != null)
+            if (DocumentType != null && PropiedadId != null)
             {
-                var model = new Kondominium_BL.PropiedadesDocsDatos().GetById( int.Parse(PropiedadId), DocumentType);
+                var model = new Kondominium_BL.PropiedadesDocsDatos().GetById(int.Parse(PropiedadId), DocumentType);
                 if (codigo != null)
                 {
                     Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
@@ -724,15 +710,13 @@ namespace Kondominium.Controllers
 
                 if (model == null)
                 {
-                    model = new PropiedadesDocsEntity {  PropiedadId = int.Parse(PropiedadId)};
+                    model = new PropiedadesDocsEntity { PropiedadId = int.Parse(PropiedadId) };
                 }
-
 
                 return View(model);
             }
             return View(new PropiedadesDocsEntity());
         }
-
 
         [HttpPost]
         public ActionResult _EditPropiedadesFileUpload(PropiedadesDocsEntity model, FormCollection form)
@@ -752,9 +736,7 @@ namespace Kondominium.Controllers
             {
                 return View("_EditPropiedadesFileUpload", modelr.Item1);
             }
-
         }
-
 
         public ActionResult DeleteLinePropDocs(int Id)
         {
@@ -772,27 +754,23 @@ namespace Kondominium.Controllers
                         {
                             System.IO.File.Delete(datos.UrlDocument);
                         }
-                        return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId,  codigo = 0 });
+                        return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId, codigo = 0 });
                     }
 
-                    return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId,  codigo = modelr.Codigo });
+                    return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId, codigo = modelr.Codigo });
                 }
                 else
                 {
-                    return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId,  codigo = CodigosMensaje.No_Existe });
+                    return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId, codigo = CodigosMensaje.No_Existe });
                 }
             }
             catch (Exception)
             {
-                return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId,  codigo = CodigosMensaje.Error });
+                return RedirectToAction("EditPropiedades", new { PropiedadId = datos.PropiedadId, codigo = CodigosMensaje.Error });
             }
         }
 
-
-        #endregion
-
-
-
+        #endregion "Subir Archivo"
 
         /*-------------------------------------------------*/
 
@@ -806,6 +784,7 @@ namespace Kondominium.Controllers
             }
             return View(model);
         }
+
         public ActionResult _ListadoInquilinosPropiedad(string Id)
         {
             var model = new Kondominium_BL.ClientePropiedadDatos().GetById(int.Parse(Id), "1");
@@ -815,6 +794,7 @@ namespace Kondominium.Controllers
             }
             return View(model);
         }
+
         public ActionResult _ListadoOtrosPropiedad(string Id)
         {
             var model = new Kondominium_BL.ClientePropiedadDatos().GetById(int.Parse(Id), "2");
@@ -825,8 +805,8 @@ namespace Kondominium.Controllers
             return View(model);
         }
 
-    
         /* Propiedad Cliente */
+
         [HttpGet]
         public ActionResult EditPropiedadCliente(string PropiedadId, string TipoCliente, string ClienteId, int? codigo = null)
         {
@@ -844,7 +824,6 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new ClientePropiedadEntity
             {
                 PropiedadId = int.Parse(PropiedadId),
@@ -852,6 +831,7 @@ namespace Kondominium.Controllers
                 TclienteEnum = (TipoClientes)(int.Parse(TipoCliente))
             });
         }
+
         [HttpPost]
         public ActionResult EditPropiedadCliente(ClientePropiedadEntity model)
         {
@@ -871,15 +851,11 @@ namespace Kondominium.Controllers
             {
                 return View(modelr.Item1);
             }
-
         }
-
-
 
         [HttpGet]
         public ActionResult _EditPropiedadClienteDet(string PropiedadId, string TipoCliente, string ClienteId, int? codigo = null)
         {
-
             if (ClienteId != null && PropiedadId != null)
             {
                 var model = new Kondominium_BL.ClientesPropiedadDetalleDatos().GetById(int.Parse(ClienteId), int.Parse(PropiedadId), TipoCliente.ToString());
@@ -903,7 +879,6 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
-
             return View(new ClientePropiedadDetalleEntity
             {
                 PropiedadId = int.Parse(PropiedadId),
@@ -911,6 +886,7 @@ namespace Kondominium.Controllers
                 ClienteId = int.Parse(ClienteId)
             });
         }
+
         [HttpPost]
         public ActionResult _EditPropiedadClienteDetUpdate(FormCollection form)
         {
@@ -919,8 +895,6 @@ namespace Kondominium.Controllers
 
             try
             {
-
-
                 var model = new ClientePropiedadDetalleEntity
                 {
                     ClienteId = int.Parse(form["ClienteId"].ToString()),
@@ -947,8 +921,6 @@ namespace Kondominium.Controllers
 
                 //if (modelr.Item2.Codigo == CodigosMensaje.Exito)
                 //{
-
-
                 //    return Json(mlResp);
                 //}
                 //else
@@ -970,10 +942,7 @@ namespace Kondominium.Controllers
 
                 return Json(mlResp);
             }
-
         }
-
-
 
         public ActionResult _ListPropiedadClienteDocs(string PropiedadId, string TipoCliente, string ClienteId, int? codigo = null)
         {
@@ -992,7 +961,6 @@ namespace Kondominium.Controllers
                 {
                     return PartialView("_ListPropiedadClienteDocs", model);
                 }
-
             }
             return PartialView("_ListPropiedadClienteDocs", new List<ClientePropiedadDocsEntity>());
         }
@@ -1047,12 +1015,10 @@ namespace Kondominium.Controllers
                     model = new ClientePropiedadDocsEntity { ClienteId = int.Parse(ClienteId), PropiedadId = int.Parse(PropiedadId), TipoCliente = TipoClienteId };
                 }
 
-
                 return View(model);
             }
             return View(new ClientePropiedadDocsEntity());
         }
-
 
         [HttpPost]
         public ActionResult _EditPropiedadesClientesFileUploadPost(ClientePropiedadDocsEntity model, FormCollection form)
@@ -1072,11 +1038,9 @@ namespace Kondominium.Controllers
             {
                 return View("_EditPropiedadesClientesFileUpload", modelr.Item1);
             }
-
         }
 
-
-        #endregion
+        #endregion "Mantenimiento"
 
         public List<PropiedadesEntity> ListPropiedades()
         {
@@ -1123,7 +1087,8 @@ namespace Kondominium.Controllers
             }
         }
 
-        #region  "Subir Archivo"
+        #region "Subir Archivo"
+
         [HttpPost]
         public ActionResult _UploadFileH(HttpPostedFileBase file, FormCollection form)
         {
@@ -1138,7 +1103,6 @@ namespace Kondominium.Controllers
 
             try
             {
-
                 //var v = new GPIntegration_BL.CashReceipt.FileIUploapProcess();
                 if (file.ContentLength > 0)
                 {
@@ -1153,7 +1117,7 @@ namespace Kondominium.Controllers
 
                     mdl.JsFuntion = "T";
                     mdl.ClienteDocId = docSave.Item1.ClientePropiedadDocsId;
-                    
+
                     mdl.mensaje = docSave.Item2;
                 }
                 return Json(mdl);
@@ -1174,16 +1138,35 @@ namespace Kondominium.Controllers
 
         public FileResult _DownloadFIle(int Id)
         {
-
             var doc = new Kondominium_BL.ClientePropiedadDocsDatos().GetByClienteDocId(Id);
 
             string mimeType = new Kondominium_Entities.Utilites.MimeTypeEntity().MimeTypeList().Where(x => x.Extension.Contains(new Utilities.General().ExtraerExtencion(doc.UrlDocument))).FirstOrDefault().Type;
 
-
             return File(doc.Document, mimeType);
         }
 
+        #endregion "Subir Archivo"
 
-        #endregion
+        #region "Clientes 27-06-22"
+
+        public ActionResult DeletePropiedadesClientes(int propiedadId, int clienteId)
+        {
+            string userid = HttpContext.User.Identity.Name.ToString();
+            //DeleteArancel / 5
+
+            var UrlOrigen = HttpContext.Request.UrlReferrer.PathAndQuery;
+
+            var modelr = new Kondominium_BL.ClientePropiedadDatos().Delete(new ClientePropiedadEntity { ClienteId = clienteId, PropiedadId = propiedadId });
+
+            //Mensajes(modelr);
+            //ModelState.Clear();
+
+            // 9898 Eliminado
+            // 96 No Existe
+
+            return RedirectToAction("EditPropiedades", new { Id = propiedadId, codigo = modelr.Codigo });
+        }
+
+        #endregion "Clientes 27-06-22"
     }
 }

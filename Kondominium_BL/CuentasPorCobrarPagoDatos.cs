@@ -7,7 +7,8 @@ namespace Kondominium_BL
 {
     public class CuentasPorCobrarPagoDatos
     {
-        Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
+
         public List<CuentasPorCobrarPagoEntity> GetAll()
         {
             var query = contex.cuentasporcobrarpago.Select(
@@ -25,15 +26,12 @@ namespace Kondominium_BL
                             ModificadoPor = cc.ModificadoPor,
                             Monto = cc.Monto,
                             PropiedadId = cc.PropiedadId,
-                            Estado =   (int)cc.Estado,
+                            Estado = (int)cc.Estado,
                             Casa = cc.propiedades.Casa,
                             CasaLetra = cc.propiedades.CasaLetra,
                             PoligonoId = cc.propiedades.PoligonoId,
                             FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
-
                         });
-
-
 
             return query.ToList();
         }
@@ -61,9 +59,7 @@ namespace Kondominium_BL
                             CasaLetra = cc.propiedades.CasaLetra,
                             PoligonoId = cc.propiedades.PoligonoId,
                             FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
-
                         };
-
 
             return query.FirstOrDefault();
         }
@@ -91,9 +87,7 @@ namespace Kondominium_BL
                             CasaLetra = cc.propiedades.CasaLetra,
                             PoligonoId = cc.propiedades.PoligonoId,
                             FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
-
                         };
-
 
             return query.FirstOrDefault();
         }
@@ -107,7 +101,6 @@ namespace Kondominium_BL
                     var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == model.CuentasPorCobrarPagoId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.cuentasporcobrarpago();
 
-
                     if (modlExist != null)
                     {
                         //if (modlExist.Eliminado == true)
@@ -127,16 +120,15 @@ namespace Kondominium_BL
                     modlNew.Monto = model.Monto;
                     modlNew.PropiedadId = model.PropiedadId;
 
-                    modlNew.FechadePago = model.FechadePago;
-
-
+                    modlNew.FechadePago = model.FechadePago == null ? DateTime.Now : model.FechadePago;
 
                     if (modlNew.CuentasPorCobrarPagoId == 0)
                     {
-
+                        if (model.VaucherNumber == null)
+                            modlNew.VaucherNumber = new CorrelativosDatos().GenerateNextNumber("Pago");
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
-
+                        modlNew.Estado = 1;
                         ContextP.cuentasporcobrarpago.Add(modlNew);
                     }
                     ContextP.SaveChanges();
@@ -148,10 +140,8 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
             }
-
         }
 
         public (CuentasPorCobrarPagoEntity, Resultado) SavePago(CuentasPorCobrarPagoEntity model)
@@ -163,6 +153,59 @@ namespace Kondominium_BL
                     var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == model.CuentasPorCobrarPagoId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.cuentasporcobrarpago();
 
+                    if (modlExist != null)
+                    {
+                        //if (modlExist.Eliminado == true)
+                        //    return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Regstro ha sido marcado como eliminado, no se puede actualizar" });
+
+                        modlNew = modlExist;
+                    }
+
+                    modlNew.ClienteId = model.ClienteId;
+                    modlNew.VaucherNumber = model.VaucherNumber;
+
+                    modlNew.MetodoPago = model.MetodoPago;
+                    modlNew.Observacion = model.Observacion;
+                    modlNew.ReferenciaPago = model.ReferenciaPago;
+                    modlNew.FechaDeModificacion = DateTime.Now;
+                    modlNew.ModificadoPor = model.ModificadoPor;
+                    modlNew.Monto = model.Monto;
+                    modlNew.PropiedadId = model.PropiedadId;
+
+                    modlNew.FechadePago = model.FechadePago;
+
+                    if (model.CuentasPorCobrarPagoId == 0)
+                    {
+                        if (model.VaucherNumber == null)
+                            modlNew.VaucherNumber = new CorrelativosDatos().GenerateNextNumber("Pago");
+
+                        modlNew.FechaDeCreacion = DateTime.Now;
+                        modlNew.CreadoPor = model.CreadoPor;
+                        modlNew.Estado = 1;
+
+                        ContextP.cuentasporcobrarpago.Add(modlNew);
+                    }
+                    ContextP.SaveChanges();
+
+                    model.CuentasPorCobrarPagoId = modlNew.CuentasPorCobrarPagoId;
+                }
+
+                return (GetById(model.CuentasPorCobrarPagoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
+            }
+            catch (Exception ex)
+            {
+                return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
+            }
+        }
+
+        public (CuentasPorCobrarPagoEntity, Resultado) SavePagoProcess(CuentasPorCobrarPagoEntity model)
+        {
+            try
+            {
+                using (var ContextP = new Kondominium_DAL.KEntities())
+                {
+                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == model.CuentasPorCobrarPagoId).FirstOrDefault();
+                    var modlNew = new Kondominium_DAL.cuentasporcobrarpago();
 
                     if (modlExist != null)
                     {
@@ -185,43 +228,38 @@ namespace Kondominium_BL
 
                     modlNew.FechadePago = model.FechadePago;
 
-
-                    if (string.IsNullOrEmpty(modlNew.VaucherNumber))
+                    if (model.CuentasPorCobrarPagoId == 0)
                     {
-                        modlNew.VaucherNumber = new CorrelativosDatos().GenerateNextNumber("Pago");
+                        if (model.VaucherNumber == null)
+                            modlNew.VaucherNumber = new CorrelativosDatos().GenerateNextNumber("Pago");
 
                         modlNew.FechaDeCreacion = DateTime.Now;
                         modlNew.CreadoPor = model.CreadoPor;
-                        modlNew.Estado = 1;
+                        modlNew.Estado = 3;
 
                         ContextP.cuentasporcobrarpago.Add(modlNew);
                     }
                     ContextP.SaveChanges();
 
                     model.CuentasPorCobrarPagoId = modlNew.CuentasPorCobrarPagoId;
-                    
                 }
 
                 return (GetById(model.CuentasPorCobrarPagoId), new Resultado { Codigo = 0, Mensaje = "Exito" });
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
             }
-
         }
 
-        public Resultado SetEstado(string Id, string UserId, int Estado)
+        public (CuentasPorCobrarPagoEntity, Resultado) SetEstado(int Id, string UserId, int Estado)
         {
             try
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
-                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.VaucherNumber == Id).FirstOrDefault();
+                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == Id).FirstOrDefault();
                     // var modlNew = new Kondominium_DAL.cuentasporcobrar();
-
 
                     if (modlExist != null)
                     {
@@ -231,7 +269,7 @@ namespace Kondominium_BL
 
                     if (modlExist.Estado == 4)
                     {
-                        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El Registro ha sido Anulado no puede ser Actualizado" });
+                        return (GetById(Id), new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El Registro ha sido Anulado no puede ser Actualizado" });
                     }
 
                     modlExist.Estado = Estado;
@@ -241,16 +279,13 @@ namespace Kondominium_BL
                     ContextP.SaveChanges();
                 }
 
-                return (new Resultado { Codigo = 0, Mensaje = "Registro " + (Estado == 3 ? "Contabilizado" : (Estado == 4 ? "Anulado" : "procesado")) + " con exito" });
+                return (GetById(Id), new Resultado { Codigo = 0, Mensaje = "Registro " + (Estado == 3 ? "Contabilizado" : (Estado == 4 ? "Anulado" : "procesado")) + " con exito" });
             }
             catch (Exception ex)
             {
-
-                return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro procesar el Registro \n" + ex.Message });
+                return (GetById(Id), new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro procesar el Registro \n" + ex.Message });
             }
-
         }
-
 
         public Resultado Delete(CuentasPorCobrarPagoEntity model)
         {
@@ -258,7 +293,7 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.VaucherNumber == model.VaucherNumber).FirstOrDefault();
+                    var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.CuentasPorCobrarPagoId == model.CuentasPorCobrarPagoId).FirstOrDefault();
 
                     if (modlExist != null)
                     {
@@ -273,19 +308,17 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
-
             }
         }
+
         //public Resultado SetDelete(string Id, string UserId)
         //{
         //    try
         //    {
         //        using (var ContextP = new Kondominium_DAL.KEntities())
         //        {
-
         //            var modlExist = ContextP.cuentasporcobrarpago.Where(x => x.VaucherNumber == Id).FirstOrDefault();
         //            // var modlNew = new Kondominium_DAL.cuentasporcobrarpago();
-
 
         //            if (modlExist == null)
         //                return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
@@ -301,7 +334,6 @@ namespace Kondominium_BL
         //    }
         //    catch (Exception ex)
         //    {
-
         //        return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
         //    }
 

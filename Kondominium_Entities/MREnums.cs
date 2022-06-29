@@ -1,4 +1,6 @@
-﻿namespace Kondominium_Entities
+﻿using System.ComponentModel;
+
+namespace Kondominium_Entities
 {
     public class MREnums
     {
@@ -112,7 +114,11 @@
         TarjetaDebito = 2,
         Transferencia = 3,
         Cheque = 4,
-        Efectivo = 5
+        Efectivo = 5,
+        NPE = 6,
+
+        [DescriptionAttribute("Codigo de Barras")]
+        BAR = 7,
     }
 
     public enum Pais

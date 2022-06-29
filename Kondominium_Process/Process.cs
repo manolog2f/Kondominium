@@ -18,8 +18,6 @@ namespace Kondominium_Process
     {
         private CuentasPorCobrarDatos obj_CuentasPorCobrarDatos = new CuentasPorCobrarDatos();
         private CuentasPorCobrarPagoDatos obj_CuentasPorCobrarPagoDatos = new CuentasPorCobrarPagoDatos();
-        private CuentasPorCobrarEntity CuentasPorCobrar = new CuentasPorCobrarEntity();
-        private CuentasPorCobrarPagoEntity CuentasPorCobrarPago = new CuentasPorCobrarPagoEntity();
 
         public (DataTable, bool) LeerArchivo(string ruta)
         {
@@ -118,6 +116,10 @@ namespace Kondominium_Process
                 }
 
                 /////////////////// Detalle  //////////////////////
+                ///
+
+                var CuentasPorCobrar = new CuentasPorCobrarEntity();
+
                 for (int i = 0; i < lines.Length; i++)
                 {
                     char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
@@ -172,22 +174,28 @@ namespace Kondominium_Process
                             CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByNPE(referencia2);
                         }
 
+                        CuentasPorCobrarPagoEntity CuentasPorCobrarPago = new CuentasPorCobrarPagoEntity();
+
                         CuentasPorCobrarPago.VaucherNumber = CuentasPorCobrar.VaucherNumber;
                         CuentasPorCobrarPago.ClienteId = CuentasPorCobrar.ClienteId;
-                        CuentasPorCobrarPago.MetodoPago = banco + "-" + codificacion;
+                        CuentasPorCobrarPago.MetodoPago = codificacion;
                         CuentasPorCobrarPago.ReferenciaPago = referencia;
                         CuentasPorCobrarPago.Observacion = CuentasPorCobrar.PeriodoFacturado;
                         CuentasPorCobrarPago.Monto = monto;
                         CuentasPorCobrarPago.PropiedadId = CuentasPorCobrar.PropiedadId;
                         CuentasPorCobrarPago.FechadePago = fecha;
+                        CuentasPorCobrarPago.CreadoPor = "Process";
+                        CuentasPorCobrarPago.ModificadoPor = "Process";
 
-                        obj_CuentasPorCobrarPagoDatos.SavePago(CuentasPorCobrarPago);
+                        obj_CuentasPorCobrarPagoDatos.SavePagoProcess(CuentasPorCobrarPago);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                throw ex;
+                Console.WriteLine(ex.Message);
+                //MessageBox.Show("Error: " + ex.Message);
             }
         }
 

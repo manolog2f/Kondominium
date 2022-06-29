@@ -430,7 +430,7 @@ new { @class = "form-control" })
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
 
-                @Html.ActionLink("Contabilizar", "UpdatePagoContabilizado", new { VaucherNumber = Model.VaucherNumber }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Contabilizar", "UpdatePagoContabilizado", new { Id = Model.CuentasPorCobrarPagoId }, new { @class = "btn btn-success" })
 
 
             </div>

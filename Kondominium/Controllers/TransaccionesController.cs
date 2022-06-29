@@ -280,19 +280,19 @@ namespace Kondominium.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditPagos(string VaucherNumber, string ClienteId, int? codigo = null, string Mensaje = "")
+        public ActionResult EditPagos(int? Id, string ClienteId, int? codigo = null, string Mensaje = "")
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
-            if (VaucherNumber != null)
+            if (Id != null && Id != 0)
             {
-                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetByVaucherNumberId(VaucherNumber);
+                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().GetById((int)Id);
 
                 if (model != null)
                 {
                     return View(model);
                 }
-                return View(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = int.Parse(ClienteId), Monto = 0 });
+                return View(new CuentasPorCobrarPagoEntity { CuentasPorCobrarPagoId = (int)Id, ClienteId = int.Parse(ClienteId), Monto = 0 });
             }
 
             return View(new CuentasPorCobrarPagoEntity { VaucherNumber = "", Monto = 0, Estado = 0 });
@@ -309,12 +309,24 @@ namespace Kondominium.Controllers
             if (modelr.Item2.Codigo == CodigosMensaje.Exito)
             {
                 ViewBag.ClienteId = model.ClienteId;
-                return RedirectToAction("EditPagos", new { VaucherNumber = modelr.Item1.VaucherNumber, ClienteId = modelr.Item1.ClienteId, codigo = 0 });
+                return RedirectToAction("EditPagos", new { Id = modelr.Item1.CuentasPorCobrarPagoId, ClienteId = modelr.Item1.ClienteId, codigo = 0 });
             }
             else
             {
                 return View(modelr.Item1);
             }
+        }
+
+        public ActionResult UpdatePagoContabilizado(int Id)
+        {
+            if (Id != 0)
+            {
+                var model = new Kondominium_BL.CuentasPorCobrarPagoDatos().SetEstado(Id, HttpContext.User.Identity.Name.ToString(), 3);
+
+                return RedirectToAction("EditCuentasPorCobrar", new { Id = Id, codigo = ((int)model.Item2.Codigo), Mensaje = model.Item2.Mensaje });
+            }
+
+            return RedirectToAction("EditCuentasPorCobrar", new { Id = 0, codigo = ((int)CodigosMensaje.No_Existe) });
         }
 
         #region "Configuracion de cuentas por Generar"
@@ -703,6 +715,10 @@ namespace Kondominium.Controllers
             var mdl = new jsDocModel();
             var respM = new Resultado();
 
+            var paso = "0";
+            var extra = "";
+            var dondeescribe = ".. ";
+
             mdl.idTrans = 0;
             try
             {
@@ -711,20 +727,41 @@ namespace Kondominium.Controllers
                     string _FileName = Path.GetFileName(file.FileName);
                     if (!Directory.Exists(GetPahtFileUploaded()))
                     {
+                        dondeescribe = GetPahtFileUploaded();
+                        paso = "1";
+                        extra = "No existe el directorio";
+                        Console.WriteLine(extra);
+                        //HttpContext.Current.Response.Write(extra);
+                        HttpContext.Response.Write(extra);
                         Directory.CreateDirectory(GetPahtFileUploaded());
+                        paso = "2";
+                        extra = "Creo el Directorio";
+                        Console.WriteLine(extra);
                     }
 
+                    paso = "3";
+                    extra = "Tratara de Guardar el Archuvi";
+                    Console.WriteLine(extra);
                     string _path = Path.Combine(GetPahtFileUploaded(), _FileName);
                     file.SaveAs(_path);
 
+                    paso = "3";
+                    extra = "Archivo guardado";
+                    Console.WriteLine(extra);
                     var user = this.GetCurrentUser();
 
                     // Guardar Encabezado.
 
                     var resp = new Kondominium_BL.UploadFileHDatos().Save(new UploadFileHEntity { Estado = 0, FileName = _path, UploadDate = DateTime.Now, UserId = GetCurrentUser() });
 
-                    var larchivo = new Kondominium_Process.Process().LeerArchivo(_path);
+                    paso = "5";
+                    extra = "Guardo Registro";
+                    Console.WriteLine(extra);
 
+                    var larchivo = new Kondominium_Process.Process().LeerArchivo(_path);
+                    paso = "6";
+                    extra = "Proceso File";
+                    Console.WriteLine(extra);
                     //respM = resp.resp;
 
                     mdl.idTrans = resp.Item1.UploadFileHId;//  resp.id;
@@ -736,12 +773,14 @@ namespace Kondominium.Controllers
             catch (Exception ex)
             {
                 respM.Codigo = CodigosMensaje.Error;
-                respM.Mensaje = ex.Message;
+                respM.Mensaje = ex.Message + " Paso" + paso + "  -  Extra - " + extra + " - Path" + dondeescribe;
 
                 mdl.mensaje = respM;
 
                 this.Mensajes(respM);
                 ViewBag.Message = "File upload failed!!" + ex;
+
+                Console.WriteLine(ex);
 
                 return Json(mdl);
             }
