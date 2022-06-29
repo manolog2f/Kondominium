@@ -126,7 +126,8 @@ namespace Kondominium_Process
                     if (tipo == Convert.ToChar("D"))
                     {
                         linea = lines[i];
-                        monto = tools.toDecimal(lines[i].Substring(44, 10));
+                        //monto = tools.toDecimal(lines[i].Substring(44, 10));
+                        monto = tools.toDecimal(lines[i].Substring(40, 12) + "." + lines[i].Substring(52, 2));
                         var a = lines[i].Substring(15, 8);
                         var b = lines[i].Substring(7, 8);
                         fecha = DateTime.ParseExact(lines[i].Substring(15, 8) + ' ' + lines[i].Substring(7, 8), "yyyyMMdd HH:mm:ss", null);
