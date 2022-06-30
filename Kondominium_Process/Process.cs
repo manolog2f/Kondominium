@@ -40,15 +40,15 @@ namespace Kondominium_Process
             //    fileName = false;
             //}
 
-            //dtRDB = LeerArchivo_BAG(ruta);
+            dtRDB = LeerArchivo_BAG(ruta);
             fileName = true;
 
-            LeerArchivo_BAG2(ruta);
+            //LeerArchivo_BAG2(ruta);
 
             return (dtRDB, fileName);
         }
 
-        public void LeerArchivo_BAG2(string ruta)
+        public DataTable LeerArchivo_BAG(string ruta)
         {
             DateTime? fecha_archivo = null;
             decimal monto_archivo = 0;
@@ -79,6 +79,19 @@ namespace Kondominium_Process
 
             (entidad, campo, valor, larg) = LeerDefEntidad("GLN", "");
             gln = valor;
+
+            DataTable dtRDB = new DataTable();
+
+            dtRDB.Columns.Add("VaucherNumber", typeof(string));
+            dtRDB.Columns.Add("ClienteId", typeof(int));
+            dtRDB.Columns.Add("MetodoPago", typeof(string));
+            dtRDB.Columns.Add("ReferenciaPago", typeof(string));
+            dtRDB.Columns.Add("Observacion", typeof(string));
+            dtRDB.Columns.Add("Monto", typeof(decimal));
+            dtRDB.Columns.Add("PropiedadId", typeof(int));
+            dtRDB.Columns.Add("FechadePago", typeof(DateTime));
+            dtRDB.Columns.Add("CreadoPor", typeof(string));
+            dtRDB.Columns.Add("ModificadoPor", typeof(string));
 
             /////////////   BANCO    //////////////
             string codigo_banco = tools.GetUntilOrEmpty(ruta);
@@ -189,6 +202,176 @@ namespace Kondominium_Process
                         CuentasPorCobrarPago.ModificadoPor = "Process";
 
                         obj_CuentasPorCobrarPagoDatos.SavePagoProcess(CuentasPorCobrarPago);
+
+                        DataRow row = dtRDB.NewRow();
+
+                        row["VaucherNumber"] = CuentasPorCobrar.VaucherNumber;
+                        row["ClienteId"] = CuentasPorCobrar.ClienteId;
+                        row["MetodoPago"] = codificacion;
+                        row["ReferenciaPago"] = referencia;
+                        row["Observacion"] = CuentasPorCobrar.PeriodoFacturado; ;
+                        row["Monto"] = monto;
+                        row["PropiedadId"] = CuentasPorCobrar.PropiedadId;
+                        row["FechadePago"] = fecha;
+                        row["CreadoPor"] = "Process";
+                        row["ModificadoPor"] = "Process";
+
+                        dtRDB.Rows.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                Console.WriteLine(ex.Message);
+                //MessageBox.Show("Error: " + ex.Message);
+            }
+            return dtRDB;
+        }
+        public void LeerArchivo_BAG2(string ruta)
+        {
+            DateTime? fecha_archivo = null;
+            decimal monto_archivo = 0;
+            DateTime fecha;
+
+            int id_codificacion = 0;
+            string codificacion = "";
+            decimal monto = 0;
+
+            string gln = "";
+            string referencia;
+
+            int id_banco = 0;
+            string banco = ""; // Nombre del banco
+
+            string linea = "";
+            string referencia1 = "";
+            string referencia2 = "";
+
+            /// cuenta los registros no validos
+            //int reg = 0;
+            string[] lines = File.ReadAllLines(@ruta);
+
+            string entidad = "";
+            string campo = "";
+            string valor = "";
+            int larg = 0;
+
+            (entidad, campo, valor, larg) = LeerDefEntidad("GLN", "");
+            gln = valor;
+
+            
+            /////////////   BANCO    //////////////
+            string codigo_banco = tools.GetUntilOrEmpty(ruta);
+            Array items_banco = Enum.GetValues(typeof(enumerados.banco));
+            foreach (enumerados.banco item in items_banco)
+            {
+                if (item.ToString() == codigo_banco)
+                {
+                    id_banco = (int)item;
+                    banco = item.GetDescription();
+                }
+            }
+
+            try
+            {
+                /////////////////// Encabezado  - H //////////////////////
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
+                    if (tipo == Convert.ToChar("H"))
+                    {
+                        fecha_archivo = DateTime.ParseExact(lines[i].Substring(3, 8) + ' ' + lines[i].Substring(11, 8), "yyyyMMdd HH:mm:ss", null);
+                    }
+                }
+
+                /////////////////// Total - T //////////////////////
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
+                    if (tipo == Convert.ToChar("T"))
+                    {
+                        // Linea de Encabezado //
+                        monto_archivo = tools.toDecimal(lines[i].Substring(7, 12) + "." + lines[i].Substring(19, 2));
+                    }
+                }
+
+                /////////////////// Detalle  //////////////////////
+                ///
+
+                var CuentasPorCobrar = new CuentasPorCobrarEntity();
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
+                    if (tipo == Convert.ToChar("D"))
+                    {
+                        linea = lines[i];
+                        //monto = tools.toDecimal(lines[i].Substring(44, 10));
+                        monto = tools.toDecimal(lines[i].Substring(40, 12) + "." + lines[i].Substring(52, 2));
+                        var a = lines[i].Substring(15, 8);
+                        var b = lines[i].Substring(7, 8);
+                        fecha = DateTime.ParseExact(lines[i].Substring(15, 8) + ' ' + lines[i].Substring(7, 8), "yyyyMMdd HH:mm:ss", null);
+
+                        if (lines[i].Substring(57, 3) == "415" && lines[i].Substring(60, 13) == gln.ToString() && (lines[i].Substring(73, 4) == "3902" || lines[i].Substring(73, 4) == "96") || lines[i].Substring(73, 4) == "8020")
+                        {
+                            /************** BARRAS ********************/
+                            id_codificacion = 1;
+                            // referencia1 = linea.Substring(0, linea.Length - 44);
+                            referencia1 = linea.Substring(57, linea.Length - 57 - 44); /* 57 del inicio y 44 del final */
+                            referencia = LeerConfig("BAR4") != 0 ? referencia1.Substring(referencia1.Length - LeerConfig("BAR4"), LeerConfig("BAR4")) : "";
+                        }
+                        else
+                        {
+                            /************** NPE ********************/
+                            id_codificacion = 2;
+                            //referencia2 = linea.Substring(0, linea.Length - 69);
+                            referencia2 = linea.Substring(54, linea.Length - 54 - 69); /* 55 del inicio y 69 del final */
+                            referencia = LeerConfig("NPE4") != 0 ? referencia2.Substring(referencia2.Length - LeerConfig("NPE4") - 1, LeerConfig("NPE4")) : "";
+                        }
+
+                        //////////////  CODIFICACION  //////////////
+                        Array items_codificacion = Enum.GetValues(typeof(enumerados.codificacion));
+                        foreach (enumerados.codificacion item in items_codificacion)
+                        {
+                            if ((int)item == id_codificacion)
+                            {
+                                codificacion = item.GetDescription();
+                            }
+                        }
+
+                        if (id_codificacion == 1)
+                        {
+                            //DataTable dtcxc = new DataTable();
+                            CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByBRCode(referencia1);
+                        }
+                        else if (id_codificacion == 2)
+                        {
+                            string ref2 = "";
+                            for (int x = 0; x < referencia2.Length / 4; x++)
+                            {
+                                ref2 = ref2 + referencia2.Substring(x * 4, 4) + " ";
+                            }
+                            referencia2 = ref2.Substring(0, ref2.Length - 1);
+                            CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByNPE(referencia2);
+                        }
+
+                        CuentasPorCobrarPagoEntity CuentasPorCobrarPago = new CuentasPorCobrarPagoEntity();
+
+                        CuentasPorCobrarPago.VaucherNumber = CuentasPorCobrar.VaucherNumber;
+                        CuentasPorCobrarPago.ClienteId = CuentasPorCobrar.ClienteId;
+                        CuentasPorCobrarPago.MetodoPago = codificacion;
+                        CuentasPorCobrarPago.ReferenciaPago = referencia;
+                        CuentasPorCobrarPago.Observacion = CuentasPorCobrar.PeriodoFacturado;
+                        CuentasPorCobrarPago.Monto = monto;
+                        CuentasPorCobrarPago.PropiedadId = CuentasPorCobrar.PropiedadId;
+                        CuentasPorCobrarPago.FechadePago = fecha;
+                        CuentasPorCobrarPago.CreadoPor = "Process";
+                        CuentasPorCobrarPago.ModificadoPor = "Process";
+
+                        obj_CuentasPorCobrarPagoDatos.SavePagoProcess(CuentasPorCobrarPago);
+
+
                     }
                 }
             }
