@@ -9,7 +9,6 @@ namespace Kondominium.Controllers
 {
     public class BaseController : Controller
     {
-
         protected override void OnActionExecuting(
            ActionExecutingContext filterContext)
         {
@@ -17,12 +16,10 @@ namespace Kondominium.Controllers
             var cultureInfo = CultureInfo.GetCultureInfo("es-SV");
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
         }
 
         protected Boolean Verifypermission(string UserId = "", string ObjectName = "", string Controller = "")
         {
-
             if (string.IsNullOrEmpty(UserId))
             {
                 UserId = HttpContext.User.Identity.Name.ToString();
@@ -49,9 +46,7 @@ namespace Kondominium.Controllers
 
         protected string GetCurrentUser()
         {
-
             return HttpContext.User.Identity.Name.ToString();
-
         }
 
         protected void Mensajes(Kondominium_Entities.Resultado res)
@@ -71,33 +66,28 @@ namespace Kondominium.Controllers
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Mensaje de warning";
-
             }
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.No_Existe)
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Registro no existe";
-
             }
             else if (res.Codigo == Kondominium_Entities.CodigosMensaje.Eliminado)
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "Registro Eliminado satisfactoriamente";
-
             }
             else
             {
                 if (string.IsNullOrWhiteSpace(res.Mensaje))
                     ViewBag.Warning = "";
             }
-
         }
 
         protected ActionResult _Mensajes(int error, string Mensaje)
         {
             var mdel = new Models.jsModel();
             var msg = new Kondominium_Entities.Resultado();
-
 
             switch (error)
             {
@@ -106,29 +96,35 @@ namespace Kondominium.Controllers
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Procesado con Exito" : Mensaje;
                     ViewBag.Successful = msg.Mensaje;
                     break;
+
                 case 9999:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Error;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
                     ViewBag.Error = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
                     break;
+
                 case 5000:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Warning;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Proceso ejecutado, pero existe una advertencia" : Mensaje;
 
                     ViewBag.Warning = msg.Mensaje;
                     break;
+
                 case 9000:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Log;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro de Log" : Mensaje;
                     break;
+
                 case 9898:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.Eliminado;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro Eliminado" : Mensaje;
                     break;
+
                 case 97:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.No_Se_Puede_Eliminar;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro no puede ser eliminado" : Mensaje;
                     break;
+
                 case 96:
                     msg.Codigo = Kondominium_Entities.CodigosMensaje.No_Existe;
                     msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro no Existe" : Mensaje;
@@ -140,6 +136,7 @@ namespace Kondominium.Controllers
 
             return PartialView(mdel);
         }
+
         protected void Mensajes(ZTAdminEntities.Utilities.Resultado res)
         {
             if (res.Codigo == ZTAdminEntities.Utilities.CodigosMensaje.Error)
@@ -161,9 +158,7 @@ namespace Kondominium.Controllers
             }
         }
 
-
         #region "Descargar Documento"
-
 
         //Gives me a download Prompt.
         //return File(document.Data, document.ContentType, document.Name);
@@ -171,7 +166,6 @@ namespace Kondominium.Controllers
         //return new FileStreamResult(new MemoryStream(document.Data), document.ContentType);
         //Gives me a download Prompt (lose the ability to open by default if known type)
         //return new FileStreamResult(new MemoryStream(document.Data), document.ContentType) {FileDownloadName = document.Name };
-
 
         //public ActionResult DownloadFile(string FileNameparam)
         //{
@@ -193,7 +187,7 @@ namespace Kondominium.Controllers
         //}
 
         //public ActionResult DownloadFile(string DocumentId)
-        //{
+        //{B
         //    string filename = "File.pdf";
         //    //string filepath = AppDomain.CurrentDomain.BaseDirectory + "/Path/To/File/" + filename;
         //    string filepath = FileNameparam;
@@ -211,7 +205,6 @@ namespace Kondominium.Controllers
         //    return File(filedata, contentType);
         //}
 
-
-        #endregion
+        #endregion "Descargar Documento"
     }
 }

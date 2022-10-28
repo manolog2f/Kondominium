@@ -66,6 +66,22 @@ namespace Kondominium_BL
             return query.FirstOrDefault();
         }
 
+        public List<UploadFileHEntity> GetListById(int Id)
+        {
+            var query = from a in context.uploadfileh
+                        where a.UploadFileHId == Id
+                        select new UploadFileHEntity
+                        {
+                            Estado = a.Estado,
+                            FileName = a.FileName,
+                            UploadDate = a.UploadDate,
+                            UploadFileHId = a.UploadFileHId,
+                            UserId = a.UserId
+                        };
+
+            return query.ToList();
+        }
+
         public (UploadFileHEntity, Resultado) Save(UploadFileHEntity model)
         {
             try

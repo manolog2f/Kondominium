@@ -81,7 +81,7 @@
             <tr>
                 <td style="width:80%">
 
-                    <H2>Pago</H2>
+                    <H2>RECIBO DE PAGO</H2>
                     <H4>@company.EmpresaNombre</H4>
 
                     <P>Direccion: @company.Direccion  </P>
@@ -111,15 +111,13 @@
             </tr>
             <tr>
                 <td>
-                    Propiedad:
+                    Propiedad: @string.Concat(@modelFirst.PoligonoId, ' ', modelFirst.Casa, ' ', modelFirst.CasaLetra)
                 </td>
                 <td>
                 </td>
             </tr>
             <tr>
-                <td>
-                    Descripcion: @modelFirst.PropiedadDescripcion
-                </td>
+
                 <td>
                 </td>
             </tr>
@@ -178,14 +176,14 @@
                         {
                             <div style="border-style: solid; border-color: #a9d2a7; color: #97bf95; width: 200px; text-align: center; font-family: cursive; border-width: 5px; -moz-border-radius: 7px; -webkit-border-radius: 7px; /* padding: 5px; */ background-color: #ffffff00; transform: rotate(-10deg);">
                                 <h2>PAGADO</h2>
-                                <P>Registrado el 24/02/2022 10:01</P>
+                                <P>Registrado el @modelFirst.FechaDeModificacion </P>
                             </div>
                         }
                         if (modelFirst.Estado == 4)
                         {
                             <div style="border-style: solid; border-color: crimson; color: crimson; width: 200px; text-align: center; font-family: cursive; border-width: 5px; -moz-border-radius: 7px; -webkit-border-radius: 7px; /* padding: 5px; */ background-color: #ffffff00; transform: rotate(-10deg); ">
                                 <h2>Anulado</h2>
-                                <P>Registrado el 24/02/2022 10:01</P>
+                                <P>Registrado el @modelFirst.FechaDeModificacion </P>
                             </div>
                         }
                     }
@@ -200,11 +198,11 @@
 
         <div>
             <span>
-                PARA PAGAR VÍA TRANSFERENCIA ELECTRÓNICA o DEPÓSITO EN CUENTA, LOS DATOS SON: Cuenta corriente: 569-001813-2 del Banco Agrícola, Cuenta corriente: 201096518 del Banco de América             Central,CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA. Y ENVIAR EL COMPROBANTE DE LA TRANSFERENCIA o DEPÓSITO INDICANDO EL N° DE LA PROPIEDAD, POLÍGONO Y MES QUE PAGA, al email  <span style="font-weight: bold;">cuentas.lahacienda@gmail.com.</span> "Gracias"
+                PARA PAGAR VÍA TRANSFERENCIA ELECTRÓNICA o DEPÓSITO EN CUENTA, LOS DATOS SON: Cuenta corriente: 569-001813-2 del Banco Agrícola, Cuenta corriente: 201096518 del Banco de América             Central,CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA. Y ENVIAR EL COMPROBANTE DE LA TRANSFERENCIA o DEPÓSITO INDICANDO EL N° DE LA PROPIEDAD, POLÍGONO Y MES QUE PAGA, al email  <span style="font-weight: bold;">cobros@quintaslahacienda.com</span> "Gracias"
             </span>
             <br>
             <span>
-                Si paga con cheque SE RUEGA EXTENDER CHEQUE A NOMBRE DE "CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA".
+                Si paga con cheque SE RUEGA EXTENDER  A NOMBRE DE "CONDOMINIO QUINTAS RECREATIVAS LA HACIENDA".
             </span>
             <br>
             <span>

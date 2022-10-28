@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>UploadFile</h2>
-
 <style>
     .Data-table td {
         /*-- word-wrap: normal;*/
@@ -32,28 +30,35 @@
                     var t = JSON.parse(xhr.response);
                     //var t1 = JSON.parse(t['mensaje']);
 
-                    var iduploadHeader = t['idTrans']; // xhr.response.idTrans;
+                    var iduploadHeader = t.idTrans;
                     var mensaje = t.mensaje.Mensaje; // xhr.response.mensaje.Mensaje;
-                    var idMensaje = t.mensaje.CodigoMensaje; //xhr.response.mensaje.CodigoMensaje;
+                    var idMensaje = t.mensaje.Codigo; //xhr.response.mensaje.CodigoMensaje;
 
-                    $.get('@Url.Action("_UploadFile", "Transacciones")', { id: iduploadHeader });
-                        @*.done(function (data) {
+                    @*$.get('@Url.Action("_UploadFile", "Transacciones")', { id: iduploadHeader });
+                        .done(function (data) {
                             $("#UploadFileH1").html(data);
-                        });
+                        });*@
 
-                    //var elem = document.getElementById('idTransxy');
+                    //var elem = document.getElementById('UploadFileHId');
                     //elem.value = iduploadHeader;
 
-                    $.get('@Url.Action("_UploadFileDetail", "GpIntegration")', { UploadFileid: iduploadHeader } )
+                    $.get('@Url.Action("_UploadFile", "Transacciones")', { id: iduploadHeader } )
+                        .done(function (data) {
+                            $("#UploadFileH1").html(data);
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
+                        });
+
+                    $.get('@Url.Action("_UploadFileDetail", "Transacciones")', { id: iduploadHeader } )
                         .done(function (data) {
                             $("#UploadFileDetail1").html(data);
-                            hide_loading();
-                            $('.Data-table').DataTable();
-                    });*@
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
+                    });
 
                    // hide_loading();
 
-                    @*$.get('@Url.Action("_Mensajes", "GpIntegration")', { error: idMensaje, Mensaje: mensaje })
+                    $.get('@Url.Action("_MensajesP", "Transacciones")', { error: idMensaje, Mensaje: mensaje })
                     .done(function (data) {
                         $("#UploadFileMesajes").html(data);
                         mensajes();
@@ -69,14 +74,14 @@
                             var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
                             var url = "";
                             if (iduploadHeader > 0) {
-                                url = baseUrl + "/UploadFIle/" + iduploadHeader;
+                                url = baseUrl + "/Transacciones/UploadFIle/" + iduploadHeader;
                             }
                             else {
                                 url = baseUrl + "/UploadFIle";
                             }
                             location.href = url;
                         }
-                    }, 3000);*@
+                    }, 3000);
 
                 }
 
@@ -86,7 +91,7 @@
         }
     }
 
-    @*function CreatePaymentinGP() {
+    function CreatePaymentsXT() {
 
         loading();
         debugger;
@@ -95,10 +100,10 @@
         var xhr = new XMLHttpRequest();
         var getUrl = window.location;
         var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-        var urlx = baseUrl + "/ProcessFileInGP/?UploadFileid=" + iduploadHeader;
+        var urlx = baseUrl + "/ProcessFileXT/?UploadFileId=" + iduploadHeader;
 
         $.ajax({
-            url: '@Url.Action("ProcessFileInGP", "GpIntegration")',
+            url: '@Url.Action("ProcessFileXT", "Transacciones")',
             type: 'GET',
             dataType: 'json',
             cache: false,
@@ -106,16 +111,18 @@
             success: function (UploadFileid) {
                 hide_loading();
 
-                $.get('@Url.Action("_UploadFile", "GpIntegration")', { id: UploadFileid })
-                    .done(function (data) {
-                        $("#UploadFileH1").html(data);
-                    });
+               $.get('@Url.Action("_UploadFile", "Transacciones")', { id: iduploadHeader } )
+                        .done(function (data) {
+                            $("#UploadFileH1").html(data);
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
+                        });
 
-                $.get('@Url.Action("_UploadFileDetail", "GpIntegration")', { UploadFileid: UploadFileid })
-                    .done(function (data) {
-                        $("#UploadFileDetail1").html(data);
-                        hide_loading();
-                        $('.Data-table').DataTable();
+                    $.get('@Url.Action("_UploadFileDetail", "Transacciones")', { id: iduploadHeader } )
+                        .done(function (data) {
+                            $("#UploadFileDetail1").html(data);
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
                     });
 
                 return UploadFileid;
@@ -128,6 +135,7 @@
      });
     }
 
+    @*
       function CreatePaymentDetinGP(detid) {
 
         loading();
@@ -177,38 +185,42 @@
     }
 
     debugger;
-
-    //var elemN = document.getElementById('idTrans');
+        *@
+    var elemN = document.getElementById('idTrans');
     if ( @Model.idTrans != null && @Model.idTrans != 0) {
         window.addEventListener("load", function () {
             var iduploadHeader =  @Model.idTrans;
 
-                $.get('@Url.Action("_UploadFile", "GpIntegration")', { id: iduploadHeader })
-                    .done(function (data) {
-                        $("#UploadFileH1").html(data);
+                    $.get('@Url.Action("_UploadFile", "Transacciones")', { id: iduploadHeader } )
+                        .done(function (data) {
+                            $("#UploadFileH1").html(data);
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
+                        });
 
+                    $.get('@Url.Action("_UploadFileDetail", "Transacciones")', { id: iduploadHeader } )
+                        .done(function (data) {
+                            $("#UploadFileDetail1").html(data);
+                           /* hide_loading();*/
+                          /*  $('.Data-table').DataTable();*/
                     });
 
-                $.get('@Url.Action("_UploadFileDetail", "GpIntegration")', { UploadFileid: iduploadHeader })
+                   // hide_loading();
+
+                    $.get('@Url.Action("_MensajesP", "Transacciones")', { error: idMensaje, Mensaje: mensaje })
                     .done(function (data) {
-                        $("#UploadFileDetail1").html(data);
-                        hide_loading();
-                        $('.Data-table').DataTable();
-                    });
-            debugger;
-            $.get('@Url.Action("_UploadFileAttached", "GpIntegration")', { UploadFileid: iduploadHeader })
-                    .done(function (data) {
-                        $("#UploadFileDetail2").html(data);
+                        $("#UploadFileMesajes").html(data);
+                        mensajes();
                     });
 
             }, false);
-        }*@
+        }
 </script>
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Carga de CashReceipt - Excel</h1>
+    <h1 class="h3 mb-4 text-gray-800">Carga de pagos por NPE - Excel</h1>
 
     <div class="row">
 
@@ -275,23 +287,23 @@
                             </div>
 
                             <!-- Header -->
-                            @*<div class="card">
+                            <div class="card">
                                 <div class="card-header">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                                        <i class="fas fa-cogs"></i>&nbsp;Paso 2. Validacion Archivo | Subir GP.
+                                        <i class="fas fa-cogs"></i>&nbsp;Paso 2. Encabezado de Archivo cargado.
                                     </a>
                                 </div>
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body" id="UploadFileH1">
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
 
                             <!-- Detalle -->
                             <div class="card">
                                 <div class="card-header">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                                        <i class="fas fa-tasks"></i>&nbsp;Paso 3. Revision y Detalles del archivo.
+                                        <i class="fas fa-tasks"></i>&nbsp;Paso 3. Detalles del archivo.
                                     </a>
                                 </div>
                                 <div id="collapseThree" class="collapse" data-parent="#accordion">
@@ -299,19 +311,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Atachar Archivo -->
-                            @*<div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                                        <i class="fas fa-tasks"></i>&nbsp;Paso 4. Atachar Archivo.
-                                    </a>
-                                </div>
-                                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                    <div class="card-body" id="UploadFileDetail2">
-                                    </div>
-                                </div>
-                            </div>*@
 
                             <br>
 

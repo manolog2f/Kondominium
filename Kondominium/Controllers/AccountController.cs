@@ -12,17 +12,12 @@ namespace Kondominium.Controllers
 {
     public class AccountController : BaseController
     {
-
         //private ApplicationSignInManager _signInManager;
         //private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
-
-
-        //Anotacion Ejemplo test test2
-
 
         // GET: /Account/Login
         [AllowAnonymous]
@@ -32,20 +27,16 @@ namespace Kondominium.Controllers
             return View();
         }
 
-
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         public ActionResult Login(ZTAdminEntities.Security.UserEntity model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-
 
             var ValidarLogin = new ZTAdminBL.Security.UserData().ValidatePassword(new ZTAdminEntities.Security.UserValidationEntity(model.Email, model.Password));
 
@@ -70,7 +61,6 @@ namespace Kondominium.Controllers
                 }
                 //Add the cookie to the outgoing cookies collection.
                 Response.Cookies.Add(authCookie);
-
 
                 new Kondominium.Utilities.Log().Set("Login", model.Email, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
 
@@ -98,15 +88,12 @@ namespace Kondominium.Controllers
             {
                 var vdel = new Kondominium_BL.UserConfigDatos().GetByName(UserId, "VerEliminados").PropertyValue;
 
-
                 Session["ViewDeleted"] = !string.IsNullOrEmpty(vdel) && (vdel == "1" ? true : false);
 
                 Core.ViewDeleted = string.IsNullOrEmpty(vdel) ? false : (vdel == "1" ? true : false);
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -136,7 +123,6 @@ namespace Kondominium.Controllers
 
             if (System.Web.HttpContext.Current.Session == null)
             {
-
                 System.Web.HttpContext.Current.Session.Add("MenuMaster", _menus);
             }
             else
@@ -151,10 +137,6 @@ namespace Kondominium.Controllers
             return _menus;
         }
 
-
-
-
-
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -163,19 +145,13 @@ namespace Kondominium.Controllers
             return View();
         }
 
-
-
-
         // GET: /Account/ForgotPassword
         [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
-
-
             return View();
         }
-
 
         //
         // GET: /Account/ForgotPasswordConfirmation
@@ -196,18 +172,12 @@ namespace Kondominium.Controllers
                 return View();
             }
 
-
-
-            // Generar Nuevo Password 
+            // Generar Nuevo Password
             string newPass = System.Web.Security.Membership.GeneratePassword(8, 5);
-
-
-
 
             // Ruta del template HTML
             string Uri = (Request.Url.ToString()).Replace(Request.Url.AbsolutePath, "");
             var dataFile = Server.MapPath("~/Content/EmailTemplate/ForgetPassword.html");
-
 
             // Enviar Correo a usuario Indicado
             var sendmail = new ZTAdminBL.Utilities.Email().sendMAil(new ZTAdminEntities.Utilities.MailEntity
@@ -239,7 +209,6 @@ namespace Kondominium.Controllers
                 Mensajes(new Kondominium_Entities.Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Surgio un error al tratar de recuperar su password." });
                 return View();
             }
-
         }
 
         //
@@ -249,8 +218,6 @@ namespace Kondominium.Controllers
         {
             return code == null ? View("Error") : View();
         }
-
-
 
         //
         // GET: /Account/ResetPasswordConfirmation
@@ -271,10 +238,6 @@ namespace Kondominium.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-
-
-
-
         //
         // POST: /Account/LogOff
         [HttpPost]
@@ -285,7 +248,6 @@ namespace Kondominium.Controllers
 
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
-
 
             new Kondominium.Utilities.Log().Set("LogOff", HttpContext.User.Identity.Name, Request.UserHostName, System.Reflection.Assembly.GetExecutingAssembly().ToString());
             return RedirectToAction("Login", "Account");
@@ -299,8 +261,6 @@ namespace Kondominium.Controllers
         {
             return View();
         }
-
-
 
         //protected override void Dispose(bool disposing)
         //{
@@ -322,7 +282,7 @@ namespace Kondominium.Controllers
         //    base.Dispose(disposing);
         //}
 
-        #region  "Zt"   
+        #region "Zt"
 
         public new ActionResult Profile()
         {
@@ -342,7 +302,6 @@ namespace Kondominium.Controllers
             user.UserId = userBl.UserId;
             //user.userpermission = userBl.userpermission;
 
-
             return View(user);
         }
 
@@ -350,7 +309,6 @@ namespace Kondominium.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         public new ActionResult Profile(Kondominium.Models.UserModel user)
         {
             try
@@ -367,12 +325,10 @@ namespace Kondominium.Controllers
                     RolId = user.RolId,
                     UserId = user.UserId,
                     UserExecute = user.UserId
-
                 });
 
                 ViewBag.Successful = "Datos Actualizados!";
                 ViewBag.MessageSucces = "Datos Actualizados!";
-
             }
             catch (Exception ex)
             {
@@ -383,11 +339,8 @@ namespace Kondominium.Controllers
             return View(user);
         }
 
-
-
         public ActionResult Log_Action()
         {
-
             var log = new List<ZTAdminEntities.Security.Log_ActionEntity>();
             var log1 = new ZTAdminEntities.Security.Log_ActionEntity();
             var logdate = new ZTAdminBL.Security.Log_ActionData().GetByUserId(HttpContext.User.Identity.Name, DateTime.Today.Add(new TimeSpan(-30, 0, 0, 0)), DateTime.Today.Add(new TimeSpan(1, 0, 0, 0)));
@@ -402,19 +355,17 @@ namespace Kondominium.Controllers
                 logx.UserId = item.UserId;
 
                 log.Add(logx);
-
-
             }
 
             return View(log);
         }
-        // POST: 
+
+        // POST:
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Log_Action(String FromDate, String ToDate)
         {
-
             var log = new List<ZTAdminEntities.Security.Log_ActionEntity>();
             var log1 = new ZTAdminEntities.Security.Log_ActionEntity();
             var logdate = new ZTAdminBL.Security.Log_ActionData().GetByUserId(HttpContext.User.Identity.Name, DateTime.Parse(FromDate), DateTime.Parse(ToDate));
@@ -429,19 +380,15 @@ namespace Kondominium.Controllers
                 logx.UserId = item.UserId;
 
                 log.Add(logx);
-
-
             }
 
             return View(log);
         }
 
-
-
-        #endregion
-
+        #endregion "Zt"
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -498,7 +445,7 @@ namespace Kondominium.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
 
+        #endregion Helpers
     }
 }

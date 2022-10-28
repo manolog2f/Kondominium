@@ -86,6 +86,12 @@ namespace Kondominium.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult BalancePropiedad(int PropiedadId)
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public FileResult Export(string GridHtml, String DocName)
@@ -172,6 +178,14 @@ namespace Kondominium.Controllers
         public ActionResult ReciboMR(string VaucherNumber)
         {
             var model = new Kondominium_BL.ReportData().Recibo(VaucherNumber);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult BalancePropiedadMR(int PropiedadId)
+        {
+            var model = new Kondominium_BL.BalanceDatos().ByPropiedad(PropiedadId);
 
             return View(model);
         }
@@ -286,6 +300,27 @@ namespace Kondominium.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult DetalleDePagos()
+        {
+            var model = new Kondominium_BL.DetalledePagoDatos().Ejecutar(DateTime.Now, DateTime.Now);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DetalleDePagos(string FromDate, string ToDate)
+        {
+            var model = new Kondominium_BL.DetalledePagoDatos().Ejecutar(DateTime.Parse(FromDate), DateTime.Parse(ToDate));
+
+            return View(model);
+        }
+
+        //[HttpGet]
+        //public ActionResult _DetalleDePagosMR(string Desde, string Hasta)
+        //{
+        //}
+
         public ActionResult BalanceCondomino(int Id)
         {
             ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
@@ -329,48 +364,48 @@ namespace Kondominium.Controllers
             return View("View", rv);
         }
 
-        public ActionResult BalancePropiedad(int Id)
-        {
-            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+        //public ActionResult BalancePropiedad(int Id)
+        //{
+        //    ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
 
-            var balance = new Kondominium_BL.BalanceDatos().ByPropiedad(Id);
-            var DataSBalance = new ReportDataSource("Balance", balance);
-            var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
-            var DataSPropiedad = new ReportDataSource("Propiedades", new Kondominium_BL.PropiedadesDatos().DataTable(Id));
-            var tTotales = new DataTable();
+        //    var balance = new Kondominium_BL.BalanceDatos().ByPropiedad(Id);
+        //    var DataSBalance = new ReportDataSource("Balance", balance);
+        //    var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
+        //    var DataSPropiedad = new ReportDataSource("Propiedades", new Kondominium_BL.PropiedadesDatos().DataTable(Id));
+        //    var tTotales = new DataTable();
 
-            var tRecibo = balance.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotRecibo);
-            var tPago = balance.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotPago);
-            var tTotal = tRecibo - tPago;
+        //    var tRecibo = balance.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotRecibo);
+        //    var tPago = balance.Where(x => x.Estado == "Contabilizado").Sum(x => x.TotPago);
+        //    var tTotal = tRecibo - tPago;
 
-            tTotales.Columns.Add("TotRecibos");
-            tTotales.Columns.Add("TotPagos");
-            tTotales.Columns.Add("TotBalance");
-            tTotales.Rows.Add(tRecibo, tPago, tTotal);
+        //    tTotales.Columns.Add("TotRecibos");
+        //    tTotales.Columns.Add("TotPagos");
+        //    tTotales.Columns.Add("TotBalance");
+        //    tTotales.Rows.Add(tRecibo, tPago, tTotal);
 
-            var DataSTotales = new ReportDataSource("Totales", tTotales);
+        //    var DataSTotales = new ReportDataSource("Totales", tTotales);
 
-            rv.SizeToReportContent = true;
-            //rv.Width = Unit.Percentage(900);
-            //rv.Height = Unit.Percentage(900);
+        //    rv.SizeToReportContent = true;
+        //    //rv.Width = Unit.Percentage(900);
+        //    //rv.Height = Unit.Percentage(900);
 
-            rv.ShowToolBar = true;
-            rv.ShowPrintButton = true;
-            rv.ShowFindControls = true;
-            rv.ShowExportControls = true;
+        //    rv.ShowToolBar = true;
+        //    rv.ShowPrintButton = true;
+        //    rv.ShowFindControls = true;
+        //    rv.ShowExportControls = true;
 
-            rv.ProcessingMode = ProcessingMode.Local;
-            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\BalancePropiedad.rdlc";
-            rv.LocalReport.DataSources.Add(DataSBalance);
-            rv.LocalReport.DataSources.Add(DataSEmpresa);
-            rv.LocalReport.DataSources.Add(DataSPropiedad);
-            rv.LocalReport.DataSources.Add(DataSTotales);
+        //    rv.ProcessingMode = ProcessingMode.Local;
+        //    rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\BalancePropiedad.rdlc";
+        //    rv.LocalReport.DataSources.Add(DataSBalance);
+        //    rv.LocalReport.DataSources.Add(DataSEmpresa);
+        //    rv.LocalReport.DataSources.Add(DataSPropiedad);
+        //    rv.LocalReport.DataSources.Add(DataSTotales);
 
-            rv.LocalReport.Refresh();
-            ViewBag.ReportViewer = rv;
+        //    rv.LocalReport.Refresh();
+        //    ViewBag.ReportViewer = rv;
 
-            return View("View", rv);
-        }
+        //    return View("View", rv);
+        //}
 
         public ActionResult View(ReportViewer rv)
         {

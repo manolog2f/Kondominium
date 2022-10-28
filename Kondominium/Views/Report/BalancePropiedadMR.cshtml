@@ -1,0 +1,248 @@
+﻿@model IEnumerable<Kondominium_Entities.vwBalanceEntity>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 9pt;
+        }
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            margin-top: 0cm;
+            margin-right: 0cm;
+            margin-bottom: 8.0pt;
+            margin-left: 0cm;
+            line-height: 107%;
+            font-size: 10.0pt;
+            font-family: "Times New Roman",serif;
+        }
+
+        p.EmptyCellLayoutStyle, li.EmptyCellLayoutStyle, div.EmptyCellLayoutStyle {
+            /*        mso-style-name: EmptyCellLayoutStyle;*/
+            margin-top: 0cm;
+            margin-right: 0cm;
+            margin-bottom: 8.0pt;
+            margin-left: 0cm;
+            line-height: 107%;
+            font-size: 1.0pt;
+            font-family: "Times New Roman",serif;
+        }
+
+        .MsoChpDefault {
+            font-size: 10.0pt;
+        }
+
+        .MsoPapDefault {
+            margin-bottom: 8.0pt;
+            line-height: 107%;
+        }
+        /* Page Definitions */
+        .WordSection1 {
+            size: 595.25pt 841.85pt;
+            margin: 56.65pt 56.65pt 56.65pt 56.65pt;
+        }
+
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        /* List Definitions */
+        ol {
+            margin-bottom: 0cm;
+        }
+
+        ul {
+            margin-bottom: 0cm;
+        }
+
+        .mytable td {
+            border-color: #cccccc; /*grey*/
+            border-style: solid;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body lang=ES-SV style='word-wrap:break-word'>
+
+    <div class="WordSection1" id="ReportRecibo">
+        @{
+            var company = new Kondominium_BL.EmpresaDatos().GetById(1);
+            var base64 = Convert.ToBase64String(company.Logo);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            var modelFirst = Model.FirstOrDefault();
+
+            if (modelFirst == null)
+            {
+                modelFirst = new Kondominium_Entities.vwBalanceEntity();
+            }
+
+            decimal TotalPagos = 0;
+            decimal TotalRecibos = 0;
+            decimal Balance = 0;
+
+        }
+        <table>
+            <tr>
+                <td style="width:80%">
+
+                    <H2>Balance de Propiedad</H2>
+                    <H4>@company.EmpresaNombre</H4>
+
+                    <P>Direccion: @company.Direccion  </P>
+                    <P>NIT: @company.Documento2 </P>
+                </td>
+                <td>
+
+                    <div style=" float: right ; text-align:right">
+                        <p>
+                            <img src="@imgSrc" style="width:100px;height:100px" align="middle">
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <hr style="color: #6e7c3e; background-color: #6e7c3e; height: 2px; border: none; max-width: 100%; " />
+
+        <table style="max-width: 100%;">
+            <tr>
+                <td width="50%">
+                    Condomino: @modelFirst.Cliente.VFullName
+                </td>
+                <td width="50%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Propiedad: @modelFirst.Propiedad.VPropiedad
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Descripcion: @modelFirst.Propiedad.Descripcion
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+
+        <hr style="color: #6e7c3e; background-color: #6e7c3e; height: 2px; border: none; max-width: 100%; " />
+
+        @*<div style="background-color: #6e7c3e ;padding-left:4px">
+                <label style="color:white">Detalle del Periodo Facturado</label>
+            </div>*@
+
+        <table class="table mytable">
+            <tr style="background-color: #6e7c3e ;padding-left:4px; color:white ">
+                <th>
+                    Comrpobante
+                </th>
+                <th>
+                    Tipo de Documento
+                </th>
+                <th>
+                    Emision
+                </th>
+                <th>
+                    Vencimiento
+                </th>
+                <th>
+                    Periodo Facturado
+                </th>
+                <th>
+                    Recibos
+                </th>
+                <th>
+                    Pagos
+                </th>
+                <th>
+                    Propiedad
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VaucherNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoCxC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaDeEmision)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaDeVencimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PeriodoFacturado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotRecibo)
+
+                        @{
+                            TotalRecibos += item.TotRecibo;
+                        }
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotPago)
+
+                       @{ 
+                           TotalPagos += item.TotPago;
+                       }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Propiedad.VPropiedad)
+                    </td>
+                </tr>
+                           }
+        </table>
+
+        <div>
+            <table style="background-color: #6e7c3e; color:white">
+                <tr>
+                    <td style="padding-left:4px">
+                        <h6>Total de Recibos:</h6>
+                    </td>
+                    <td style="text-align:right; padding-right:4px ">
+                        <h6> @TotalRecibos.ToString("$ #,##0.00") </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:4px">
+                        <h6>Total de Pagos:</h6>
+                    </td>
+                    <td style="text-align:right; padding-right:4px ">
+                        <h6> @TotalPagos.ToString("$ #,##0.00") </h6>
+                    </td>
+                </tr>
+                @{ 
+
+                    Balance = TotalRecibos - TotalPagos;
+                }
+
+                <tr>
+                    <td style="padding-left:4px">
+                        <h6>Balance:</h6>
+                    </td>
+                    <td style="text-align:right; padding-right:4px ">
+                        <h6> @Balance.ToString("$ #,##0.00") </h6>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <br>
+        </div>
+    </div>
+</body>
+</html>

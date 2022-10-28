@@ -43,7 +43,7 @@ namespace Kondominium_BL
             var g = CuentasGeneradasH(FechaGeneracion, FechaVencimiento, usuario, PeriodoFacturado);
 
             /*Obtener Listado de Propiedades*/
-            var listPropiedades = context.propiedades.ToList();
+            var listPropiedades = context.propiedades.Where(x => x.ArancelId != null && x.Eliminado != true).ToList();
 
             foreach (var item in listPropiedades)
             {
@@ -182,18 +182,21 @@ namespace Kondominium_BL
 
             foreach (var item in detFinal)
             {
-                var detallei = new CuentasPorCobrarDetalleDatos().Save(new CuentasPorCobrarDetalleEntity
+                if (new ProductosDatos().GetById(item.ProductoId) != null)
                 {
-                    CreadoPor = "KomdominoSystem",
-                    ModificadoPor = "KomdominoSystem",
-                    FechaDeCreacion = DateTime.Now,
-                    FechaDeModificacion = DateTime.Now,
-                    Descripcion = new ProductosDatos().GetById(item.ProductoId).Descripcion,
-                    Eliminado = false,
-                    Monto = (decimal)item.Monto,
-                    ProductoId = item.ProductoId,
-                    VaucherNumber = header.Item1.VaucherNumber
-                });
+                    var detallei = new CuentasPorCobrarDetalleDatos().Save(new CuentasPorCobrarDetalleEntity
+                    {
+                        CreadoPor = "KomdominoSystem",
+                        ModificadoPor = "KomdominoSystem",
+                        FechaDeCreacion = DateTime.Now,
+                        FechaDeModificacion = DateTime.Now,
+                        Descripcion = new ProductosDatos().GetById(item.ProductoId).Descripcion,
+                        Eliminado = false,
+                        Monto = (decimal)item.Monto,
+                        ProductoId = item.ProductoId,
+                        VaucherNumber = header.Item1.VaucherNumber
+                    });
+                }
             }
 
             return header.Item1.VaucherNumber;

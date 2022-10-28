@@ -5,6 +5,82 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<script type="text/javascript">
+    $(function () {
+        $("select").each(function () {
+            if ($(this).find("option").length <= 1) {
+                $(this).attr("disabled", "disabled");
+            }
+        });
+
+        $("select").change(function () {
+            var value = 0;
+            var id = $(this).attr("id");
+            debugger;
+            if (id != "TipoCxC" && id != "PeriodoFacturado" && id != "MetodoPago") {
+
+                if ($(this).val() != "") {
+                    value = $(this).val();
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Transacciones/AjaxMethodPropiedad",
+                    data: '{Cliente: "' + id + '", ClienteID: ' + value + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var dropDownId;
+
+                        switch (id) {
+                            case "ClienteId":
+                                var list = response.Propiedades;
+                                PopulateDropDown("#PropiedadId", list);
+                                break;
+                        }
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+            }
+        });
+    });
+
+    function DisableDropDown(dropDownId) {
+        $(dropDownId).attr("disabled", "disabled");
+        $(dropDownId).empty().append('<option selected="selected" value="0">Please select</option>');
+    }
+
+    function PopulateDropDown(dropDownId, list) {
+        debugger;
+
+        $(dropDownId).empty();
+
+        if (list != null && list.length > 0) {
+            $(dropDownId).removeAttr("disabled");
+            $.each(list, function () {
+                $(dropDownId).append($("<option></option>").val(this['Value']).html(this['Text']));
+            });
+        }
+    }
+
+    /// Java script levantar un mensaje
+        //$(function () {
+        //    if ($("#ClienteId").val() != "" && $("#StateId").val() != ""  {
+        //        var message = "Country: " + $("#CountryId option:selected").text();
+        //        message += "\nState: " + $("#StateId option:selected").text();
+        //        message += "\nCity: " + $("#CityId option:selected").text();
+        //        alert(message);
+        //    }
+        //});
+</script>
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -111,14 +187,21 @@
                                         </div>
                                     </div>
 
+                                    @{
+                                        var mdl = new Kondominium.Models.CascadingModel();
+
+                                        if (Model.ClienteId != null)
+                                        {
+                                            mdl.Propiedades = new Kondominium_BL.PropiedadesDatos().GetAllByClienteId((int)Model.ClienteId).Select(x => new SelectListItem { Value = x.PropiedadId.ToString(), Text = x.VPropiedad }).ToList();
+                                        }
+                                    }
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.PropiedadId, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
 
-                                                    @Html.DropDownListFor(model => model.PropiedadId,
-                                 new SelectList(new Kondominium.Controllers.PropiedadesController().ListPropiedades(), "PropiedadId", "VPropiedad"), "Selecciona la propiedad", new { @class = "form-control" })
+                                                    @Html.DropDownListFor(model => model.PropiedadId, mdl.Propiedades, "Please select", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.PropiedadId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>

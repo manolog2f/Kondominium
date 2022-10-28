@@ -4,13 +4,9 @@ namespace Kondominium_BL
 {
     public class GeneradorCodigoData
     {
-
-
-
         /// <summary>
         /// gln+pago(6 digitos)+impar+8020(referencia)
         /// </summary>
-
 
         public (string barra, string mostrar) BR(string gln, decimal Monto, DateTime FechaPago, string arancel, string NumeroCasa, string LetraCasa, string Poligono)
         {
@@ -27,10 +23,9 @@ namespace Kondominium_BL
             else
                 xMonto = "0000000000" + Monto.ToString().Replace(",", "").Replace(".", "") + "00";
 
-
             xMonto = xMonto.Substring(xMonto.Length - 10, 10);
 
-            xReferencia = rightMR("0" + ReemplazaABC(arancel), 2) +
+            xReferencia = rightMR("0" + ReemplazaABC(arancel.Substring(0, 2)), 2) +
                             rightMR("0" + NumeroCasa, 2) +
                             ReemplazaABC(LetraCasa) +
                             ReemplazaABC(Poligono);
@@ -45,8 +40,6 @@ namespace Kondominium_BL
 
         public string NPE(string gln, decimal Monto, DateTime FechaPago, string arancel, string NumeroCasa, string LetraCasa, string Poligono)
         {
-
-
             // Ultimos 4 digitos de gln
             var xgln = gln.Substring(gln.Length - 5, 5).Substring(0, 4);
             var xMonto = "";
@@ -56,28 +49,23 @@ namespace Kondominium_BL
             else
                 xMonto = "00000000" + Monto.ToString().Replace(",", "").Replace(".", "") + "00";
 
-
-
             xMonto = xMonto.Substring(xMonto.Length - 6, 6);
 
             /// Yanira dijo que era una constante = 0
             var xImpart = "0";
 
             ////8020 Referencia para este caso sera poligo y casa
-            var xReferencia = rightMR("0" + ReemplazaABC(arancel), 2) +
+            var xReferencia = rightMR("0" + ReemplazaABC(arancel.Substring(0, 2)), 2) +
                               rightMR("0" + NumeroCasa, 2) +
                               ReemplazaABC(LetraCasa) +
                               ReemplazaABC(Poligono);
 
-
             var xFecha = FechaPago.ToString("MMyy");
             var PreNPE = string.Concat(xgln, xMonto, xImpart, xReferencia, xFecha);
-
 
             var NPEFinal = new Kondominium_vbFunciones.NPEFuntions().divNPE(PreNPE, new Kondominium_vbFunciones.NPEFuntions().BornNPE(PreNPE));
 
             return NPEFinal;
-
         }
 
         public string ReemplazaABC(string textor)
@@ -108,15 +96,11 @@ namespace Kondominium_BL
             Replace("X", "24").
             Replace("Y", "25").
             Replace("Z", "26");
-
         }
 
         private string rightMR(string texto, int caracteres)
         {
             return texto.Substring(texto.Length - caracteres, caracteres);
         }
-
     }
-
-
 }

@@ -2,6 +2,8 @@
 using Kondominium.Utilities;
 using Kondominium_Entities;
 using System.Web.Mvc;
+using System.Web.Routing;
+using ZTAdminEntities;
 
 namespace Kondominium.Controllers
 {
@@ -11,7 +13,6 @@ namespace Kondominium.Controllers
         {
             return View();
         }
-
 
         #region "Usuario"
 
@@ -25,10 +26,9 @@ namespace Kondominium.Controllers
             return View(model);
         }
 
-
         // GET: Inventory
         [HttpGet]
-        public ActionResult EditUser(string Id)
+        public ActionResult EditUser(string Id, Resultado codigo = null)
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
@@ -47,7 +47,6 @@ namespace Kondominium.Controllers
         [HttpPost]
         public ActionResult EditUser(ZTAdminEntities.Security.UserEntity modl, FormCollection collection)
         {
-
             if (modl.Password != "000000000000000" && modl.Password != null)
             {
                 if (modl.Password != collection["PasswordConfirmation"].ToString())
@@ -63,9 +62,6 @@ namespace Kondominium.Controllers
                     Mensajes(validationpass.Item2);
                     return View(modl);
                 }
-
-
-
             }
             else
             {
@@ -79,9 +75,10 @@ namespace Kondominium.Controllers
             return View(model.Item1);
         }
 
-        #endregion
+        #endregion "Usuario"
 
         #region "Rol"
+
         public ActionResult RolList()
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
@@ -90,7 +87,6 @@ namespace Kondominium.Controllers
             var model = new ZTAdminBL.Security.RolData().GetAll();
             return View(model);
         }
-
 
         // GET: Inventory
         [HttpGet]
@@ -105,7 +101,6 @@ namespace Kondominium.Controllers
             {
                 model.New = true;
             }
-
 
             return View(model);
         }
@@ -124,9 +119,10 @@ namespace Kondominium.Controllers
             return View(model.Item1);
         }
 
-        #endregion
+        #endregion "Rol"
 
         #region "Perfil"
+
         public ActionResult PerfilList()
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
@@ -134,10 +130,8 @@ namespace Kondominium.Controllers
 
             var model = new ZTAdminBL.Security.ProfileData().GetAll();
 
-
             return View(model);
         }
-
 
         // GET: Inventory
         [HttpGet]
@@ -152,7 +146,6 @@ namespace Kondominium.Controllers
             {
                 model.New = true;
             }
-
 
             return View(model);
         }
@@ -171,23 +164,24 @@ namespace Kondominium.Controllers
             return View(model.Item1);
         }
 
-        #endregion
+        #endregion "Perfil"
 
         #region "PerfilesDeUsuario"
 
         [HttpGet]
-        public ActionResult UserProfileEdit(string Id)
+        public ActionResult UserProfileEdit(string UserId)
         {
-            var modelU = new ZTAdminBL.Security.UserData().GetById(Id);
-            return View(modelU);
+            var modelU = new ZTAdminBL.Security.UserProfileData().GetByUserId(UserId);
+
+            return PartialView(modelU);
         }
 
-        [HttpPost]
-        public ActionResult UserProfileEdit(ZTAdminEntities.Security.UserEntity mdl)
-        {
-            var modelU = new ZTAdminBL.Security.UserData().GetById(mdl.UserId);
-            return View(modelU);
-        }
+        //[HttpPost]
+        //public ActionResult UserProfileEdit(ZTAdminEntities.Security.UserProfileEntity mdl)
+        //{
+        //    var modelU = new ZTAdminBL.Security.UserData().GetById(mdl.UsuarioId);
+        //    return PartialView(modelU);
+        //}
 
         [HttpGet]
         public ActionResult _PartialPerfildeUsuarioUserData(string Id)
@@ -199,14 +193,126 @@ namespace Kondominium.Controllers
         [HttpGet]
         public ActionResult _PartialPerfildeUsuarioSelectedGrid(string Id)
         {
-
             var modelp = new ZTAdminBL.Security.UserProfileData().GetById(Id);
             /// usuario, ProfileUsuario,
 
             return View(modelp);
         }
 
+        [HttpPost]
+        public ActionResult AgregarProfileUser(string ProfileId, string UserIdProfile)
+        {
+            var mdl = new jsModel();
 
+            try
+            {
+                var dta = new ZTAdminBL.Security.UserProfileData().Save(new ZTAdminEntities.Security.UserProfileEntity
+                { Active = 1, ProfileId = ProfileId, UserExecute = GetCurrentUser(), UsuarioId = UserIdProfile });
+
+                var msj = new Kondominium_Entities.Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Perfil agregado con exito" };
+
+                mdl.mensaje = msj;
+                mdl.ClienteDocId = 1;
+                mdl.ClienteId = 1;
+                mdl.DocumentType = UserIdProfile;
+
+                return Json(mdl);
+            }
+            catch (System.Exception)
+            {
+                var msj = new Kondominium_Entities.Resultado { Codigo = CodigosMensaje.Error, Mensaje = "Erro al tratar de agregar el perfil" };
+
+                mdl.mensaje = msj;
+                mdl.ClienteDocId = 0;
+                mdl.ClienteId = 0;
+                mdl.DocumentType = "0";
+
+                return Json(mdl);
+            }
+
+            //return Json(mdl);
+        }
+
+        [HttpPost]
+        public ActionResult _RemoverUserPerfil(string Userid, string PerfilId)
+        {
+            var mdl = new jsModel();
+            try
+            {
+                var dta = new ZTAdminBL.Security.UserProfileData().Delete(Userid, PerfilId);
+
+                mdl.mensaje = new Kondominium_Entities.Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Registro removido con exito" };
+                mdl.ClienteDocId = 2;
+                mdl.ClienteId = 2;
+                mdl.DocumentType = Userid;
+
+                return Json(mdl);
+            }
+            catch (System.Exception)
+            {
+                mdl.mensaje = new Kondominium_Entities.Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Surgio un error al tratar de remover el perfil del usuario" };
+                mdl.ClienteDocId = 0;
+                mdl.ClienteId = 0;
+                mdl.DocumentType = Userid;
+
+                return Json(mdl);
+            }
+
+            //return Json(mdl);
+        }
+
+        public ActionResult _MensajesS(int error, string Mensaje)
+        {
+            var mdel = new Models.jsModel();
+            var msg = new Kondominium_Entities.Resultado();
+
+            switch (error)
+            {
+                case 0:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.Exito;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Procesado con Exito" : Mensaje;
+                    ViewBag.Successful = msg.Mensaje;
+                    break;
+
+                case 9999:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.Error;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
+                    ViewBag.Error = string.IsNullOrEmpty(Mensaje) ? "Error al ejecutar el proceso" : Mensaje;
+                    break;
+
+                case 5000:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.Warning;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Proceso ejecutado, pero existe una advertencia" : Mensaje;
+
+                    ViewBag.Warning = msg.Mensaje;
+                    break;
+
+                case 9000:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.Log;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro de Log" : Mensaje;
+                    break;
+
+                case 9898:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.Eliminado;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro Eliminado" : Mensaje;
+                    break;
+
+                case 97:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.No_Se_Puede_Eliminar;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro no puede ser eliminado" : Mensaje;
+                    break;
+
+                case 96:
+                    msg.Codigo = Kondominium_Entities.CodigosMensaje.No_Existe;
+                    msg.Mensaje = string.IsNullOrEmpty(Mensaje) ? "Registro no Existe" : Mensaje;
+                    ViewBag.Warning = msg.Mensaje;
+                    break;
+            }
+
+            mdel.mensaje = msg;
+
+            return PartialView(mdel);
+        }
 
         //// GET: Inventory
         //[HttpPost]
@@ -222,16 +328,13 @@ namespace Kondominium.Controllers
         //    return View(model.Item1);
         //}
 
-
-        #endregion
+        #endregion "PerfilesDeUsuario"
 
         #region "Test Envio de Coreos"
-
 
         [HttpGet]
         public ActionResult EnvioEmailTest()
         {
-
             return View();
         }
 
@@ -257,7 +360,6 @@ namespace Kondominium.Controllers
 
                 if (sendmail.Cod == 0)
                 {
-
                     Mensajes(new Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Exito, Mensaje = "Envio de correo exitoso" });
                     return View();
                 }
@@ -266,7 +368,6 @@ namespace Kondominium.Controllers
                     Mensajes(new Resultado { Codigo = Kondominium_Entities.CodigosMensaje.Error, Mensaje = "Surgio un error al enviar el correo de pruebas" });
                     return View();
                 }
-
             }
             catch (System.Exception ex)
             {
@@ -276,11 +377,6 @@ namespace Kondominium.Controllers
             }
         }
 
-        #endregion
-
-
+        #endregion "Test Envio de Coreos"
     }
-
-
-
 }

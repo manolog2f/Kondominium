@@ -1,4 +1,6 @@
-﻿using Kondominium_Entities;
+﻿using Kondominium.Models;
+using Kondominium.Utilities;
+using Kondominium_Entities;
 using System;
 using System.Web.Mvc;
 
@@ -323,5 +325,61 @@ namespace Kondominium.Controllers
         //public ActionResult _PartialToDoList()
         //{
         //}
+
+        #region "Dasboard"
+
+        /// 10 Clientes mas Morosos
+
+        public ActionResult ClientesMorosos(int CantiMax = 10)
+        {
+            var datos = new Kondominium_BL.BalanceDatos().ClientesMorosos();
+
+            return PartialView(datos);
+        }
+
+        //[HttpPost]
+        //public ActionResult ExportarClientesMorosos()
+        //{
+        //    var mdl = new jsModel();
+        //    var dtble = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(new Kondominium_BL.BalanceDatos().ClientesMorosos());
+
+        //    ExcelMR.ExportDataTableToExcel(dtble);
+
+        //    return Json(mdl);
+        //}
+
+        //public void ProcessRequest(HttpContext context)
+        //{
+        //    string connectionString = @"Data Source=ESPIGA\SQL2005; Initial Catalog=MSS; User Id=sa; Password=******";
+        //    using (SqlConnection cnn = new SqlConnection(connectionString))
+        //    {
+        //        string selectCommand = "SELECT * FROM Customers";
+        //        SqlDataAdapter da = new SqlDataAdapter(selectCommand, cnn);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        Utilities.ExportDataTableToExcel(ds.Tables.Item(0));
+        //    }
+        //}
+
+        /// Propiedades Saldos Pendientes - Propiedad
+        public ActionResult PropiedadesMora(int CantiMax = 1000)
+        {
+            var datos = new Kondominium_BL.BalanceDatos().PropiedadesMorosos(CantiMax);
+            return PartialView(datos);
+        }
+
+        /// Cobrado por Dia
+        /// por Semana
+        /// por Mes
+        public ActionResult CobrosRealizadoFecha(DateTime FromDate, DateTime ToDate)
+        {
+            FromDate = FromDate == null ? DateTime.Now.AddMonths(-1) : FromDate;
+            ToDate = ToDate == null ? DateTime.Now : ToDate;
+
+            var datos = new Kondominium_BL.BalanceDatos().PagosPorFecha(FromDate, ToDate);
+            return PartialView(datos);
+        }
+
+        #endregion "Dasboard"
     }
 }

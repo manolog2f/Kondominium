@@ -82,7 +82,11 @@
     <Compile Include="CuentasGeneradasEntity.cs" />
     <Compile Include="CuentasPorCobrarPagoEntity.cs" />
     <Compile Include="CxcEntity.cs" />
+    <Compile Include="DashClientesMorosos.cs" />
+    <Compile Include="DetalleDePagoEntity.cs" />
     <Compile Include="DocumentEntity.cs" />
+    <Compile Include="PagosPorMetodoEntity.cs" />
+    <Compile Include="UploadFileDEntity.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LugaresEntity.cs" />
     <Compile Include="PaseoEntity.cs" />

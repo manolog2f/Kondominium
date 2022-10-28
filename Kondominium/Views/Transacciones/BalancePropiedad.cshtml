@@ -93,16 +93,14 @@
                                     @Html.DisplayFor(modelItem => item.Propiedad.VPropiedad)
                                 </td>
                                 @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>*@
+                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                    </td>*@
                             </tr>
                         }
                     </tbody>
                 </table>
-
-
 
                 <div>
                     <div class="row">
@@ -117,7 +115,6 @@
                             </div>
                         </div>
 
-
                         <div class="col">
                             <div class="form-group">
                                 @Html.Label("Total Pagos:")
@@ -129,7 +126,6 @@
                             </div>
                         </div>
 
-
                         <div class="col">
                             <div class="form-group">
                                 @Html.Label("Balance:")
@@ -140,11 +136,7 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
 
                     @{
 
@@ -152,12 +144,13 @@
                     }
                     @*@Html.ActionLink("Exportar Excel", "ExportExcelBalanceCliente", "Transacciones", new { ClientId = ClienteIdx }, new { target = "_blank", @class = "btn btn-info" })*@
                     <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
-                    @Html.ActionLink("Imprimir", "BalancePropiedad", "Report", new { Id = PropiedadIdX }, new { target = "_blank", @class = "btn btn-info" })
-
-
+                    @Html.ActionLink("Imprimir", "BalancePropiedad", "Report", new { PropiedadId = PropiedadIdX }, new { target = "_blank", @class = "btn btn-info" })
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<div>
+    @Html.ActionLink("Retornar  a la Lista", "ListadoPropiedades", "Propiedades")
 </div>

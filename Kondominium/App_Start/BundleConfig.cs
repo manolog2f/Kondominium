@@ -2,7 +2,6 @@
 
 namespace Kondominium
 {
-
     // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
     public class BundleConfig
     {
@@ -21,12 +20,10 @@ namespace Kondominium
                 "~/Scripts/respond.js",
                 "~/Scripts/jquery.form.js",
                 "~/Scripts/chosen.jquery.min.js",
-                "~/Scripts/jquery-1.12.4.js",
-                "~/Scripts/jquery-ui-1.12.1.min.js",
+                "~/Scripts/jquery-3.6.0.js",
+                "~/Scripts/jquery-ui-3.6.0.min.js",
                 "~/Scripts/jquery.maskedinput.js",
                 "~/Scripts/jquery.maskedinput.min.js"
-
-
 
             ));
 
@@ -78,5 +75,3 @@ namespace Kondominium
         }
     }
 }
-
-

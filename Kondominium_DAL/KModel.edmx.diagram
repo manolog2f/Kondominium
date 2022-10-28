@@ -94,7 +94,10 @@
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwrecibo" Width="1.5" PointX="22.375" PointY="5.75" />
         <EntityTypeShape EntityType="db_a43bba_kondomiModel.contratos" Width="1.5" PointX="8" PointY="20.75" />
         <AssociationConnector Association="db_a43bba_kondomiModel.contratosDetalle_FK_1" />
-        <EntityTypeShape EntityType="db_a43bba_kondomiModel.uploadfileh" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.uploadfileh" Width="1.5" PointX="24.375" PointY="5.875" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.uploadfiled" Width="1.5" PointX="26.625" PointY="4.875" />
+        <AssociationConnector Association="db_a43bba_kondomiModel.uploadfiled_FK" />
+        <EntityTypeShape EntityType="db_a43bba_kondomiModel.vwpagos2" Width="1.5" PointX="24.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

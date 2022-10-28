@@ -16,8 +16,6 @@
 
     });
 
-
-
    var submitCalendarFuntion;
    function SubmitFilterCalendar()
     {
@@ -35,25 +33,19 @@
                     $("#PartialCalendar").html(data);
                 });
 
-
               @*$.get('@Url.Action("_PartialCalendarPost", "Home")', { FechaInicio: vInicio, FechaFin: vFin })
                 .done(function (data) {
                     $("#PartialCalendar").html(data);
                 });*@
         }
     }
-
-
 </script>
-
-
-
 
 <div class="jumbotron mt-2 jumbotron-la-hacienda mb-2">
     <a href="@Url.Action("Index", "Home")" class="logo mr-auto">
         <img src="~/Content/images/logo.png" class="img-fluid" />
     </a>
-    <h1>Komdomioniun</h1>
+    <h1>Kondominium</h1>
     <p class="lead">
         La vida es corta para vivirlo en pequeño
     </p>
@@ -71,7 +63,6 @@
             <div class="card mb-4">
 
                 <h3>  <i class="fas fa-calendar-week"></i>&nbsp; Calendario</h3>
-
 
                 @using (Ajax.BeginForm("_PartialCalendarPost", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }, new { @id = "frmPartialCalendar", enctype = "multipart/form-data" }))
                 {
@@ -125,11 +116,8 @@
                         }
                     </div>
 
-
                     <div>
                         <div class="card-body" id="PartialCalendar">
-
-
                         </div>
                     </div>
                 }

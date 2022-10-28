@@ -10,8 +10,8 @@
 <script>
 
     function SubmitUploadCXCPago() {
-
-        var form = document.getElementById("frmPartialUDocPago");
+        debugger;
+        var form = document.getElementById("frmUDocPago");
         if (form.getAttribute("enctype") === "multipart/form-data") {
             loading();
             var xhr = new XMLHttpRequest();
@@ -57,98 +57,108 @@
 
 
 
-<div class="form-horizontal">
+<div>
 
-    @using (Ajax.BeginForm("_EditCuentasPorCobrarPagoUpdate", "Transacciones", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd2", LoadingElementId = "loading" }, new { @id = "frmPartialUDocPago", enctype = "multipart/form-data" }))
+    @*<% using (Ajax.BeginForm("Action","Controller",null,new AjaxOptions {InsertionMode = InsertionMode.Replace,UpdateTargetId = "dvWLR",HttpMethod = "Post"}, new {@id = "frmID" })){ %>*@
+
+
+    @using (Ajax.BeginForm("_EditCuentasPorCobrarPagoUpdate", "Transacciones", null,
+        new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }))
     {
 
-        @Html.AntiForgeryToken()
+        <form id="frmUDocPago"  enctype = "multipart/form-data">
 
-    <div class="form-horizontal">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div>
 
-        <hr />
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
+                <hr />
 
 
 
 
 
-        @Html.HiddenFor(model => model.CuentasPorCobrarPagoId, new { htmlAttributes = new { @class = "form-control" } })
-
-        @Html.HiddenFor(model => model.VaucherNumber, new { htmlAttributes = new { @class = "form-control" } })
 
 
-        @Html.HiddenFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MetodoPago, htmlAttributes: new { @class = "control-label " })
-                    <div class="col-md-10">
-                     
-                        @Html.DropDownListFor(model => model.MetodoPago,
-                                                new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
-                                                {
-                                                    Text = x.ToString()
-                                                ,
-                                                    Value = x.ToString()
-                                                }),
-                                                "Seleccione El Metodo de pago",
-                                              new { @class = "form-control" })
 
 
-                        @Html.ValidationMessageFor(model => model.MetodoPago, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CuentasPorCobrarPagoId, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.HiddenFor(model => model.VaucherNumber, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                @Html.HiddenFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MetodoPago, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+
+                                @Html.DropDownListFor(model => model.MetodoPago,
+                                                        new Kondominium.Controllers.TransaccionesController().ListTipoMetodoPago().Select(x => new SelectListItem
+                                                        {
+                                                            Text = x.ToString()
+                                                        ,
+                                                            Value = x.ToString()
+                                                        }),
+                                                        "Seleccione El Metodo de pago",
+                                                      new { @class = "form-control" })
+
+
+                                @Html.ValidationMessageFor(model => model.MetodoPago, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReferenciaPago, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ReferenciaPago, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ReferenciaPago, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label " })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ReferenciaPago, htmlAttributes: new { @class = "control-label " })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ReferenciaPago, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ReferenciaPago, "", new { @class = "text-danger" })
+
+
+                @if (Model.Estado < 2)
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="button" class="btn btn-primary" onclick="SubmitUploadCXCPago()">
+                                <i class="fa fa-save" aria-hidden="true"></i>
+                                Almacenar Pago
+                            </button>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
 
-            <div class="col">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label " })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
 
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label " })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        @if (Model.Estado < 2)
-        {
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="button" class="btn btn-primary" onclick="SubmitUploadCXCPago()">
-                        <i class="fa fa-save" aria-hidden="true"></i>
-                        Almacenar Pago
-                    </button>
-                </div>
-            </div>
-        }
+            </form>
+            }
     </div>
-    }

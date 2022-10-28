@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ZTAdminEntities.Security.Log_ActionEntity>
+
+@{
+    ViewBag.Title = "Log_Action";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Log Actions</h1>
+    <p class="mb-4"></p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Log Actions</h6>
+        </div>
+        <div class="card-body">
+
+            @*<input id="datepicker" width="276" class="form-control datepicker" , placeholder="Enter Drop-off date here..." />*@
+
+            <form method="post" action='@Url.Action("Log_Action", "Account")'>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="input-group date" id="datepicker" data-target-input="nearest">
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
+                                    @*<input id="datepickerFrom" width="276" class="form-control datepicker" , placeholder="Fro Date..." />*@
+
+                                    @Html.TextBox("FromDate", null, new
+                               {
+                                   placeholder = "From Date...",
+                                   @class = "form-control datepicker"
+                               })
+                                    <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
+                                    @*<input id="datepickerTo" width="276" class="form-control datepicker" , placeholder="To date..." />*@
+
+                                    @Html.TextBox("ToDate", null, new
+                               {
+                                   placeholder = "To Date...",
+                                   @class = "form-control datepicker"
+                               })
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-light btn-icon-split">
+                                    <span class="icon text-gray-600">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                    <span class="text">Filtrar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateTimeOfAction)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Host)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Action)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateTimeOfAction)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Host)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Action)
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateTimeOfAction)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Host)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Action)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page level plugins -->

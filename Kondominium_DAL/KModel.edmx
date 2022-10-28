@@ -451,7 +451,7 @@
           <Property Name="DateTimeOfAction" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="Host" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RowId" Type="int" Nullable="false" />
+          <Property Name="RowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="lugares">
           <Key>
@@ -670,6 +670,27 @@
           <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
           <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
         </EntityType>
+        <EntityType Name="uploadfiled">
+          <Key>
+            <PropertyRef Name="UploadFileHId" />
+            <PropertyRef Name="UploadFileDId" />
+          </Key>
+          <Property Name="UploadFileHId" Type="int" Nullable="false" />
+          <Property Name="UploadFileDId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="1" />
+          <Property Name="Linea" Type="varchar" MaxLength="6" />
+          <Property Name="Hora" Type="varchar" MaxLength="8" />
+          <Property Name="Fecha" Type="varchar" MaxLength="8" />
+          <Property Name="CodigoInterno" Type="varchar" MaxLength="50" />
+          <Property Name="Monto" Type="varchar" MaxLength="15" />
+          <Property Name="BarraNPE" Type="varchar" MaxLength="50" />
+          <Property Name="Banco" Type="varchar" MaxLength="15" />
+          <Property Name="FilaTexto" Type="varchar" MaxLength="200" />
+          <Property Name="VaucherNumber" Type="varchar" MaxLength="25" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="50" />
+          <Property Name="FechaProceso" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="uploadfileh">
           <Key>
             <PropertyRef Name="UploadFileHId" />
@@ -762,6 +783,41 @@ warning 6002: The table/view 'def.db_a43bba_kondomi.vwpagos' does not have a pri
           <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="PropiedadId" Type="int" />
           <Property Name="FechadePago" Type="datetime" Precision="0" />
+          <Property Name="Estado" Type="int" />
+          <Property Name="FullName" Type="varchar" MaxLength="91" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="TelefonoMovil" Type="varchar" MaxLength="15" />
+          <Property Name="TelefonoFijo" Type="varchar" MaxLength="15" />
+          <Property Name="PropiedadDescripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Casa" Type="int" />
+          <Property Name="PoligonoId" Type="varchar" MaxLength="5" />
+          <Property Name="ArancelId" Type="int" />
+          <Property Name="Senda" Type="varchar" MaxLength="5" />
+          <Property Name="Calle" Type="varchar" MaxLength="5" />
+          <Property Name="Avenida" Type="varchar" MaxLength="5" />
+          <Property Name="CasaLetra" Type="varchar" MaxLength="2" />
+          <Property Name="propiedadF" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.db_a43bba_kondomi.vwpagos2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwpagos2">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarPagoId" />
+            <PropertyRef Name="Monto" />
+          </Key>
+          <Property Name="CuentasPorCobrarPagoId" Type="int" Nullable="false" />
+          <Property Name="VaucherNumber" Type="varchar" MaxLength="25" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="MetodoPago" Type="varchar" MaxLength="25" />
+          <Property Name="ReferenciaPago" Type="varchar" MaxLength="45" />
+          <Property Name="Observacion" Type="varchar" MaxLength="100" />
+          <Property Name="FechaDeCreacion" Type="datetime" Precision="0" />
+          <Property Name="FechaDeModificacion" Type="datetime" Precision="0" />
+          <Property Name="CreadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="ModificadoPor" Type="varchar" MaxLength="15" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="PropiedadId" Type="int" />
+          <Property Name="FechadePago" Type="date" />
           <Property Name="Estado" Type="int" />
           <Property Name="FullName" Type="varchar" MaxLength="91" />
           <Property Name="Email" Type="varchar" MaxLength="150" />
@@ -1271,6 +1327,18 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="uploadfiled_FK">
+          <End Role="uploadfileh" Type="Self.uploadfileh" Multiplicity="1" />
+          <End Role="uploadfiled" Type="Self.uploadfiled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uploadfileh">
+              <PropertyRef Name="UploadFileHId" />
+            </Principal>
+            <Dependent Role="uploadfiled">
+              <PropertyRef Name="UploadFileHId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="userconfig_FK">
           <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="userconfig" Type="Self.userconfig" Multiplicity="*" />
@@ -1332,6 +1400,7 @@ warning 6035: The relationship 'contratos_FK' has columns that are not part of t
           <EntitySet Name="submenu" EntityType="Self.submenu" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="submenupermission" EntityType="Self.submenupermission" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="tareas" EntityType="Self.tareas" Schema="db_a43bba_kondomi" store:Type="Tables" />
+          <EntitySet Name="uploadfiled" EntityType="Self.uploadfiled" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="uploadfileh" EntityType="Self.uploadfileh" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="db_a43bba_kondomi" store:Type="Tables" />
           <EntitySet Name="userconfig" EntityType="Self.userconfig" Schema="db_a43bba_kondomi" store:Type="Tables" />
@@ -1380,6 +1449,37 @@ FROM `vwbalance` AS `vwbalance`</DefiningQuery>
 `vwpagos`.`CasaLetra`, 
 `vwpagos`.`propiedadF`
 FROM `vwpagos` AS `vwpagos`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwpagos2" EntityType="Self.vwpagos2" store:Type="Views" store:Schema="db_a43bba_kondomi">
+            <DefiningQuery>SELECT
+`vwpagos2`.`CuentasPorCobrarPagoId`, 
+`vwpagos2`.`VaucherNumber`, 
+`vwpagos2`.`ClienteId`, 
+`vwpagos2`.`MetodoPago`, 
+`vwpagos2`.`ReferenciaPago`, 
+`vwpagos2`.`Observacion`, 
+`vwpagos2`.`FechaDeCreacion`, 
+`vwpagos2`.`FechaDeModificacion`, 
+`vwpagos2`.`CreadoPor`, 
+`vwpagos2`.`ModificadoPor`, 
+`vwpagos2`.`Monto`, 
+`vwpagos2`.`PropiedadId`, 
+`vwpagos2`.`FechadePago`, 
+`vwpagos2`.`Estado`, 
+`vwpagos2`.`FullName`, 
+`vwpagos2`.`Email`, 
+`vwpagos2`.`TelefonoMovil`, 
+`vwpagos2`.`TelefonoFijo`, 
+`vwpagos2`.`PropiedadDescripcion`, 
+`vwpagos2`.`Casa`, 
+`vwpagos2`.`PoligonoId`, 
+`vwpagos2`.`ArancelId`, 
+`vwpagos2`.`Senda`, 
+`vwpagos2`.`Calle`, 
+`vwpagos2`.`Avenida`, 
+`vwpagos2`.`CasaLetra`, 
+`vwpagos2`.`propiedadF`
+FROM `vwpagos2` AS `vwpagos2`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwrecibo" EntityType="Self.vwrecibo" store:Type="Views" store:Schema="db_a43bba_kondomi">
             <DefiningQuery>SELECT
@@ -1560,6 +1660,10 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <AssociationSet Name="SubMenuPermissionFK" Association="Self.SubMenuPermissionFK">
             <End Role="submenu" EntitySet="submenu" />
             <End Role="submenupermission" EntitySet="submenupermission" />
+          </AssociationSet>
+          <AssociationSet Name="uploadfiled_FK" Association="Self.uploadfiled_FK">
+            <End Role="uploadfileh" EntitySet="uploadfileh" />
+            <End Role="uploadfiled" EntitySet="uploadfiled" />
           </AssociationSet>
           <AssociationSet Name="userconfig_FK" Association="Self.userconfig_FK">
             <End Role="user" EntitySet="user" />
@@ -1766,6 +1870,12 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
             <End Role="contratosdetalle" EntitySet="contratosdetalle" />
           </AssociationSet>
           <EntitySet Name="uploadfileh" EntityType="db_a43bba_kondomiModel.uploadfileh" />
+          <EntitySet Name="uploadfiled" EntityType="db_a43bba_kondomiModel.uploadfiled" />
+          <AssociationSet Name="uploadfiled_FK" Association="db_a43bba_kondomiModel.uploadfiled_FK">
+            <End Role="uploadfileh" EntitySet="uploadfileh" />
+            <End Role="uploadfiled" EntitySet="uploadfiled" />
+          </AssociationSet>
+          <EntitySet Name="vwpagos2" EntityType="db_a43bba_kondomiModel.vwpagos2" />
         </EntityContainer>
         <EntityType Name="alerta">
           <Key>
@@ -3105,6 +3215,74 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
           <Property Name="UploadDate" Type="DateTime" />
           <Property Name="UserId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Int32" />
+          <NavigationProperty Name="uploadfiled" Relationship="db_a43bba_kondomiModel.uploadfiled_FK" FromRole="uploadfileh" ToRole="uploadfiled" />
+        </EntityType>
+        <EntityType Name="uploadfiled">
+          <Key>
+            <PropertyRef Name="UploadFileHId" />
+            <PropertyRef Name="UploadFileDId" />
+          </Key>
+          <Property Name="UploadFileHId" Type="Int32" Nullable="false" />
+          <Property Name="UploadFileDId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Linea" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Hora" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoInterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="BarraNPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Banco" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FilaTexto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VaucherNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaProceso" Type="DateTime" />
+          <NavigationProperty Name="uploadfileh" Relationship="db_a43bba_kondomiModel.uploadfiled_FK" FromRole="uploadfiled" ToRole="uploadfileh" />
+        </EntityType>
+        <Association Name="uploadfiled_FK">
+          <End Type="db_a43bba_kondomiModel.uploadfileh" Role="uploadfileh" Multiplicity="1" />
+          <End Type="db_a43bba_kondomiModel.uploadfiled" Role="uploadfiled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uploadfileh">
+              <PropertyRef Name="UploadFileHId" />
+            </Principal>
+            <Dependent Role="uploadfiled">
+              <PropertyRef Name="UploadFileHId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwpagos2">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarPagoId" />
+            <PropertyRef Name="Monto" />
+          </Key>
+          <Property Name="CuentasPorCobrarPagoId" Type="Int32" Nullable="false" />
+          <Property Name="VaucherNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="MetodoPago" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenciaPago" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" />
+          <Property Name="FechaDeModificacion" Type="DateTime" />
+          <Property Name="CreadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ModificadoPor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="PropiedadId" Type="Int32" />
+          <Property Name="FechadePago" Type="DateTime" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="91" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoMovil" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoFijo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PropiedadDescripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Casa" Type="Int32" />
+          <Property Name="PoligonoId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ArancelId" Type="Int32" />
+          <Property Name="Senda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Avenida" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CasaLetra" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="propiedadF" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3955,6 +4133,60 @@ FROM `vwrecibo` AS `vwrecibo`</DefiningQuery>
                 <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="UploadFileHId" ColumnName="UploadFileHId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uploadfiled">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.uploadfiled">
+              <MappingFragment StoreEntitySet="uploadfiled">
+                <ScalarProperty Name="FechaProceso" ColumnName="FechaProceso" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+                <ScalarProperty Name="FilaTexto" ColumnName="FilaTexto" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="BarraNPE" ColumnName="BarraNPE" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="CodigoInterno" ColumnName="CodigoInterno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Linea" ColumnName="Linea" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="UploadFileDId" ColumnName="UploadFileDId" />
+                <ScalarProperty Name="UploadFileHId" ColumnName="UploadFileHId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwpagos2">
+            <EntityTypeMapping TypeName="db_a43bba_kondomiModel.vwpagos2">
+              <MappingFragment StoreEntitySet="vwpagos2">
+                <ScalarProperty Name="propiedadF" ColumnName="propiedadF" />
+                <ScalarProperty Name="CasaLetra" ColumnName="CasaLetra" />
+                <ScalarProperty Name="Avenida" ColumnName="Avenida" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Senda" ColumnName="Senda" />
+                <ScalarProperty Name="ArancelId" ColumnName="ArancelId" />
+                <ScalarProperty Name="PoligonoId" ColumnName="PoligonoId" />
+                <ScalarProperty Name="Casa" ColumnName="Casa" />
+                <ScalarProperty Name="PropiedadDescripcion" ColumnName="PropiedadDescripcion" />
+                <ScalarProperty Name="TelefonoFijo" ColumnName="TelefonoFijo" />
+                <ScalarProperty Name="TelefonoMovil" ColumnName="TelefonoMovil" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechadePago" ColumnName="FechadePago" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="FechaDeModificacion" ColumnName="FechaDeModificacion" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="VaucherNumber" ColumnName="VaucherNumber" />
+                <ScalarProperty Name="CuentasPorCobrarPagoId" ColumnName="CuentasPorCobrarPagoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

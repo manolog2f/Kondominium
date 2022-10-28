@@ -1,0 +1,73 @@
+﻿@model Kondominium.Models.jsModel
+
+@if (Model.mensaje.Codigo == Kondominium_Entities.CodigosMensaje.Error)
+{
+    <div class="modal fade" id="myModalError" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header badge-danger">
+                    <h3 class="modal-title"><i class="fas fa-times"> </i> Error </h3>
+                    <button type="button" class="close" style="color:darkred" data-dismiss="model">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h4>@Model.mensaje.Mensaje</h4>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group-justified aling-content-lg-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.mensaje.Codigo == Kondominium_Entities.CodigosMensaje.Warning)
+{
+    <div class="modal fade" id="myModalError" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header badge-danger">
+                    <h3 class="modal-title"><i class="fas fa-times"> </i> Advertencia </h3>
+                    <button type="button" class="close" style="color:darkred" data-dismiss="model">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h4>@Model.mensaje.Mensaje</h4>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group-justified aling-content-lg-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.mensaje.Codigo == Kondominium_Entities.CodigosMensaje.Exito)
+{
+    <div class="modal fade" id="myModalError" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header badge-danger">
+                    <h3 class="modal-title"><i class="fas fa-times"> </i> Mensaje </h3>
+                    <button type="button" class="close" style="color:darkred" data-dismiss="model">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h4>@Model.mensaje.Mensaje</h4>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group-justified aling-content-lg-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

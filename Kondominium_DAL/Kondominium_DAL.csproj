@@ -264,6 +264,9 @@
     <Compile Include="tareas.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="uploadfiled.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="uploadfileh.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
@@ -280,6 +283,9 @@
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vwpagos.cs">
+      <DependentUpon>KModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwpagos2.cs">
       <DependentUpon>KModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vwrecibo.cs">

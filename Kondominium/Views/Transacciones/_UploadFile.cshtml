@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Kondominium_Entities.UploadFileHEntity>
+
+<div class="card-body ">
+    <div class="table-responsive">
+
+        <table class="table table-bordered" id="dataTable" width="100%" cellpadding="0">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UploadFileHId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UploadDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UploadFileHId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UploadDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

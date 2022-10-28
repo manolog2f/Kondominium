@@ -80,5 +80,7 @@ namespace Kondominium_DAL
         public virtual DbSet<vwrecibo> vwrecibo { get; set; }
         public virtual DbSet<contratos> contratos { get; set; }
         public virtual DbSet<uploadfileh> uploadfileh { get; set; }
+        public virtual DbSet<uploadfiled> uploadfiled { get; set; }
+        public virtual DbSet<vwpagos2> vwpagos2 { get; set; }
     }
 }

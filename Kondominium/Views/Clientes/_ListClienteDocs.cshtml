@@ -8,9 +8,6 @@
     };
 </script>
 
-
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -36,14 +33,14 @@
                                 @Html.DisplayNameFor(model => model.ClienteDocId)
                             </th>
                             @*<th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
-                            </th>*@
+                                    @Html.DisplayNameFor(model => model.ClienteId)
+                                </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.DocumentType)
                             </th>
-                            @*<th>
-                                @Html.DisplayNameFor(model => model.UrlDocument)
-                            </th>*@
+                            <th>
+                                Nombre
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +53,6 @@
                                     </a>
 
                                     @Html.ActionLink("Ver", "_DownloadFIle", new { Id = item.ClienteDocId }, new { target = "_blank", @class = "btn btn-info " })
-
 
                                     <!-- Delete Modal confirmacion -->
                                     <div class="modal fade" id="DeleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,29 +70,24 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                     @Html.ActionLink("Eliminar", "DeleteLineClientesDocs", new { Id = (Model == null ? "" : item.ClienteDocId.ToString()) }, new { @class = "btn btn-danger" })
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @*//End Delete Modal confirmacion*@
-
-
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ClienteDocId)
                                 </td>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.ClienteId)
-                                </td>*@
+                                        @Html.DisplayFor(modelItem => item.ClienteId)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DocumentType)
                                 </td>
-                                @*<td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.UrlDocument)
-                                </td>*@
-
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -105,7 +96,3 @@
         </div>
     </div>
 </div>
-
-
-
-

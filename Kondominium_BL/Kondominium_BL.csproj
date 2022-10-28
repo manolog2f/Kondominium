@@ -129,6 +129,7 @@
     <Compile Include="CuentasPorCobrarDetalleDatos.cs" />
     <Compile Include="CuentasPorCobrarPagoDatos.cs" />
     <Compile Include="CxcDatos.cs" />
+    <Compile Include="DetalledePagoDatos.cs" />
     <Compile Include="EmpresaDatos.cs" />
     <Compile Include="GeneradorCodigoData.cs" />
     <Compile Include="GeneraracionMensuales.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="ReportData.cs" />
     <Compile Include="SendasDatos.cs" />
     <Compile Include="TareasDatos.cs" />
+    <Compile Include="UploadFileDDatos.cs" />
     <Compile Include="UploadFileHDatos.cs" />
     <Compile Include="UserConfigDatos.cs" />
   </ItemGroup>

@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Kondominium_Entities.UploadFileDEntity>
+
+<h1 class="h3 mb-2 text-gray-800">Lista de Archivos procesados </h1>
+<p class="mb-4"></p>
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"></h6>
+    </div>
+
+    <div class="row" style="margin-right: 0px !important; margin-left: 0px !important; margin-top: 15px !important; ">
+        <div class="col">
+            <div class="form-group" style="max-width:200px">
+                <input class="form-control" , style="background-color:white" id="textWhite" value="Pendientes por procesar" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group" style="max-width:200px">
+                <input class="form-control" , style="background-color:#f3cc3087" id="txtOrange" value="Con Errores" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group" style="max-width:200px">
+                <input class="form-control" , style="background-color:#D8F9DB" id="txtVerde" value="Procesado Exitosamente" />
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body ">
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellpadding="0">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UploadFileHId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UploadFileDId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tipo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Linea)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Hora)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CodigoInterno)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Monto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BarraNPE)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Banco)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FilaTexto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VaucherNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Estatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mensaje)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaProceso)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    string mensajerror = "";
+                    string mensajerrortd = "";
+                    string textd = "......";
+                    bool procesado = false;
+
+                    if (!String.IsNullOrEmpty(item.CodigoInterno) && item.Mensaje != "Pago Procesado")
+                    {
+                        mensajerror = "style=background-color:#f3cc6087;color:black;";
+                        mensajerrortd = "style=color:red;";
+                        procesado = false;
+                    }
+
+                    if (item.Estatus == 5)
+                    {
+                        mensajerror = "style=background-color:#f3cc6087;color:black;";
+                        mensajerrortd = "style=color:red;";
+                        procesado = false;
+                    }
+
+                    if (item.Estatus == 2)
+                    {
+                        mensajerror = "style=background-color:#D8F9DB;color:Black;";
+                        mensajerrortd = "style=color:blue;";
+                        procesado = false;
+                    }
+
+                    <tr @mensajerror>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UploadFileHId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UploadFileDId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Linea)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hora)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha)
+                        </td>
+                        <td >
+                            @Html.DisplayFor(modelItem => item.CodigoInterno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Monto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BarraNPE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Banco)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FilaTexto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VaucherNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estatus)
+                        </td>
+                        <td @mensajerrortd>
+                            @Html.DisplayFor(modelItem => item.Mensaje)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaProceso)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="row" style="margin-right: 0px !important; margin-left: 25px !important;">
+        <div class="form-group" style="max-width:200px">
+            <!--  Procesar archivo  -->
+            <button class="btn-primary" type="button" runat="server" onclick="CreatePaymentsXT(@Model.FirstOrDefault().UploadFileHId)" CausesValidation="true">Procesar Pagos</button>
+        </div>
+    </div>
+</div>

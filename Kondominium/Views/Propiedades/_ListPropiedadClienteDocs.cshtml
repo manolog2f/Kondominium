@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Kondominium_Entities.ClientePropiedadDocsEntity>
 
-
 <script>
     function OpenModalPopUp(ClienteId, DocumentType) {
         $('.xClienteId').text(ClienteId);
@@ -8,9 +7,6 @@
         $('#UploadFileModal').modal();
     };
 </script>
-
-
-
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -39,7 +35,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DocumentType)
                             </th>
-
+                            <th>
+                                Nombre
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +50,6 @@
                                     </a>
 
                                     @Html.ActionLink("Ver", "_DownloadFIle", new { Id = item.ClientePropiedadDocsId }, new { target = "_blank", @class = "btn btn-info " })
-
 
                                     <!-- Delete Modal confirmacion -->
                                     <div class="modal fade" id="DeleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,15 +67,11 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                     @Html.ActionLink("Eliminar", "DeleteLinePropClientesDocs", new { Id = (Model == null ? "" : item.ClientePropiedadDocsId.ToString()) }, new { @class = "btn btn-danger" })
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @*//End Delete Modal confirmacion*@
-
-
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ClientePropiedadDocsId)
@@ -86,7 +79,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DocumentType)
                                 </td>
-
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UrlDocument)
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -95,4 +90,3 @@
         </div>
     </div>
 </div>
-

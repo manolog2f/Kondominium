@@ -8,9 +8,6 @@
     };
 </script>
 
-
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -39,6 +36,9 @@
                                 @Html.DisplayNameFor(model => model.DocumentType)
                             </th>
 
+                            <th>
+                                Nombre
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +51,6 @@
                                     </a>
 
                                     @Html.ActionLink("Ver", "_DownloadFIlePropiedad", new { Id = item.PropiedadesDocId }, new { target = "_blank", @class = "btn btn-info " })
-
 
                                     <!-- Delete Modal confirmacion -->
                                     <div class="modal fade" id="DeleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,15 +68,11 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                     @Html.ActionLink("Eliminar", "DeleteLinePropDocs", new { Id = (Model == null ? "" : item.PropiedadesDocId.ToString()) }, new { @class = "btn btn-danger" })
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     @*//End Delete Modal confirmacion*@
-
-
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PropiedadesDocId)
@@ -86,6 +81,9 @@
                                     @Html.DisplayFor(modelItem => item.DocumentType)
                                 </td>
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UrlDocument)
+                                </td>
                             </tr>
                         }
                     </tbody>

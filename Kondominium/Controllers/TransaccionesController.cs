@@ -23,7 +23,17 @@ namespace Kondominium.Controllers
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
                 return View("../Home/ErrorNotAutorized");
 
-            var model = new Kondominium_BL.CuentasPorCobrarDatos().GetAll();
+            var model = new Kondominium_BL.CuentasPorCobrarDatos().GetAllNoAuto();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ListadocxcAuto()
+        {
+            if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
+                return View("../Home/ErrorNotAutorized");
+
+            var model = new Kondominium_BL.CuentasPorCobrarDatos().GetAllByAutomatico();
             return View(model);
         }
 
@@ -758,14 +768,14 @@ namespace Kondominium.Controllers
                     extra = "Guardo Registro";
                     Console.WriteLine(extra);
 
-                    var larchivo = new Kondominium_Process.Process().LeerArchivo(_path);
+                    var larchivo = new Kondominium_Process.Process().ProcesarArchivo(_path, resp.Item1.UploadFileHId);
                     paso = "6";
-                    extra = "Proceso File";
+                    extra = "Cargando detalle";
                     Console.WriteLine(extra);
                     //respM = resp.resp;
 
                     mdl.idTrans = resp.Item1.UploadFileHId;//  resp.id;
-                    mdl.mensaje = new Resultado { Codigo = 0, Mensaje = "Prueba" };  //resp.resp;
+                    mdl.mensaje = larchivo;  //resp.resp;
                 }
 
                 return Json(mdl);
@@ -791,6 +801,65 @@ namespace Kondominium.Controllers
             var appSettings = ConfigurationManager.AppSettings;
 
             return appSettings["UploadedFiles"] ?? "Configuration not exist";
+        }
+
+        public ActionResult _UploadFile(int id)
+        {
+            var model = new Kondominium_BL.UploadFileHDatos().GetListById(id);
+
+            return PartialView(model.AsEnumerable());
+        }
+
+        public ActionResult _UploadFileDetail(int id)
+        {
+            var model = new Kondominium_BL.UploadFileDDatos().GetListById(id);
+            return PartialView(model.AsEnumerable());
+        }
+
+        public ActionResult _MensajesP(int error, string Mensaje)
+        {
+            var mdel = new Models.jsModel();
+            var msg = new Kondominium_Entities.Resultado();
+
+            switch (error)
+            {
+                case 0:
+                    msg.Codigo = CodigosMensaje.Exito;
+                    break;
+
+                case 99:
+                    msg.Codigo = CodigosMensaje.Error;
+                    break;
+
+                case 9999:
+                    msg.Codigo = CodigosMensaje.Error;
+                    break;
+
+                case 555:
+                    msg.Codigo = CodigosMensaje.Warning;
+                    break;
+
+                case 5000:
+                    msg.Codigo = CodigosMensaje.Warning;
+                    break;
+
+                default:
+                    break;
+            }
+            msg.Mensaje = Mensaje;
+            mdel.mensaje = msg;
+
+            return PartialView(mdel);
+        }
+
+        public JsonResult ProcessFileXT(int UploadFileId = 0)
+        {
+            /*
+
+             */
+            var larchivo = new Kondominium_Process.Process().ProcesarLineasDetalleDB(UploadFileId);
+
+            return Json(UploadFileId, JsonRequestBehavior.AllowGet);
         }
 
         #endregion CargaRecibosdePago

@@ -48,6 +48,146 @@ namespace Kondominium_Process
             return (dtRDB, fileName);
         }
 
+        public Resultado ProcesarArchivo(string ruta, int UploadHId)
+        {
+            var r = InsertarArchivo(ruta, UploadHId);
+
+            if (r.Where(x => x.Codigo != CodigosMensaje.Exito).Count() > 0)
+            {
+                return new Resultado
+                {
+                    Codigo = CodigosMensaje.Warning,
+                    Mensaje = "Algunas filas no pudieron ser cargadas"
+                };
+            }
+
+            return new Resultado
+            {
+                Codigo = CodigosMensaje.Exito,
+                Mensaje = "Registros cargados de forma Exitosa"
+            };
+        }
+
+        public Resultado ProcesarLineasDetalleDB(int UploadFileId)
+        {
+            var resp = new Resultado();
+
+            try
+            {
+                var datos = new Kondominium_BL.UploadFileDDatos().GetListById(UploadFileId).Where(x => x.Tipo == "D" && x.Estatus != 2).ToList();
+
+                foreach (var item in datos)
+                {
+                    try
+                    {
+                        var p = ProcesarFila(item.FilaTexto);
+
+                        item.VaucherNumber = p.Item2;
+                        item.Estatus = p.Item1.Codigo == CodigosMensaje.Exito ? 2 : 5;
+                        item.Mensaje = p.Item1.Mensaje;
+
+                        new Kondominium_BL.UploadFileDDatos().Save(item);
+                    }
+                    catch (Exception)
+                    {
+                        resp.Codigo = CodigosMensaje.Warning;
+                        resp.Mensaje = "Existen transacciones que no se pudieron procesar";
+                    }
+                }
+
+                if (resp == null)
+                    resp = new Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Archivo procesado con exito" };
+            }
+            catch (Exception ex)
+            {
+                resp.Codigo = CodigosMensaje.Error;
+                resp.Mensaje = "Error al tratar de procesar " + ex.Message;
+            }
+
+            return resp;
+        }
+
+        public List<Resultado> InsertarArchivo(string ruta, int UploadHId)
+        {
+            string[] lines = File.ReadAllLines(@ruta);
+            var returnResult = new List<Resultado>();
+
+            /*----MR --- */
+
+            var uploadFileD = new UploadFileDEntity();
+            var updateDts = new UploadFileDDatos();
+
+            try
+            {
+                /////////////////// Encabezado  - H //////////////////////
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    char tipo = Convert.ToChar(lines[i].ToString().Substring(0, 1));
+                    if (tipo == Convert.ToChar("H"))
+                    {
+                        returnResult.Add(updateDts.Save(new UploadFileDEntity
+                        {
+                            FechaProceso = DateTime.Now,
+                            Tipo = "H",
+                            FilaTexto = lines[i].ToString(),
+                            UploadFileHId = UploadHId,
+
+                            Estatus = 1,
+                            Mensaje = "Linea Cargada",
+                        }).Item2);
+                    }
+
+                    if (tipo == Convert.ToChar("T"))
+                    {
+                        // Linea de Encabezado //
+
+                        returnResult.Add(updateDts.Save(new UploadFileDEntity
+                        {
+                            FechaProceso = DateTime.Now,
+                            Tipo = "T",
+                            FilaTexto = lines[i].ToString(),
+                            UploadFileHId = UploadHId,
+                            Monto = lines[i].Substring(19, 2),
+                            Linea = lines[i].Substring(1, 6),
+
+                            Estatus = 1,
+                            Mensaje = "Linea Cargada",
+                        }).Item2);
+                    }
+
+                    if (tipo == Convert.ToChar("D"))
+                    {
+                        //monto = tools.toDecimal(lines[i].Substring(44, 10));
+
+                        returnResult.Add(updateDts.Save(new UploadFileDEntity
+                        {
+                            FechaProceso = DateTime.Now,
+                            Tipo = "D",
+                            FilaTexto = lines[i].ToString(),
+                            UploadFileHId = UploadHId,
+
+                            Linea = lines[i].Substring(1, 6),
+                            Hora = lines[i].Substring(7, 8),
+                            Fecha = lines[i].Substring(15, 8),
+                            CodigoInterno = lines[i].Substring(23, 21),
+                            Monto = lines[i].Substring(40, 14),
+                            BarraNPE = lines[i].Substring(54, 50),
+                            Banco = lines[i].Substring(136, 11),
+
+                            Estatus = 1,
+                            Mensaje = "Linea Cargada",
+                        }).Item2);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return returnResult;
+        }
+
         public DataTable LeerArchivo_BAG(string ruta)
         {
             DateTime? fecha_archivo = null;
@@ -223,11 +363,131 @@ namespace Kondominium_Process
             catch (Exception ex)
             {
                 throw ex;
-                Console.WriteLine(ex.Message);
+                // Console.WriteLine(ex.Message);
                 //MessageBox.Show("Error: " + ex.Message);
             }
             return dtRDB;
         }
+
+        public (Resultado, string) ProcesarFila(string Linea)
+        {
+            DateTime? fecha_archivo = null;
+            decimal monto_archivo = 0;
+            DateTime fecha;
+
+            int id_codificacion = 0;
+            string codificacion = "";
+            decimal monto = 0;
+
+            string gln = "";
+            string referencia;
+
+            int id_banco = 0;
+            string banco = ""; // Nombre del banco
+
+            string referencia1 = "";
+            string referencia2 = "";
+
+            string entidad = "";
+            string campo = "";
+            string valor = "";
+            string VaucherNumber = "";
+            int larg = 0;
+
+            (entidad, campo, valor, larg) = LeerDefEntidad("GLN", "");
+            gln = valor;
+
+            DataTable dtRDB = new DataTable();
+
+            try
+            {
+                /////////////////// Detalle  //////////////////////
+                ///
+
+                var CuentasPorCobrar = new CuentasPorCobrarEntity();
+
+                char tipo = Convert.ToChar(Linea.ToString().Substring(0, 1));
+                if (tipo == Convert.ToChar("D"))
+                {
+                    //monto = tools.toDecimal(Linea.Substring(44, 10));
+                    monto = tools.toDecimal(Linea.Substring(40, 12) + "." + Linea.Substring(52, 2));
+                    var a = Linea.Substring(15, 8);
+                    var b = Linea.Substring(7, 8);
+                    fecha = DateTime.ParseExact(Linea.Substring(15, 8) + ' ' + Linea.Substring(7, 8), "yyyyMMdd HH:mm:ss", null);
+
+                    if (Linea.Substring(57, 3) == "415" && Linea.Substring(60, 13) == gln.ToString() && (Linea.Substring(73, 4) == "3902" || Linea.Substring(73, 4) == "96") || Linea.Substring(73, 4) == "8020")
+                    {
+                        /************** BARRAS ********************/
+                        id_codificacion = 1;
+                        // referencia1 = Linea.Substring(0, Linea.Length - 44);
+                        referencia1 = Linea.Substring(57, Linea.Length - 57 - 44); /* 57 del inicio y 44 del final */
+                        referencia = LeerConfig("BAR4") != 0 ? referencia1.Substring(referencia1.Length - LeerConfig("BAR4"), LeerConfig("BAR4")) : "";
+                    }
+                    else
+                    {
+                        /************** NPE ********************/
+                        id_codificacion = 2;
+                        //referencia2 = Linea.Substring(0, Linea.Length - 69);
+                        referencia2 = Linea.Substring(54, Linea.Length - 54 - 69); /* 55 del inicio y 69 del final */
+                        referencia = LeerConfig("NPE4") != 0 ? referencia2.Substring(referencia2.Length - LeerConfig("NPE4") - 1, LeerConfig("NPE4")) : "";
+                    }
+
+                    //////////////  CODIFICACION  //////////////
+                    Array items_codificacion = Enum.GetValues(typeof(enumerados.codificacion));
+                    foreach (enumerados.codificacion item in items_codificacion)
+                    {
+                        if ((int)item == id_codificacion)
+                        {
+                            codificacion = item.GetDescription();
+                        }
+                    }
+
+                    if (id_codificacion == 1)
+                    {
+                        //DataTable dtcxc = new DataTable();
+                        CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByBRCode(referencia1);
+                    }
+                    else if (id_codificacion == 2)
+                    {
+                        string ref2 = "";
+                        for (int x = 0; x < referencia2.Length / 4; x++)
+                        {
+                            ref2 = ref2 + referencia2.Substring(x * 4, 4) + " ";
+                        }
+                        referencia2 = ref2.Substring(0, ref2.Length - 1);
+                        CuentasPorCobrar = obj_CuentasPorCobrarDatos.GetByNPE(referencia2);
+                    }
+
+                    CuentasPorCobrarPagoEntity CuentasPorCobrarPago = new CuentasPorCobrarPagoEntity();
+
+                    if (CuentasPorCobrar == null)
+                    {
+                        return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "NPE o No. Vaucher no Existe" }, "");
+                    }
+
+                    CuentasPorCobrarPago.VaucherNumber = CuentasPorCobrar.VaucherNumber;
+                    CuentasPorCobrarPago.ClienteId = CuentasPorCobrar.ClienteId;
+                    CuentasPorCobrarPago.MetodoPago = codificacion;
+                    CuentasPorCobrarPago.ReferenciaPago = referencia;
+                    CuentasPorCobrarPago.Observacion = CuentasPorCobrar.PeriodoFacturado;
+                    CuentasPorCobrarPago.Monto = monto;
+                    CuentasPorCobrarPago.PropiedadId = CuentasPorCobrar.PropiedadId;
+                    CuentasPorCobrarPago.FechadePago = fecha;
+                    CuentasPorCobrarPago.CreadoPor = "Process";
+                    CuentasPorCobrarPago.ModificadoPor = "Process";
+
+                    VaucherNumber = CuentasPorCobrar.VaucherNumber;
+                    obj_CuentasPorCobrarPagoDatos.SavePagoProcess(CuentasPorCobrarPago);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (new Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Error " + ex.Message }, "");
+            }
+
+            return (new Resultado { Codigo = CodigosMensaje.Exito, Mensaje = "Pago Procesado" }, VaucherNumber);
+        }
+
         public void LeerArchivo_BAG2(string ruta)
         {
             DateTime? fecha_archivo = null;
@@ -260,7 +520,6 @@ namespace Kondominium_Process
             (entidad, campo, valor, larg) = LeerDefEntidad("GLN", "");
             gln = valor;
 
-            
             /////////////   BANCO    //////////////
             string codigo_banco = tools.GetUntilOrEmpty(ruta);
             Array items_banco = Enum.GetValues(typeof(enumerados.banco));
@@ -370,15 +629,13 @@ namespace Kondominium_Process
                         CuentasPorCobrarPago.ModificadoPor = "Process";
 
                         obj_CuentasPorCobrarPagoDatos.SavePagoProcess(CuentasPorCobrarPago);
-
-
                     }
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
                 //MessageBox.Show("Error: " + ex.Message);
             }
         }

@@ -1,0 +1,249 @@
+﻿@model IEnumerable<Kondominium_Entities.DetalleDePagoEntity>
+@{
+    ViewBag.Title = "DetalleDePagos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Detalle de pagos</h1>
+
+<form method="post" action='@Url.Action("DetalleDePagos", "Report")'>
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col">
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker2" , placeholder = "Desde...", type = "date" } })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.Editor("ToDate", new { htmlAttributes = new { @class="form-control", @id = "datepicker", placeholder = "Hasta...", type = "date" } })
+       
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--<div class="col-sm-4">
+        <div class="form-group">
+            <div class="input-group date" id="datepicker" data-target-input="nearest">-->
+            @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
+            @*<input id="datepickerFrom" width="276" class="form-control datepicker" , placeholder="Fro Date..." />*@
+
+            <!--@Html.TextBox("FromDate", DateTime.Now.ToString("dd-MM-yyyy"), new
+           {
+               placeholder = "Hasta...",
+               @class = "form-control datepicker",
+               Id = "datepicker"
+
+           })
+                <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">-->
+            @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
+            @*<input id="datepickerTo" width="276" class="form-control datepicker" , placeholder="To date..." />*@
+
+            <!--@Html.TextBox("ToDate", DateTime.Now.ToString("dd-MM-yyyy"), new
+           {
+               placeholder = "Hasta...",
+               @class = "form-control datepicker",
+               Id = "datepicker2"
+           })
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+            <div class="col-sm-4">
+                <div class="form-group">
+
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-light btn-icon-split">
+                        <span class="icon text-gray-600">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="text">Filtrar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <p class="mb-4"></p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CuentasPorCobrarPagoId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VaucherNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Residente)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Casa)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CasaLetra)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PropiedadId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PoligonoId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PeriodoFacturado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TarjetaCredito)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Transferencia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cheque)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Efectivo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NPE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BAR)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OTRO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReferenciaPago)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Monto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MttoGeneral)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MttoAguaRiego)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Otros)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CuentasPorCobrarPagoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VaucherNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Residente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Casa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CasaLetra)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropiedadId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PoligonoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PeriodoFacturado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TarjetaCredito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Transferencia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cheque)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Efectivo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NPE)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BAR)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OTRO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReferenciaPago)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Monto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Estado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MttoGeneral)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MttoAguaRiego)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Otros)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+            </div>
+        </div>
+    </div>
+</div>

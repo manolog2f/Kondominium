@@ -383,5 +383,16 @@ namespace Kondominium.Controllers
         }
 
         #endregion "Subir Archivo"
+
+        public JsonResult GetCustomers(string term = "")
+        {
+            var objCustomerlist = new Kondominium_BL.ClientesDatos().GetAllByFIlter(true, term).
+                                  Select(c => new { Name = c.VFullName, ID = c.ClienteId })
+                        .Distinct().ToList();
+
+            ;
+
+            return Json(objCustomerlist, JsonRequestBehavior.AllowGet);
+        }
     }
 }

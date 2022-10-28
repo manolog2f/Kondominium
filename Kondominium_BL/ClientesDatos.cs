@@ -8,7 +8,8 @@ namespace Kondominium_BL
 {
     public class ClientesDatos
     {
-        Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities context = new Kondominium_DAL.KEntities();
+
         public List<ClientesEntity> GetAll(bool VerEliminado = false)
         {
             var query = from c in context.clientes
@@ -33,10 +34,35 @@ namespace Kondominium_BL
                             Pais = c.Pais
                         };
 
+            return query.ToList();
+        }
 
+        public List<ClientesEntity> GetAllByFIlter(bool VerEliminado = false, string Filter = "")
+        {
+            var query = from c in context.clientes
+                        where (c.Eliminado == false && c.Nombres.ToUpper().Contains(Filter.ToUpper()))
+                              || (c.Eliminado == false && c.Apellidos.ToUpper().Contains(Filter.ToUpper()))
+                        select new ClientesEntity
+                        {
+                            ClienteId = c.ClienteId,
+                            Nombres = c.Nombres,
+                            Apellidos = c.Apellidos,
+                            Documento1 = c.Documento1,
+                            Documento2 = c.Documento2,
+                            Documento3 = c.Documento3,
+                            Documento4 = c.Documento4,
+                            Email = c.Email,
+                            TelefonoMovil = c.TelefonoMovil,
+                            TelefonoFijo = c.TelefonoFijo,
+                            FechaDeCreacion = c.FechaDeCreacion,
+                            FechaDeModificacion = c.FechaDeModificacion,
+                            CreadoPor = c.CreadoPor,
+                            ModificadoPor = c.ModificadoPor,
+                            Eliminado = c.Eliminado,
+                            Pais = c.Pais
+                        };
 
             return query.ToList();
-
         }
 
         public ClientesEntity GetById(int Id)
@@ -68,7 +94,6 @@ namespace Kondominium_BL
 
         public DataTable DataTable()
         {
-
             var dTabla = new DataTable();
 
             using (var _context = new Kondominium_DAL.KEntities())
@@ -84,7 +109,7 @@ namespace Kondominium_BL
             var dTabla = new DataTable();
             using (var _context = new Kondominium_DAL.KEntities())
             {
-                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.clientes.Where( x => x.ClienteId == Id ).ToList());
+                dTabla = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(_context.clientes.Where(x => x.ClienteId == Id).ToList());
             }
             return dTabla;
         }
@@ -141,7 +166,6 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "El registro no pudo ser guardado." + ex.Message });
             }
         }
@@ -167,7 +191,6 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el registro \n" + ex.Message };
             }
         }
@@ -178,10 +201,8 @@ namespace Kondominium_BL
             {
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
                     var modlExist = ContextP.clientes.Where(x => x.ClienteId == Id).FirstOrDefault();
                     // var modlNew = new Kondominium_DAL.clientes();
-
 
                     if (modlExist == null)
                         return (new Resultado { Codigo = CodigosMensaje.No_Existe, Mensaje = "Registro no Existe" });
@@ -197,10 +218,8 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
-
         }
     }
 }

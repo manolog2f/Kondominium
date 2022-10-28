@@ -4,8 +4,89 @@
     ViewBag.Title = "EditUser";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<script>
+    function AgregarUserProfile() {
+
+        loading();
+
+        var form = document.getElementById("frmPartialInvo");
+        if (form.getAttribute("enctype") === "multipart/form-data") {
+            //loading()
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, form.action);
+            xhr.onreadystatechange = function () {
+
+                if (xhr.readyState == 4 & xhr.status == 200) {
+                    debugger;
+
+                    var t = JSON.parse(xhr.response);
+
+                    var id = t['ClienteId'];
+                    var userid = t['DocumentType']
+                    var mensaje = t.mensaje.Mensaje;
+                    var idMensaje = t.mensaje.Codigo;
+
+                    /// Muestra Pagina de Usuarios
+                    $.get('@Url.Action("_MensajesS", "Sistema")', { error: idMensaje, Mensaje: mensaje }).done(function (data) {
+                        $("#UploadFileMensajes").html(data);
+                        mensajes();
+                    });
+                }
+
+            }
+
+            xhr.send(new FormData(form));
+        }
+
+        hide_loading();
+    }
+
+    function RefrescarPagina() {
+           /// Refrescara la pagina y si se actualizo correctamente y tiene user Id  refrescara con el usuario
+                setTimeout(function () {
+                    location.reload(true);
+                }, 3000);
+    }
+
+    function RemoverPerfil(userid, perfilid) {
+        debugger;
+
+         loading();
+
+        //data: { Userid: userid, PerfilId: perfilid }
+        //_RemoverUserPerfil(string Userid, string PerfilId)
+
+        $.ajax({
+            url: '@Url.Action("_RemoverUserPerfil", "Sistema")',
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            data: { Userid: userid, PerfilId: perfilid },
+            success: function (results) {
+                debugger;
 
 
+               // var t = JSON.parse(results);
+
+                    var id = results.ClienteId;
+                var userid = results.DocumentType
+                var mensaje = results.mensaje.Mensaje;
+                var idMensaje = results.mensaje.Codigo;
+
+                    /// Muestra Pagina de Usuarios
+                    $.get('@Url.Action("_MensajesS", "Sistema")', { error: idMensaje, Mensaje: mensaje }).done(function (data) {
+                        $("#UploadFileMensajes").html(data);
+                        mensajes();
+                    });
+
+               //alert(results)
+        },
+        error: function () {
+            alert('Error occured');
+        }
+        });
+   }
+</script>
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -14,7 +95,6 @@
     <div class="row">
 
         <div class="col-lg">
-
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -32,7 +112,6 @@
                             @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
 
-
                                 @if (Model.UserId != null)
                                 {
                                     @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
@@ -42,7 +121,6 @@
                                 {
                                     @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                                 }
-
 
                                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
                             </div>
@@ -67,7 +145,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @id = "exampleInputPassword", @placeholder = "Contraseña...." })
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @id = "InputPassword", @placeholder = "Contraseña...." })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -75,11 +153,10 @@
                         <div class="form-group">
                             @Html.Label("Confirmacion de Password", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.Password("PasswordConfirmation", "", new { @class = "form-control form-control-user", @id = "exampleInputPassword", @placeholder = "Contraseña...." })
+                                @Html.Password("PasswordConfirmation", "", new { @class = "form-control form-control-user", @id = "ConfirmationInputPassword", @placeholder = "Contraseña...." })
                                 @Html.ValidationMessage("PasswordConfirmation", "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -97,10 +174,10 @@
                                 @*@Html.EditorFor(model => model.RolId, new { htmlAttributes = new { @class = "form-control" } })*@
 
                                 @Html.DropDownListFor(model => model.RolId,
-                                                new ZTAdminBL.Security.RolData().GetAll().AsEnumerable().Select( x => new SelectListItem 
-                                                {Text = x.RolDescription, Value = x.RolId   }),
-                                "Seleccione el Rol",
-                                new { @class = "form-control" })
+                         new ZTAdminBL.Security.RolData().GetAll().AsEnumerable().Select(x => new SelectListItem
+                         { Text = x.RolDescription, Value = x.RolId }),
+         "Seleccione el Rol",
+         new { @class = "form-control" })
 
                                 @Html.ValidationMessageFor(model => model.RolId, "", new { @class = "text-danger" })
                             </div>
@@ -113,7 +190,6 @@
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
@@ -132,3 +208,53 @@
     </div>
 </div>
 
+@{
+    if (Model.UserId != null)
+    {
+
+        <div class="container-fluid">
+
+            @using (Ajax.BeginForm("AgregarProfileUser", "Sistema", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "partsQuoUpd", LoadingElementId = "loading" }, new { @id = "frmPartialInvo", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ProfileId",
+    new SelectList(new ZTAdminBL.Security.ProfileData().GetAll(), "ProfileId", "ProfileId"),
+      "Seleccione un perfil",
+      new { @class = "form-control", @id = "ProfileId" })
+                        </div>
+                    </div>
+
+                    @{
+
+                        var userIdProfile = Model.UserId;
+                    }
+
+                    <input id="UserIdProfile"
+                           name="UserIdProfile"
+                           type="hidden"
+                           value="@userIdProfile" />
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*<input type="submit" value="Actualizar Perfil" class="btn btn-primary" />*@
+                            <button type="button" class="btn btn-primary" onclick="AgregarUserProfile()">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Agregar/Actualizar  Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @Html.Partial("UserProfileEdit", new ZTAdminBL.Security.UserProfileData().GetByUserId(Model.UserId))
+    }
+
+}
