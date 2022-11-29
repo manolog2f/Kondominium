@@ -48,9 +48,9 @@ namespace Kondominium_Process
             return (dtRDB, fileName);
         }
 
-        public Resultado ProcesarArchivo(string ruta, int UploadHId)
+        public Resultado ProcesarArchivo(byte[] file, int UploadHId)
         {
-            var r = InsertarArchivo(ruta, UploadHId);
+            var r = InsertarArchivo(file, UploadHId);
 
             if (r.Where(x => x.Codigo != CodigosMensaje.Exito).Count() > 0)
             {
@@ -107,12 +107,15 @@ namespace Kondominium_Process
             return resp;
         }
 
-        public List<Resultado> InsertarArchivo(string ruta, int UploadHId)
+        public List<Resultado> InsertarArchivo(byte[] file, int UploadHId)
         {
-            string[] lines = File.ReadAllLines(@ruta);
+            string linesn1 = Encoding.Default.GetString(file);
+
+            string[] lines = linesn1.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
             var returnResult = new List<Resultado>();
 
-            /*----MR --- */
+            ///*----MR --- */
 
             var uploadFileD = new UploadFileDEntity();
             var updateDts = new UploadFileDDatos();
@@ -371,8 +374,8 @@ namespace Kondominium_Process
 
         public (Resultado, string) ProcesarFila(string Linea)
         {
-            DateTime? fecha_archivo = null;
-            decimal monto_archivo = 0;
+            //DateTime? fecha_archivo = null;
+            //decimal monto_archivo = 0;
             DateTime fecha;
 
             int id_codificacion = 0;
@@ -382,8 +385,8 @@ namespace Kondominium_Process
             string gln = "";
             string referencia;
 
-            int id_banco = 0;
-            string banco = ""; // Nombre del banco
+            //int id_banco = 0;
+            //string banco = ""; // Nombre del banco
 
             string referencia1 = "";
             string referencia2 = "";

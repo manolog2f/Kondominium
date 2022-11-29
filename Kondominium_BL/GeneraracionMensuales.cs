@@ -19,6 +19,10 @@ namespace Kondominium_BL
             var configHeader = context.configcobrosmensual.FirstOrDefault();
             var configDet = context.configcobrosmensauldet.ToList();
 
+            /*Anular facturas automaticas emiticas con anterioridad*/
+
+            AnularAutoGeneradas(FechaGeneracion, FechaVencimiento, PeriodoFacturado, usuario);
+
             //FechaGeneracion = DateTime.Parse(string.Concat(año.ToString(), "-", mes.ToString(), "-", configHeader.DiaDeGeneracion.ToString()));
 
             //if (configHeader.DiaVencimiento >= configHeader.DiaDeGeneracion)
@@ -99,6 +103,28 @@ namespace Kondominium_BL
             return (new Resultado { Codigo = 0, Mensaje = "Proceso Generado con exito" }, g);
         }
 
+        public void AnularAutoGeneradas(DateTime FechaGeneracion, DateTime FechaVencimiento, string PeriododFacturado, string usuario)
+        {
+            var cxc = context.cuentasporcobrar.Where(x => x.TipoCxC == "AUTO" && x.PeriodoFacturado == PeriododFacturado && x.FechaDeEmision == FechaGeneracion && x.FechaDeVencimiento == FechaVencimiento).ToList();
+
+            try
+            {
+                foreach (var item in cxc)
+                {
+                    item.FechaDeModificacion = DateTime.Now;
+                    item.ModificadoPor = usuario;
+
+                    item.Estado = 4;
+                }
+
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         private void AlmacenarLogGeneracion(int año, int mes, string observacion, int propiedadID, int clienteID)
         {
             var log = new Kondominium_DAL.cobrosmensalesloggeneracion();
@@ -156,7 +182,7 @@ namespace Kondominium_BL
                 FechaDeEmision = FechaGeneracion,
                 FechaDeVencimiento = FechaVencimiento,
                 PropiedadId = propiedadID,
-                TipoCxC = "Recibos",
+                TipoCxC = "AUTO",
                 Total = TotalHeader,
                 PeriodoFacturado = PeriodoFacturado, //FechaGeneracion.ToString("MMMM") + ' ' + FechaGeneracion.Year.ToString()
             }, arancel.Descripcion, pro.Casa.ToString(), pro.CasaLetra, pro.PoligonoId);

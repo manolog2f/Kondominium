@@ -179,8 +179,8 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.ClienteId,
-                                new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
-                                 "Seleccione el Condómino", new { @class = "form-control" })
+new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
+"Seleccione el Condómino", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -239,12 +239,16 @@
                                                         <i class="fas fa-save fa-sm fa-fw mr-2 text-gray-400"></i>Guardar
                                                     </button>
                                                 }
-                                                @if (Model.Estado <= 2)
+
+                                                @if (Model.Estado <= 2 && Model.Estado >= 1 && Model.Total > 0)
                                                 {
+
                                                     <a class="btn btn-success" href="#" data-toggle="modal" data-target="#ContabilizarModal">
                                                         <i class="fas fa-calculator fa-sm fa-fw mr-2 text-gray-400"></i>Contabilizar
                                                     </a>
-
+                                                }
+                                                @if (Model.Estado <= 2 && Model.Estado >= 1)
+                                                {
                                                     <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#AnularModal">
                                                         <i class="fas fa-window-close fa-sm fa-fw mr-2 text-gray-400"></i>Anular
                                                     </a>
@@ -294,25 +298,6 @@
                                     <!-- Fin Detalle -->
                                 }
 
-                                @if (Model.VaucherNumber != null)
-                                {
-                                    <!-- Pago -->
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                                                Registro de Pago
-                                            </a>
-                                        </div>
-                                        <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                            <div class="card-body">
-
-                                                @Html.Action("_EditCuentasPorCobrarPago", "Transacciones", new { VaucherNumber = Model.VaucherNumber, ClienteId = Model.ClienteId, Monto = Model.Total })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Fin Pago -->
-                                }
-
                                 <div class="card">
                                     <div class="card-header">
                                         Totales
@@ -333,6 +318,25 @@
                                     </div>
                                 </div>
                             </div>
+                        }
+
+                        @if (Model.VaucherNumber != null)
+                        {
+                            <!-- Pago -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                        Registro de Pago
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+
+                                        @Html.Action("_EditCuentasPorCobrarPago", "Transacciones", new { VaucherNumber = Model.VaucherNumber, ClienteId = Model.ClienteId, PropiedadId = Model.PropiedadId, Monto = Model.Total })
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin Pago -->
                         }
                     </div>
                 </div>
@@ -408,9 +412,22 @@
     </div>
     @*//End Anular Modal confirmacion*@
 
-    <div>
-        @Html.ActionLink("Retornar  a la Lista", "ListadoCuentasPorCobrar", "Transacciones")
-    </div>
+    @{
+
+        if (Model.NPE == "")
+        {
+            <div>
+                @Html.ActionLink("Retornar  a la Lista", "ListadoCuentasPorCobrar", "Transacciones")
+            </div>
+        }
+        else
+        {
+            <div>
+                @Html.ActionLink("Retornar  a la Lista", "ListadocxcAuto", "Transacciones")
+            </div>
+        }
+
+    }
 
     @if (Model.VaucherNumber != null)
     {
@@ -439,3 +456,4 @@
         </div>
 
     }
+</div>

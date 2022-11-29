@@ -78,7 +78,8 @@ namespace Kondominium_BL
                             Mensaje = a.Mensaje,
                             Monto = a.Monto,
                             Tipo = a.Tipo,
-                            UploadFileHId = a.UploadFileHId
+                            UploadFileHId = a.UploadFileHId,
+                            FechaProceso = a.FechaProceso
                         };
 
             return query.FirstOrDefault();
@@ -103,7 +104,8 @@ namespace Kondominium_BL
                             Mensaje = a.Mensaje,
                             Monto = a.Monto,
                             Tipo = a.Tipo,
-                            UploadFileHId = a.UploadFileHId
+                            UploadFileHId = a.UploadFileHId,
+                            FechaProceso = a.FechaProceso
                         };
 
             return query.ToList();

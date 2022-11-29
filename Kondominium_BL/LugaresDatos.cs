@@ -12,6 +12,7 @@ namespace Kondominium_BL
         public List<LugaresEntity> GetAll()
         {
             var query = from l in context.lugares
+                        where  l.Eliminado != true
 
                         select new LugaresEntity
                         {

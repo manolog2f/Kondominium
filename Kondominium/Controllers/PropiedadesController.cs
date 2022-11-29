@@ -824,6 +824,12 @@ namespace Kondominium.Controllers
                 return View(model);
             }
 
+            if (codigo != null)
+            {
+                Mensajes(new Resultado { Codigo = (CodigosMensaje)codigo });
+            }
+            ModelState.Clear();
+
             return View(new ClientePropiedadEntity
             {
                 PropiedadId = int.Parse(PropiedadId),
@@ -837,6 +843,12 @@ namespace Kondominium.Controllers
         {
             model.ModificadoPor = HttpContext.User.Identity.Name.ToString();
             model.CreadoPor = model.ModificadoPor;
+
+            if (model.ClienteId == 0)
+            {
+                return RedirectToAction("EditPropiedadCliente", new { PropiedadId = model.PropiedadId, TipoCliente = model.TipoCliente,  codigo = 96 });
+            }
+
 
             var modelr = new Kondominium_BL.ClientePropiedadDatos().Save(model);
 
@@ -1168,5 +1180,15 @@ namespace Kondominium.Controllers
         }
 
         #endregion "Clientes 27-06-22"
+
+        #region "Exportar Excel"
+
+        public FileResult ExportarPropiedades()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.PropiedadesDatos().GetAll());
+            return base.ExportExcel(dTabla, "Propiedades");
+        }
+
+        #endregion "Exportar Excel"
     }
 }

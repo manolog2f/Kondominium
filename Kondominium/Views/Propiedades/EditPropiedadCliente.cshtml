@@ -30,11 +30,23 @@
         select: function (event, ui) {
             $("#ClienteId").val(ui.item.ClienteId);
         }
+        });
     });
-});
+
+    function disableButtons() {
+
+        debugger;
+        var clid = document.getElementById("ClienteId").value
+        if (clid == 0) {
+            document.getElementById("btnGUardar").style.visibility = 'hidden';
+        }
+        else {
+            document.getElementById("btnGUardar").style.visibility = 'visible';
+        }
+    }
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid" onload="disableButtons()">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Mantenimiento de Condómino Propiedades</h1>
@@ -86,14 +98,16 @@
 
                                         <div class="card-body">
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md" })
+                                                @Html.LabelFor(model => model.Cliente.VFullName, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
 
                                                     @*@Html.DropDownListFor(model => model.ClienteId,
-                                                        new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
-                                                        "Seleccione el Condómino",
-                                                        new { @class = "form-control" })*@
-                                                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+        new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
+        "Seleccione el Condómino",
+        new { @class = "form-control" })*@
+                                                    @Html.ValidationMessageFor(model => model.Cliente.VFullName, "", new { @class = "text-danger" })
+
+                                                    @* @onChange = "disableButtons()"*/ *@
 
                                                     @Html.TextBoxFor(model => Model.Cliente.VFullName, new { @class = "form-control" })
                                                     @Html.HiddenFor(model => Model.ClienteId)
@@ -133,7 +147,7 @@
 
                                         <div class="container" style="margin-left:unset !important">
 
-                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                            <input type="submit" id="btnGUardar" value="Guardar" class="btn btn-primary" />
 
                                             <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteModal">
                                                 <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"></i>    Eliminar

@@ -48,14 +48,29 @@
                         {
                             <tr>
                                 <td>
-                                    <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#DeleteFileModal">
+
+                                    @{ 
+
+                                        var idmodal = String.Concat("#DeleteFileModal", @item.ClienteDocId.ToString());
+                                    }
+                                    
+
+                                    <a class="btn btn-secondary" href="#" data-toggle="modal" data-target=@idmodal>
                                         <i class="fas fa-eraser fa-sm fa-fw mr-2 text-gray-400"> </i>
                                     </a>
 
                                     @Html.ActionLink("Ver", "_DownloadFIle", new { Id = item.ClienteDocId }, new { target = "_blank", @class = "btn btn-info " })
 
+
+
+                                    @{ 
+
+                                        idmodal = idmodal.Replace("#", "");
+                                    }
+                                    
+
                                     <!-- Delete Modal confirmacion -->
-                                    <div class="modal fade" id="DeleteFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id=@idmodal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header badge-warning">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace Kondominium_Entities
     {
         public int CuentasPorCobrarPagoId { get; set; }
         public string VaucherNumber { get; set; }
+        [DisplayName("Nombre Completo")]
         public string Residente { get; set; }
+
         public int Casa { get; set; }
         public string CasaLetra { get; set; }
         public int PropiedadId { get; set; }

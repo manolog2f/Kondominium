@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
+using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -136,6 +139,29 @@ namespace Kondominium.Controllers
 
             return PartialView(mdel);
         }
+
+
+        public FileResult ExportExcel(DataTable tabla, string FileName)
+        {
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+
+                wb.Worksheets.Add(tabla, "Reporte");
+
+                wb.Table("Reporte").Theme = XLTableTheme.TableStyleMedium4;
+                
+                
+                
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                }
+            }
+        }
+
 
         protected void Mensajes(ZTAdminEntities.Utilities.Resultado res)
         {

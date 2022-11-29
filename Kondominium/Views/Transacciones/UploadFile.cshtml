@@ -70,11 +70,13 @@
                         if (iduploadHeader != 0) {
 
                             hide_loading();
+
+                            debugger;
                             var getUrl = window.location;
                             var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
                             var url = "";
                             if (iduploadHeader > 0) {
-                                url = baseUrl + "/Transacciones/UploadFIle/" + iduploadHeader;
+                                url = baseUrl + "/UploadFIle/" + iduploadHeader;
                             }
                             else {
                                 url = baseUrl + "/UploadFIle";
@@ -220,7 +222,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Carga de pagos por NPE - Excel</h1>
+    <h1 class="h3 mb-4 text-gray-800">Carga de pagos por NPE - File</h1>
 
     <div class="row">
 
@@ -243,7 +245,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                                        <i class="fas fa-file-excel"></i>&nbsp;Paso 1 - Carga de Archivo Excel
+                                        <i class="fas fa-file-excel"></i>&nbsp;Paso 1 - Carga de Archivo de texto
                                     </a>
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">

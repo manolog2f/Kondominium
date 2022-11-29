@@ -15,7 +15,8 @@ namespace Kondominium_Entities
         /// <summary>
         /// Tipo de Propiedad
         /// </summary>
-        [DisplayName("Tipo de Propiedad")]
+        [DisplayName("Tipo de Propiedad Id")]
+        [Required]
         public Nullable<int> TipoDePropiedad { get; set; }
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Descripción")]
         [StringLength(200, ErrorMessage = "La descripción no debe exceder de 200 caracteres")]
+        [Required]
         public string Descripcion { get; set; }
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Id de Polígono
         /// </summary>
-        [DisplayName("Polígono")]
+        [DisplayName("PolígonoId")]
         public string PoligonoId { get; set; }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Id de Arancel
         /// </summary>
-        [DisplayName("Arancel")]
+        [DisplayName("Arancel Id")]
         public Nullable<int> ArancelId { get; set; }
 
         /// <summary>
@@ -90,7 +92,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Senda id
         /// </summary>
-        [DisplayName("Senda")]
+        [DisplayName("Senda Id")]
         public string Senda { get; set; }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Calle id
         /// </summary>
-        [DisplayName("calle")]
+        [DisplayName("calle Id")]
         public string Calle { get; set; }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace Kondominium_Entities
         /// <summary>
         /// Avenida id
         /// </summary>
-        [DisplayName("Avenida")]
+        [DisplayName("AvenidaId")]
         public string Avenida { get; set; }
 
         /// <summary>
@@ -130,7 +132,7 @@ namespace Kondominium_Entities
         public string CasaLetra { get; set; }
 
         private string vpropiedadCasa;
-
+        [DisplayName("Propiedad")]
         public string VPropiedad   // property
         {
             get { return PoligonoId + '-' + Casa.ToString() + CasaLetra; }
@@ -166,13 +168,17 @@ namespace Kondominium_Entities
         /// </summary>
         [DisplayName("Tamaño de la propiedad V2")]
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
-        public Nullable<decimal> TamañoV2 { get; set; }
+        [DefaultValue(0.0)]
+        [Required]
+        public Nullable<decimal> TamañoV2 { get; set; } = 0;
 
         /// <summary>
         /// Total Construido en Metros Cuadrados
         /// </summary>
         [DisplayName("Total Construido M2")]
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
-        public Nullable<decimal> ConstruidoM2 { get; set; }
+        [DefaultValue(0.0)]
+        [Required]
+        public Nullable<decimal> ConstruidoM2 { get; set; } = 0;
     }
 }

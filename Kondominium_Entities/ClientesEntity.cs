@@ -112,7 +112,7 @@ namespace Kondominium_Entities
         public bool Eliminado { get; set; }
 
         private string vfullName;
-
+        [DisplayName("Nombre")]
         public string VFullName   // property
         {
             get { return Nombres + ' ' + Apellidos; }

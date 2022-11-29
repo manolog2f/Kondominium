@@ -1,6 +1,7 @@
 ﻿using Kondominium.Models;
 using Kondominium.Utilities;
 using Kondominium_Entities;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Web.Mvc;
 
@@ -337,29 +338,7 @@ namespace Kondominium.Controllers
             return PartialView(datos);
         }
 
-        //[HttpPost]
-        //public ActionResult ExportarClientesMorosos()
-        //{
-        //    var mdl = new jsModel();
-        //    var dtble = ZoomTechUtils.ZMTDriveDataTable.ToDataTable(new Kondominium_BL.BalanceDatos().ClientesMorosos());
-
-        //    ExcelMR.ExportDataTableToExcel(dtble);
-
-        //    return Json(mdl);
-        //}
-
-        //public void ProcessRequest(HttpContext context)
-        //{
-        //    string connectionString = @"Data Source=ESPIGA\SQL2005; Initial Catalog=MSS; User Id=sa; Password=******";
-        //    using (SqlConnection cnn = new SqlConnection(connectionString))
-        //    {
-        //        string selectCommand = "SELECT * FROM Customers";
-        //        SqlDataAdapter da = new SqlDataAdapter(selectCommand, cnn);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-        //        Utilities.ExportDataTableToExcel(ds.Tables.Item(0));
-        //    }
-        //}
+     
 
         /// Propiedades Saldos Pendientes - Propiedad
         public ActionResult PropiedadesMora(int CantiMax = 1000)
@@ -367,6 +346,8 @@ namespace Kondominium.Controllers
             var datos = new Kondominium_BL.BalanceDatos().PropiedadesMorosos(CantiMax);
             return PartialView(datos);
         }
+
+
 
         /// Cobrado por Dia
         /// por Semana
@@ -381,5 +362,51 @@ namespace Kondominium.Controllers
         }
 
         #endregion "Dasboard"
+
+        #region "Excel"
+
+        public FileResult ExportarClientesMorosos()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.BalanceDatos().ClientesMorosos());
+
+            dTabla.Columns.Remove("Propiedad Id");
+            dTabla.Columns.Remove("Propiedad");
+
+
+            return base.ExportExcel(dTabla, "ClientesMorosos");
+        }
+
+        public FileResult ExportarPropiedadesMorosas()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.BalanceDatos().PropiedadesMorosos());
+
+            /*Condomino Id	Nombre Completo*/
+
+            dTabla.Columns.Remove("Condomino Id");
+            dTabla.Columns.Remove("Nombre Completo");
+
+            return base.ExportExcel(dTabla, "PropiedadesMorosos");
+        }
+
+        public FileResult ExportarPagosdelMes(DateTime FromDate, DateTime ToDate)
+        {
+            FromDate = FromDate == null ? DateTime.Now.AddMonths(-1) : FromDate;
+            ToDate = ToDate == null ? DateTime.Now : ToDate;
+
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.BalanceDatos().PagosPorFecha(FromDate, ToDate));
+
+            return base.ExportExcel(dTabla, "PagosdelMes");
+        }
+
+        public FileResult ExportarTareas()
+        {
+
+
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.TareasDatos().GetAll());
+
+            return base.ExportExcel(dTabla, "ListadoDeTareas");
+        }
+
+        #endregion "Excel"
     }
 }

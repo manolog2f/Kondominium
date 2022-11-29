@@ -34,7 +34,7 @@ namespace Kondominium_Entities
         public string ModificadoPor { get; set; }
         [DisplayName("Monto")]
         public decimal Monto { get; set; }
-        [DisplayName("Propiedad")]
+        [DisplayName("Propiedad Id")]
         public Nullable<int> PropiedadId { get; set; }
 
         public int Estado { get; set; }

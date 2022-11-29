@@ -19,7 +19,7 @@ using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace Kondominium.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : BaseController
     {
         // GET: Report
         public ActionResult Index()
@@ -58,30 +58,30 @@ namespace Kondominium.Controllers
         [HttpGet]
         public ActionResult Recibo(string VaucherNumber)
         {
-            //ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
 
-            //var DataSRecibo = new ReportDataSource("Recibo", new Kondominium_BL.ReportData().Recibo(VaucherNumber));
-            //var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
+            var DataSRecibo = new ReportDataSource("Recibo", new Kondominium_BL.ReportData().Recibo(VaucherNumber));
+            var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
 
-            ////var d = new Kondominium_BL.ReportData().ReciboDataTable(VaucherNumber);
+            //var d = new Kondominium_BL.ReportData().ReciboDataTable(VaucherNumber);
 
-            //rv.SizeToReportContent = true;
-            ////rv.Width = Unit.Percentage(900);
-            ////rv.Height = Unit.Percentage(900);
+            rv.SizeToReportContent = true;
+            //rv.Width = Unit.Percentage(900);
+            //rv.Height = Unit.Percentage(900);
 
-            //rv.ShowToolBar = true;
-            //rv.ShowPrintButton = true;
-            //rv.ShowFindControls = true;
-            //rv.ShowExportControls = true;
+            rv.ShowToolBar = true;
+            rv.ShowPrintButton = true;
+            rv.ShowFindControls = true;
+            rv.ShowExportControls = true;
 
-            //rv.ProcessingMode = ProcessingMode.Local;
+            rv.ProcessingMode = ProcessingMode.Local;
 
-            //rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\Recibo.rdlc";
-            //rv.LocalReport.DataSources.Add(DataSRecibo);
-            //rv.LocalReport.DataSources.Add(DataSEmpresa);
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\Recibo.rdlc";
+            rv.LocalReport.DataSources.Add(DataSRecibo);
+            rv.LocalReport.DataSources.Add(DataSEmpresa);
 
-            //rv.LocalReport.Refresh();
-            //ViewBag.ReportViewer = rv;
+            rv.LocalReport.Refresh();
+            ViewBag.ReportViewer = rv;
 
             return View();
         }
@@ -257,40 +257,40 @@ namespace Kondominium.Controllers
             return View();
         }
 
-        //public ActionResult Pagos(string VaucherNumber)
-        //{
-        //    ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
-
-        //    var DataSPago = new ReportDataSource("Pago", new Kondominium_BL.ReportData().Pagos(VaucherNumber));
-        //    var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
-
-        //    //var d = new Kondominium_BL.ReportData().ReciboDataTable(VaucherNumber);
-
-        //    rv.SizeToReportContent = true;
-        //    //rv.Width = Unit.Percentage(900);
-        //    //rv.Height = Unit.Percentage(900);
-
-        //    rv.ShowToolBar = true;
-        //    rv.ShowPrintButton = true;
-        //    rv.ShowFindControls = true;
-        //    rv.ShowExportControls = true;
-
-        //    rv.ProcessingMode = ProcessingMode.Local;
-        //    rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\Pago.rdlc";
-        //    rv.LocalReport.DataSources.Add(DataSPago);
-        //    rv.LocalReport.DataSources.Add(DataSEmpresa);
-
-        //    rv.LocalReport.Refresh();
-        //    ViewBag.ReportViewer = rv;
-
-        //    return View();
-        //}
-
-        [HttpGet]
         public ActionResult Pagos(string VaucherNumber)
         {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var DataSPago = new ReportDataSource("Pago", new Kondominium_BL.ReportData().Pagos(VaucherNumber));
+            var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
+
+            //var d = new Kondominium_BL.ReportData().ReciboDataTable(VaucherNumber);
+
+            rv.SizeToReportContent = true;
+            //rv.Width = Unit.Percentage(900);
+            //rv.Height = Unit.Percentage(900);
+
+            rv.ShowToolBar = true;
+            rv.ShowPrintButton = true;
+            rv.ShowFindControls = true;
+            rv.ShowExportControls = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\Pago.rdlc";
+            rv.LocalReport.DataSources.Add(DataSPago);
+            rv.LocalReport.DataSources.Add(DataSEmpresa);
+
+            rv.LocalReport.Refresh();
+            ViewBag.ReportViewer = rv;
+
             return View();
         }
+
+        //[HttpGet]
+        //public ActionResult Pagos(string VaucherNumber)
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public ActionResult _PagosMR(string VaucherNumber)
@@ -422,5 +422,437 @@ namespace Kondominium.Controllers
         {
             return View();
         }
+
+
+        public ActionResult ListadoPropiedades()
+        {
+            //'PropiedadesDtaset'
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.PropiedadesDatos().GetAll();
+
+            var ClientesDtaset = new ReportDataSource("PropiedadesDtaset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+            rv.SizeToReportContent = true;
+            //rv.Width = Unit.Percentage(900);
+            //rv.Height = Unit.Percentage(900);
+
+            rv.ShowToolBar = true;
+            rv.ShowPrintButton = true;
+            rv.ShowFindControls = true;
+            rv.ShowExportControls = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoPropiedades.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+            rv.LocalReport.Refresh();
+            ViewBag.ReportViewer = rv;
+
+            return View("View", rv);
+        }
+
+        public ActionResult ListadoClientes()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.ClientesDatos().GetAll();
+
+            var ClientesDtaset = new ReportDataSource("ClientesDtset", datos);
+            var EmpresaDtaSet= new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+            
+            
+                        rv.SizeToReportContent = true;
+            //rv.Width = Unit.Percentage(900);
+            //rv.Height = Unit.Percentage(900);
+
+            rv.ShowToolBar = true;
+            rv.ShowPrintButton = true;
+            rv.ShowFindControls = true;
+            rv.ShowExportControls = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoClientes.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+            rv.LocalReport.Refresh();
+            ViewBag.ReportViewer = rv;
+
+            return View("ListadoClientes", rv);
+        }
+
+
+        public void PropiedadesMorososExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.BalanceDatos().PropiedadesMorosos(999999999);
+
+            var datosDtaset = new ReportDataSource("PropiedadesMorososDtaSet", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+            //rv.Width = Unit.Percentage(900);
+            //rv.Height = Unit.Percentage(900);
+
+            //rv.ShowToolBar = true;
+            //rv.ShowPrintButton = true;
+            //rv.ShowFindControls = true;
+            //rv.ShowExportControls = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\PropiedadesMorosas.rdlc";
+            rv.LocalReport.DataSources.Add(datosDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=PropiedadesMorosos." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ClientesMorososExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.BalanceDatos().ClientesMorosos(999999999);
+
+            var datosDtaset = new ReportDataSource("PropiedadesMorososDtaset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType ; 
+            string encoding;
+            string extension ;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoClientesenMora.rdlc";
+            rv.LocalReport.DataSources.Add(datosDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL",  null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=ClientesMorosos." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+        public void PagosRealizadosFechaExcel(DateTime FromDate, DateTime ToDate)
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            FromDate = FromDate == null ? DateTime.Now.AddMonths(-1) : FromDate;
+            ToDate = ToDate == null ? DateTime.Now : ToDate;
+
+            var datos = new Kondominium_BL.BalanceDatos().PagosPorFecha(FromDate, ToDate);
+
+            var datosDtaset = new ReportDataSource("CobrosRealizadosFechaDtaSet", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+            var Desde = new ReportParameter("Desde", FromDate.ToString());
+            var Hasta = new ReportParameter("Hasta", ToDate.ToString());
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+            
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\PagosRealizados.rdlc";
+            rv.LocalReport.DataSources.Add(datosDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+            rv.LocalReport.SetParameters(Desde);
+            rv.LocalReport.SetParameters(Hasta);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=PagosRealizadosFecha." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ListadoDeClientesExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.ClientesDatos().GetAll();
+
+            var ClientesDtaset = new ReportDataSource("ClientesDtset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoClientes.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=ListadodeClientes." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ListadoDePropiedadesExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+              var datos = new Kondominium_BL.PropiedadesDatos().GetAll();
+
+            var ClientesDtaset = new ReportDataSource("PropiedadesDtaset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoPropiedades.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=ListadodePropiedades." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ListadoDeClientesPropiedadesExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.ClientePropiedadDatos().GetAlltoReport();
+
+            var ClientesDtaset = new ReportDataSource("DatosDtaSet", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDtaSet", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ClientesPropiedades.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=ClientesPropiedades." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ListadoRecibosEmitidosExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.CuentasPorCobrarDatos().GetAllNoAuto();
+
+            var ClientesDtaset = new ReportDataSource("CxcNoAutoDtaset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDatset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoRecibosEmitidos.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=RecibosEmitidos." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        public void ListadoAvisosDeCobroExcel()
+        {
+            ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
+
+            var datos = new Kondominium_BL.CuentasPorCobrarDatos().GetAllByAutomatico();
+
+            var ClientesDtaset = new ReportDataSource("CxcNoAutoDtaset", datos);
+            var EmpresaDtaSet = new ReportDataSource("EmpresaDatset", new Kondominium_BL.EmpresaDatos().DataTable());
+
+
+
+            Warning[] warnings;
+            string[] streamIds;
+            string contentType;
+            string encoding;
+            string extension;
+
+
+            rv.SizeToReportContent = true;
+
+            rv.ProcessingMode = ProcessingMode.Local;
+            rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Consultas\ListadoAvisosDeCobro.rdlc";
+            rv.LocalReport.DataSources.Add(ClientesDtaset);
+            rv.LocalReport.DataSources.Add(EmpresaDtaSet);
+
+
+            byte[] bytes = rv.LocalReport.Render("EXCEL", null, out contentType, out encoding, out extension, out streamIds, out warnings);
+
+
+
+            ViewBag.ReportViewer = rv;
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = contentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=ListadoAvisosDeCobro." + extension);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        #region "ExportarExcel"
+
+        public FileResult DetalleDePagosExcel(string FromDate, string ToDate)
+        {
+
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.DetalledePagoDatos().Ejecutar(DateTime.Parse(FromDate), DateTime.Parse(ToDate)));
+
+            return base.ExportExcel(dTabla, "DetalleDepagos");
+            
+        }
+
+        #endregion "ExportarExcel"
+
     }
 }

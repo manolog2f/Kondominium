@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie los valores de estos atributos para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Kondominium")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Sistema de Gestion de Condominios")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyCompany("Especlialistas TI Asociados")]
 [assembly: AssemblyProduct("Kondominium")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2021")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © ZoomTech 2022")]
+[assembly: AssemblyTrademark("ZoomTech")]
 [assembly: AssemblyCulture("")]
 
 // Si configura ComVisible como falso, los tipos de este ensamblado no se hacen visibles

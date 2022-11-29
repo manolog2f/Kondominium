@@ -7,7 +7,7 @@ namespace Kondominium_BL
 {
     public class CuentasPorCobrarDetalleDatos
     {
-        Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
+        private Kondominium_DAL.KEntities contex = new Kondominium_DAL.KEntities();
 
         public List<CuentasPorCobrarDetalleEntity> GetAll(bool VerEliminado = false)
         {
@@ -81,7 +81,6 @@ namespace Kondominium_BL
                     var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.VaucherNumber == model.VaucherNumber && x.DetalleId == model.DetalleId).FirstOrDefault();
                     var modlNew = new Kondominium_DAL.cuentasporcobrardetalle();
 
-
                     if (modlExist != null)
                     {
                         if (modlExist.Eliminado == true)
@@ -89,7 +88,6 @@ namespace Kondominium_BL
 
                         modlNew = modlExist;
                     }
-
 
                     modlNew.VaucherNumber = model.VaucherNumber;
                     //modlNew.DetalleId = model.DetalleId;
@@ -118,10 +116,8 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (model, new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro almacenar el Registro \n" + ex.Message });
             }
-
         }
 
         public void UpdateTotalHeader(string VaucherNumber)
@@ -160,9 +156,9 @@ namespace Kondominium_BL
             catch (Exception ex)
             {
                 return new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logró eliminar el Registro \n" + ex.Message };
-
             }
         }
+
         public Resultado SetDelete(int Id, string UserId)
         {
             try
@@ -170,7 +166,6 @@ namespace Kondominium_BL
                 string Vaucher = "";
                 using (var ContextP = new Kondominium_DAL.KEntities())
                 {
-
                     var modlExist = ContextP.cuentasporcobrardetalle.Where(x => x.DetalleId == Id).FirstOrDefault();
 
                     if (modlExist == null)
@@ -190,11 +185,8 @@ namespace Kondominium_BL
             }
             catch (Exception ex)
             {
-
                 return (new Resultado { Codigo = CodigosMensaje.Error, Mensaje = "No se logro Eliminar el Registro \n" + ex.Message });
             }
-
         }
-
     }
 }

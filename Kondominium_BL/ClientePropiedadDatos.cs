@@ -70,6 +70,26 @@ namespace Kondominium_BL
 
             return query.ToList();
         }
+
+        public List<ClientePropiedadVw> GetAlltoReport()
+        {
+            var query = context.clientepropiedad
+                        .Select(p => new ClientePropiedadVw
+                        {
+                            ClienteId = p.ClienteId,
+                            Nombres = p.clientes.Nombres,
+                            Apellidos = p.clientes.Apellidos,
+                            PropiedadId = p.PropiedadId ,
+                            TipoCliente = p.TipoCliente, 
+                            Casa = p.propiedades.Casa.ToString() ,
+                            CasaLetra = p.propiedades.CasaLetra ,
+                            PoligonoId = p.propiedades.PoligonoId 
+                           
+                        });
+
+
+            return query.ToList();
+        }
         public ClientePropiedadEntity GetById(int ClienteId, int propiedadId)
         {
             var query = context.clientepropiedad

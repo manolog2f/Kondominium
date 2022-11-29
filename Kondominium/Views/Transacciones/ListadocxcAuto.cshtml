@@ -84,7 +84,11 @@
             </div>
 
             <div>
-                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+                @*<button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>*@
+
+                <a href="@Url.Action("ExportarAvisosDeCobro", "Transacciones")" class="btn btn-info">
+                    <i class="fa fa-file-excel"></i> Exportar a Excel
+                </a>
             </div>
         </div>
     </div>

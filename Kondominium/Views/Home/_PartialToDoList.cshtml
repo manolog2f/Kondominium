@@ -24,16 +24,24 @@
                     {
                         className = "task high last";
                     }
-                    <div class="@className">
-                        <div class="desc">
-                            <div class="title"> @item.Titulo </div>
-                            <div> @item.Descripcion </div>
+                        <div class="@className">
+                            <div class="desc">
+                                <div class="title"> @item.Titulo </div>
+                                <div> @item.Descripcion </div>
+                                <p> @item.UsuarioAsignado </p>
+                            </div>
+                            <div class="time">
+                                <div class="date"> @item.FechaDeEjecucion </div>
+
+                                @{ 
+
+                                    Kondominium_Entities.EstatusTarea StatustMR = (Kondominium_Entities.EstatusTarea)Enum.Parse(typeof(Kondominium_Entities.EstatusTarea), item.Estatus.ToString());
+                                }
+
+                            <p> @StatustMR.ToString() </p>
+                            </div>
+                            
                         </div>
-                        <div class="time">
-                            <div class="date"> @item.FechaDeEjecucion </div>
-                            @*<div>  </div>*@
-                        </div>
-                    </div>
 
                     conta -= conta;
 
@@ -54,16 +62,23 @@
                     {
                         className = "task medium last";
                     }
-                    <div class="@className">
-                        <div class="desc">
-                            <div class="title"> @item.Titulo </div>
-                            <div> @item.Descripcion </div>
+                        <div class="@className">
+                            <div class="desc">
+                                <div class="title"> @item.Titulo </div>
+                                <div> @item.Descripcion </div>
+                                <p> @item.UsuarioAsignado </p>
+                            </div>
+                            <div class="time">
+                                <div class="date"> @item.FechaDeEjecucion </div>
+                                @{
+
+                                    Kondominium_Entities.EstatusTarea StatustMR = (Kondominium_Entities.EstatusTarea)Enum.Parse(typeof(Kondominium_Entities.EstatusTarea), item.Estatus.ToString());
+                                }
+
+                                <p> @StatustMR.ToString() </p>
+                            </div>
+                     
                         </div>
-                        <div class="time">
-                            <div class="date"> @item.FechaDeEjecucion </div>
-                            @*<div>  </div>*@
-                        </div>
-                    </div>
                     conta -= conta;
                 }
             }
@@ -76,16 +91,23 @@
 
                 foreach (var item in PBAjo)
                 {
-                    <div class="task low">
-                        <div class="desc">
-                            <div class="title"> @item.Titulo </div>
-                            <div> @item.Descripcion </div>
+                        <div class="task low">
+                                        <div class="desc">
+                                            <div class="title"> @item.Titulo </div>
+                                            <div> @item.Descripcion </div>
+                                            <p> @item.UsuarioAsignado </p>
+                                        </div>
+                                        <div class="time">
+                                            <div class="date"> @item.FechaDeEjecucion </div>
+                                            @{
+
+                                                Kondominium_Entities.EstatusTarea StatustMR = (Kondominium_Entities.EstatusTarea)Enum.Parse(typeof(Kondominium_Entities.EstatusTarea), item.Estatus.ToString());
+                                            }
+
+                                            <p> @StatustMR.ToString() </p>
+                                        </div>
+                            
                         </div>
-                        <div class="time">
-                            <div class="date"> @item.FechaDeEjecucion </div>
-                            @*<div>  </div>*@
-                        </div>
-                    </div>
                     conta -= conta;
                 }
             }

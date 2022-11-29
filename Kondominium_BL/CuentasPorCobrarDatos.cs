@@ -32,7 +32,7 @@ namespace Kondominium_BL
                 Casa = cc.propiedades.Casa,
                 CasaLetra = cc.propiedades.CasaLetra,
                 PoligonoId = cc.propiedades.PoligonoId,
-                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Apellidos.Trim())
             });
 
             return query.ToList();
@@ -61,7 +61,7 @@ namespace Kondominium_BL
                 Casa = cc.propiedades.Casa,
                 CasaLetra = cc.propiedades.CasaLetra,
                 PoligonoId = cc.propiedades.PoligonoId,
-                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Apellidos.Trim())
             });
 
             return query.ToList();
@@ -90,7 +90,7 @@ namespace Kondominium_BL
                 Casa = cc.propiedades.Casa,
                 CasaLetra = cc.propiedades.CasaLetra,
                 PoligonoId = cc.propiedades.PoligonoId,
-                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+                FullNameCondomino = string.Concat(cc.clientes.Apellidos.Trim(), " ", cc.clientes.Nombres.Trim())
             });
 
             return query.ToList();
@@ -158,7 +158,7 @@ namespace Kondominium_BL
                     modlNew.FechaDeModificacion = DateTime.Now;
                     modlNew.ModificadoPor = model.ModificadoPor;
                     modlNew.Eliminado = model.Eliminado;
-                    modlNew.Estado = 0;
+                    modlNew.Estado = 1;
                     modlNew.PropiedadId = model.PropiedadId;
 
                     if (string.IsNullOrEmpty(modlNew.VaucherNumber))
@@ -357,7 +357,7 @@ namespace Kondominium_BL
                 Casa = cc.propiedades.Casa,
                 CasaLetra = cc.propiedades.CasaLetra,
                 PoligonoId = cc.propiedades.PoligonoId,
-                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+                FullNameCondomino = string.Concat(cc.clientes.Apellidos.Trim(), " ", cc.clientes.Nombres.Trim())
             });
 
             return query.FirstOrDefault();
@@ -386,7 +386,7 @@ namespace Kondominium_BL
                 Casa = cc.propiedades.Casa,
                 CasaLetra = cc.propiedades.CasaLetra,
                 PoligonoId = cc.propiedades.PoligonoId,
-                FullNameCondomino = string.Concat(cc.clientes.Nombres.Trim(), " ", cc.clientes.Nombres.Trim())
+                FullNameCondomino = string.Concat(cc.clientes.Apellidos.Trim(), " ", cc.clientes.Nombres.Trim())
             });
 
             return query.FirstOrDefault();

@@ -23,7 +23,8 @@ namespace Kondominium
                 "~/Scripts/jquery-3.6.0.js",
                 "~/Scripts/jquery-ui-3.6.0.min.js",
                 "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/jquery.maskedinput.min.js"
+                "~/Scripts/jquery.maskedinput.min.js",
+                "~/Scripts/jquery-Autocompletar.js"
 
             ));
 

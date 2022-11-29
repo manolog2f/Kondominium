@@ -53,9 +53,9 @@
                                                 @Html.LabelFor(model => model.TipoDePropiedad, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.TipoDePropiedad,
-  EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipodePropiedades)),
-  "Seleccione la categoria",
-  new { @class = "form-control" })
+EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipodePropiedades)),
+"Seleccione la categoria",
+new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.TipoDePropiedad, "", new { @class = "text-danger" })
                                                 </div>
@@ -79,10 +79,10 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.PoligonoId,
-  new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-  { Text = x.PoligonoId, Value = x.PoligonoId }),
-  "Seleccione el poligono",
-  new { @class = "form-control" })
+new Kondominium_BL.PoligonosDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.PoligonoId, Value = x.PoligonoId }),
+"Seleccione el poligono",
+new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.PoligonoId, "", new { @class = "text-danger" })
                                                 </div>
@@ -104,13 +104,13 @@
                                                 <div class="col-md-10">
 
                                                     @Html.DropDownListFor(model => model.CasaLetra,
-  new Kondominium.Controllers.PropiedadesController().ListABC().Select(x => new SelectListItem
-  {
-      Text = x.ToString()
-  ,
-      Value = x.ToString()
-  }),
-  "Seleccione la letra de la casa",
+new Kondominium.Controllers.PropiedadesController().ListABC().Select(x => new SelectListItem
+{
+    Text = x.ToString()
+,
+    Value = x.ToString()
+}),
+"Seleccione la letra de la casa",
 new { @class = "form-control" })
 
                                                     @Html.ValidationMessageFor(model => model.CasaLetra, "", new { @class = "text-danger" })
@@ -125,10 +125,10 @@ new { @class = "form-control" })
                                                 @Html.LabelFor(model => model.Senda, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Senda,
-      new Kondominium_BL.SendasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-      { Text = x.SendaDescripcion, Value = x.SendaId }),
-                                                   "Seleccione la Senda",
-                                                   new { @class = "form-control" })
+new Kondominium_BL.SendasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.SendaDescripcion, Value = x.SendaId }),
+    "Seleccione la Senda",
+    new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Senda, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -139,10 +139,10 @@ new { @class = "form-control" })
                                                 @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Calle,
-  new Kondominium_BL.CallesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-  { Text = x.CalleDescripcion, Value = x.CalleId }),
-                                               "Seleccione la Calle",
-                                               new { @class = "form-control" })
+new Kondominium_BL.CallesDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.CalleDescripcion, Value = x.CalleId }),
+"Seleccione la Calle",
+new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -154,8 +154,8 @@ new { @class = "form-control" })
                                                     @Html.DropDownListFor(model => model.Avenida,
 new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
 { Text = x.AvenidaDescripcion, Value = x.AvenidaId }),
-                          "Seleccione la Avenida",
-                          new { @class = "form-control" })
+"Seleccione la Avenida",
+new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Avenida, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -169,10 +169,10 @@ new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Sel
                                                 @Html.LabelFor(model => model.Alameda, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.Alameda,
-      new Kondominium_BL.AlamedaDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-      { Text = x.AlamedaDescripcion, Value = x.AlamedaId }),
-                                                   "Seleccione la Alameda",
-                                                   new { @class = "form-control" })
+new Kondominium_BL.AlamedaDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.AlamedaDescripcion, Value = x.AlamedaId }),
+    "Seleccione la Alameda",
+    new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.Alameda, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -183,10 +183,10 @@ new Kondominium_BL.AvenidasDatos().GetAll().Where(x => x.Eliminado == false).Sel
                                                 @Html.LabelFor(model => model.PaseoDescripcion, htmlAttributes: new { @class = "control-label col-md" })
                                                 <div class="col-md-10">
                                                     @Html.DropDownListFor(model => model.PaseoId,
-      new Kondominium_BL.PaseoDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
-      { Text = x.PaseoDescripcion, Value = x.PaseoId }),
-                                                   "Seleccione el paseo",
-                                                   new { @class = "form-control" })
+new Kondominium_BL.PaseoDatos().GetAll().Where(x => x.Eliminado == false).Select(x => new SelectListItem
+{ Text = x.PaseoDescripcion, Value = x.PaseoId }),
+    "Seleccione el paseo",
+    new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.PaseoId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -237,6 +237,11 @@ new { @class = "form-control" })
                                 </div>
                             </div>
 
+
+
+                            @{
+                                if (Model.PropiedadId != 0)
+                                {
                             <!-- Doc Propiedades -->
                             <div class="card">
                                 <div class="card-header">
@@ -312,6 +317,8 @@ new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
+                                }
+                            }
 
                             <!-- Sistema -->
                             <div class="card">
@@ -387,7 +394,7 @@ new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
-
+                               
             }
         </div>
     </div>

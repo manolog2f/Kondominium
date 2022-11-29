@@ -38,6 +38,23 @@ namespace Kondominium.Controllers
         }
 
         [HttpGet]
+        public ActionResult Temp(string VaucherNumber = "REC0000000766")
+        {
+            if (VaucherNumber != null)
+            {
+                var model = new Kondominium_BL.CuentasPorCobrarDatos().GetById(VaucherNumber);
+
+                ModelState.Clear();
+                return View(model);
+            }
+            return View(new CuentasPorCobrarEntity()
+            {
+                FechaDeEmision = DateTime.Now,
+                FechaDeVencimiento = DateTime.Now.AddDays(30)
+            });
+        }
+
+        [HttpGet]
         public ActionResult EditCuentasPorCobrar(string VaucherNumber, int? codigo = null, string Mensaje = "")
         {
             if (!Verifypermission("", this.ControllerContext.RouteData.Values["action"].ToString(), this.ControllerContext.RouteData.Values["controller"].ToString()))
@@ -118,7 +135,7 @@ namespace Kondominium.Controllers
         }
 
         [HttpGet]
-        public ActionResult _EditCuentasPorCobrarPago(string VaucherNumber, int ClienteId, Decimal Monto)
+        public ActionResult _EditCuentasPorCobrarPago(string VaucherNumber, int ClienteId, int PropiedadId, Decimal Monto)
         {
             if (VaucherNumber != null)
             {
@@ -128,7 +145,7 @@ namespace Kondominium.Controllers
                 {
                     return PartialView(model);
                 }
-                return PartialView(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = ClienteId, Monto = Monto });
+                return PartialView(new CuentasPorCobrarPagoEntity { VaucherNumber = VaucherNumber, ClienteId = ClienteId, PropiedadId = PropiedadId, Monto = Monto });
             }
             return PartialView(new CuentasPorCobrarPagoEntity());
         }
@@ -142,6 +159,7 @@ namespace Kondominium.Controllers
             {
                 var model = new CuentasPorCobrarPagoEntity
                 {
+                    PropiedadId = int.Parse(form["PropiedadId"]),
                     VaucherNumber = form["VaucherNumber"],
                     ReferenciaPago = form["ReferenciaPago"],
                     ClienteId = int.Parse(form["ClienteId"]),
@@ -225,6 +243,8 @@ namespace Kondominium.Controllers
             {
                 var model = new Kondominium_BL.CuentasPorCobrarDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 3);
 
+                var modeln = new Kondominium_BL.CuentasPorCobrarPagoDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 3);
+
                 return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)model.Codigo), Mensaje = model.Mensaje });
             }
             return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)CodigosMensaje.No_Existe) });
@@ -235,6 +255,8 @@ namespace Kondominium.Controllers
             if (VaucherNumber != null)
             {
                 var model = new Kondominium_BL.CuentasPorCobrarDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 4);
+
+                var modeln = new Kondominium_BL.CuentasPorCobrarPagoDatos().SetEstado(VaucherNumber, HttpContext.User.Identity.Name.ToString(), 4);
 
                 return RedirectToAction("EditCuentasPorCobrar", new { VaucherNumber = VaucherNumber, codigo = ((int)model.Codigo), Mensaje = model.Mensaje });
             }
@@ -725,6 +747,21 @@ namespace Kondominium.Controllers
             var mdl = new jsDocModel();
             var respM = new Resultado();
 
+            byte[] filen;
+
+            using (Stream inputStream = file.InputStream)
+            {
+                MemoryStream memoryStream = inputStream as MemoryStream;
+
+                if (memoryStream == null)
+                {
+                    memoryStream = new MemoryStream();
+                    inputStream.CopyTo(memoryStream);
+                }
+
+                filen = memoryStream.ToArray();
+            }
+
             var paso = "0";
             var extra = "";
             var dondeescribe = ".. ";
@@ -732,28 +769,28 @@ namespace Kondominium.Controllers
             mdl.idTrans = 0;
             try
             {
-                if (file.ContentLength > 0)
+                if (filen.Length > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    if (!Directory.Exists(GetPahtFileUploaded()))
-                    {
-                        dondeescribe = GetPahtFileUploaded();
-                        paso = "1";
-                        extra = "No existe el directorio";
-                        Console.WriteLine(extra);
-                        //HttpContext.Current.Response.Write(extra);
-                        HttpContext.Response.Write(extra);
-                        Directory.CreateDirectory(GetPahtFileUploaded());
-                        paso = "2";
-                        extra = "Creo el Directorio";
-                        Console.WriteLine(extra);
-                    }
+                    // string _FileName = Path.GetFileName(file.FileName);
+                    //if (!Directory.Exists(GetPahtFileUploaded()))
+                    //{
+                    //    dondeescribe = GetPahtFileUploaded();
+                    paso = "1";
+                    extra = "Version Sin directorio / Archivo en Memoria";
+                    //    Console.WriteLine(extra);
+                    //    //HttpContext.Current.Response.Write(extra);
+                    //    HttpContext.Response.Write(extra);
+                    //    Directory.CreateDirectory(GetPahtFileUploaded());
+                    paso = "2";
+                    extra = "Version sin Directorio";
+                    //    Console.WriteLine(extra);
+                    //}
 
-                    paso = "3";
-                    extra = "Tratara de Guardar el Archuvi";
-                    Console.WriteLine(extra);
-                    string _path = Path.Combine(GetPahtFileUploaded(), _FileName);
-                    file.SaveAs(_path);
+                    //paso = "3";
+                    //extra = "Tratara de Guardar el Archuvi";
+                    //Console.WriteLine(extra);
+                    //string _path = Path.Combine(GetPahtFileUploaded(), _FileName);
+                    //file.SaveAs(_path);
 
                     paso = "3";
                     extra = "Archivo guardado";
@@ -762,13 +799,13 @@ namespace Kondominium.Controllers
 
                     // Guardar Encabezado.
 
-                    var resp = new Kondominium_BL.UploadFileHDatos().Save(new UploadFileHEntity { Estado = 0, FileName = _path, UploadDate = DateTime.Now, UserId = GetCurrentUser() });
+                    var resp = new Kondominium_BL.UploadFileHDatos().Save(new UploadFileHEntity { Estado = 0, FileName = file.FileName, UploadDate = DateTime.Now, UserId = GetCurrentUser() });
 
                     paso = "5";
                     extra = "Guardo Registro";
                     Console.WriteLine(extra);
 
-                    var larchivo = new Kondominium_Process.Process().ProcesarArchivo(_path, resp.Item1.UploadFileHId);
+                    var larchivo = new Kondominium_Process.Process().ProcesarArchivo(filen, resp.Item1.UploadFileHId);
                     paso = "6";
                     extra = "Cargando detalle";
                     Console.WriteLine(extra);
@@ -863,5 +900,28 @@ namespace Kondominium.Controllers
         }
 
         #endregion CargaRecibosdePago
+
+        #region "Exportar Excel"
+
+        public FileResult ExportarPagos()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.CuentasPorCobrarPagoDatos().GetAll());
+           return  base.ExportExcel(dTabla, "ReporteDePagos");
+        }
+
+        public FileResult ExportarAvisosDeCobro()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.CuentasPorCobrarDatos().GetAllByAutomatico());
+            return base.ExportExcel(dTabla, "AvisosdeCobro");
+        }
+        public FileResult ExportarRecibos()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.CuentasPorCobrarDatos().GetAllNoAuto());
+            return base.ExportExcel(dTabla, "Recibos");
+        }
+
+
+        #endregion
+
     }
 }

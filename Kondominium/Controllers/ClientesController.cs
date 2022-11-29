@@ -101,7 +101,6 @@ namespace Kondominium.Controllers
                         //}
                         return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = 0 });
                     }
-
                     return RedirectToAction("EditClientes", new { Id = datos.ClienteId, codigo = modelr.Codigo });
                 }
                 else
@@ -394,5 +393,22 @@ namespace Kondominium.Controllers
 
             return Json(objCustomerlist, JsonRequestBehavior.AllowGet);
         }
+
+        #region "ExportarExcel"
+
+        public FileResult ExportarClientes()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.ClientesDatos().GetAll());
+            return base.ExportExcel(dTabla, "ListadodeClientes");
+        }
+
+        public FileResult ExportarClientesPropiedad()
+        {
+            var dTabla = ZoomTechUtils.MRDriveDataTableDisplayName.ToDataTable(new Kondominium_BL.ClientePropiedadDatos().GetAlltoReport());
+            dTabla.Columns.Remove("Tipo de Cliente");
+            return base.ExportExcel(dTabla, "ListadoClientesPropiedad");
+        }
+
+        #endregion "ExportarExcel"
     }
 }

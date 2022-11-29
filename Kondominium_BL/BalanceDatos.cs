@@ -212,6 +212,30 @@ namespace Kondominium_BL
             return q2.ToList();
         }
 
+        public List<DashClientesMorosos> PropiedadesMorosos()
+        {
+            var query = context.vwbalance.GroupBy(x => x.PropiedadId).Select(x => new DashClientesMorosos
+            {
+                ClienteId = (int)x.FirstOrDefault().ClienteId,
+                PropiedadId = (int)x.FirstOrDefault().PropiedadId,
+                SaldoActual = x.Sum(s => s.TotRecibo) - x.Sum(s => s.TotPago)
+            }).ToList();
+
+            query = query.Where(x => x.SaldoActual > 0).OrderByDescending(x => x.SaldoActual).ToList();
+
+            var q2 = from a in query
+                     join c in context.propiedades on a.PropiedadId equals c.PropiedadId
+                     select new DashClientesMorosos
+                     {
+                         ClienteId = a.ClienteId,
+                         VPropiedad = c.PoligonoId + '-' + c.Casa.ToString() + c.CasaLetra,
+                         PropiedadId = a.PropiedadId,
+                         SaldoActual = a.SaldoActual
+                     };
+
+            return q2.ToList();
+        }
+
         public List<PagosPorMetodoEntity> PagosPorFecha(DateTime Desde, DateTime Hasta)
         {
             Hasta = Hasta.AddDays(1);

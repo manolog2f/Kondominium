@@ -4,6 +4,65 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
+<script type="text/javascript">
+    @*function ExportarDetalleDePagosExcel() {
+
+        debugger;
+
+        var fromDate = document.getElementById("datepicker2").value;
+        var toDatex = document.getElementById("datepicker").value;
+
+        //$.ajax({
+        //    type: "GET",
+        //    url: 'DetalleDePagosExcel?FromDate=' + fromDate + '&ToDate=' + toDatex,
+        //    data: ""
+        //    }
+        //);
+
+
+         $.ajax({
+        type: "GET",
+             url: 'DetalleDePagosExcel?FromDate=' + fromDate + '&ToDate=' + toDatex,
+        data: { ruta: uri },
+        success: function () {
+            window.location = '@Url.Action("DownloadPDF", "Documento", new { ruta= rutaDelArchivoQueVaAIrEnLaURL })';
+        }
+    });
+
+
+    }*@
+
+
+    function exported() {
+
+        var fromDate = document.getElementById("datepicker2").value;
+        var toDatex = document.getElementById("datepicker").value;
+
+
+        window.location.href = "@Url.RouteUrl(new { Controller = "Report", Action = "DetalleDePagosExcel" })/?FromDate=" + fromDate + "&ToDate=" + toDatex;
+
+        @*$.ajax({
+            type: "POST",
+            url: '@Url.Action("DetalleDePagosExcel", "Report", new { FromDate = DateTime.Now.AddMonths(-1),ToDate = DateTime.Now }) ', //call your controller and action
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+        }).done(function (data) {
+
+            //get the file name for download
+            if (data.fileName != "") {
+                //use window.location.href for redirect to download action for download the file
+                window.location.href = "@Url.RouteUrl(new { Controller = "Home", Action = "Download" })/?fileName=" + data.fileName;
+            }
+        });*@
+    }
+
+
+</script>
+
+
+
+
 <h1 class="h3 mb-2 text-gray-800">Detalle de pagos</h1>
 
 <form method="post" action='@Url.Action("DetalleDePagos", "Report")'>
@@ -15,7 +74,7 @@
                 <div class="form-group">
 
                     <div class="col-md-10">
-                        @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker2" , placeholder = "Desde...", type = "date" } })
+                        @Html.Editor("FromDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", placeholder = "Desde...", type = "date" } })
 
                     </div>
                 </div>
@@ -23,52 +82,13 @@
             <div class="col">
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.Editor("ToDate", new { htmlAttributes = new { @class="form-control", @id = "datepicker", placeholder = "Hasta...", type = "date" } })
-       
+                        @Html.Editor("ToDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker", placeholder = "Hasta...", type = "date" } })
+
                     </div>
                 </div>
             </div>
 
 
-
-            <!--<div class="col-sm-4">
-        <div class="form-group">
-            <div class="input-group date" id="datepicker" data-target-input="nearest">-->
-            @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
-            @*<input id="datepickerFrom" width="276" class="form-control datepicker" , placeholder="Fro Date..." />*@
-
-            <!--@Html.TextBox("FromDate", DateTime.Now.ToString("dd-MM-yyyy"), new
-           {
-               placeholder = "Hasta...",
-               @class = "form-control datepicker",
-               Id = "datepicker"
-
-           })
-                <div class="input-group-append" data-target="#datepicker" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4">
-        <div class="form-group">
-            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">-->
-            @*<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />*@
-            @*<input id="datepickerTo" width="276" class="form-control datepicker" , placeholder="To date..." />*@
-
-            <!--@Html.TextBox("ToDate", DateTime.Now.ToString("dd-MM-yyyy"), new
-           {
-               placeholder = "Hasta...",
-               @class = "form-control datepicker",
-               Id = "datepicker2"
-           })
-                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>-->
 
             <div class="col-sm-4">
                 <div class="form-group">
@@ -84,6 +104,9 @@
             </div>
         </div>
     </div>
+
+
+
 </form>
 
 <!-- Begin Page Content -->
@@ -108,7 +131,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.VaucherNumber)
                             </th>
-                            <th>
+                            <th style="width:300px!important">
                                 @Html.DisplayNameFor(model => model.Residente)
                             </th>
                             <th>
@@ -242,7 +265,15 @@
             </div>
 
             <div>
-                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+                <button onclick="exported()" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+
+
+                @*<div>
+                    <a href="@Url.Action("DetalleDePagosExcel", "Report")" , class="btn btn-info">
+                        <i class="fa fa-file-excel"></i> Exportar a Excel
+                    </a>
+                </div>*@
+
             </div>
         </div>
     </div>

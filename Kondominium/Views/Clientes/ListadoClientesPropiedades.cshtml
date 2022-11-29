@@ -41,18 +41,6 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Justificacion)
                             </th>
-                            @*<th>
-                            @Html.DisplayNameFor(model => model.FechaDeCreacion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FechaDeModificacion)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CreadoPor)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ModificadoPor)
-                        </th>*@
 
                         </tr>
 
@@ -84,18 +72,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Justificacion)
                                 </td>
-                                @*<td>
-                                @Html.DisplayFor(modelItem => item.FechaDeCreacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaDeModificacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreadoPor)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ModificadoPor)
-                            </td>*@
+
 
                             </tr>
                         }
@@ -103,7 +80,13 @@
                 </table>
             </div>
             <div class="row">
-                <button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+                @*<button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>*@
+
+                <a href="@Url.Action("ExportarClientesPropiedad", "Clientes")" class="btn btn-info">
+                    <i class="fa fa-file-excel"></i> Exportar a Excel
+                </a>
+
+
             </div>
         </div>
     </div>

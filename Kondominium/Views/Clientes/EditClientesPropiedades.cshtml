@@ -50,6 +50,21 @@
 
                                     </div>
 
+
+                                    @{
+
+                                        var readonlyx = "false";
+                                        var disabled = "";
+
+
+                                        if (Model.FechaDeCreacion != null)
+                                        {
+                                            readonlyx = "true";
+                                            disabled = "@disabled='disabled'";
+                                        }
+
+                                    }
+
                                     <div class="row">
 
                                         <div class="card-body">
@@ -59,7 +74,7 @@
                                                     @Html.DropDownListFor(model => model.TipoCliente,
                                                                    EnumHelper.GetSelectList(typeof(Kondominium_Entities.TipoClientes)),
                                                                    "Seleccione el tipo de Condómino",
-                                                                   new { @class = "form-control" })
+                                                                   new { @class = "form-control", @readonly = readonlyx , @disabled = "disabled" })
                                                     @Html.ValidationMessageFor(model => model.TipoCliente, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -73,7 +88,7 @@
                                                     @Html.DropDownListFor(model => model.ClienteId,
                                                                    new SelectList(new Kondominium.Controllers.ClientesController().ListClientes(), "ClienteId", "VFullName"),
                                                                    "Seleccione el Condómino",
-                                                                   new { @class = "form-control" })
+                                                                   new { @class = "form-control", @readonly = readonlyx })
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -86,7 +101,7 @@
                                                     @Html.DropDownListFor(model => model.PropiedadId,
                                                                  new SelectList(new Kondominium.Controllers.PropiedadesController().ListPropiedades(), "PropiedadId", "VPropiedad"),
                                                                  "Selecciona la propiedad",
-                                                                 new { @class = "form-control" })
+                                                                 new { @class = "form-control", @readonly = readonlyx })
                                                     @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
