@@ -30,10 +30,10 @@ namespace Kondominium_DAL
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
     
+        public virtual clientes clientes { get; set; }
         public virtual propiedades propiedades { get; set; }
         public virtual clientepropiedaddetalle clientepropiedaddetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clientepropiedaddocs> clientepropiedaddocs { get; set; }
-        public virtual clientes clientes { get; set; }
     }
 }

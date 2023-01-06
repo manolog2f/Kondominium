@@ -87,6 +87,7 @@
     <Compile Include="DetalleDePagoEntity.cs" />
     <Compile Include="DocumentEntity.cs" />
     <Compile Include="PagosPorMetodoEntity.cs" />
+    <Compile Include="SaldoAdeudadoEntity.cs" />
     <Compile Include="UploadFileDEntity.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LugaresEntity.cs" />

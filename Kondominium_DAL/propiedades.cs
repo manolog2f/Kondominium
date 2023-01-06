@@ -17,11 +17,11 @@ namespace Kondominium_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public propiedades()
         {
+            this.calendario = new HashSet<calendario>();
             this.clientepropiedad = new HashSet<clientepropiedad>();
             this.cuentasporcobrar = new HashSet<cuentasporcobrar>();
             this.cuentasporcobrarpago = new HashSet<cuentasporcobrarpago>();
             this.propiedadesdocs = new HashSet<propiedadesdocs>();
-            this.calendario = new HashSet<calendario>();
         }
     
         public int PropiedadId { get; set; }
@@ -44,22 +44,22 @@ namespace Kondominium_DAL
         public Nullable<decimal> TamañoV2 { get; set; }
         public Nullable<decimal> ConstruidoM2 { get; set; }
     
+        public virtual alameda alameda1 { get; set; }
         public virtual aranceles aranceles { get; set; }
         public virtual avenida avenida1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<calendario> calendario { get; set; }
         public virtual calles calles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<clientepropiedad> clientepropiedad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrar> cuentasporcobrar { get; set; }
-        public virtual poligonos poligonos { get; set; }
-        public virtual sendas sendas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuentasporcobrarpago> cuentasporcobrarpago { get; set; }
-        public virtual alameda alameda1 { get; set; }
+        public virtual paseo paseo { get; set; }
+        public virtual poligonos poligonos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<propiedadesdocs> propiedadesdocs { get; set; }
-        public virtual paseo paseo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<calendario> calendario { get; set; }
+        public virtual sendas sendas { get; set; }
     }
 }

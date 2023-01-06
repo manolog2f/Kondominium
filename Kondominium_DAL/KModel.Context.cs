@@ -25,16 +25,25 @@ namespace Kondominium_DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<alameda> alameda { get; set; }
         public virtual DbSet<alerta> alerta { get; set; }
         public virtual DbSet<alertatipo> alertatipo { get; set; }
         public virtual DbSet<aranceles> aranceles { get; set; }
         public virtual DbSet<avenida> avenida { get; set; }
+        public virtual DbSet<calendario> calendario { get; set; }
         public virtual DbSet<calles> calles { get; set; }
         public virtual DbSet<clientepropiedad> clientepropiedad { get; set; }
         public virtual DbSet<clientepropiedaddetalle> clientepropiedaddetalle { get; set; }
+        public virtual DbSet<clientepropiedaddocs> clientepropiedaddocs { get; set; }
+        public virtual DbSet<clientes> clientes { get; set; }
+        public virtual DbSet<clientesdocs> clientesdocs { get; set; }
+        public virtual DbSet<cobrosmensalesloggeneracion> cobrosmensalesloggeneracion { get; set; }
         public virtual DbSet<config> config { get; set; }
+        public virtual DbSet<configcobrosmensauldet> configcobrosmensauldet { get; set; }
         public virtual DbSet<configcobrosmensual> configcobrosmensual { get; set; }
+        public virtual DbSet<contratos> contratos { get; set; }
         public virtual DbSet<contratosdetalle> contratosdetalle { get; set; }
+        public virtual DbSet<correlativos> correlativos { get; set; }
         public virtual DbSet<cuentasgeneradas> cuentasgeneradas { get; set; }
         public virtual DbSet<cuentasgeneradasdetalle> cuentasgeneradasdetalle { get; set; }
         public virtual DbSet<cuentasgeneradasdetalleb> cuentasgeneradasdetalleb { get; set; }
@@ -47,40 +56,33 @@ namespace Kondominium_DAL
         public virtual DbSet<field> field { get; set; }
         public virtual DbSet<fieldsecurity> fieldsecurity { get; set; }
         public virtual DbSet<log_action> log_action { get; set; }
+        public virtual DbSet<lugares> lugares { get; set; }
         public virtual DbSet<mainmenu> mainmenu { get; set; }
         public virtual DbSet<@object> @object { get; set; }
         public virtual DbSet<objecttype> objecttype { get; set; }
+        public virtual DbSet<paseo> paseo { get; set; }
         public virtual DbSet<permission> permission { get; set; }
         public virtual DbSet<poligonos> poligonos { get; set; }
         public virtual DbSet<productos> productos { get; set; }
         public virtual DbSet<profile> profile { get; set; }
         public virtual DbSet<profilepermission> profilepermission { get; set; }
         public virtual DbSet<propiedades> propiedades { get; set; }
+        public virtual DbSet<propiedadesdocs> propiedadesdocs { get; set; }
         public virtual DbSet<rol> rol { get; set; }
         public virtual DbSet<sendas> sendas { get; set; }
         public virtual DbSet<submenu> submenu { get; set; }
         public virtual DbSet<submenupermission> submenupermission { get; set; }
         public virtual DbSet<tareas> tareas { get; set; }
+        public virtual DbSet<uploadfiled> uploadfiled { get; set; }
+        public virtual DbSet<uploadfileh> uploadfileh { get; set; }
         public virtual DbSet<user> user { get; set; }
         public virtual DbSet<userconfig> userconfig { get; set; }
         public virtual DbSet<userprofile> userprofile { get; set; }
-        public virtual DbSet<cobrosmensalesloggeneracion> cobrosmensalesloggeneracion { get; set; }
-        public virtual DbSet<correlativos> correlativos { get; set; }
-        public virtual DbSet<vwpagos> vwpagos { get; set; }
+        public virtual DbSet<vew_test> vew_test { get; set; }
         public virtual DbSet<vwbalance> vwbalance { get; set; }
-        public virtual DbSet<alameda> alameda { get; set; }
-        public virtual DbSet<clientepropiedaddocs> clientepropiedaddocs { get; set; }
-        public virtual DbSet<clientesdocs> clientesdocs { get; set; }
-        public virtual DbSet<propiedadesdocs> propiedadesdocs { get; set; }
-        public virtual DbSet<paseo> paseo { get; set; }
-        public virtual DbSet<configcobrosmensauldet> configcobrosmensauldet { get; set; }
-        public virtual DbSet<clientes> clientes { get; set; }
-        public virtual DbSet<lugares> lugares { get; set; }
-        public virtual DbSet<calendario> calendario { get; set; }
-        public virtual DbSet<vwrecibo> vwrecibo { get; set; }
-        public virtual DbSet<contratos> contratos { get; set; }
-        public virtual DbSet<uploadfileh> uploadfileh { get; set; }
-        public virtual DbSet<uploadfiled> uploadfiled { get; set; }
+        public virtual DbSet<vwpagos> vwpagos { get; set; }
         public virtual DbSet<vwpagos2> vwpagos2 { get; set; }
+        public virtual DbSet<vwrecibo> vwrecibo { get; set; }
+        public virtual DbSet<vwsaldoadeudado> vwsaldoadeudado { get; set; }
     }
 }

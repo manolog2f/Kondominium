@@ -12,13 +12,9 @@ namespace Kondominium_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class contratosdetalle
+    public partial class vwsaldoadeudado
     {
-        public int ContratoId { get; set; }
-        public int ProductoId { get; set; }
-        public Nullable<decimal> Monto { get; set; }
-    
-        public virtual contratos contratos { get; set; }
-        public virtual productos productos { get; set; }
+        public int PropiedadId { get; set; }
+        public Nullable<decimal> Adeudado { get; set; }
     }
 }

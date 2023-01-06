@@ -62,6 +62,18 @@ namespace Kondominium_BL
 
         }
 
+        public List<SaldoAdeudadoEntity> Saldos(int PropiedadId)
+        {
+            var saldos = context.vwsaldoadeudado.Where(x => x.PropiedadId == PropiedadId).Select(x => new SaldoAdeudadoEntity
+            {
+               PropiedadId = x.PropiedadId,
+               Adeudado = x.Adeudado 
+            }).ToList();
+
+            return saldos;
+
+        }
+
         public List<vwPagosEntity> Pagos(string VaucherNumber)
         {
             var pagos = context.vwpagos.Where(x => x.VaucherNumber == VaucherNumber).Select(x => new vwPagosEntity {

@@ -658,7 +658,7 @@
         <KeepTogether>true</KeepTogether>
         <Top>8.62022cm</Top>
         <Left>0.49072cm</Left>
-        <Height>1.60042cm</Height>
+        <Height>2.08117cm</Height>
         <Width>7.72521cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
@@ -858,7 +858,8 @@
               <TextRun>
                 <Value>=First(Fields!NPE.Value, "Recibo")</Value>
                 <Style>
-                  <FontFamily>Code39AzaleaRegular3</FontFamily>
+                  <FontFamily>Libre Barcode 39 Text</FontFamily>
+                  <FontSize>18pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -866,10 +867,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NPE</rd:DefaultName>
-        <Top>10.53785cm</Top>
-        <Left>0.45544cm</Left>
-        <Height>0.6cm</Height>
-        <Width>7.76049cm</Width>
+        <Top>12.45703cm</Top>
+        <Left>0.42015cm</Left>
+        <Height>1.12918cm</Height>
+        <Width>16.04667cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -890,18 +891,21 @@
               <TextRun>
                 <Value>=First(Fields!BRCode.Value, "Recibo")</Value>
                 <Style>
-                  <FontFamily>Code39AzaleaRegular2</FontFamily>
+                  <FontFamily>Libre Barcode 39 Text</FontFamily>
+                  <FontSize>18pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <LineHeight>25pt</LineHeight>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>BRCode</rd:DefaultName>
-        <Top>8.76133cm</Top>
-        <Left>8.39232cm</Left>
-        <Height>0.6cm</Height>
-        <Width>7.63354cm</Width>
+        <Top>10.84278cm</Top>
+        <Left>0.42015cm</Left>
+        <Height>1.47313cm</Height>
+        <Width>16.04667cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -913,8 +917,139 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Rectangle Name="Rectangle5">
+        <ReportItems>
+          <Textbox Name="Total2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!Adeudado.Value, "Saldos")</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Format>'$'#,0.00;('$'#,0.00)</Format>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Total</rd:DefaultName>
+            <Top>0.25605cm</Top>
+            <Left>3.74354cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.66888cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+              <rd:FormatSymbolCulture>es-SV</rd:FormatSymbolCulture>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Saldo pendiente</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.14139cm</Top>
+            <Left>0.10952cm</Left>
+            <Height>0.67938cm</Height>
+            <Width>3.45763cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox25">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>** Saldo calculado a la fecha  </Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Globals!ExecutionTime</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.85605cm</Top>
+            <Left>0.28222cm</Left>
+            <Height>1.22512cm</Height>
+            <Width>7.06397cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>8.62022cm</Top>
+        <Left>8.2828cm</Left>
+        <Height>2.08117cm</Height>
+        <Width>7.72521cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>#66b142</BackgroundColor>
+        </Style>
+      </Rectangle>
     </ReportItems>
-    <Height>4.49957in</Height>
+    <Height>5.40263in</Height>
     <Style />
   </Body>
   <Width>6.483in</Width>
@@ -1412,6 +1547,30 @@ Si paga con NPE verifique que el recibo corresponda al mes que está pagando.</V
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>vwreciboTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="Saldos">
+      <Query>
+        <DataSourceName>kondomiDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="PropiedadId">
+          <DataField>PropiedadId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Adeudado">
+          <DataField>Adeudado</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>kondomiDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\MR\Desarrollo\Kondominium\Kondominium_Report\kondomiDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>vwsaldoadeudado</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>vwsaldoadeudadoTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

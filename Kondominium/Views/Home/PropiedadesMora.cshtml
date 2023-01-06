@@ -37,8 +37,10 @@
 </div>
 <div>
 
-        <a href="@Url.Action("ExportarPropiedadesMorosas", "Home")"  class="btn btn-info">
-            <i class="fa fa-file-excel"></i> Exportar a Excel
-        </a>
+    <button onclick="exportTableToExcel('dataTable2')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+
+    <a href="@Url.Action("ExportarPropiedadesMorosas", "Home")" class="btn btn-info">
+        <i class="fa fa-file-excel"></i> Exportar *Todos a Excel
+    </a>
 
 </div>

@@ -136,6 +136,8 @@ namespace Kondominium_Report {
         
         private cuentasporcobrarNoAutoDataTable tablecuentasporcobrarNoAuto;
         
+        private vwsaldoadeudadoDataTable tablevwsaldoadeudado;
+        
         private TotalesBalanceDataTable tableTotalesBalance;
         
         private global::System.Data.DataRelation relationAlerta_UsuarioFK;
@@ -417,6 +419,9 @@ namespace Kondominium_Report {
                 }
                 if ((ds.Tables["cuentasporcobrarNoAuto"] != null)) {
                     base.Tables.Add(new cuentasporcobrarNoAutoDataTable(ds.Tables["cuentasporcobrarNoAuto"]));
+                }
+                if ((ds.Tables["vwsaldoadeudado"] != null)) {
+                    base.Tables.Add(new vwsaldoadeudadoDataTable(ds.Tables["vwsaldoadeudado"]));
                 }
                 if ((ds.Tables["TotalesBalance"] != null)) {
                     base.Tables.Add(new TotalesBalanceDataTable(ds.Tables["TotalesBalance"]));
@@ -1003,6 +1008,16 @@ namespace Kondominium_Report {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public vwsaldoadeudadoDataTable vwsaldoadeudado {
+            get {
+                return this.tablevwsaldoadeudado;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public TotalesBalanceDataTable TotalesBalance {
             get {
                 return this.tableTotalesBalance;
@@ -1243,6 +1258,9 @@ namespace Kondominium_Report {
                 }
                 if ((ds.Tables["cuentasporcobrarNoAuto"] != null)) {
                     base.Tables.Add(new cuentasporcobrarNoAutoDataTable(ds.Tables["cuentasporcobrarNoAuto"]));
+                }
+                if ((ds.Tables["vwsaldoadeudado"] != null)) {
+                    base.Tables.Add(new vwsaldoadeudadoDataTable(ds.Tables["vwsaldoadeudado"]));
                 }
                 if ((ds.Tables["TotalesBalance"] != null)) {
                     base.Tables.Add(new TotalesBalanceDataTable(ds.Tables["TotalesBalance"]));
@@ -1616,6 +1634,12 @@ namespace Kondominium_Report {
                     this.tablecuentasporcobrarNoAuto.InitVars();
                 }
             }
+            this.tablevwsaldoadeudado = ((vwsaldoadeudadoDataTable)(base.Tables["vwsaldoadeudado"]));
+            if ((initTable == true)) {
+                if ((this.tablevwsaldoadeudado != null)) {
+                    this.tablevwsaldoadeudado.InitVars();
+                }
+            }
             this.tableTotalesBalance = ((TotalesBalanceDataTable)(base.Tables["TotalesBalance"]));
             if ((initTable == true)) {
                 if ((this.tableTotalesBalance != null)) {
@@ -1786,6 +1810,8 @@ namespace Kondominium_Report {
             base.Tables.Add(this.tableClientePropiedadvw);
             this.tablecuentasporcobrarNoAuto = new cuentasporcobrarNoAutoDataTable();
             base.Tables.Add(this.tablecuentasporcobrarNoAuto);
+            this.tablevwsaldoadeudado = new vwsaldoadeudadoDataTable();
+            base.Tables.Add(this.tablevwsaldoadeudado);
             this.tableTotalesBalance = new TotalesBalanceDataTable();
             base.Tables.Add(this.tableTotalesBalance);
             this.relationAlerta_UsuarioFK = new global::System.Data.DataRelation("Alerta_UsuarioFK", new global::System.Data.DataColumn[] {
@@ -2316,6 +2342,12 @@ namespace Kondominium_Report {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializevwsaldoadeudado() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeTotalesBalance() {
             return false;
         }
@@ -2542,6 +2574,9 @@ namespace Kondominium_Report {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void cuentasporcobrarNoAutoRowChangeEventHandler(object sender, cuentasporcobrarNoAutoRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void vwsaldoadeudadoRowChangeEventHandler(object sender, vwsaldoadeudadoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void TotalesBalanceRowChangeEventHandler(object sender, TotalesBalanceRowChangeEvent e);
@@ -24210,6 +24245,267 @@ namespace Kondominium_Report {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class vwsaldoadeudadoDataTable : global::System.Data.TypedTableBase<vwsaldoadeudadoRow> {
+            
+            private global::System.Data.DataColumn columnPropiedadId;
+            
+            private global::System.Data.DataColumn columnAdeudado;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoDataTable() {
+                this.TableName = "vwsaldoadeudado";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal vwsaldoadeudadoDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected vwsaldoadeudadoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PropiedadIdColumn {
+                get {
+                    return this.columnPropiedadId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn AdeudadoColumn {
+                get {
+                    return this.columnAdeudado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoRow this[int index] {
+                get {
+                    return ((vwsaldoadeudadoRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event vwsaldoadeudadoRowChangeEventHandler vwsaldoadeudadoRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event vwsaldoadeudadoRowChangeEventHandler vwsaldoadeudadoRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event vwsaldoadeudadoRowChangeEventHandler vwsaldoadeudadoRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event vwsaldoadeudadoRowChangeEventHandler vwsaldoadeudadoRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddvwsaldoadeudadoRow(vwsaldoadeudadoRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoRow AddvwsaldoadeudadoRow(int PropiedadId, decimal Adeudado) {
+                vwsaldoadeudadoRow rowvwsaldoadeudadoRow = ((vwsaldoadeudadoRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        PropiedadId,
+                        Adeudado};
+                rowvwsaldoadeudadoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowvwsaldoadeudadoRow);
+                return rowvwsaldoadeudadoRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                vwsaldoadeudadoDataTable cln = ((vwsaldoadeudadoDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new vwsaldoadeudadoDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnPropiedadId = base.Columns["PropiedadId"];
+                this.columnAdeudado = base.Columns["Adeudado"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnPropiedadId = new global::System.Data.DataColumn("PropiedadId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPropiedadId);
+                this.columnAdeudado = new global::System.Data.DataColumn("Adeudado", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdeudado);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoRow NewvwsaldoadeudadoRow() {
+                return ((vwsaldoadeudadoRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new vwsaldoadeudadoRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(vwsaldoadeudadoRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.vwsaldoadeudadoRowChanged != null)) {
+                    this.vwsaldoadeudadoRowChanged(this, new vwsaldoadeudadoRowChangeEvent(((vwsaldoadeudadoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.vwsaldoadeudadoRowChanging != null)) {
+                    this.vwsaldoadeudadoRowChanging(this, new vwsaldoadeudadoRowChangeEvent(((vwsaldoadeudadoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.vwsaldoadeudadoRowDeleted != null)) {
+                    this.vwsaldoadeudadoRowDeleted(this, new vwsaldoadeudadoRowChangeEvent(((vwsaldoadeudadoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.vwsaldoadeudadoRowDeleting != null)) {
+                    this.vwsaldoadeudadoRowDeleting(this, new vwsaldoadeudadoRowChangeEvent(((vwsaldoadeudadoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemovevwsaldoadeudadoRow(vwsaldoadeudadoRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                kondomiDataSet ds = new kondomiDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "vwsaldoadeudadoDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TotalesBalanceDataTable : global::System.Data.TypedTableBase<TotalesBalanceRow> {
             
             private global::System.Data.DataColumn columnTotRecibos;
@@ -35756,6 +36052,77 @@ namespace Kondominium_Report {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class vwsaldoadeudadoRow : global::System.Data.DataRow {
+            
+            private vwsaldoadeudadoDataTable tablevwsaldoadeudado;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal vwsaldoadeudadoRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablevwsaldoadeudado = ((vwsaldoadeudadoDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int PropiedadId {
+                get {
+                    try {
+                        return ((int)(this[this.tablevwsaldoadeudado.PropiedadIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PropiedadId\' in table \'vwsaldoadeudado\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevwsaldoadeudado.PropiedadIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal Adeudado {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablevwsaldoadeudado.AdeudadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Adeudado\' in table \'vwsaldoadeudado\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevwsaldoadeudado.AdeudadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsPropiedadIdNull() {
+                return this.IsNull(this.tablevwsaldoadeudado.PropiedadIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPropiedadIdNull() {
+                this[this.tablevwsaldoadeudado.PropiedadIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsAdeudadoNull() {
+                return this.IsNull(this.tablevwsaldoadeudado.AdeudadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetAdeudadoNull() {
+                this[this.tablevwsaldoadeudado.AdeudadoColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class TotalesBalanceRow : global::System.Data.DataRow {
             
             private TotalesBalanceDataTable tableTotalesBalance;
@@ -37742,6 +38109,40 @@ namespace Kondominium_Report {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public cuentasporcobrarNoAutoRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class vwsaldoadeudadoRowChangeEvent : global::System.EventArgs {
+            
+            private vwsaldoadeudadoRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoRowChangeEvent(vwsaldoadeudadoRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public vwsaldoadeudadoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -65063,6 +65464,174 @@ FROM            cuentasporcobrar";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class vwsaldoadeudadoTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
+        
+        private global::MySql.Data.MySqlClient.MySqlConnection _connection;
+        
+        private global::MySql.Data.MySqlClient.MySqlTransaction _transaction;
+        
+        private global::MySql.Data.MySqlClient.MySqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public vwsaldoadeudadoTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::MySql.Data.MySqlClient.MySqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::MySql.Data.MySqlClient.MySqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::MySql.Data.MySqlClient.MySqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "vwsaldoadeudado";
+            tableMapping.ColumnMappings.Add("PropiedadId", "PropiedadId");
+            tableMapping.ColumnMappings.Add("Adeudado", "Adeudado");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["KEntities"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
+            this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        PropiedadId, Adeudado\r\nFROM            vwsaldoadeudado";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(kondomiDataSet.vwsaldoadeudadoDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual kondomiDataSet.vwsaldoadeudadoDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            kondomiDataSet.vwsaldoadeudadoDataTable dataTable = new kondomiDataSet.vwsaldoadeudadoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -66268,6 +66837,15 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._sendasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._sendasTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._arancelesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.aranceles.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -66295,15 +66873,6 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._sendasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sendasTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._clientesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.clientes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -66322,30 +66891,21 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._mainmenuTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.mainmenu.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._mainmenuTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._clientepropiedadTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.clientepropiedad.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._clientepropiedadTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._cxctypeTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.cxctype.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._cxctypeTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._mainmenuTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.mainmenu.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._mainmenuTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66358,39 +66918,12 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._submenuTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.submenu.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._clientepropiedadTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.clientepropiedad.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._submenuTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._profileTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.profile.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._profileTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._lugaresTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._lugaresTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._productosTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._productosTableAdapter.Update(updatedRows));
+                    result = (result + this._clientepropiedadTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66412,21 +66945,21 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._cuentasporcobrarNoAutoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.cuentasporcobrarNoAuto.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._alertatipoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._cuentasporcobrarNoAutoTableAdapter.Update(updatedRows));
+                    result = (result + this._alertatipoTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._objecttypeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.objecttype.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._objecttypeTableAdapter.Update(updatedRows));
+                    result = (result + this._productosTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66448,30 +66981,48 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._alertatipoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._lugaresTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._alertatipoTableAdapter.Update(updatedRows));
+                    result = (result + this._lugaresTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tareasTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tareas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._submenuTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.submenu.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tareasTableAdapter.Update(updatedRows));
+                    result = (result + this._submenuTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._submenupermissionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._profileTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.profile.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._submenupermissionTableAdapter.Update(updatedRows));
+                    result = (result + this._profileTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._cuentasporcobrarNoAutoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.cuentasporcobrarNoAuto.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._cuentasporcobrarNoAutoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._objecttypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.objecttype.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._objecttypeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66481,6 +67032,15 @@ FROM            cuentasporcobrar";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._profilepermissionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tareasTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tareas.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tareasTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66499,6 +67059,24 @@ FROM            cuentasporcobrar";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._userprofileTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._submenupermissionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._submenupermissionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._alertaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._alertaTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -66691,15 +67269,6 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._alertaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._alertaTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -66715,6 +67284,14 @@ FROM            cuentasporcobrar";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._poligonosTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._sendasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._sendasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66742,14 +67319,6 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._sendasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sendasTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._clientesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.clientes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -66766,27 +67335,19 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._mainmenuTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.mainmenu.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._mainmenuTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._clientepropiedadTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.clientepropiedad.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._clientepropiedadTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._cxctypeTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.cxctype.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._cxctypeTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._mainmenuTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.mainmenu.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._mainmenuTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66798,35 +67359,11 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._submenuTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.submenu.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._clientepropiedadTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.clientepropiedad.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._submenuTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._profileTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.profile.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._profileTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._lugaresTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._lugaresTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._productosTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._productosTableAdapter.Update(addedRows));
+                    result = (result + this._clientepropiedadTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66846,19 +67383,19 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._cuentasporcobrarNoAutoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.cuentasporcobrarNoAuto.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._alertatipoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._cuentasporcobrarNoAutoTableAdapter.Update(addedRows));
+                    result = (result + this._alertatipoTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._objecttypeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.objecttype.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._objecttypeTableAdapter.Update(addedRows));
+                    result = (result + this._productosTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66878,27 +67415,43 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._alertatipoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._lugaresTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._alertatipoTableAdapter.Update(addedRows));
+                    result = (result + this._lugaresTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tareasTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tareas.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._submenuTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.submenu.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tareasTableAdapter.Update(addedRows));
+                    result = (result + this._submenuTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._submenupermissionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._profileTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.profile.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._submenupermissionTableAdapter.Update(addedRows));
+                    result = (result + this._profileTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._cuentasporcobrarNoAutoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.cuentasporcobrarNoAuto.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._cuentasporcobrarNoAutoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._objecttypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.objecttype.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._objecttypeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66907,6 +67460,14 @@ FROM            cuentasporcobrar";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._profilepermissionTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tareasTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tareas.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tareasTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -66923,6 +67484,22 @@ FROM            cuentasporcobrar";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._userprofileTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._submenupermissionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._submenupermissionTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._alertaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._alertaTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -67094,14 +67671,6 @@ FROM            cuentasporcobrar";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._alertaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._alertaTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -67112,14 +67681,6 @@ FROM            cuentasporcobrar";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(kondomiDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._alertaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._alertaTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._cuentasgeneradasTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.cuentasgeneradas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -67288,6 +67849,22 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._alertaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.alerta.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._alertaTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._submenupermissionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._submenupermissionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._userprofileTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.userprofile.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -67304,22 +67881,6 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._profilepermissionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.profilepermission.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._profilepermissionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._submenupermissionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.submenupermission.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._submenupermissionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tareasTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.tareas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -67328,27 +67889,11 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._alertatipoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._profilepermissionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.profilepermission.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._alertatipoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._configcobrosmensualTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.configcobrosmensual.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._configcobrosmensualTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._contratosTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.contratos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._contratosTableAdapter.Update(deletedRows));
+                    result = (result + this._profilepermissionTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -67368,38 +67913,6 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._userTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.user.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._cuentasporcobrarTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.cuentasporcobrar.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._cuentasporcobrarTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._productosTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._productosTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._lugaresTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._lugaresTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._profileTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.profile.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -67416,19 +67929,59 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._rolTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.rol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._lugaresTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.lugares.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._rolTableAdapter.Update(deletedRows));
+                    result = (result + this._lugaresTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._cxctypeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.cxctype.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._configcobrosmensualTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.configcobrosmensual.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._cxctypeTableAdapter.Update(deletedRows));
+                    result = (result + this._configcobrosmensualTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._contratosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.contratos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._contratosTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._productosTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.productos.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._productosTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._alertatipoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.alertatipo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._alertatipoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._userTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.user.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._cuentasporcobrarTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.cuentasporcobrar.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._cuentasporcobrarTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -67440,11 +67993,27 @@ FROM            cuentasporcobrar";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._rolTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.rol.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._rolTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._mainmenuTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.mainmenu.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._mainmenuTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._cxctypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.cxctype.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._cxctypeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -67461,14 +68030,6 @@ FROM            cuentasporcobrar";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._clientesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._sendasTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sendasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -67493,6 +68054,14 @@ FROM            cuentasporcobrar";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._arancelesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._sendasTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.sendas.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._sendasTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

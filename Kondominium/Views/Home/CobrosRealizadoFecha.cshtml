@@ -36,9 +36,12 @@
 <div>
     @*<button onclick="exportTableToExcel('dataTable')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>*@
 
+    <button onclick="exportTableToExcel('dataTable3')" class="btn btn-info"><i class="fa fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
 
     <a href="@Url.Action("ExportarPagosdelMes", "Home" , new { FromDate = DateTime.Now.AddMonths(-1),ToDate = DateTime.Now }) " class="btn btn-info">
-        <i class="fa fa-file-excel"></i> Exportar a Excel
+        <i class="fa fa-file-excel"></i> Exportar *Todos a Excel
     </a>
+
+
 
 </div>

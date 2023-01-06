@@ -25,7 +25,6 @@ namespace Kondominium
                 "~/Scripts/jquery.maskedinput.js",
                 "~/Scripts/jquery.maskedinput.min.js",
                 "~/Scripts/jquery-Autocompletar.js"
-
             ));
 
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
@@ -53,7 +52,10 @@ namespace Kondominium
                 //"~/Scripts/ZMT/Menu.js",
                 "~/Scripts/ZMT/ZMTDatetimePicker.js",
                 "~/Scripts/ZMT/ZMTUtils.js",
+                "~/Scripts/xlsx.mini.js",
                 "~/Scripts/ZMT/ZMTExportExcel.js"
+           
+
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

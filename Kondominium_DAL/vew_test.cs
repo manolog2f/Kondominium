@@ -12,13 +12,13 @@ namespace Kondominium_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class contratosdetalle
+    public partial class vew_test
     {
-        public int ContratoId { get; set; }
-        public int ProductoId { get; set; }
-        public Nullable<decimal> Monto { get; set; }
-    
-        public virtual contratos contratos { get; set; }
-        public virtual productos productos { get; set; }
+        public string RolId { get; set; }
+        public string RolDescription { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public System.DateTime ModifiedDate { get; set; }
+        public string CreateByUserId { get; set; }
+        public string ModifiedByUserId { get; set; }
     }
 }

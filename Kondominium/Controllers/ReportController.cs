@@ -60,7 +60,10 @@ namespace Kondominium.Controllers
         {
             ReportViewer rv = new Microsoft.Reporting.WebForms.ReportViewer();
 
-            var DataSRecibo = new ReportDataSource("Recibo", new Kondominium_BL.ReportData().Recibo(VaucherNumber));
+            var Recibo = new Kondominium_BL.ReportData().Recibo(VaucherNumber);
+
+            var DataSRecibo = new ReportDataSource("Recibo", Recibo);
+            var Saldos = new ReportDataSource("Saldos", new Kondominium_BL.ReportData().Saldos(Recibo.FirstOrDefault().PropiedadId));
             var DataSEmpresa = new ReportDataSource("Empresa", new Kondominium_BL.EmpresaDatos().DataTable());
 
             //var d = new Kondominium_BL.ReportData().ReciboDataTable(VaucherNumber);
@@ -79,6 +82,7 @@ namespace Kondominium.Controllers
             rv.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"\bin\Reports\Recibo.rdlc";
             rv.LocalReport.DataSources.Add(DataSRecibo);
             rv.LocalReport.DataSources.Add(DataSEmpresa);
+            rv.LocalReport.DataSources.Add(Saldos);
 
             rv.LocalReport.Refresh();
             ViewBag.ReportViewer = rv;

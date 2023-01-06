@@ -29,7 +29,7 @@ namespace Kondominium_DAL
         public Nullable<System.DateTime> FechadePago { get; set; }
         public Nullable<int> Estado { get; set; }
     
-        public virtual propiedades propiedades { get; set; }
         public virtual clientes clientes { get; set; }
+        public virtual propiedades propiedades { get; set; }
     }
 }

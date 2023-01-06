@@ -13,9 +13,30 @@
 }
 
 @font-face {
+    font-family: 'Libre Barcode 39 Extended Text';
+    src: url('../fonts/librebarcode39extendedtext-regular-webfont.woff2') format('woff2'), url('../fonts/librebarcode39extendedtext-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Libre_Barcode_39_Text';
+    src: url('../fonts/librebarcode39extendedtext-regular-webfont.woff2') format('woff2'), url('../fonts/librebarcode39extendedtext-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'LibreBarcode39-Regular';
     src: url('../fonts/LibreBarcode39-Regular.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'Libre Barcode 39 Extended Text';
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+    src: url('../fonts/librebarcode39extendedtext-regular-webfont.woff2') format('woff2'), url('../fonts/librebarcode39extendedtext-regular-webfont.woff') format('woff');
+}
+
 
 
 .fa,
